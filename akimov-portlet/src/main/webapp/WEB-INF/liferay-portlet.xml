@@ -10,6 +10,7 @@
 
 		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
 
@@ -20,6 +21,7 @@
 
 		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
 

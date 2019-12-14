@@ -14,23 +14,7 @@ function asyncAction(url, params) {
 
 			$messageBox.empty();
 			$messageBox.show();
-
-			if (jsonResponse.success) {
-				$messageBox.append('<div class="alert alert-success">Запрос выполнен</div>');
-			}
-
-			var messages = jsonResponse.messages;
-			for (var messageKey in messages) {
-				if (messages.hasOwnProperty(messageKey)) {
-					$messageBox.append('<div class="alert alert-info">' + messages[messageKey] + '</div>');
-				}
-			}
-			var errors = jsonResponse.errors;
-			for (var errorKey in errors) {
-				if (errors.hasOwnProperty(errorKey)) {
-					$messageBox.append('<div class="alert alert-error">' + errors[errorKey] + '</div>');
-				}
-			}
+			$messageBox.append(buildActionResultHtml(jsonResponse));
 
 			setTimeout(function () {
 				$messageBox.fadeOut(1000, function () {
@@ -43,6 +27,29 @@ function asyncAction(url, params) {
 	};
 
 	$.post(url, params.data, func, 'json');
+}
+
+function buildActionResultHtml(jsonResponse) {
+	var html = '';
+
+	if (jsonResponse.success) {
+		html = html.concat('<div class="alert alert-success">Запрос выполнен</div>');
+	}
+
+	var messages = jsonResponse.messages;
+	for (var messageKey in messages) {
+		if (messages.hasOwnProperty(messageKey)) {
+			html = html.concat('<div class="alert alert-info">' + messages[messageKey] + '</div>');
+		}
+	}
+	var errors = jsonResponse.errors;
+	for (var errorKey in errors) {
+		if (errors.hasOwnProperty(errorKey)) {
+			html = html.concat('<div class="alert alert-error">' + errors[errorKey] + '</div>');
+		}
+	}
+
+	return html;
 }
 
 /**

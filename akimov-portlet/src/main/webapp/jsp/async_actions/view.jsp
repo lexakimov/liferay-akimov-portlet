@@ -1,8 +1,6 @@
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
-<%@ page import="ru.isands.akimov.enums.Gender" %>
 <%@ page import="static ru.isands.akimov.constants.Param.ASYNC_ACTION_METHOD_PARAM" %>
 <%@ page import="static ru.isands.akimov.constants.Param.ASYNC_ACTION_RESOURCE_ID" %>
-<%@ page import="ru.isands.akimov.search_helpers.impl.PersonSearchHelper" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -53,8 +51,12 @@
 
 <script>
 	$(function () {
-		var callback = function () {
-			console.log('this is callback');
+		var callback = function (jsonResponse) {
+			console.log(jsonResponse);
+			openSimpleMessageWindow({
+				headerLabel: 'Заголовок окна',
+				bodyContent: buildActionResultHtml(jsonResponse)
+			});
 		};
 
 		$("button#<portlet:namespace/>execAction2").click(function () {
