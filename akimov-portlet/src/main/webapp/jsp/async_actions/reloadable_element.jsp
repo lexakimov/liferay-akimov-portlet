@@ -12,7 +12,7 @@
 	<%
 		for (int i = 0; i < 10; i++) {
 			System.out.println("long-time async request " + (i + 1) + "/10");
-			Thread.sleep(150);
+			Thread.sleep(200);
 		}
 	%>
 </c:if>

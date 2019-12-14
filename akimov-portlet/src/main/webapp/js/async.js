@@ -13,11 +13,9 @@ function asyncAction(url, params) {
  */
 function reloadElementContent(element, url) {
 	var _element = element;
-
 	if (typeof element == 'string') {
 		_element = $(element);
 	}
-
 	_element.load(url);
 }
 
@@ -29,50 +27,37 @@ function reloadElementContent(element, url) {
  * @param url     - URL post-запроса
  * postData      тело запроса
  * callback      коллбэк после выполения действия
- *
- * FIXME асинхронность
  */
 function reloadElementContentAdvanced(element, url, params) {
-
 	var _element = element;
-
 	if (typeof element == 'string') {
 		_element = $(element);
 	}
 
 	var _data = (typeof params == 'undefined') ? undefined : params.postData;
-
 	var _callback = (typeof params == 'undefined') ? undefined : params.callback;
 
+	var fadeDeferred = $.Deferred();
+	var ajaxDeferred = $.Deferred();
 
-	var def1 = $.Deferred();
+	_element.fadeTo(400, 0.0, fadeDeferred.resolve);
 
-	var def2 = $.Deferred();
+	$.ajax({
+		type: 'POST',
+		url: url,
+		data: _data,
+		cache: false,
+		success: function (msg) {
+			ajaxDeferred.resolve(msg);
+		}
+	});
 
-	_element.fadeTo(400, 0.0, def1.resolve);
-
-	def1.done(function () {
-		$.ajax({
-			type: 'POST',
-			url: url,
-			data: _data,
-			cache: false,
-			success: function (msg) {
-				def2.resolve(msg);
-			},
-			complete: function () {
-				if (_callback) {
-					_callback();
-				}
+	$.when(fadeDeferred, ajaxDeferred).done(function (msg) {
+		_element.html(msg);
+		_element.fadeTo(400, 1, function () {
+			if (_callback) {
+				_callback();
 			}
 		});
 	});
-
-	def2.done(function (msg) {
-		_element.html(msg);
-		_element.fadeTo(400, 1);
-	});
-		//.fail()
-		//.then();
-
 }
