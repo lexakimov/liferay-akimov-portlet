@@ -13,7 +13,6 @@ import java.util.List;
  * @generated
  */
 public class PersonSoap implements Serializable {
-    private String _uuid;
     private int _personId;
     private String _lastName;
     private String _firstName;
@@ -28,7 +27,6 @@ public class PersonSoap implements Serializable {
     public static PersonSoap toSoapModel(Person model) {
         PersonSoap soapModel = new PersonSoap();
 
-        soapModel.setUuid(model.getUuid());
         soapModel.setPersonId(model.getPersonId());
         soapModel.setLastName(model.getLastName());
         soapModel.setFirstName(model.getFirstName());
@@ -82,14 +80,6 @@ public class PersonSoap implements Serializable {
 
     public void setPrimaryKey(int pk) {
         setPersonId(pk);
-    }
-
-    public String getUuid() {
-        return _uuid;
-    }
-
-    public void setUuid(String uuid) {
-        _uuid = uuid;
     }
 
     public int getPersonId() {

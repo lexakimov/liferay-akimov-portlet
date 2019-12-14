@@ -21,7 +21,6 @@ import java.util.Date;
  * @generated
  */
 public class PersonCacheModel implements CacheModel<Person>, Externalizable {
-    public String uuid;
     public int personId;
     public String lastName;
     public String firstName;
@@ -32,11 +31,9 @@ public class PersonCacheModel implements CacheModel<Person>, Externalizable {
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(17);
+        StringBundler sb = new StringBundler(15);
 
-        sb.append("{uuid=");
-        sb.append(uuid);
-        sb.append(", personId=");
+        sb.append("{personId=");
         sb.append(personId);
         sb.append(", lastName=");
         sb.append(lastName);
@@ -58,12 +55,6 @@ public class PersonCacheModel implements CacheModel<Person>, Externalizable {
     @Override
     public Person toEntityModel() {
         PersonImpl personImpl = new PersonImpl();
-
-        if (uuid == null) {
-            personImpl.setUuid(StringPool.BLANK);
-        } else {
-            personImpl.setUuid(uuid);
-        }
 
         personImpl.setPersonId(personId);
 
@@ -106,7 +97,6 @@ public class PersonCacheModel implements CacheModel<Person>, Externalizable {
 
     @Override
     public void readExternal(ObjectInput objectInput) throws IOException {
-        uuid = objectInput.readUTF();
         personId = objectInput.readInt();
         lastName = objectInput.readUTF();
         firstName = objectInput.readUTF();
@@ -119,12 +109,6 @@ public class PersonCacheModel implements CacheModel<Person>, Externalizable {
     @Override
     public void writeExternal(ObjectOutput objectOutput)
         throws IOException {
-        if (uuid == null) {
-            objectOutput.writeUTF(StringPool.BLANK);
-        } else {
-            objectOutput.writeUTF(uuid);
-        }
-
         objectOutput.writeInt(personId);
 
         if (lastName == null) {

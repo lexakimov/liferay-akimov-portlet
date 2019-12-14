@@ -20,7 +20,6 @@ import java.util.Map;
 
 
 public class PersonClp extends BaseModelImpl<Person> implements Person {
-    private String _uuid;
     private int _personId;
     private String _lastName;
     private String _firstName;
@@ -68,7 +67,6 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
     public Map<String, Object> getModelAttributes() {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
-        attributes.put("uuid", getUuid());
         attributes.put("personId", getPersonId());
         attributes.put("lastName", getLastName());
         attributes.put("firstName", getFirstName());
@@ -82,12 +80,6 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 
     @Override
     public void setModelAttributes(Map<String, Object> attributes) {
-        String uuid = (String) attributes.get("uuid");
-
-        if (uuid != null) {
-            setUuid(uuid);
-        }
-
         Integer personId = (Integer) attributes.get("personId");
 
         if (personId != null) {
@@ -128,28 +120,6 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 
         if (address != null) {
             setAddress(address);
-        }
-    }
-
-    @Override
-    public String getUuid() {
-        return _uuid;
-    }
-
-    @Override
-    public void setUuid(String uuid) {
-        _uuid = uuid;
-
-        if (_personRemoteModel != null) {
-            try {
-                Class<?> clazz = _personRemoteModel.getClass();
-
-                Method method = clazz.getMethod("setUuid", String.class);
-
-                method.invoke(_personRemoteModel, uuid);
-            } catch (Exception e) {
-                throw new UnsupportedOperationException(e);
-            }
         }
     }
 
@@ -374,7 +344,6 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
     public Object clone() {
         PersonClp clone = new PersonClp();
 
-        clone.setUuid(getUuid());
         clone.setPersonId(getPersonId());
         clone.setLastName(getLastName());
         clone.setFirstName(getFirstName());
@@ -431,11 +400,9 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(17);
+        StringBundler sb = new StringBundler(15);
 
-        sb.append("{uuid=");
-        sb.append(getUuid());
-        sb.append(", personId=");
+        sb.append("{personId=");
         sb.append(getPersonId());
         sb.append(", lastName=");
         sb.append(getLastName());
@@ -456,16 +423,12 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(28);
+        StringBundler sb = new StringBundler(25);
 
         sb.append("<model><model-name>");
         sb.append("ru.isands.akimov.model.Person");
         sb.append("</model-name>");
 
-        sb.append(
-            "<column><column-name>uuid</column-name><column-value><![CDATA[");
-        sb.append(getUuid());
-        sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>personId</column-name><column-value><![CDATA[");
         sb.append(getPersonId());

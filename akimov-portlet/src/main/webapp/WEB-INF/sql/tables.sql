@@ -1,5 +1,4 @@
 create table akimov_Person (
-	uuid_ VARCHAR(75) null,
 	personId INTEGER not null primary key,
 	lastName VARCHAR(75) null,
 	firstName VARCHAR(75) null,

@@ -10,9 +10,6 @@
 	<mapped-superclass class="ru.isands.akimov.model.impl.PersonModelImpl">
 		<attributes>
 			<id name="personId" />
-			<basic name="uuid">
-				<column name="UUID_" />
-			</basic>
 			<basic name="lastName" />
 			<basic name="firstName" />
 			<basic name="middleName" />

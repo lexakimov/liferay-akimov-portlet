@@ -41,7 +41,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
      */
     public static final String TABLE_NAME = "akimov_Person";
     public static final Object[][] TABLE_COLUMNS = {
-            { "uuid_", Types.VARCHAR },
             { "personId", Types.INTEGER },
             { "lastName", Types.VARCHAR },
             { "firstName", Types.VARCHAR },
@@ -50,7 +49,7 @@ public class PersonModelImpl extends BaseModelImpl<Person>
             { "birthDate", Types.TIMESTAMP },
             { "address", Types.VARCHAR }
         };
-    public static final String TABLE_SQL_CREATE = "create table akimov_Person (uuid_ VARCHAR(75) null,personId INTEGER not null primary key,lastName VARCHAR(75) null,firstName VARCHAR(75) null,middleName VARCHAR(75) null,gender INTEGER,birthDate DATE null,address VARCHAR(75) null)";
+    public static final String TABLE_SQL_CREATE = "create table akimov_Person (personId INTEGER not null primary key,lastName VARCHAR(75) null,firstName VARCHAR(75) null,middleName VARCHAR(75) null,gender INTEGER,birthDate DATE null,address VARCHAR(75) null)";
     public static final String TABLE_SQL_DROP = "drop table akimov_Person";
     public static final String ORDER_BY_JPQL = " ORDER BY person.personId ASC";
     public static final String ORDER_BY_SQL = " ORDER BY akimov_Person.personId ASC";
@@ -63,17 +62,11 @@ public class PersonModelImpl extends BaseModelImpl<Person>
     public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
                 "value.object.finder.cache.enabled.ru.isands.akimov.model.Person"),
             true);
-    public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-                "value.object.column.bitmask.enabled.ru.isands.akimov.model.Person"),
-            true);
-    public static long UUID_COLUMN_BITMASK = 1L;
-    public static long PERSONID_COLUMN_BITMASK = 2L;
+    public static final boolean COLUMN_BITMASK_ENABLED = false;
     public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
                 "lock.expiration.time.ru.isands.akimov.model.Person"));
     private static ClassLoader _classLoader = Person.class.getClassLoader();
     private static Class<?>[] _escapedModelInterfaces = new Class[] { Person.class };
-    private String _uuid;
-    private String _originalUuid;
     private int _personId;
     private String _lastName;
     private String _firstName;
@@ -81,7 +74,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
     private int _gender;
     private Date _birthDate;
     private String _address;
-    private long _columnBitmask;
     private Person _escapedModel;
 
     public PersonModelImpl() {
@@ -121,7 +113,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
     public Map<String, Object> getModelAttributes() {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
-        attributes.put("uuid", getUuid());
         attributes.put("personId", getPersonId());
         attributes.put("lastName", getLastName());
         attributes.put("firstName", getFirstName());
@@ -135,12 +126,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 
     @Override
     public void setModelAttributes(Map<String, Object> attributes) {
-        String uuid = (String) attributes.get("uuid");
-
-        if (uuid != null) {
-            setUuid(uuid);
-        }
-
         Integer personId = (Integer) attributes.get("personId");
 
         if (personId != null) {
@@ -182,28 +167,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
         if (address != null) {
             setAddress(address);
         }
-    }
-
-    @Override
-    public String getUuid() {
-        if (_uuid == null) {
-            return StringPool.BLANK;
-        } else {
-            return _uuid;
-        }
-    }
-
-    @Override
-    public void setUuid(String uuid) {
-        if (_originalUuid == null) {
-            _originalUuid = _uuid;
-        }
-
-        _uuid = uuid;
-    }
-
-    public String getOriginalUuid() {
-        return GetterUtil.getString(_originalUuid);
     }
 
     @Override
@@ -292,10 +255,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
         _address = address;
     }
 
-    public long getColumnBitmask() {
-        return _columnBitmask;
-    }
-
     @Override
     public Person toEscapedModel() {
         if (_escapedModel == null) {
@@ -310,7 +269,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
     public Object clone() {
         PersonImpl personImpl = new PersonImpl();
 
-        personImpl.setUuid(getUuid());
         personImpl.setPersonId(getPersonId());
         personImpl.setLastName(getLastName());
         personImpl.setFirstName(getFirstName());
@@ -365,24 +323,11 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 
     @Override
     public void resetOriginalValues() {
-        PersonModelImpl personModelImpl = this;
-
-        personModelImpl._originalUuid = personModelImpl._uuid;
-
-        personModelImpl._columnBitmask = 0;
     }
 
     @Override
     public CacheModel<Person> toCacheModel() {
         PersonCacheModel personCacheModel = new PersonCacheModel();
-
-        personCacheModel.uuid = getUuid();
-
-        String uuid = personCacheModel.uuid;
-
-        if ((uuid != null) && (uuid.length() == 0)) {
-            personCacheModel.uuid = null;
-        }
 
         personCacheModel.personId = getPersonId();
 
@@ -433,11 +378,9 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(17);
+        StringBundler sb = new StringBundler(15);
 
-        sb.append("{uuid=");
-        sb.append(getUuid());
-        sb.append(", personId=");
+        sb.append("{personId=");
         sb.append(getPersonId());
         sb.append(", lastName=");
         sb.append(getLastName());
@@ -458,16 +401,12 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(28);
+        StringBundler sb = new StringBundler(25);
 
         sb.append("<model><model-name>");
         sb.append("ru.isands.akimov.model.Person");
         sb.append("</model-name>");
 
-        sb.append(
-            "<column><column-name>uuid</column-name><column-value><![CDATA[");
-        sb.append(getUuid());
-        sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>personId</column-name><column-value><![CDATA[");
         sb.append(getPersonId());

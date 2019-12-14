@@ -46,21 +46,6 @@ public interface PersonModel extends BaseModel<Person> {
     public void setPrimaryKey(int primaryKey);
 
     /**
-     * Returns the uuid of this person.
-     *
-     * @return the uuid of this person
-     */
-    @AutoEscape
-    public String getUuid();
-
-    /**
-     * Sets the uuid of this person.
-     *
-     * @param uuid the uuid of this person
-     */
-    public void setUuid(String uuid);
-
-    /**
      * Returns the person ID of this person.
      *
      * @return the person ID of this person

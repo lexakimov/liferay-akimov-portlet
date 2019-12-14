@@ -2,7 +2,6 @@
 
 <model-hints>
 	<model name="ru.isands.akimov.model.Person">
-		<field name="uuid" type="String" />
 		<field name="personId" type="int" />
 		<field name="lastName" type="String" />
 		<field name="firstName" type="String" />

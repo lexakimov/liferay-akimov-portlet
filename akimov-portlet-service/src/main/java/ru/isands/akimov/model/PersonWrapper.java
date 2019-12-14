@@ -37,7 +37,6 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
     public Map<String, Object> getModelAttributes() {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
-        attributes.put("uuid", getUuid());
         attributes.put("personId", getPersonId());
         attributes.put("lastName", getLastName());
         attributes.put("firstName", getFirstName());
@@ -51,12 +50,6 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 
     @Override
     public void setModelAttributes(Map<String, Object> attributes) {
-        String uuid = (String) attributes.get("uuid");
-
-        if (uuid != null) {
-            setUuid(uuid);
-        }
-
         Integer personId = (Integer) attributes.get("personId");
 
         if (personId != null) {
@@ -118,26 +111,6 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
     @Override
     public void setPrimaryKey(int primaryKey) {
         _person.setPrimaryKey(primaryKey);
-    }
-
-    /**
-    * Returns the uuid of this person.
-    *
-    * @return the uuid of this person
-    */
-    @Override
-    public java.lang.String getUuid() {
-        return _person.getUuid();
-    }
-
-    /**
-    * Sets the uuid of this person.
-    *
-    * @param uuid the uuid of this person
-    */
-    @Override
-    public void setUuid(java.lang.String uuid) {
-        _person.setUuid(uuid);
     }
 
     /**
