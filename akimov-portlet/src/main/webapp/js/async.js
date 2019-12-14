@@ -13,6 +13,7 @@ function asyncAction(url, params) {
 		if ($messageBox) {
 
 			$messageBox.empty();
+			$messageBox.show();
 
 			if (jsonResponse.success) {
 				$messageBox.append('<div class="alert alert-success">Запрос выполнен</div>');

@@ -2,24 +2,30 @@
 <%@ page import="ru.isands.akimov.enums.Gender" %>
 <%@ page import="static ru.isands.akimov.constants.Param.ASYNC_ACTION_METHOD_PARAM" %>
 <%@ page import="static ru.isands.akimov.constants.Param.ASYNC_ACTION_RESOURCE_ID" %>
-<%@ page import="ru.isands.akimov.search_helpers.PersonSearchHelper" %>
+<%@ page import="ru.isands.akimov.search_helpers.impl.PersonSearchHelper" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
 <h3>Async Actions Portlet</h3>
 
+<portlet:renderURL var="addParamsURL">
+	<portlet:param name="wrongParam1" value="value_3234344"/>
+	<portlet:param name="wrongParam2" value="value_esfsdgd"/>
+</portlet:renderURL>
+
+<aui:a href="${addParamsURL}">
+	add wrong params
+</aui:a>
 <%--------------------------------------------------------------------------------------------------------------------%>
 <div class="separator"></div><%---------------------------------------------------------------------------------------%>
 <%--------------------------------------------------------------------------------------------------------------------%>
 
-<aui:button name="execAction1" value="Execute action" primary="true"/>
+<div id="messageBox1"></div>
 
 <portlet:resourceURL var="urlName1" id="<%=ASYNC_ACTION_RESOURCE_ID%>">
 	<portlet:param name="<%=ASYNC_ACTION_METHOD_PARAM%>" value="simpleAsyncAction"/>
 	<portlet:param name="custom_param1" value="value 1233"/>
 </portlet:resourceURL>
-
-<div id="messageBox1"></div>
 
 <script>
 	$(function () {
@@ -33,17 +39,17 @@
 	});
 </script>
 
+<aui:button name="execAction1" value="Execute action" primary="true"/>
+
 <%--------------------------------------------------------------------------------------------------------------------%>
 <div class="separator"></div><%---------------------------------------------------------------------------------------%>
 <%--------------------------------------------------------------------------------------------------------------------%>
 
-<aui:button name="execAction2" value="Execute action with errors" primary="true"/>
+<div id="messageBox2"></div>
 
 <portlet:resourceURL var="urlName2" id="<%=ASYNC_ACTION_RESOURCE_ID%>">
 	<portlet:param name="<%=ASYNC_ACTION_METHOD_PARAM%>" value="simpleAsyncActionWithErrors"/>
 </portlet:resourceURL>
-
-<div id="messageBox2"></div>
 
 <script>
 	$(function () {
@@ -56,6 +62,8 @@
 		});
 	});
 </script>
+
+<aui:button name="execAction2" value="Execute action with errors" primary="true"/>
 
 <%--------------------------------------------------------------------------------------------------------------------%>
 <div class="separator"></div><%---------------------------------------------------------------------------------------%>
