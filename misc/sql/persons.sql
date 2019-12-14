@@ -1016,8 +1016,8 @@ DROP SEQUENCE IF EXISTS akimov_person_seq CASCADE;
 COMMIT;
 
 BEGIN;
-
 UPDATE akimov_person SET gender = 1 WHERE middlename like '%вич';
 UPDATE akimov_person SET gender = 2 WHERE middlename like '%вна';
-
+DELETE FROM counter WHERE name = 'ru.isands.akimov.model.Person';
+INSERT INTO counter (name, currentid) VALUES ('ru.isands.akimov.model.Person', (SELECT MAX(personid) FROM akimov_person));
 COMMIT;
