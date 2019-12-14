@@ -5,7 +5,6 @@ import com.liferay.portal.kernel.messaging.Message;
 
 import ru.isands.akimov.service.ClpSerializer;
 import ru.isands.akimov.service.PersonLocalServiceUtil;
-import ru.isands.akimov.service.PersonServiceUtil;
 
 
 public class ClpMessageListener extends BaseMessageListener {
@@ -21,8 +20,6 @@ public class ClpMessageListener extends BaseMessageListener {
         if (command.equals("undeploy") &&
                 servletContextName.equals(getServletContextName())) {
             PersonLocalServiceUtil.clearService();
-
-            PersonServiceUtil.clearService();
         }
     }
 }

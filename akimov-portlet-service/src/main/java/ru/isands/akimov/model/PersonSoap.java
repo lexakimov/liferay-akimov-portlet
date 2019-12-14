@@ -7,10 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link ru.isands.akimov.service.http.PersonServiceSoap}.
+ * This class is used by SOAP remote services.
  *
  * @author Brian Wing Shun Chan
- * @see ru.isands.akimov.service.http.PersonServiceSoap
  * @generated
  */
 public class PersonSoap implements Serializable {

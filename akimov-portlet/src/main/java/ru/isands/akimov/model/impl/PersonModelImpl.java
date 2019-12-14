@@ -1,7 +1,6 @@
 package ru.isands.akimov.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -11,16 +10,13 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 
 import ru.isands.akimov.model.Person;
 import ru.isands.akimov.model.PersonModel;
-import ru.isands.akimov.model.PersonSoap;
 
 import java.io.Serializable;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,7 +32,6 @@ import java.util.Map;
  * @see ru.isands.akimov.model.PersonModel
  * @generated
  */
-@JSON(strict = true)
 public class PersonModelImpl extends BaseModelImpl<Person>
     implements PersonModel {
     /*
@@ -90,51 +85,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
     private Person _escapedModel;
 
     public PersonModelImpl() {
-    }
-
-    /**
-     * Converts the soap model instance into a normal model instance.
-     *
-     * @param soapModel the soap model instance to convert
-     * @return the normal model instance
-     */
-    public static Person toModel(PersonSoap soapModel) {
-        if (soapModel == null) {
-            return null;
-        }
-
-        Person model = new PersonImpl();
-
-        model.setUuid(soapModel.getUuid());
-        model.setPersonId(soapModel.getPersonId());
-        model.setLastName(soapModel.getLastName());
-        model.setFirstName(soapModel.getFirstName());
-        model.setMiddleName(soapModel.getMiddleName());
-        model.setGender(soapModel.getGender());
-        model.setBirthDate(soapModel.getBirthDate());
-        model.setAddress(soapModel.getAddress());
-
-        return model;
-    }
-
-    /**
-     * Converts the soap model instances into normal model instances.
-     *
-     * @param soapModels the soap model instances to convert
-     * @return the normal model instances
-     */
-    public static List<Person> toModels(PersonSoap[] soapModels) {
-        if (soapModels == null) {
-            return null;
-        }
-
-        List<Person> models = new ArrayList<Person>(soapModels.length);
-
-        for (PersonSoap soapModel : soapModels) {
-            models.add(toModel(soapModel));
-        }
-
-        return models;
     }
 
     @Override
@@ -234,7 +184,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
         }
     }
 
-    @JSON
     @Override
     public String getUuid() {
         if (_uuid == null) {
@@ -257,7 +206,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
         return GetterUtil.getString(_originalUuid);
     }
 
-    @JSON
     @Override
     public int getPersonId() {
         return _personId;
@@ -268,7 +216,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
         _personId = personId;
     }
 
-    @JSON
     @Override
     public String getLastName() {
         if (_lastName == null) {
@@ -283,7 +230,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
         _lastName = lastName;
     }
 
-    @JSON
     @Override
     public String getFirstName() {
         if (_firstName == null) {
@@ -298,7 +244,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
         _firstName = firstName;
     }
 
-    @JSON
     @Override
     public String getMiddleName() {
         if (_middleName == null) {
@@ -313,7 +258,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
         _middleName = middleName;
     }
 
-    @JSON
     @Override
     public int getGender() {
         return _gender;
@@ -324,7 +268,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
         _gender = gender;
     }
 
-    @JSON
     @Override
     public Date getBirthDate() {
         return _birthDate;
@@ -335,7 +278,6 @@ public class PersonModelImpl extends BaseModelImpl<Person>
         _birthDate = birthDate;
     }
 
-    @JSON
     @Override
     public String getAddress() {
         if (_address == null) {

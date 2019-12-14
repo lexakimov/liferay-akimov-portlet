@@ -4,7 +4,7 @@
 <service-builder package-path="ru.isands.akimov">
 	<namespace>akimov</namespace>
 
-	<entity name="Person" uuid="true" local-service="true" remote-service="true">
+	<entity name="Person" uuid="true" local-service="true" remote-service="false">
 		<column name="personId" type="int" primary="true"/>
 		<column name="lastName" type="String"/>
 		<column name="firstName" type="String"/>

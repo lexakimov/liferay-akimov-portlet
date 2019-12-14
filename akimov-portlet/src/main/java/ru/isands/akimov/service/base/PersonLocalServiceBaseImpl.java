@@ -43,8 +43,6 @@ public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     implements PersonLocalService, IdentifiableBean {
     @BeanReference(type = ru.isands.akimov.service.PersonLocalService.class)
     protected ru.isands.akimov.service.PersonLocalService personLocalService;
-    @BeanReference(type = ru.isands.akimov.service.PersonService.class)
-    protected ru.isands.akimov.service.PersonService personService;
     @BeanReference(type = PersonPersistence.class)
     protected PersonPersistence personPersistence;
     @BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
@@ -296,25 +294,6 @@ public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     public void setPersonLocalService(
         ru.isands.akimov.service.PersonLocalService personLocalService) {
         this.personLocalService = personLocalService;
-    }
-
-    /**
-     * Returns the person remote service.
-     *
-     * @return the person remote service
-     */
-    public ru.isands.akimov.service.PersonService getPersonService() {
-        return personService;
-    }
-
-    /**
-     * Sets the person remote service.
-     *
-     * @param personService the person remote service
-     */
-    public void setPersonService(
-        ru.isands.akimov.service.PersonService personService) {
-        this.personService = personService;
     }
 
     /**

@@ -41,10 +41,10 @@ public class PersonLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName34;
-    private String[] _methodParameterTypes34;
-    private String _methodName35;
-    private String[] _methodParameterTypes35;
+    private String _methodName32;
+    private String[] _methodParameterTypes32;
+    private String _methodName33;
+    private String[] _methodParameterTypes33;
 
     public PersonLocalServiceClpInvoker() {
         _methodName0 = "addPerson";
@@ -123,13 +123,13 @@ public class PersonLocalServiceClpInvoker {
 
         _methodParameterTypes15 = new String[] { "ru.isands.akimov.model.Person" };
 
-        _methodName34 = "getBeanIdentifier";
+        _methodName32 = "getBeanIdentifier";
 
-        _methodParameterTypes34 = new String[] {  };
+        _methodParameterTypes32 = new String[] {  };
 
-        _methodName35 = "setBeanIdentifier";
+        _methodName33 = "setBeanIdentifier";
 
-        _methodParameterTypes35 = new String[] { "java.lang.String" };
+        _methodParameterTypes33 = new String[] { "java.lang.String" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -221,13 +221,13 @@ public class PersonLocalServiceClpInvoker {
             return PersonLocalServiceUtil.updatePerson((ru.isands.akimov.model.Person) arguments[0]);
         }
 
-        if (_methodName34.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
+        if (_methodName32.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
             return PersonLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName35.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
+        if (_methodName33.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
             PersonLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
