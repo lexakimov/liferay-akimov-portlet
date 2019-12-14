@@ -15,7 +15,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import ru.isands.akimov.annotations.AsyncActionMethod;
-import ru.isands.akimov.constants.Param;
 
 import javax.portlet.*;
 import java.io.IOException;
@@ -24,17 +23,20 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
+import static ru.isands.akimov.constants.Param.ASYNC_ACTION_METHOD_PARAM;
+import static ru.isands.akimov.constants.Param.ASYNC_ACTION_RESOURCE_ID;
+
 @SuppressWarnings("WeakerAccess")
 public abstract class ExtendedMVCPortlet extends MVCPortlet {
 
-	Log log;
+	private static final Log log = LogFactoryUtil.getLog(ExtendedMVCPortlet.class);
 
 	private final Map<String, Method> asyncActionMethods = new HashMap<>();
 
 	@Override
 	public void init(PortletConfig config) throws PortletException {
 		super.init(config);
-		log = LogFactoryUtil.getLog(getClass());
+
 		initAsyncActionAnnotatedMethods();
 	}
 
@@ -56,7 +58,7 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 	@Override
 	public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
 		String resourceId = request.getResourceID();
-		if (resourceId != null && resourceId.equals(Param.ASYNC_ACTION_RESOURCE_ID)) {
+		if (resourceId != null && resourceId.equals(ASYNC_ACTION_RESOURCE_ID)) {
 			processAsyncAction(request, response);
 			return;
 		}
@@ -75,7 +77,7 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 	 * {@link AsyncActionMethod}.
 	 */
 	private void processAsyncAction(ResourceRequest request, ResourceResponse response) throws PortletException, IOException {
-		String actionMethod = ParamUtil.getString(request, Param.ASYNC_ACTION_METHOD_PARAM);
+		String actionMethod = ParamUtil.getString(request, ASYNC_ACTION_METHOD_PARAM);
 		try {
 			if (actionMethod.isEmpty()) {
 				throw new NoSuchMethodException("Async action method name not specified!");
@@ -85,6 +87,10 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 			if (method == null) {
 				throw new NoSuchMethodException(actionMethod);
 			}
+
+			String methodClass = method.getDeclaringClass().getSimpleName();
+
+			log.debug(String.format("Invocation of async action method '%s.%s'", methodClass, actionMethod));
 
 			method.invoke(this, request, response);
 
@@ -110,7 +116,7 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 		writer.write(responseJson.toString());
 	}
 
-	/*// завершить асинхнронный action
+/*	// завершить асинхнронный action
 	void completeAsyncAction(ActionRequest request, ActionResponse response) {
 		LiferayPortletURL portletURL = createPortletURL(request);
 		Map<String, String[]> parameterMap = new HashMap<>(request.getParameterMap());
@@ -140,7 +146,6 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 				PortalUtil.getPortletId(request) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE);
 	}
 
-
 	LiferayPortletURL createPortletURL(PortletRequest request) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		String portletId = PortalUtil.getPortletId(request);
@@ -148,7 +153,7 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 	}
 
 	@SuppressWarnings("unused")
-	void debugPrintAttrs(PortletRequest request) {
+	void _debugPrintAttrs(PortletRequest request) {
 		if (!log.isDebugEnabled()) {
 			return;
 		}
@@ -163,7 +168,7 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 	}
 
 	@SuppressWarnings("unused")
-	void debugPrintParams(PortletRequest request) {
+	void _debugPrintParams(PortletRequest request) {
 		if (!log.isDebugEnabled()) {
 			return;
 		}
