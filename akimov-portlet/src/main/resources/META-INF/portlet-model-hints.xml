@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="ru.isands.akimov.model.Person">
+		<field name="uuid" type="String" />
+		<field name="personId" type="int" />
+		<field name="lastName" type="String" />
+		<field name="firstName" type="String" />
+		<field name="middleName" type="String" />
+		<field name="gender" type="int" />
+		<field name="birthDate" type="Date" />
+		<field name="address" type="String" />
+	</model>
+</model-hints>
