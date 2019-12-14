@@ -22,24 +22,24 @@ public abstract class DynamicQuerySearchHelper<T extends BaseModel<T>> implement
 		container.setTotal(this.getTotal());
 	}
 
-	private DynamicQuery buildDynamicQuery() throws PortletException {
+	protected DynamicQuery buildDynamicQuery() throws PortletException {
 		DynamicQuery query = ModelServiceUtil.getDynamicQuery(modelClass);
 		query = addRestrictions(query);
 		return query;
 	}
 
-	DynamicQuery addRestrictions(DynamicQuery query) {
+	protected DynamicQuery addRestrictions(DynamicQuery query) {
 		return query;
 	}
 
 	@Override
-	public int getTotal() throws PortletException {
+	public final int getTotal() throws PortletException {
 		DynamicQuery query = buildDynamicQuery();
 		return (int) ModelServiceUtil.doDynamicQueryCount(modelClass, query);
 	}
 
 	@Override
-	public List<T> getResult(int start, int end) throws PortletException {
+	public final List<T> getResult(int start, int end) throws PortletException {
 		DynamicQuery query = buildDynamicQuery();
 		query = addOrdering(query);
 		return ModelServiceUtil.doDynamicQuery(modelClass, query, start, end);

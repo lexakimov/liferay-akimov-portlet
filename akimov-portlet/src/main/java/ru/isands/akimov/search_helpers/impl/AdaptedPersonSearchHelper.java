@@ -28,6 +28,8 @@ public class AdaptedPersonSearchHelper extends AdaptedDynamicQuerySearchHelper<P
 		return query;
 	}
 
+
+
 	@Override
 	public PersonEntryAdapter adapt(Person model) {
 		return new PersonEntryAdapter(model);

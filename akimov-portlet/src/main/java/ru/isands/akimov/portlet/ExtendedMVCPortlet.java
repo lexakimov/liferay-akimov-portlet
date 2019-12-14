@@ -2,7 +2,6 @@ package ru.isands.akimov.portlet;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
@@ -17,6 +16,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import ru.isands.akimov.annotations.AsyncActionMethod;
+import ru.isands.akimov.util.MessagesRU;
 
 import javax.portlet.*;
 import java.io.IOException;
@@ -28,20 +28,20 @@ import java.util.*;
 import static ru.isands.akimov.constants.Param.ASYNC_ACTION_METHOD_PARAM;
 import static ru.isands.akimov.constants.Param.ASYNC_ACTION_RESOURCE_ID;
 
-@SuppressWarnings("WeakerAccess")
+/**
+ * MVC портлет, расширенный дополнительными возможностями:
+ * выполнение асинхронных действий портлета.
+ * @author akimov
+ */
 public abstract class ExtendedMVCPortlet extends MVCPortlet {
 
 	private static final Log log = LogFactoryUtil.getLog(ExtendedMVCPortlet.class);
 
 	private final Map<String, Method> asyncActionMethods = new HashMap<>();
 
-	ResourceBundle resourceBundle;
-
 	@Override
 	public void init(PortletConfig config) throws PortletException {
 		super.init(config);
-		Locale russian = LocaleUtil.getDefault();
-		resourceBundle = config.getResourceBundle(russian);
 		initAsyncActionAnnotatedMethods();
 	}
 
@@ -109,7 +109,7 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 			JSONObject messagesJson = JSONFactoryUtil.createJSONObject();
 			for (String messageKey : messages) {
 				//Object errorObject = SessionErrors.get(request, errorKey);
-				messagesJson.put(messageKey, getMessage(messageKey));
+				messagesJson.put(messageKey, MessagesRU.getMessage(messageKey));
 			}
 			responseJson.put("messages", messagesJson);
 		}
@@ -121,42 +121,15 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 			JSONObject errorsJson = JSONFactoryUtil.createJSONObject();
 			for (String errorKey : errors) {
 				//Object errorObject = SessionErrors.get(request, errorKey);
-				errorsJson.put(errorKey, getMessage(errorKey));
+				errorsJson.put(errorKey, MessagesRU.getMessage(errorKey));
 			}
 			responseJson.put("errors", errorsJson);
 		}
-
-
 
 		response.setContentType(ContentTypes.APPLICATION_JSON);
 		PrintWriter writer = response.getWriter();
 		writer.write(responseJson.toString());
 	}
-
-	private String getMessage(String key) {
-		//LanguageUtil.get(getPortletConfig(), russian, messageKey))
-		return resourceBundle.containsKey(key) ? resourceBundle.getString(key) : key;
-	}
-
-/*	// завершить асинхнронный action
-	void completeAsyncAction(ActionRequest request, ActionResponse response) {
-		LiferayPortletURL portletURL = createPortletURL(request);
-		Map<String, String[]> parameterMap = new HashMap<>(request.getParameterMap());
-		String mvcPath = getPath(request);
-		if (mvcPath != null) {
-			parameterMap.remove("jspPage");
-			parameterMap.put("mvcPath", new String[]{mvcPath});
-		}
-		parameterMap.remove("javax.portlet.action");
-		portletURL.setParameters(parameterMap);
-
-		try {
-			portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-			response.sendRedirect(portletURL.toString());
-		} catch (WindowStateException | IOException e) {
-			throw new RuntimeException(e);
-		}
-	}*/
 
 	void hideDefaultErrorMessage(ActionRequest request) {
 		SessionMessages.add(request,
@@ -213,4 +186,26 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 		System.out.println(joiner2);
 		System.out.println("--------------------------");
 	}
+
+
+/*	// завершить асинхнронный action
+	void completeAsyncAction(ActionRequest request, ActionResponse response) {
+		LiferayPortletURL portletURL = createPortletURL(request);
+		Map<String, String[]> parameterMap = new HashMap<>(request.getParameterMap());
+		String mvcPath = getPath(request);
+		if (mvcPath != null) {
+			parameterMap.remove("jspPage");
+			parameterMap.put("mvcPath", new String[]{mvcPath});
+		}
+		parameterMap.remove("javax.portlet.action");
+		portletURL.setParameters(parameterMap);
+
+		try {
+			portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+			response.sendRedirect(portletURL.toString());
+		} catch (WindowStateException | IOException e) {
+			throw new RuntimeException(e);
+		}
+	}*/
+
 }
