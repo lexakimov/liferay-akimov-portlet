@@ -7,6 +7,8 @@
 		<portlet-name>asyncActions</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
+
+		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
 
