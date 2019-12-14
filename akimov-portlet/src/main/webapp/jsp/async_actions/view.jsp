@@ -14,21 +14,45 @@
 
 <aui:button name="execAction1" value="Execute action" primary="true"/>
 
-<portlet:resourceURL var="urlName" id="<%=ASYNC_ACTION_RESOURCE_ID%>">
+<portlet:resourceURL var="urlName1" id="<%=ASYNC_ACTION_RESOURCE_ID%>">
 	<portlet:param name="<%=ASYNC_ACTION_METHOD_PARAM%>" value="simpleAsyncAction"/>
 	<portlet:param name="custom_param1" value="value 1233"/>
 </portlet:resourceURL>
 
+<div id="messageBox1"></div>
+
 <script>
 	$(function () {
 		var callback = function () {
-			alert("done!");
+			console.log('this is callback');
 		};
 
-		var $button = $("button#<portlet:namespace/>execAction1");
+		$("button#<portlet:namespace/>execAction1").click(function () {
+			asyncAction('${urlName1}', {messageBox: 'div#messageBox1', callback: callback});
+		});
+	});
+</script>
 
-		$button.click(function () {
-			asyncAction('${urlName}', {callback: callback});
+<%--------------------------------------------------------------------------------------------------------------------%>
+<div class="separator"></div><%---------------------------------------------------------------------------------------%>
+<%--------------------------------------------------------------------------------------------------------------------%>
+
+<aui:button name="execAction2" value="Execute action with errors" primary="true"/>
+
+<portlet:resourceURL var="urlName2" id="<%=ASYNC_ACTION_RESOURCE_ID%>">
+	<portlet:param name="<%=ASYNC_ACTION_METHOD_PARAM%>" value="simpleAsyncActionWithErrors"/>
+</portlet:resourceURL>
+
+<div id="messageBox2"></div>
+
+<script>
+	$(function () {
+		var callback = function () {
+			console.log('this is callback');
+		};
+
+		$("button#<portlet:namespace/>execAction2").click(function () {
+			asyncAction('${urlName2}', {messageBox: 'div#messageBox2', callback: callback});
 		});
 	});
 </script>
@@ -52,9 +76,7 @@
 	$(function () {
 		var reloadableElement = $('div#reloadableElement');
 
-		var $button = $("button#<portlet:namespace/>reload1");
-
-		$button.click(function () {
+		$("button#<portlet:namespace/>reload1").click(function () {
 			reloadElementContent(reloadableElement, '${reloadingURL}');
 		});
 	});
@@ -100,11 +122,8 @@
 
 <script>
 	$(function () {
-		var reloadableElement = $('div#reloadableElement3');
-
-		var $button = $("button#<portlet:namespace/>reload3");
-
-		$button.click(function () {
+		$("button#<portlet:namespace/>reload3").click(function () {
+			var reloadableElement = $('div#reloadableElement3');
 			reloadElementContentAdvanced(reloadableElement, '${reloading3URL}');
 		});
 	});
@@ -129,54 +148,9 @@
 
 <script>
 	$(function () {
-		var reloadableElement = $('div#reloadableElement4');
-
-		var $button = $("button#<portlet:namespace/>reload4");
-
-		$button.click(function () {
+		$("button#<portlet:namespace/>reload4").click(function () {
+			var reloadableElement = $('div#reloadableElement4');
 			reloadElementContentAdvanced(reloadableElement, '${reloading4URL}');
 		});
 	});
 </script>
-
-<%--------------------------------------------------------------------------------------------------------------------%>
-<div class="separator"></div><%---------------------------------------------------------------------------------------%>
-<%--------------------------------------------------------------------------------------------------------------------%>
-
-<liferay-ui:search-container iteratorURL="<%=thisURL%>">
-	<liferay-ui:search-container-results>
-		<%
-			PersonSearchHelper searchHelper = new PersonSearchHelper();
-
-			int start = searchContainer.getStart();
-			int end = searchContainer.getEnd();
-
-			searchContainer.setResults(searchHelper.getResult(start, end));
-			searchContainer.setTotal(searchHelper.getTotal());
-		%>
-	</liferay-ui:search-container-results>
-	<liferay-ui:search-container-row className="ru.isands.akimov.model.Person">
-
-		<liferay-ui:search-container-column-text name="Фамилия" property="lastName"/>
-		<liferay-ui:search-container-column-text name="Имя" property="firstName"/>
-		<liferay-ui:search-container-column-text name="Отчество" property="middleName"/>
-
-		<liferay-ui:search-container-column-text name="gender">
-			<%= Gender.getByOrdinal(model.getGender()).getLabel()%>
-		</liferay-ui:search-container-column-text>
-
-		<liferay-ui:search-container-column-text name="Дата рождения">
-			<fmt:formatDate value="${model.birthDate}" pattern="dd.MM.yyyy"/>
-		</liferay-ui:search-container-column-text>
-
-		<liferay-ui:search-container-column-text name="address" property="address"/>
-
-
-	</liferay-ui:search-container-row>
-	<liferay-ui:search-iterator paginate="true"/>
-	<liferay-ui:search-paginator searchContainer="${searchContainer}" type="approximate"/>
-	<liferay-ui:search-paginator searchContainer="${searchContainer}" type="article"/>
-	<liferay-ui:search-paginator searchContainer="${searchContainer}" type="more"/>
-	<liferay-ui:search-paginator searchContainer="${searchContainer}" type="regular"/>
-
-</liferay-ui:search-container>

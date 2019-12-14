@@ -2,12 +2,14 @@ package ru.isands.akimov.portlet;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -33,10 +35,13 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 
 	private final Map<String, Method> asyncActionMethods = new HashMap<>();
 
+	ResourceBundle resourceBundle;
+
 	@Override
 	public void init(PortletConfig config) throws PortletException {
 		super.init(config);
-
+		Locale russian = LocaleUtil.getDefault();
+		resourceBundle = config.getResourceBundle(russian);
 		initAsyncActionAnnotatedMethods();
 	}
 
@@ -45,7 +50,6 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 		while (klass != MVCPortlet.class) {
 			final List<Method> allMethods = new ArrayList<>(Arrays.asList(klass.getDeclaredMethods()));
 			for (final Method method : allMethods) {
-				// TODO check for request-response method params
 				if (method.isAnnotationPresent(AsyncActionMethod.class)) {
 					asyncActionMethods.put(method.getName(), method);
 					log.debug("async action method: " + method.getName());
@@ -99,6 +103,17 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 		}
 
 		JSONObject responseJson = JSONFactoryUtil.createJSONObject();
+
+		if (!SessionMessages.isEmpty(request)) {
+			Set<String> messages = SessionMessages.keySet(request);
+			JSONObject messagesJson = JSONFactoryUtil.createJSONObject();
+			for (String messageKey : messages) {
+				//Object errorObject = SessionErrors.get(request, errorKey);
+				messagesJson.put(messageKey, getMessage(messageKey));
+			}
+			responseJson.put("messages", messagesJson);
+		}
+
 		if (SessionErrors.isEmpty(request)) {
 			responseJson.put("success", true);
 		} else {
@@ -106,14 +121,21 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 			JSONObject errorsJson = JSONFactoryUtil.createJSONObject();
 			for (String errorKey : errors) {
 				//Object errorObject = SessionErrors.get(request, errorKey);
-				errorsJson.put(errorKey, "msg");
+				errorsJson.put(errorKey, getMessage(errorKey));
 			}
 			responseJson.put("errors", errorsJson);
 		}
 
+
+
 		response.setContentType(ContentTypes.APPLICATION_JSON);
 		PrintWriter writer = response.getWriter();
 		writer.write(responseJson.toString());
+	}
+
+	private String getMessage(String key) {
+		//LanguageUtil.get(getPortletConfig(), russian, messageKey))
+		return resourceBundle.containsKey(key) ? resourceBundle.getString(key) : key;
 	}
 
 /*	// завершить асинхнронный action

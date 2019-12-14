@@ -4,5 +4,6 @@
 <display>
 	<category name="category.sample.akimov">
 		<portlet id="asyncActions" />
+		<portlet id="asyncSearchContainers" />
 	</category>
 </display>
