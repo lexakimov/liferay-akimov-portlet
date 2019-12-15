@@ -95,11 +95,10 @@ function reloadElementContentAdvanced(element, url, params) {
 		type: 'POST',
 		url: url,
 		data: _data,
-		cache: false,
-		success: function (msg) {
-			_msg = msg;
-			ajaxDeferred.resolve(msg);
-		}
+		cache: false
+	}).done(function (msg) {
+		_msg = msg;
+		ajaxDeferred.resolve();
 	});
 
 	$.when(fadeDeferred, ajaxDeferred).done(function () {

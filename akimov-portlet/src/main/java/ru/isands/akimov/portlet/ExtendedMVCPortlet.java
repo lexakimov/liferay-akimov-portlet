@@ -102,7 +102,7 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 			throw new PortletException(e);
 		}
 
-		JSONObject responseJson = JSONFactoryUtil.createJSONObject();
+		JSONObject json = JSONFactoryUtil.createJSONObject();
 
 		if (!SessionMessages.isEmpty(request)) {
 			Set<String> messages = SessionMessages.keySet(request);
@@ -111,11 +111,11 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 				//Object errorObject = SessionErrors.get(request, errorKey);
 				messagesJson.put(messageKey, MessagesRU.getMessage(messageKey));
 			}
-			responseJson.put("messages", messagesJson);
+			json.put("messages", messagesJson);
 		}
 
 		if (SessionErrors.isEmpty(request)) {
-			responseJson.put("success", true);
+			json.put("success", true);
 		} else {
 			Set<String> errors = SessionErrors.keySet(request);
 			JSONObject errorsJson = JSONFactoryUtil.createJSONObject();
@@ -123,12 +123,10 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 				//Object errorObject = SessionErrors.get(request, errorKey);
 				errorsJson.put(errorKey, MessagesRU.getMessage(errorKey));
 			}
-			responseJson.put("errors", errorsJson);
+			json.put("errors", errorsJson);
 		}
 
-		response.setContentType(ContentTypes.APPLICATION_JSON);
-		PrintWriter writer = response.getWriter();
-		writer.write(responseJson.toString());
+		writeJSON(request, response, json);
 	}
 
 	void hideDefaultErrorMessage(ActionRequest request) {
