@@ -22,9 +22,12 @@ public class AsyncActionsPortlet extends ExtendedMVCPortlet {
 		SessionErrors.add(request, "error.message.key.2");
 		SessionErrors.add(request, "error.message.key.3");
 
-		SessionMessages.add(request, "message.1");
-		SessionMessages.add(request, "message.2");
-		SessionMessages.add(request, "message.3");
+		SessionMessages.add(request, "error.message.key");
+		SessionMessages.add(request, "info.message.key");
+		SessionMessages.add(request, "success.message.key");
+		SessionMessages.add(request, "block.message.key");
+		SessionMessages.add(request, "simple.message.key");
+
 	}
 
 

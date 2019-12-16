@@ -36,19 +36,40 @@ function buildActionResultHtml(jsonResponse) {
 		html = html.concat('<div class="alert alert-success">Запрос выполнен</div>');
 	}
 
-	var messages = jsonResponse.messages;
-	for (var messageKey in messages) {
-		if (messages.hasOwnProperty(messageKey)) {
-			html = html.concat('<div class="alert alert-info">' + messages[messageKey] + '</div>');
-		}
-	}
 	var errors = jsonResponse.errors;
-	for (var errorKey in errors) {
-		if (errors.hasOwnProperty(errorKey)) {
-			html = html.concat('<div class="alert alert-error">' + errors[errorKey] + '</div>');
-		}
+	if (errors) {
+		Object.keys(errors).sort().forEach(function (key) {
+			if (errors.hasOwnProperty(key)) {
+				html = html.concat('<div class="alert alert-error">' + errors[key] + '</div>');
+			}
+		});
 	}
 
+	var messages = jsonResponse.messages;
+	if (messages) {
+		var suffixes = ['success', 'error', 'block', 'info'];
+		var messageTypesAndKeys = Object.keys(messages).map(function (messageKey) {
+			var messageKeySuffix = messageKey.substring(0, messageKey.indexOf("."));
+			if (suffixes.indexOf(messageKeySuffix) === -1) {
+				messageKeySuffix = 'info'
+			}
+			return {
+				msgSuffix: messageKeySuffix, msgKey: messageKey
+			};
+		});
+
+		messageTypesAndKeys.sort(function (a, b) {
+			return suffixes.indexOf(a.msgSuffix) > suffixes.indexOf(b.msgSuffix)
+				? 1 : suffixes.indexOf(a.msgSuffix) < suffixes.indexOf(b.msgSuffix)
+					? -1 : 0;
+		});
+
+		messageTypesAndKeys.forEach(function (entry) {
+			if (messages.hasOwnProperty(entry.msgKey)) {
+				html = html.concat('<div class="alert alert-' + entry.msgSuffix + '">' + messages[entry.msgKey] + '</div>');
+			}
+		});
+	}
 	return html;
 }
 

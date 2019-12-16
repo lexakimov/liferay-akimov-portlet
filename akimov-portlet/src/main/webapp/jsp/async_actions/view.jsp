@@ -37,7 +37,7 @@
 	});
 </script>
 
-<aui:button name="execAction1" value="Execute action" primary="true"/>
+<aui:button name="execAction1" value="Execute success action" primary="true"/>
 
 <%--------------------------------------------------------------------------------------------------------------------%>
 <div class="separator"></div><%---------------------------------------------------------------------------------------%>
@@ -52,7 +52,6 @@
 <script>
 	$(function () {
 		var callback = function (jsonResponse) {
-			console.log(jsonResponse);
 			openSimpleMessageWindow({
 				headerLabel: 'Заголовок окна',
 				bodyContent: buildActionResultHtml(jsonResponse)
@@ -65,7 +64,7 @@
 	});
 </script>
 
-<aui:button name="execAction2" value="Execute action with errors" primary="true"/>
+<aui:button name="execAction2" value="Execute action with errors and messages" primary="true"/>
 
 <%--------------------------------------------------------------------------------------------------------------------%>
 <div class="separator"></div><%---------------------------------------------------------------------------------------%>
