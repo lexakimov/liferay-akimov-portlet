@@ -2,3 +2,4 @@
 /.idea/
 *.iml
 /akimov-portlet/src/main/resources/rebel.xml
+target/
