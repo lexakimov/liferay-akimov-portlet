@@ -76,6 +76,11 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 	 * <portlet:param name="async_action_method" value="methodName"/>
 	 * <portlet:param ... (other params)
 	 * </portlet:resourceURL>
+	 * or like this:
+	 * <portlet:resourceURL var="urlName" id="<%=ASYNC_ACTION_RESOURCE_ID%>">
+	 * 	<portlet:param name="<%=ASYNC_ACTION_METHOD_PARAM%>" value="methodName"/>
+	 *  <portlet:param ... (other params)
+	 * </portlet:resourceURL>
 	 * <p>
 	 * portlet method 'public void methodName(PortletRequest request, PortletResponse response)' must be annotated with
 	 * {@link AsyncActionMethod}.

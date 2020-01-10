@@ -5,7 +5,12 @@
 	<namespace>akimov</namespace>
 
 	<entity name="Person" uuid="false" local-service="true" remote-service="false">
-		<column name="personId" type="int" primary="true"/>
+		<column name="personId"
+				type="int"
+				primary="true"
+				id-type="class"
+				id-param="com.liferay.counter.service.persistence.IDGenerator"/>
+
 		<column name="lastName" type="String"/>
 		<column name="firstName" type="String"/>
 		<column name="middleName" type="String"/>

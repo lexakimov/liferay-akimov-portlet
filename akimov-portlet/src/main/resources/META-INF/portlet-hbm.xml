@@ -6,7 +6,7 @@
 	<class name="ru.isands.akimov.model.impl.PersonImpl" table="akimov_Person">
 		<cache usage="read-write" />
 		<id name="personId" type="int">
-			<generator class="assigned" />
+			<generator class="com.liferay.counter.service.persistence.IDGenerator" />
 		</id>
 		<property name="lastName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="firstName" type="com.liferay.portal.dao.orm.hibernate.StringType" />

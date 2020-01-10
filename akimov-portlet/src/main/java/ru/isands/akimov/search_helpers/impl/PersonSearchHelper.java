@@ -15,7 +15,9 @@ public class PersonSearchHelper extends DynamicQuerySearchHelper<Person> {
 	}
 
 	public PersonSearchHelper(SearchContainer<Person> container) throws PortletException {
-		super(Person.class, container);
+		this();
+		container.setResults(this.getResult(container.getStart(), container.getEnd()));
+		container.setTotal(this.getTotal());
 	}
 
 	@Override

@@ -1,10 +1,10 @@
 package ru.isands.akimov.search_helpers.adapters;
 
-public abstract class EntryAdapter<ADAPTABLE> {
+public abstract class EntryAdapter<T> {
 
-	final ADAPTABLE model;
+	final T model;
 
-	EntryAdapter(ADAPTABLE model) {
+	EntryAdapter(T model) {
 		this.model = model;
 	}
 

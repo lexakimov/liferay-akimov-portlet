@@ -17,8 +17,10 @@ public class AdaptedPersonSearchHelper extends AdaptedDynamicQuerySearchHelper<P
 		super(Person.class);
 	}
 
-	public AdaptedPersonSearchHelper(SearchContainer<PersonEntryAdapter> container) throws PortletException {
-		super(Person.class, container);
+	protected AdaptedPersonSearchHelper(SearchContainer<PersonEntryAdapter> container) throws PortletException {
+		this();
+		container.setResults(this.getAdaptedResult(container.getStart(), container.getEnd()));
+		container.setTotal(this.getTotal());
 	}
 
 	@Override
@@ -27,8 +29,6 @@ public class AdaptedPersonSearchHelper extends AdaptedDynamicQuerySearchHelper<P
 		query.addOrder(OrderFactoryUtil.asc("firstName"));
 		return query;
 	}
-
-
 
 	@Override
 	public PersonEntryAdapter adapt(Person model) {

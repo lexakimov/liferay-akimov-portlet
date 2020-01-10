@@ -71,7 +71,7 @@
 <%--------------------------------------------------------------------------------------------------------------------%>
 <h4>reload by button</h4>
 
-<div id="reloadableElement" class="bordered" style="width: 400px; display: inline-block;">
+<div id="reloadableElement" class="bordered-block-1" style="width: 400px; display: inline-block;">
 	<jsp:include page="reloadable_element.jsp"/>
 </div>
 
@@ -96,7 +96,7 @@
 <%--------------------------------------------------------------------------------------------------------------------%>
 <h4>auto reload by setInterval</h4>
 
-<div id="reloadableElement2" class="bordered" style="width: 400px; display: inline-block;">
+<div id="reloadableElement2" class="bordered-block-1" style="width: 400px; display: inline-block;">
 	<jsp:include page="reloadable_element.jsp"/>
 </div>
 
@@ -119,7 +119,7 @@
 <%--------------------------------------------------------------------------------------------------------------------%>
 <h4>reload with effects by button</h4>
 
-<div id="reloadableElement3" class="bordered" style="width: 400px; display: inline-block;">
+<div id="reloadableElement3" class="bordered-block-1" style="width: 400px; display: inline-block;">
 	<jsp:include page="reloadable_element.jsp"/>
 </div>
 
@@ -144,7 +144,7 @@
 <%--------------------------------------------------------------------------------------------------------------------%>
 <h4>reload (longtime) with effects by button</h4>
 
-<div id="reloadableElement4" class="bordered" style="width: 400px; display: inline-block;">
+<div id="reloadableElement4" class="bordered-block-1" style="width: 400px; display: inline-block;">
 	<jsp:include page="reloadable_element.jsp"/>
 </div>
 

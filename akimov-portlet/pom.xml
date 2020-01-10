@@ -18,14 +18,14 @@
 				<groupId>com.liferay.maven.plugins</groupId>
 				<artifactId>liferay-maven-plugin</artifactId>
 				<version>${liferay.maven.plugin.version}</version>
-				<executions>
+			<!--	<executions>
 					<execution>
 						<phase>generate-sources</phase>
 						<goals>
 							<goal>build-css</goal>
 						</goals>
 					</execution>
-				</executions>
+				</executions>-->
 				<configuration>
 					<apiBaseDir>${basedir}/../akimov-portlet-service</apiBaseDir>
 				</configuration>
@@ -36,7 +36,7 @@
 		<dependency>
 			<groupId>ru.isands</groupId>
 			<artifactId>akimov-portlet-service</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.liferay.portal</groupId>
@@ -99,5 +99,13 @@
 			<version>1.2</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
+		<dependency>
+			<groupId>commons-dbutils</groupId>
+			<artifactId>commons-dbutils</artifactId>
+			<version>1.7</version>
+		</dependency>
+
 	</dependencies>
 </project>
