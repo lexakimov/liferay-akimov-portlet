@@ -14,15 +14,16 @@ public class FooChangeDetector extends ChangeDetector<Foo> {
 	static {
 		// column names from service.xml
 		List<String> temp = new ArrayList<>();
-		temp.add("name");
-		temp.add("inn");
-		temp.add("isManufacturer");
-		temp.add("formManufacturer");
-		temp.add("regAddress");
-		temp.add("actualAddress");
-		temp.add("certNumber");
-		temp.add("certDate");
-		temp.add("certAuthorityId");
+
+		temp.add("booleanField");
+		temp.add("shortField");
+		temp.add("intField");
+		temp.add("longField");
+		temp.add("doubleField");
+		temp.add("floatField");
+		temp.add("stringField");
+		temp.add("dateField");
+		temp.add("blobField");
 
 		WATCH_ONLY_FIELDS = Collections.unmodifiableList(temp);
 	}

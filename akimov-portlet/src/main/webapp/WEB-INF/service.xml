@@ -27,8 +27,9 @@
 	</entity>
 
 	<entity name="Foo" uuid="false" local-service="true" remote-service="false">
-		<column name="fooId" type="int" primary="true" id-type="class"
-				id-param="com.liferay.counter.service.persistence.IDGenerator"/>
+		<column name="fooId" type="int" primary="true"/>
+		<!--id-type="class" id-param="com.liferay.counter.service.persistence.IDGenerator"-->
+
 		<column name="booleanField" type="boolean"/>
 		<column name="shortField" type="short"/>
 		<column name="intField" type="int"/>

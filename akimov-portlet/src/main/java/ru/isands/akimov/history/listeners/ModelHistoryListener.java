@@ -13,6 +13,7 @@ import ru.isands.akimov.history.exceptions.EntityFieldChangeDetectorException;
 import ru.isands.akimov.history.exceptions.EntityHistoryException;
 import ru.isands.akimov.service.EntityEditingHistoryLocalServiceUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
@@ -38,7 +39,13 @@ public abstract class ModelHistoryListener<T extends BaseModel<T>> extends BaseM
 		try {
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 			long userId = serviceContext.getUserId();
-			long entityId = (long) updatedModel.getPrimaryKeyObj();
+			Serializable pkObject = updatedModel.getPrimaryKeyObj();
+			long entityId;
+			if (pkObject instanceof Integer) {
+				entityId = ((Integer) pkObject).longValue();
+			} else {
+				entityId = (long) pkObject;
+			}
 			Date dateOfChange = new Date();
 
 			EntityEditingHistoryWrapper hist = new EntityEditingHistoryWrapper(entityId, getEntityType(), userId, dateOfChange);
