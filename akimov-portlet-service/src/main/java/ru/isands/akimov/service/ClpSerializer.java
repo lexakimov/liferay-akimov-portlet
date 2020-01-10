@@ -11,6 +11,9 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import ru.isands.akimov.model.EntityEditingHistoryClp;
+import ru.isands.akimov.model.EntityFieldChangeClp;
+import ru.isands.akimov.model.FooClp;
 import ru.isands.akimov.model.PersonClp;
 
 import java.io.ObjectInputStream;
@@ -88,6 +91,18 @@ public class ClpSerializer {
 
         String oldModelClassName = oldModelClass.getName();
 
+        if (oldModelClassName.equals(EntityEditingHistoryClp.class.getName())) {
+            return translateInputEntityEditingHistory(oldModel);
+        }
+
+        if (oldModelClassName.equals(EntityFieldChangeClp.class.getName())) {
+            return translateInputEntityFieldChange(oldModel);
+        }
+
+        if (oldModelClassName.equals(FooClp.class.getName())) {
+            return translateInputFoo(oldModel);
+        }
+
         if (oldModelClassName.equals(PersonClp.class.getName())) {
             return translateInputPerson(oldModel);
         }
@@ -105,6 +120,37 @@ public class ClpSerializer {
         }
 
         return newList;
+    }
+
+    public static Object translateInputEntityEditingHistory(
+        BaseModel<?> oldModel) {
+        EntityEditingHistoryClp oldClpModel = (EntityEditingHistoryClp) oldModel;
+
+        BaseModel<?> newModel = oldClpModel.getEntityEditingHistoryRemoteModel();
+
+        newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+        return newModel;
+    }
+
+    public static Object translateInputEntityFieldChange(BaseModel<?> oldModel) {
+        EntityFieldChangeClp oldClpModel = (EntityFieldChangeClp) oldModel;
+
+        BaseModel<?> newModel = oldClpModel.getEntityFieldChangeRemoteModel();
+
+        newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+        return newModel;
+    }
+
+    public static Object translateInputFoo(BaseModel<?> oldModel) {
+        FooClp oldClpModel = (FooClp) oldModel;
+
+        BaseModel<?> newModel = oldClpModel.getFooRemoteModel();
+
+        newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+        return newModel;
     }
 
     public static Object translateInputPerson(BaseModel<?> oldModel) {
@@ -131,6 +177,110 @@ public class ClpSerializer {
         Class<?> oldModelClass = oldModel.getClass();
 
         String oldModelClassName = oldModelClass.getName();
+
+        if (oldModelClassName.equals(
+                    "ru.isands.akimov.model.impl.EntityEditingHistoryImpl")) {
+            return translateOutputEntityEditingHistory(oldModel);
+        } else if (oldModelClassName.endsWith("Clp")) {
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+                Method getClpSerializerClassMethod = oldModelClass.getMethod(
+                        "getClpSerializerClass");
+
+                Class<?> oldClpSerializerClass = (Class<?>) getClpSerializerClassMethod.invoke(oldModel);
+
+                Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+                Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+                        BaseModel.class);
+
+                Class<?> oldModelModelClass = oldModel.getModelClass();
+
+                Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+                        oldModelModelClass.getSimpleName() + "RemoteModel");
+
+                Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+                BaseModel<?> newModel = (BaseModel<?>) translateOutputMethod.invoke(null,
+                        oldRemoteModel);
+
+                return newModel;
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Unable to translate " + oldModelClassName, t);
+                }
+            }
+        }
+
+        if (oldModelClassName.equals(
+                    "ru.isands.akimov.model.impl.EntityFieldChangeImpl")) {
+            return translateOutputEntityFieldChange(oldModel);
+        } else if (oldModelClassName.endsWith("Clp")) {
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+                Method getClpSerializerClassMethod = oldModelClass.getMethod(
+                        "getClpSerializerClass");
+
+                Class<?> oldClpSerializerClass = (Class<?>) getClpSerializerClassMethod.invoke(oldModel);
+
+                Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+                Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+                        BaseModel.class);
+
+                Class<?> oldModelModelClass = oldModel.getModelClass();
+
+                Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+                        oldModelModelClass.getSimpleName() + "RemoteModel");
+
+                Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+                BaseModel<?> newModel = (BaseModel<?>) translateOutputMethod.invoke(null,
+                        oldRemoteModel);
+
+                return newModel;
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Unable to translate " + oldModelClassName, t);
+                }
+            }
+        }
+
+        if (oldModelClassName.equals("ru.isands.akimov.model.impl.FooImpl")) {
+            return translateOutputFoo(oldModel);
+        } else if (oldModelClassName.endsWith("Clp")) {
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+                Method getClpSerializerClassMethod = oldModelClass.getMethod(
+                        "getClpSerializerClass");
+
+                Class<?> oldClpSerializerClass = (Class<?>) getClpSerializerClassMethod.invoke(oldModel);
+
+                Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+                Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+                        BaseModel.class);
+
+                Class<?> oldModelModelClass = oldModel.getModelClass();
+
+                Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+                        oldModelModelClass.getSimpleName() + "RemoteModel");
+
+                Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+                BaseModel<?> newModel = (BaseModel<?>) translateOutputMethod.invoke(null,
+                        oldRemoteModel);
+
+                return newModel;
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Unable to translate " + oldModelClassName, t);
+                }
+            }
+        }
 
         if (oldModelClassName.equals("ru.isands.akimov.model.impl.PersonImpl")) {
             return translateOutputPerson(oldModel);
@@ -242,11 +392,56 @@ public class ClpSerializer {
             return new SystemException();
         }
 
+        if (className.equals(
+                    "ru.isands.akimov.NoSuchEntityEditingHistoryException")) {
+            return new ru.isands.akimov.NoSuchEntityEditingHistoryException();
+        }
+
+        if (className.equals(
+                    "ru.isands.akimov.NoSuchEntityFieldChangeException")) {
+            return new ru.isands.akimov.NoSuchEntityFieldChangeException();
+        }
+
+        if (className.equals("ru.isands.akimov.NoSuchFooException")) {
+            return new ru.isands.akimov.NoSuchFooException();
+        }
+
         if (className.equals("ru.isands.akimov.NoSuchPersonException")) {
             return new ru.isands.akimov.NoSuchPersonException();
         }
 
         return throwable;
+    }
+
+    public static Object translateOutputEntityEditingHistory(
+        BaseModel<?> oldModel) {
+        EntityEditingHistoryClp newModel = new EntityEditingHistoryClp();
+
+        newModel.setModelAttributes(oldModel.getModelAttributes());
+
+        newModel.setEntityEditingHistoryRemoteModel(oldModel);
+
+        return newModel;
+    }
+
+    public static Object translateOutputEntityFieldChange(BaseModel<?> oldModel) {
+        EntityFieldChangeClp newModel = new EntityFieldChangeClp();
+
+        newModel.setModelAttributes(oldModel.getModelAttributes());
+
+        newModel.setEntityFieldChangeRemoteModel(oldModel);
+
+        return newModel;
+    }
+
+    public static Object translateOutputFoo(BaseModel<?> oldModel) {
+        FooClp newModel = new FooClp();
+
+        newModel.setModelAttributes(oldModel.getModelAttributes());
+
+        newModel.setFooRemoteModel(oldModel);
+
+        return newModel;
     }
 
     public static Object translateOutputPerson(BaseModel<?> oldModel) {

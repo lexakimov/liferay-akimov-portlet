@@ -5,12 +5,8 @@
 	<namespace>akimov</namespace>
 
 	<entity name="Person" uuid="false" local-service="true" remote-service="false">
-		<column name="personId"
-				type="int"
-				primary="true"
-				id-type="class"
+		<column name="personId" type="int" primary="true" id-type="class"
 				id-param="com.liferay.counter.service.persistence.IDGenerator"/>
-
 		<column name="lastName" type="String"/>
 		<column name="firstName" type="String"/>
 		<column name="middleName" type="String"/>
@@ -28,6 +24,39 @@
 		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetTag" />
 		-->
+	</entity>
+
+	<entity name="Foo" uuid="false" local-service="true" remote-service="false">
+		<column name="fooId" type="int" primary="true" id-type="class"
+				id-param="com.liferay.counter.service.persistence.IDGenerator"/>
+		<column name="booleanField" type="boolean"/>
+		<column name="shortField" type="short"/>
+		<column name="intField" type="int"/>
+		<column name="longField" type="long"/>
+		<column name="doubleField" type="double"/>
+		<column name="floatField" type="float"/>
+		<column name="stringField" type="String"/>
+		<column name="dateField" type="Date"/>
+		<column name="blobField" type="Blob"/>
+	</entity>
+
+	<!-- TODO add indexes -->
+	<entity name="EntityEditingHistory" table="akimov_entity_editing_history" local-service="true" remote-service="false">
+		<column name="id" type="int" primary="true"/>
+		<column name="entityId" type="int"/>
+		<column name="entityType" type="String"/>
+		<column name="userId" type="long"/>
+		<column name="description" type="String"/>
+		<column name="dateOfChange" type="Date"/>
+	</entity>
+
+	<!-- TODO add indexes -->
+	<entity name="EntityFieldChange" table="akimov_entity_field_change" local-service="true" remote-service="false">
+		<column name="id" type="int" primary="true"/>
+		<column name="historyId" type="int"/>
+		<column name="fieldName" type="String"/>
+		<column name="oldValue" type="String"/>
+		<column name="newValue" type="String"/>
 	</entity>
 
 </service-builder>

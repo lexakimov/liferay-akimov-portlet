@@ -1,6 +1,6 @@
 package ru.isands.akimov.service.base;
 
-import ru.isands.akimov.service.PersonLocalServiceUtil;
+import ru.isands.akimov.service.FooLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class PersonLocalServiceClpInvoker {
+public class FooLocalServiceClpInvoker {
     private String _methodName0;
     private String[] _methodParameterTypes0;
     private String _methodName1;
@@ -41,27 +41,29 @@ public class PersonLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName44;
-    private String[] _methodParameterTypes44;
+    private String _methodName16;
+    private String[] _methodParameterTypes16;
     private String _methodName45;
     private String[] _methodParameterTypes45;
+    private String _methodName46;
+    private String[] _methodParameterTypes46;
 
-    public PersonLocalServiceClpInvoker() {
-        _methodName0 = "addPerson";
+    public FooLocalServiceClpInvoker() {
+        _methodName0 = "addFoo";
 
-        _methodParameterTypes0 = new String[] { "ru.isands.akimov.model.Person" };
+        _methodParameterTypes0 = new String[] { "ru.isands.akimov.model.Foo" };
 
-        _methodName1 = "createPerson";
+        _methodName1 = "createFoo";
 
         _methodParameterTypes1 = new String[] { "int" };
 
-        _methodName2 = "deletePerson";
+        _methodName2 = "deleteFoo";
 
         _methodParameterTypes2 = new String[] { "int" };
 
-        _methodName3 = "deletePerson";
+        _methodName3 = "deleteFoo";
 
-        _methodParameterTypes3 = new String[] { "ru.isands.akimov.model.Person" };
+        _methodParameterTypes3 = new String[] { "ru.isands.akimov.model.Foo" };
 
         _methodName4 = "dynamicQuery";
 
@@ -99,11 +101,11 @@ public class PersonLocalServiceClpInvoker {
                 "com.liferay.portal.kernel.dao.orm.Projection"
             };
 
-        _methodName10 = "fetchPerson";
+        _methodName10 = "fetchFoo";
 
         _methodParameterTypes10 = new String[] { "int" };
 
-        _methodName11 = "getPerson";
+        _methodName11 = "getFoo";
 
         _methodParameterTypes11 = new String[] { "int" };
 
@@ -111,69 +113,73 @@ public class PersonLocalServiceClpInvoker {
 
         _methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-        _methodName13 = "getPersons";
+        _methodName13 = "getFoos";
 
         _methodParameterTypes13 = new String[] { "int", "int" };
 
-        _methodName14 = "getPersonsCount";
+        _methodName14 = "getFoosCount";
 
         _methodParameterTypes14 = new String[] {  };
 
-        _methodName15 = "updatePerson";
+        _methodName15 = "updateFoo";
 
-        _methodParameterTypes15 = new String[] { "ru.isands.akimov.model.Person" };
+        _methodParameterTypes15 = new String[] { "ru.isands.akimov.model.Foo" };
 
-        _methodName44 = "getBeanIdentifier";
+        _methodName16 = "getBlobFieldBlobModel";
 
-        _methodParameterTypes44 = new String[] {  };
+        _methodParameterTypes16 = new String[] { "java.io.Serializable" };
 
-        _methodName45 = "setBeanIdentifier";
+        _methodName45 = "getBeanIdentifier";
 
-        _methodParameterTypes45 = new String[] { "java.lang.String" };
+        _methodParameterTypes45 = new String[] {  };
+
+        _methodName46 = "setBeanIdentifier";
+
+        _methodParameterTypes46 = new String[] { "java.lang.String" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
         Object[] arguments) throws Throwable {
         if (_methodName0.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-            return PersonLocalServiceUtil.addPerson((ru.isands.akimov.model.Person) arguments[0]);
+            return FooLocalServiceUtil.addFoo((ru.isands.akimov.model.Foo) arguments[0]);
         }
 
         if (_methodName1.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-            return PersonLocalServiceUtil.createPerson(((Integer) arguments[0]).intValue());
+            return FooLocalServiceUtil.createFoo(((Integer) arguments[0]).intValue());
         }
 
         if (_methodName2.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-            return PersonLocalServiceUtil.deletePerson(((Integer) arguments[0]).intValue());
+            return FooLocalServiceUtil.deleteFoo(((Integer) arguments[0]).intValue());
         }
 
         if (_methodName3.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-            return PersonLocalServiceUtil.deletePerson((ru.isands.akimov.model.Person) arguments[0]);
+            return FooLocalServiceUtil.deleteFoo((ru.isands.akimov.model.Foo) arguments[0]);
         }
 
         if (_methodName4.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes4, parameterTypes)) {
-            return PersonLocalServiceUtil.dynamicQuery();
+            return FooLocalServiceUtil.dynamicQuery();
         }
 
         if (_methodName5.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes5, parameterTypes)) {
-            return PersonLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0]);
+            return FooLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0]);
         }
 
         if (_methodName6.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes6, parameterTypes)) {
-            return PersonLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
+            return FooLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
                 ((Integer) arguments[1]).intValue(),
                 ((Integer) arguments[2]).intValue());
         }
 
         if (_methodName7.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes7, parameterTypes)) {
-            return PersonLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
+            return FooLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
                 ((Integer) arguments[1]).intValue(),
                 ((Integer) arguments[2]).intValue(),
                 (com.liferay.portal.kernel.util.OrderByComparator) arguments[3]);
@@ -181,54 +187,59 @@ public class PersonLocalServiceClpInvoker {
 
         if (_methodName8.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes8, parameterTypes)) {
-            return PersonLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0]);
+            return FooLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0]);
         }
 
         if (_methodName9.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-            return PersonLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
+            return FooLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
                 (com.liferay.portal.kernel.dao.orm.Projection) arguments[1]);
         }
 
         if (_methodName10.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-            return PersonLocalServiceUtil.fetchPerson(((Integer) arguments[0]).intValue());
+            return FooLocalServiceUtil.fetchFoo(((Integer) arguments[0]).intValue());
         }
 
         if (_methodName11.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-            return PersonLocalServiceUtil.getPerson(((Integer) arguments[0]).intValue());
+            return FooLocalServiceUtil.getFoo(((Integer) arguments[0]).intValue());
         }
 
         if (_methodName12.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-            return PersonLocalServiceUtil.getPersistedModel((java.io.Serializable) arguments[0]);
+            return FooLocalServiceUtil.getPersistedModel((java.io.Serializable) arguments[0]);
         }
 
         if (_methodName13.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-            return PersonLocalServiceUtil.getPersons(((Integer) arguments[0]).intValue(),
+            return FooLocalServiceUtil.getFoos(((Integer) arguments[0]).intValue(),
                 ((Integer) arguments[1]).intValue());
         }
 
         if (_methodName14.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-            return PersonLocalServiceUtil.getPersonsCount();
+            return FooLocalServiceUtil.getFoosCount();
         }
 
         if (_methodName15.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-            return PersonLocalServiceUtil.updatePerson((ru.isands.akimov.model.Person) arguments[0]);
+            return FooLocalServiceUtil.updateFoo((ru.isands.akimov.model.Foo) arguments[0]);
         }
 
-        if (_methodName44.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
-            return PersonLocalServiceUtil.getBeanIdentifier();
+        if (_methodName16.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
+            return FooLocalServiceUtil.getBlobFieldBlobModel((java.io.Serializable) arguments[0]);
         }
 
         if (_methodName45.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
-            PersonLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
+            return FooLocalServiceUtil.getBeanIdentifier();
+        }
+
+        if (_methodName46.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+            FooLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
         }

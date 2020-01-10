@@ -1,1 +1,0 @@
-create index IX_FB91C4F on akimov_Person (uuid_);

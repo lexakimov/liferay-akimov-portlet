@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="ru.isands.akimov.service.EntityEditingHistoryLocalService" class="ru.isands.akimov.service.impl.EntityEditingHistoryLocalServiceImpl" />
+	<bean id="ru.isands.akimov.service.persistence.EntityEditingHistoryPersistence" class="ru.isands.akimov.service.persistence.EntityEditingHistoryPersistenceImpl" parent="basePersistence" />
+	<bean id="ru.isands.akimov.service.EntityFieldChangeLocalService" class="ru.isands.akimov.service.impl.EntityFieldChangeLocalServiceImpl" />
+	<bean id="ru.isands.akimov.service.persistence.EntityFieldChangePersistence" class="ru.isands.akimov.service.persistence.EntityFieldChangePersistenceImpl" parent="basePersistence" />
+	<bean id="ru.isands.akimov.service.FooLocalService" class="ru.isands.akimov.service.impl.FooLocalServiceImpl" />
+	<bean id="ru.isands.akimov.service.persistence.FooPersistence" class="ru.isands.akimov.service.persistence.FooPersistenceImpl" parent="basePersistence" />
 	<bean id="ru.isands.akimov.service.PersonLocalService" class="ru.isands.akimov.service.impl.PersonLocalServiceImpl" />
 	<bean id="ru.isands.akimov.service.persistence.PersonPersistence" class="ru.isands.akimov.service.persistence.PersonPersistenceImpl" parent="basePersistence" />
 </beans>

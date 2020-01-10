@@ -2,7 +2,54 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="ru.isands.akimov.model.EntityEditingHistory" />
+	<import class="ru.isands.akimov.model.EntityFieldChange" />
+	<import class="ru.isands.akimov.model.Foo" />
 	<import class="ru.isands.akimov.model.Person" />
+	<class name="ru.isands.akimov.model.impl.EntityEditingHistoryImpl" table="akimov_entity_editing_history">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="entityId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="entityType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="dateOfChange" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="ru.isands.akimov.model.impl.EntityFieldChangeImpl" table="akimov_entity_field_change">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="historyId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="fieldName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="oldValue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="newValue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="ru.isands.akimov.model.impl.FooImpl" table="akimov_Foo">
+		<cache usage="read-write" />
+		<id name="fooId" type="int">
+			<generator class="com.liferay.counter.service.persistence.IDGenerator" />
+		</id>
+		<property name="booleanField" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="shortField" type="com.liferay.portal.dao.orm.hibernate.ShortType" />
+		<property name="intField" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="longField" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="doubleField" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="floatField" type="com.liferay.portal.dao.orm.hibernate.FloatType" />
+		<property name="stringField" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="dateField" type="org.hibernate.type.TimestampType" />
+		<one-to-one name="blobFieldBlobModel" access="com.liferay.portal.dao.orm.hibernate.PrivatePropertyAccessor" class="ru.isands.akimov.model.FooBlobFieldBlobModel" cascade="save-update" outer-join="false" constrained="true" />
+	</class>
+	<class name="ru.isands.akimov.model.FooBlobFieldBlobModel" table="akimov_Foo" lazy="true">
+		<id name="fooId" column="fooId">
+			<generator class="foreign">
+				<param name="property">ru.isands.akimov.model.impl.FooImpl</param>
+			</generator>
+		</id>
+		<property column="blobField" name="blobFieldBlob" type="blob" />
+	</class>
 	<class name="ru.isands.akimov.model.impl.PersonImpl" table="akimov_Person">
 		<cache usage="read-write" />
 		<id name="personId" type="int">

@@ -4,6 +4,9 @@ import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
 import ru.isands.akimov.service.ClpSerializer;
+import ru.isands.akimov.service.EntityEditingHistoryLocalServiceUtil;
+import ru.isands.akimov.service.EntityFieldChangeLocalServiceUtil;
+import ru.isands.akimov.service.FooLocalServiceUtil;
 import ru.isands.akimov.service.PersonLocalServiceUtil;
 
 
@@ -19,6 +22,12 @@ public class ClpMessageListener extends BaseMessageListener {
 
         if (command.equals("undeploy") &&
                 servletContextName.equals(getServletContextName())) {
+            EntityEditingHistoryLocalServiceUtil.clearService();
+
+            EntityFieldChangeLocalServiceUtil.clearService();
+
+            FooLocalServiceUtil.clearService();
+
             PersonLocalServiceUtil.clearService();
         }
     }

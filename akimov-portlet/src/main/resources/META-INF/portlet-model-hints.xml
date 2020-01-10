@@ -1,6 +1,33 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="ru.isands.akimov.model.EntityEditingHistory">
+		<field name="id" type="int" />
+		<field name="entityId" type="int" />
+		<field name="entityType" type="String" />
+		<field name="userId" type="long" />
+		<field name="description" type="String" />
+		<field name="dateOfChange" type="Date" />
+	</model>
+	<model name="ru.isands.akimov.model.EntityFieldChange">
+		<field name="id" type="int" />
+		<field name="historyId" type="int" />
+		<field name="fieldName" type="String" />
+		<field name="oldValue" type="String" />
+		<field name="newValue" type="String" />
+	</model>
+	<model name="ru.isands.akimov.model.Foo">
+		<field name="fooId" type="int" />
+		<field name="booleanField" type="boolean" />
+		<field name="shortField" type="short" />
+		<field name="intField" type="int" />
+		<field name="longField" type="long" />
+		<field name="doubleField" type="double" />
+		<field name="floatField" type="float" />
+		<field name="stringField" type="String" />
+		<field name="dateField" type="Date" />
+		<field name="blobField" type="Blob" />
+	</model>
 	<model name="ru.isands.akimov.model.Person">
 		<field name="personId" type="int" />
 		<field name="lastName" type="String" />

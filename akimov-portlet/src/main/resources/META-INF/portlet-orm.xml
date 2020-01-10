@@ -7,6 +7,57 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
+	<mapped-superclass class="ru.isands.akimov.model.impl.EntityEditingHistoryModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="entityId" />
+			<basic name="entityType" />
+			<basic name="userId" />
+			<basic name="description" />
+			<basic name="dateOfChange">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="ru.isands.akimov.model.impl.EntityFieldChangeModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="historyId" />
+			<basic name="fieldName" />
+			<basic name="oldValue" />
+			<basic name="newValue" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="ru.isands.akimov.model.impl.FooModelImpl">
+		<attributes>
+			<id name="fooId" />
+			<basic name="booleanField" />
+			<basic name="shortField" />
+			<basic name="intField" />
+			<basic name="longField" />
+			<basic name="doubleField" />
+			<basic name="floatField" />
+			<basic name="stringField" />
+			<basic name="dateField">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="blobField" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="ru.isands.akimov.model.impl.PersonModelImpl">
 		<attributes>
 			<id name="personId" />
@@ -23,6 +74,18 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<entity class="ru.isands.akimov.model.impl.EntityEditingHistoryImpl" name="EntityEditingHistory">
+		<table name="akimov_entity_editing_history" />
+		<attributes />
+	</entity>
+	<entity class="ru.isands.akimov.model.impl.EntityFieldChangeImpl" name="EntityFieldChange">
+		<table name="akimov_entity_field_change" />
+		<attributes />
+	</entity>
+	<entity class="ru.isands.akimov.model.impl.FooImpl" name="Foo">
+		<table name="akimov_Foo" />
+		<attributes />
+	</entity>
 	<entity class="ru.isands.akimov.model.impl.PersonImpl" name="Person">
 		<table name="akimov_Person" />
 		<attributes />
