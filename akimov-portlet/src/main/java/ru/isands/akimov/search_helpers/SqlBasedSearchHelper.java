@@ -1,7 +1,6 @@
 package ru.isands.akimov.search_helpers;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.dao.search.SearchContainer;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -14,11 +13,15 @@ import java.util.List;
 
 public abstract class SqlBasedSearchHelper<T> implements SearchHelper<T> {
 
-	private final Class<T> type;
 	private final DataSource dataSource;
+	private final ResultSetHandler<List<T>> rsHandler;
 
 	public SqlBasedSearchHelper(Class<T> type) {
-		this.type = type;
+		this(new BeanListHandler<T>(type));
+	}
+
+	public SqlBasedSearchHelper(ResultSetHandler<List<T>> rsHandler) {
+		this.rsHandler = rsHandler;
 		this.dataSource = (DataSource) PortalBeanLocatorUtil.locate("liferayDataSource");
 	}
 
@@ -37,10 +40,9 @@ public abstract class SqlBasedSearchHelper<T> implements SearchHelper<T> {
 	@Override
 	public List<T> getResult(int start, int end) throws PortletException {
 		String sqlQuery = getSqlQuery(start, end);
-		ResultSetHandler<List<T>> h = new BeanListHandler<T>(type);
 		QueryRunner run = new QueryRunner(dataSource);
 		try {
-			return run.query(sqlQuery, h);
+			return run.query(sqlQuery, rsHandler);
 		} catch (SQLException e) {
 			throw new PortletException(e);
 		}
