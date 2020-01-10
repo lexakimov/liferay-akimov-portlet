@@ -1,6 +1,7 @@
 package ru.isands.akimov.history.enums;
 
 public enum EntityType {
+
 	FOO;
 
 	@Override

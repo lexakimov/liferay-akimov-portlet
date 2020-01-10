@@ -34,6 +34,13 @@
 			<aui:button value="Edit" name="edit" primary="true" onClick="openDialog(${model.fooId});"/>
 		</liferay-ui:search-container-column-text>
 
+		<portlet:actionURL var="deleteURL" name="deleteFoo">
+			<portlet:param name="fooId" value="${model.fooId}"/>
+		</portlet:actionURL>
+		<liferay-ui:search-container-column-text>
+			<aui:button value="Delete" name="delete" primary="true" href="${deleteURL}"/>
+		</liferay-ui:search-container-column-text>
+
 	</liferay-ui:search-container-row>
 	<liferay-ui:search-iterator/>
 	<%--<liferay-ui:search-paginator searchContainer="${searchContainer}" type="article"/>--%>
@@ -104,3 +111,4 @@
 <%--------------------------------------------------------------------------------------------------------------------%>
 
 <h4>History of Changes</h4>
+<jsp:include page="foo_change_history.jsp"/>

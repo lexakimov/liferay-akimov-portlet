@@ -17,11 +17,16 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * Класс отслеживающий изменения в сущности для ведения истории изменений.
+ *
+ * @param <T>
+ */
 public abstract class ModelHistoryListener<T extends BaseModel<T>> extends BaseModelListener<T> {
 
 	public abstract EntityType getEntityType();
 
-	public abstract T fetchOldModel(long entityId) throws SystemException;
+	public abstract T fetchOldModel(int entityId) throws SystemException;
 
 	public abstract ChangeDetector<T> getChangeDetector(T oldModel, T updatedModel) throws EntityFieldChangeDetectorException;
 
@@ -39,19 +44,14 @@ public abstract class ModelHistoryListener<T extends BaseModel<T>> extends BaseM
 		try {
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 			long userId = serviceContext.getUserId();
-			Serializable pkObject = updatedModel.getPrimaryKeyObj();
-			long entityId;
-			if (pkObject instanceof Integer) {
-				entityId = ((Integer) pkObject).longValue();
-			} else {
-				entityId = (long) pkObject;
-			}
+			int entityId = getEntityId(updatedModel);
 			Date dateOfChange = new Date();
 
-			EntityEditingHistoryWrapper hist = new EntityEditingHistoryWrapper(entityId, getEntityType(), userId, dateOfChange);
+			EntityEditingHistoryWrapper editingHistory =
+					new EntityEditingHistoryWrapper(entityId, getEntityType(), userId, dateOfChange);
 
 			T oldModel = fetchOldModel(entityId);
-			ChangeDetector changeDetector = getChangeDetector(oldModel, updatedModel);
+			ChangeDetector<T> changeDetector = getChangeDetector(oldModel, updatedModel);
 
 			Map<String, Object> newValues = changeDetector.getNewValues();
 			Map<String, Object> oldValues = changeDetector.getOldValues();
@@ -59,28 +59,43 @@ public abstract class ModelHistoryListener<T extends BaseModel<T>> extends BaseM
 			for (String fieldName : oldValues.keySet()) {
 				Object oldValue = oldValues.get(fieldName);
 				Object newValue = newValues.get(fieldName);
-				hist.addFieldChange(fieldName, oldValue, newValue);
+
+				// TODO handle null-values
+				editingHistory.addFieldChange(fieldName, oldValue, newValue);
 			}
-			hist.persist();
+
+			if (!editingHistory.isEmpty()) {
+				editingHistory.persist();
+			}
+
 		} catch (SystemException e) {
 			throw new EntityHistoryException(e);
 		}
 	}
 
 	/**
-	 * удаление записей истории из EntityEditingHistory и EntityFieldChange
-	 *
-	 * @param model сущность
-	 * @throws ModelListenerException
+	 * удаление сущности, сопровождается удалением закрепленных за ней записей истории из EntityEditingHistory и
+	 * EntityFieldChange
 	 */
 	@Override
-	public void onAfterRemove(T model) throws ModelListenerException {
+	public void onAfterRemove(T model) throws EntityHistoryException {
 		try {
-			int pk = (int) model.getPrimaryKeyObj();
+			int pk = getEntityId(model);
 			String entityType = getEntityType().toString().toLowerCase();
 			EntityEditingHistoryLocalServiceUtil.deleteFor(entityType, pk);
 		} catch (SystemException e) {
-			throw new ModelListenerException(e);
+			throw new EntityHistoryException(e);
 		}
+	}
+
+	private int getEntityId(T updatedModel) {
+		Serializable pkObject = updatedModel.getPrimaryKeyObj();
+		int entityId;
+		if (pkObject instanceof Long) {
+			entityId = ((Long) pkObject).intValue();
+		} else {
+			entityId = (Integer) pkObject;
+		}
+		return entityId;
 	}
 }

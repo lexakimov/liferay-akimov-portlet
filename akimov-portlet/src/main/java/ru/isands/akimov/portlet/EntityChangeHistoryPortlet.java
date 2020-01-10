@@ -1,10 +1,9 @@
 package ru.isands.akimov.portlet;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.URLUtil;
 import ru.isands.akimov.model.Foo;
 import ru.isands.akimov.service.FooLocalServiceUtil;
 
@@ -18,6 +17,13 @@ public class EntityChangeHistoryPortlet extends ExtendedMVCPortlet {
 
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
 
+	/**
+	 * TODO blobField
+	 * @param request
+	 * @param response
+	 * @throws SystemException
+	 * @throws IOException
+	 */
 	public void updateFoo(ActionRequest request, ActionResponse response) throws SystemException, IOException {
 
 		_debugPrintParams(request);
@@ -38,16 +44,22 @@ public class EntityChangeHistoryPortlet extends ExtendedMVCPortlet {
 		foo.setDoubleField(ParamUtil.getDouble(request, "doubleField"));
 		foo.setFloatField(ParamUtil.getFloat(request, "floatField"));
 		foo.setStringField(ParamUtil.getString(request, "stringField"));
-
 		foo.setDateField(ParamUtil.getDate(request, "dateField", SIMPLE_DATE_FORMAT, null));
-
-		System.out.println(foo);
 		foo.persist();
-
-
-		// ParamUtil.getInteger(request, "blobField");
 
 		PortletURL redirect = createPortletURL(request);
 		response.sendRedirect(redirect.toString());
 	}
+
+	public void deleteFoo(ActionRequest request, ActionResponse response) throws SystemException, PortalException, IOException {
+		int fooId = ParamUtil.getInteger(request, "fooId");
+
+		if (fooId > 0) {
+			FooLocalServiceUtil.deleteFoo(fooId);
+		}
+
+		PortletURL redirect = createPortletURL(request);
+		response.sendRedirect(redirect.toString());
+	}
+
 }

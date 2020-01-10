@@ -20,7 +20,7 @@
 <aui:form name="fooForm" action="${submitFooFormURL}" method="POST">
 	<aui:input name="fooId" value="<%=foo.getFooId()%>" type="hidden"/>
 	<aui:input name="booleanField" value="<%=foo.getBooleanField()%>" type="checkbox"/>
-	<aui:input name="shortField" value="<%=foo.getBooleanField()%>" type="number" inlineField="true"/>
+	<aui:input name="shortField" value="<%=foo.getShortField()%>" type="number" inlineField="true"/>
 	<aui:input name="intField" value="<%=foo.getIntField()%>" type="number" inlineField="true"/>
 	<aui:input name="longField" value="<%=foo.getLongField()%>" type="number"/>
 	<aui:input name="doubleField" value="<%=foo.getDoubleField()%>" type="number" inlineField="true"/>

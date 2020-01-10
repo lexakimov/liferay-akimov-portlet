@@ -9,3 +9,13 @@ div.bordered-block-2 {
 	border-style: solid;
 	border-color: blueviolet;
 }
+
+
+
+/** BOOTSTRAP 2.3.2 fixes */
+
+@media (min-width: 1200px) {
+	.aui .row {
+		margin-left: unset;
+	}
+}

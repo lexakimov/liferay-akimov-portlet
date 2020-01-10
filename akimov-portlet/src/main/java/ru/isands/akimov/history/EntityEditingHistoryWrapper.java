@@ -19,13 +19,13 @@ public class EntityEditingHistoryWrapper {
 
 	private List<EntityFieldChange> fieldChanges;
 
-	public EntityEditingHistoryWrapper(long entityId, EntityType entityType, long userId, Date dateOfChange)
+	public EntityEditingHistoryWrapper(int entityId, EntityType entityType, long userId, Date dateOfChange)
 			throws SystemException {
 
 		int historyEntryId = (int) CounterLocalServiceUtil.increment(EntityEditingHistory.class.getName());
 
 		editingHistoryEntry = EntityEditingHistoryLocalServiceUtil.createEntityEditingHistory(historyEntryId);
-		editingHistoryEntry.setEntityId((int) entityId);
+		editingHistoryEntry.setEntityId(entityId);
 		editingHistoryEntry.setEntityType(entityType.toString());
 		editingHistoryEntry.setUserId(userId);
 		editingHistoryEntry.setDateOfChange(dateOfChange);
@@ -33,6 +33,14 @@ public class EntityEditingHistoryWrapper {
 		fieldChanges = new ArrayList<>();
 	}
 
+	/**
+	 * добавить к записи истории изменения сущности запись об изменении атрибута.
+	 *
+	 * @param fieldName имя атрибута.
+	 * @param oldValue  старое значение.
+	 * @param newValue  новое значение.
+	 * @throws SystemException
+	 */
 	public void addFieldChange(String fieldName, Object oldValue, Object newValue) throws SystemException {
 		int fieldChangeId = (int) CounterLocalServiceUtil.increment(EntityFieldChange.class.getName());
 
@@ -45,6 +53,16 @@ public class EntityEditingHistoryWrapper {
 		fieldChanges.add(fieldChange);
 	}
 
+	/**
+	 * @return true если запись истории изменения сущности не имеет закрепленных за собой записей об изменениях атрибутов.
+	 */
+	public boolean isEmpty() {
+		return fieldChanges.isEmpty();
+	}
+
+	/**
+	 * полностью сохранить запись истории изменения в базу
+	 */
 	public void persist() throws SystemException {
 		for (EntityFieldChange fieldChange : fieldChanges) {
 			fieldChange.persist();

@@ -16,8 +16,8 @@ public class FooListener extends ModelHistoryListener<Foo> {
 	}
 
 	@Override
-	public Foo fetchOldModel(long entityId) throws SystemException {
-		return FooLocalServiceUtil.fetchFoo((int) entityId);
+	public Foo fetchOldModel(int entityId) throws SystemException {
+		return FooLocalServiceUtil.fetchFoo(entityId);
 	}
 
 	@Override

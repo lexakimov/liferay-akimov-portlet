@@ -1,5 +1,7 @@
 package ru.isands.akimov.history.dto;
 
+import com.liferay.portal.model.User;
+import ru.isands.akimov.history.enums.ActionType;
 import ru.isands.akimov.history.enums.EntityType;
 
 import java.util.Date;
@@ -9,16 +11,21 @@ import java.util.Map;
 /**
  * Запись истории изменений сущности на дату.
  */
-public class HistoryEntryForDate {
+public class EntityHistoryEntryWithChanges {
 
 	private final EntityType entityType;
 	private final Date dateOfChanges;
+	private final User user;
+	private final String description;
 
 	private final Map<String, AttributeChange> changes;
 
-	public HistoryEntryForDate(EntityType entityType, Date dateOfChanges, String[][] changesTuple) {
+	public EntityHistoryEntryWithChanges(EntityType entityType, User user, String description, Date dateOfChanges, String[][] changesTuple) {
 		this.entityType = entityType;
 		this.dateOfChanges = dateOfChanges;
+		this.user = user;
+		this.description = description;
+
 		this.changes = new HashMap<>();
 		for (String[] change : changesTuple) {
 			String fieldName = change[0];
@@ -29,8 +36,25 @@ public class HistoryEntryForDate {
 		}
 	}
 
+	public String getEntityType() {
+		return entityType.toString().toLowerCase();
+	}
+
 	public Date getDateOfChanges() {
 		return dateOfChanges;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public String getDescription() {
+		try {
+			ActionType actionType = ActionType.valueOf(description);
+			return actionType.getDescription(user);
+		} catch (IllegalArgumentException e) {
+			return description;
+		}
 	}
 
 	/**
@@ -39,8 +63,5 @@ public class HistoryEntryForDate {
 	public Map<String, AttributeChange> getChanges() {
 		return changes;
 	}
-
-	public String getEntityType() {
-		return entityType.toString().toLowerCase();
-	}
+	
 }

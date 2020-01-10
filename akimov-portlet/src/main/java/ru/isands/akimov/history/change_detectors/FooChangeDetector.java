@@ -13,19 +13,19 @@ public class FooChangeDetector extends ChangeDetector<Foo> {
 
 	static {
 		// column names from service.xml
-		List<String> temp = new ArrayList<>();
+		List<String> columns = new ArrayList<>();
 
-		temp.add("booleanField");
-		temp.add("shortField");
-		temp.add("intField");
-		temp.add("longField");
-		temp.add("doubleField");
-		temp.add("floatField");
-		temp.add("stringField");
-		temp.add("dateField");
-		temp.add("blobField");
+		columns.add("booleanField");
+		columns.add("shortField");
+		columns.add("intField");
+		columns.add("longField");
+		columns.add("doubleField");
+		columns.add("floatField");
+		columns.add("stringField");
+		columns.add("dateField");
+		columns.add("blobField");
 
-		WATCH_ONLY_FIELDS = Collections.unmodifiableList(temp);
+		WATCH_ONLY_FIELDS = Collections.unmodifiableList(columns);
 	}
 
 	public FooChangeDetector(Foo old, Foo new_) throws EntityFieldChangeDetectorException {
