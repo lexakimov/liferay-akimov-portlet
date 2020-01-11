@@ -40,7 +40,9 @@
 					<c:forEach var="historyEntry" items="${historyEntries}">
 						<tr>
 							<td class="table-cell" rowspan="${historyEntry.changes.size() + 1}">
-								<fmt:formatDate value="${historyEntry.dateOfChanges}" pattern="dd.MM.yyyy HH:mm:ss"/>
+								<fmt:formatDate value="${historyEntry.dateOfChanges}"
+												pattern="dd.MM.yyyy HH:mm:ss"
+												timeZone="GMT+7"/>
 							</td>
 							<td class="table-cell" rowspan="${historyEntry.changes.size() + 1}">
 									${historyEntry.user.fullName}
@@ -53,8 +55,7 @@
 						<c:forEach var="change" items="${historyEntry.changes}">
 							<tr>
 								<td class="table-cell">
-									<liferay-ui:message
-											key="akimov.${historyEntry.entityType}.history.field.${change.key}"/>
+									<liferay-ui:message key="${historyEntry.entityType}.field.${change.key}"/>
 								</td>
 								<td class="table-cell">${change.value.oldValue}</td>
 								<td class="table-cell">${change.value.newValue}</td>

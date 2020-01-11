@@ -2,12 +2,16 @@ package ru.isands.akimov.audit.enums;
 
 import com.liferay.portal.model.User;
 
+/**
+ * Типы действий пользователя в системе.
+ */
 public enum ActionType {
-	FOO_CREATE("%s создал сущность Foo"),
-	FOO_EDIT("%s проредактировал сущность Foo"),
-	FOO_DELETE("%s удалил сущность Foo"),
 	USER_LOGIN("Пользователь %s вошёл в систему"),
-	USER_LOGOUT("Пользователь %s вышёл из системы");
+	USER_LOGOUT("Пользователь %s вышёл из системы"),
+
+	FOO_CREATE("%s создал Foo"),
+	FOO_EDIT("%s отредактировал Foo"),
+	FOO_DELETE("%s удалил Foo");
 
 	private final String description;
 

@@ -1,4 +1,4 @@
-package ru.isands.akimov.audit.dto;
+package ru.isands.akimov.audit.pojo;
 
 import com.liferay.portal.model.User;
 import ru.isands.akimov.audit.enums.ActionType;
@@ -18,7 +18,7 @@ public class EntityHistoryEntryWithChanges {
 	private final User user;
 	private final String description;
 
-	private final Map<String, AttributeChange> changes;
+	private final Map<String, ModelAttributeChange> changes;
 
 	public EntityHistoryEntryWithChanges(EntityType entityType, User user, String description, Date dateOfChanges, String[][] changesTuple) {
 		this.entityType = entityType;
@@ -31,7 +31,7 @@ public class EntityHistoryEntryWithChanges {
 			String fieldName = change[0];
 			String oldValue = change[1];
 			String newValue = change[2];
-			AttributeChange attributeChange = new AttributeChange(dateOfChanges, fieldName, oldValue, newValue);
+			ModelAttributeChange attributeChange = new ModelAttributeChange(dateOfChanges, fieldName, oldValue, newValue);
 			this.changes.put(fieldName, attributeChange);
 		}
 	}
@@ -60,7 +60,7 @@ public class EntityHistoryEntryWithChanges {
 	/**
 	 * key		-	fieldName
 	 */
-	public Map<String, AttributeChange> getChanges() {
+	public Map<String, ModelAttributeChange> getChanges() {
 		return changes;
 	}
 	

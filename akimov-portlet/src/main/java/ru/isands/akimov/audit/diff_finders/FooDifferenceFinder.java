@@ -1,6 +1,6 @@
 package ru.isands.akimov.audit.diff_finders;
 
-import ru.isands.akimov.audit.exceptions.EntityFieldChangeDetectorException;
+import ru.isands.akimov.audit.exceptions.NoSuchModelAttributeException;
 import ru.isands.akimov.model.Foo;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class FooDifferenceFinder extends ModelDifferenceFinder<Foo> {
 		WATCH_ONLY_FIELDS = Collections.unmodifiableList(columns);
 	}
 
-	public FooDifferenceFinder(Foo old, Foo new_) throws EntityFieldChangeDetectorException {
+	public FooDifferenceFinder(Foo old, Foo new_) throws NoSuchModelAttributeException {
 		super(old, new_);
 	}
 

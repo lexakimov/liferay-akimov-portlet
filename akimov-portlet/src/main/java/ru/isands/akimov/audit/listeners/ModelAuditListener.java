@@ -10,7 +10,7 @@ import ru.isands.akimov.audit.AuditEntryWrapper;
 import ru.isands.akimov.audit.diff_finders.ModelDifferenceFinder;
 import ru.isands.akimov.audit.enums.ActionType;
 import ru.isands.akimov.audit.enums.EntityType;
-import ru.isands.akimov.audit.exceptions.EntityFieldChangeDetectorException;
+import ru.isands.akimov.audit.exceptions.NoSuchModelAttributeException;
 import ru.isands.akimov.audit.exceptions.EntityHistoryException;
 import ru.isands.akimov.service.EntityEditingHistoryLocalServiceUtil;
 
@@ -25,30 +25,36 @@ import java.util.Map;
  */
 public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseModelListener<T> {
 
-	public abstract EntityType getEntityType();
+	abstract ModelDifferenceFinder<T> getChangeDetector(T oldModel, T updatedModel) throws NoSuchModelAttributeException;
 
-	public abstract T fetchOldModel(int entityId) throws SystemException;
+	abstract EntityType getEntityType();
 
-	public abstract ModelDifferenceFinder<T> getChangeDetector(T oldModel, T updatedModel) throws EntityFieldChangeDetectorException;
+	abstract ActionType getCreateType();
+
+	abstract ActionType getEditType();
+
+	abstract ActionType getDeleteType();
+
+	abstract T fetchOldModel(int entityId) throws SystemException;
 
 	@Override
 	public void onBeforeCreate(T model) throws ModelListenerException {
-		process(model);
+		process(model, getCreateType());
 	}
 
 	@Override
 	public void onBeforeUpdate(T model) throws ModelListenerException {
-		process(model);
+		process(model, getEditType());
 	}
 
-	private void process(T updatedModel) throws EntityHistoryException {
+	private void process(T updatedModel, ActionType actionType) throws EntityHistoryException {
 		try {
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 			long userId = serviceContext.getUserId();
 			int entityId = getEntityId(updatedModel);
 			Date dateOfChange = new Date();
 
-			String description = ActionType.FOO_EDIT.toString();
+			String description = actionType.toString();
 			AuditEntryWrapper editingHistory =
 					new AuditEntryWrapper(entityId, getEntityType(), description, userId, dateOfChange);
 
@@ -77,7 +83,7 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 
 	/**
 	 * удаление сущности, сопровождается удалением закрепленных за ней записей истории из EntityEditingHistory и
-	 * EntityFieldChange
+	 * EntityFieldChange, а также созданием записи в журнале об удалении (FIXME).
 	 */
 	@Override
 	public void onAfterRemove(T model) throws EntityHistoryException {
@@ -86,12 +92,11 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 			String entityType = getEntityType().toString().toLowerCase();
 			EntityEditingHistoryLocalServiceUtil.deleteFor(entityType, entityId);
 
-
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 			long userId = serviceContext.getUserId();
 			Date dateOfChange = new Date();
 
-			String description = ActionType.FOO_DELETE.toString();
+			String description = getDeleteType().toString();
 
 			AuditEntryWrapper editingHistory =
 					new AuditEntryWrapper(entityId, getEntityType(), description, userId, dateOfChange);
@@ -106,12 +111,6 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 
 	private int getEntityId(T updatedModel) {
 		Serializable pkObject = updatedModel.getPrimaryKeyObj();
-		int entityId;
-		if (pkObject instanceof Long) {
-			entityId = ((Long) pkObject).intValue();
-		} else {
-			entityId = (Integer) pkObject;
-		}
-		return entityId;
+		return pkObject instanceof Long ? ((Long) pkObject).intValue() : (Integer) pkObject;
 	}
 }

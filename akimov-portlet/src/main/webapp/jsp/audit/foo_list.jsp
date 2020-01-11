@@ -16,14 +16,14 @@
 	%>
 	<liferay-ui:search-container-row className="ru.isands.akimov.model.Foo">
 		<liferay-ui:search-container-column-text property="fooId"/>
-		<liferay-ui:search-container-column-text name="akimov.foo.history.field.booleanField" property="booleanField"/>
-		<liferay-ui:search-container-column-text name="akimov.foo.history.field.shortField" property="shortField"/>
-		<liferay-ui:search-container-column-text name="akimov.foo.history.field.intField" property="intField"/>
-		<liferay-ui:search-container-column-text name="akimov.foo.history.field.longField" property="longField"/>
-		<liferay-ui:search-container-column-text name="akimov.foo.history.field.doubleField" property="doubleField"/>
-		<liferay-ui:search-container-column-text name="akimov.foo.history.field.floatField" property="floatField"/>
-		<liferay-ui:search-container-column-text name="akimov.foo.history.field.stringField" property="stringField"/>
-		<liferay-ui:search-container-column-text name="akimov.foo.history.field.dateField" property="dateField"/>
+		<liferay-ui:search-container-column-text name="foo.field.booleanField" property="booleanField"/>
+		<liferay-ui:search-container-column-text name="foo.field.shortField" property="shortField"/>
+		<liferay-ui:search-container-column-text name="foo.field.intField" property="intField"/>
+		<liferay-ui:search-container-column-text name="foo.field.longField" property="longField"/>
+		<liferay-ui:search-container-column-text name="foo.field.doubleField" property="doubleField"/>
+		<liferay-ui:search-container-column-text name="foo.field.floatField" property="floatField"/>
+		<liferay-ui:search-container-column-text name="foo.field.stringField" property="stringField"/>
+		<liferay-ui:search-container-column-text name="foo.field.dateField" property="dateField"/>
 
 		<portlet:actionURL var="deleteURL" name="deleteFoo">
 			<portlet:param name="fooId" value="${model.fooId}"/>

@@ -4,7 +4,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import org.apache.commons.dbutils.ResultSetHandler;
-import ru.isands.akimov.audit.dto.EntityHistoryEntryWithChanges;
+import ru.isands.akimov.audit.pojo.EntityHistoryEntryWithChanges;
 import ru.isands.akimov.audit.enums.EntityType;
 import ru.isands.akimov.search_helpers.SqlBasedSearchHelper;
 

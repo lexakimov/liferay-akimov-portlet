@@ -1,18 +1,18 @@
-package ru.isands.akimov.audit.dto;
+package ru.isands.akimov.audit.pojo;
 
 import java.util.Date;
 
 /**
  * Изменение атрибута сущности.
  */
-public class AttributeChange {
+public class ModelAttributeChange {
 
 	private final Date dateOfChange;
 	private final String fieldName;
 	private final String oldValue;
 	private final String newValue;
 
-	AttributeChange(Date dateOfChange, String fieldName, String oldValue, String newValue) {
+	ModelAttributeChange(Date dateOfChange, String fieldName, String oldValue, String newValue) {
 		this.dateOfChange = dateOfChange;
 		this.fieldName = fieldName;
 		this.oldValue = oldValue;
