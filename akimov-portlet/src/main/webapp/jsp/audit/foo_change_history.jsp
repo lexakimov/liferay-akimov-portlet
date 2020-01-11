@@ -6,9 +6,11 @@
 	FooHistorySearchHelper searchHelper = new FooHistorySearchHelper();
 %>
 
-<c:set var="historyEntries" value="<%=searchHelper.getResult()%>" scope="request"/>
+<c:set var="historyEntries" value="<%=searchHelper.getResult()%>"/>
 
 <%--request attribute: ${historyEntries}--%>
+
+<h4>"Foo" change history</h4>
 
 <div class="container-fluid">
 	<div class="row">
@@ -16,7 +18,7 @@
 			<table class="table table-bordered table-hover table-striped">
 				<thead class="table-columns">
 				<tr>
-					<th>Дата изменения</th>
+					<th>Дата и время</th>
 					<th>Пользователь</th>
 					<th>Действие</th>
 					<th>Атрибут</th>
@@ -28,7 +30,7 @@
 				<tbody class="table-data">
 				<c:if test="${empty historyEntries}">
 					<tr>
-						<td colspan="4" class="table-cell" style="color: gray; text-align: center; font-style: italic;">
+						<td colspan="6" class="table-cell" style="color: gray; text-align: center; font-style: italic;">
 							История изменений отсутствует
 						</td>
 					</tr>
@@ -38,7 +40,7 @@
 					<c:forEach var="historyEntry" items="${historyEntries}">
 						<tr>
 							<td class="table-cell" rowspan="${historyEntry.changes.size() + 1}">
-								<fmt:formatDate value="${historyEntry.dateOfChanges}" pattern="dd.MM.yyyy hh.mm.ss"/>
+								<fmt:formatDate value="${historyEntry.dateOfChanges}" pattern="dd.MM.yyyy HH:mm:ss"/>
 							</td>
 							<td class="table-cell" rowspan="${historyEntry.changes.size() + 1}">
 									${historyEntry.user.fullName}
@@ -61,10 +63,7 @@
 					</c:forEach>
 				</c:if>
 				</tbody>
-
 			</table>
 		</div>
 	</div>
-
-
 </div>

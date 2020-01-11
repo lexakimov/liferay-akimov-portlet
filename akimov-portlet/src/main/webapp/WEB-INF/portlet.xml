@@ -62,12 +62,12 @@
 	</portlet>
 
 	<portlet>
-		<portlet-name>entityChangeHistory</portlet-name>
-		<display-name>entityChangeHistory</display-name>
-		<portlet-class>ru.isands.akimov.portlet.EntityChangeHistoryPortlet</portlet-class>
+		<portlet-name>auditDemo</portlet-name>
+		<display-name>auditDemo</display-name>
+		<portlet-class>ru.isands.akimov.portlet.AuditDemoPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
-			<value>/jsp/entity_change_history/view.jsp</value>
+			<value>/jsp/audit/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -75,7 +75,7 @@
 		</supports>
 		<resource-bundle>messages</resource-bundle>
 		<portlet-info>
-			<title>entityChangeHistory</title>
+			<title>auditDemo</title>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

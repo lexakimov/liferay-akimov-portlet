@@ -1,8 +1,8 @@
-package ru.isands.akimov.history.change_detectors;
+package ru.isands.akimov.audit.diff_finders;
 
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.ModelHintsUtil;
-import ru.isands.akimov.history.exceptions.EntityFieldChangeDetectorException;
+import ru.isands.akimov.audit.exceptions.EntityFieldChangeDetectorException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.Set;
  *
  * @param <T>
  */
-public abstract class ChangeDetector<T extends BaseModel<T>> {
+public abstract class ModelDifferenceFinder<T extends BaseModel<T>> {
 
 	private Map<String, Object> oldValues = new HashMap<>();
 	private Map<String, Object> newValues = new HashMap<>();
@@ -23,7 +23,7 @@ public abstract class ChangeDetector<T extends BaseModel<T>> {
 
 	//String fieldType = ModelHintsUtil.getType(old.getModelClassName(), attributeName);
 
-	ChangeDetector(T old, T _new) throws EntityFieldChangeDetectorException {
+	ModelDifferenceFinder(T old, T _new) throws EntityFieldChangeDetectorException {
 
 		checkFieldsExists(old != null ? old : _new);
 

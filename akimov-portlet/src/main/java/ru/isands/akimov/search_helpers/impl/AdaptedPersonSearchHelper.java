@@ -31,13 +31,8 @@ public class AdaptedPersonSearchHelper extends AdaptedDynamicQuerySearchHelper<P
 	}
 
 	@Override
-	public PersonEntryAdapter adapt(Person model) {
+	public PersonEntryAdapter adapt(Person model) throws PortletException {
 		return new PersonEntryAdapter(model);
 	}
 
-	@Override
-	public List<PersonEntryAdapter> getAdaptedResult(int start, int end) throws PortletException {
-		List<Person> result = getResult(start, end);
-		return result.stream().map(this::adapt).collect(Collectors.toList());
-	}
 }

@@ -3,11 +3,12 @@ package ru.isands.akimov.search_helpers.adapters;
 import ru.isands.akimov.enums.Gender;
 import ru.isands.akimov.model.Person;
 
+import javax.portlet.PortletException;
 import java.text.SimpleDateFormat;
 
 public class PersonEntryAdapter extends EntryAdapter<Person> {
 
-	public PersonEntryAdapter(Person model) {
+	public PersonEntryAdapter(Person model) throws PortletException {
 		super(model);
 	}
 

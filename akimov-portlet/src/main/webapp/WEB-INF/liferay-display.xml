@@ -3,8 +3,8 @@
 
 <display>
 	<category name="category.sample.akimov">
-		<portlet id="asyncActions" />
-		<portlet id="asyncSearchContainers" />
-		<portlet id="entityChangeHistory" />
+		<portlet id="asyncActions"/>
+		<portlet id="asyncSearchContainers"/>
+		<portlet id="auditDemo"/>
 	</category>
 </display>

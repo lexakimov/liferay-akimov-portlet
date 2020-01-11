@@ -13,8 +13,8 @@ import java.util.List;
 
 public abstract class SqlBasedSearchHelper<T> implements SearchHelper<T> {
 
-	private final DataSource dataSource;
 	private final ResultSetHandler<List<T>> rsHandler;
+	private final QueryRunner queryRunner;
 
 	public SqlBasedSearchHelper(Class<T> type) {
 		this(new BeanListHandler<T>(type));
@@ -22,16 +22,16 @@ public abstract class SqlBasedSearchHelper<T> implements SearchHelper<T> {
 
 	public SqlBasedSearchHelper(ResultSetHandler<List<T>> rsHandler) {
 		this.rsHandler = rsHandler;
-		this.dataSource = (DataSource) PortalBeanLocatorUtil.locate("liferayDataSource");
+		DataSource dataSource = (DataSource) PortalBeanLocatorUtil.locate("liferayDataSource");
+		this.queryRunner = new QueryRunner(dataSource);
 	}
 
 	@Override
 	public int getTotal() throws PortletException {
 		String sqlQuery = getSqlQueryCount();
 		ScalarHandler<Integer> scalarHandler = new ScalarHandler<>();
-		QueryRunner run = new QueryRunner(dataSource);
 		try {
-			return run.query(sqlQuery, scalarHandler);
+			return queryRunner.query(sqlQuery, scalarHandler);
 		} catch (SQLException e) {
 			throw new PortletException(e);
 		}
@@ -40,9 +40,8 @@ public abstract class SqlBasedSearchHelper<T> implements SearchHelper<T> {
 	@Override
 	public List<T> getResult(int start, int end) throws PortletException {
 		String sqlQuery = getSqlQuery(start, end);
-		QueryRunner run = new QueryRunner(dataSource);
 		try {
-			return run.query(sqlQuery, rsHandler);
+			return queryRunner.query(sqlQuery, rsHandler);
 		} catch (SQLException e) {
 			throw new PortletException(e);
 		}

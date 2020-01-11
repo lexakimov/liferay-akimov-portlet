@@ -4,9 +4,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import org.apache.commons.dbutils.ResultSetHandler;
-import ru.isands.akimov.history.dto.EntityHistoryEntryWithChanges;
-import ru.isands.akimov.history.enums.ActionType;
-import ru.isands.akimov.history.enums.EntityType;
+import ru.isands.akimov.audit.dto.EntityHistoryEntryWithChanges;
+import ru.isands.akimov.audit.enums.EntityType;
 import ru.isands.akimov.search_helpers.SqlBasedSearchHelper;
 
 import java.sql.*;
@@ -56,7 +55,7 @@ public class FooHistorySearchHelper extends SqlBasedSearchHelper<EntityHistoryEn
 				Date dateOfChange = new Date(dateOfChangeTs.getTime());
 
 				long userId = rs.getLong("userId");
-				User user = null;
+				User user;
 				try {
 					user = UserLocalServiceUtil.fetchUser(userId);
 				} catch (SystemException e) {

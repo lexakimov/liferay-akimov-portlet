@@ -1,4 +1,4 @@
-package ru.isands.akimov.history.dto;
+package ru.isands.akimov.audit.dto;
 
 import java.util.Date;
 

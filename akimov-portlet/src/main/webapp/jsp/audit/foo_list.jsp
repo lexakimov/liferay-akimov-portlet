@@ -4,15 +4,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
-<h3>Entity Change History Framework</h3>
-<%--------------------------------------------------------------------------------------------------------------------%>
-<div class="separator"></div><%---------------------------------------------------------------------------------------%>
-<%--------------------------------------------------------------------------------------------------------------------%>
-
-<h4>List of entities</h4>
+<h4>List of "Foo" entities</h4>
 
 <aui:button-row>
-	<aui:button name="openFooCardBtn" value="Create" primary="true"/>
+	<aui:button name="openFooCardBtn" icon="icon-plus" value="Create new" primary="true"/>
 </aui:button-row>
 
 <liferay-ui:search-container delta="5" iteratorURL="<%=thisURL%>" emptyResultsMessage="empty">
@@ -21,23 +16,21 @@
 	%>
 	<liferay-ui:search-container-row className="ru.isands.akimov.model.Foo">
 		<liferay-ui:search-container-column-text property="fooId"/>
-		<liferay-ui:search-container-column-text property="booleanField"/>
-		<liferay-ui:search-container-column-text property="shortField"/>
-		<liferay-ui:search-container-column-text property="intField"/>
-		<liferay-ui:search-container-column-text property="longField"/>
-		<liferay-ui:search-container-column-text property="doubleField"/>
-		<liferay-ui:search-container-column-text property="floatField"/>
-		<liferay-ui:search-container-column-text property="stringField"/>
-		<liferay-ui:search-container-column-text property="dateField"/>
-
-		<liferay-ui:search-container-column-text>
-			<aui:button value="Edit" name="edit" primary="true" onClick="openDialog(${model.fooId});"/>
-		</liferay-ui:search-container-column-text>
+		<liferay-ui:search-container-column-text name="akimov.foo.history.field.booleanField" property="booleanField"/>
+		<liferay-ui:search-container-column-text name="akimov.foo.history.field.shortField" property="shortField"/>
+		<liferay-ui:search-container-column-text name="akimov.foo.history.field.intField" property="intField"/>
+		<liferay-ui:search-container-column-text name="akimov.foo.history.field.longField" property="longField"/>
+		<liferay-ui:search-container-column-text name="akimov.foo.history.field.doubleField" property="doubleField"/>
+		<liferay-ui:search-container-column-text name="akimov.foo.history.field.floatField" property="floatField"/>
+		<liferay-ui:search-container-column-text name="akimov.foo.history.field.stringField" property="stringField"/>
+		<liferay-ui:search-container-column-text name="akimov.foo.history.field.dateField" property="dateField"/>
 
 		<portlet:actionURL var="deleteURL" name="deleteFoo">
 			<portlet:param name="fooId" value="${model.fooId}"/>
 		</portlet:actionURL>
-		<liferay-ui:search-container-column-text>
+
+		<liferay-ui:search-container-column-text cssClass="center">
+			<aui:button value="Edit" name="edit" primary="true" onClick="openDialog(${model.fooId});"/>
 			<aui:button value="Delete" name="delete" primary="true" href="${deleteURL}"/>
 		</liferay-ui:search-container-column-text>
 
@@ -47,7 +40,7 @@
 </liferay-ui:search-container>
 
 <portlet:renderURL var="cardURL" windowState="EXCLUSIVE">
-	<portlet:param name="mvcPath" value="/jsp/entity_change_history/card.jsp"/>
+	<portlet:param name="mvcPath" value="/jsp/audit/foo_card.jsp"/>
 </portlet:renderURL>
 
 <script>
@@ -62,7 +55,7 @@
 		AUI().ready('aui-modal', 'aui-io-plugin-deprecated', function (A) {
 			var modal = new A.Modal({
 				modal: true,
-				headerContent: 'Foo',
+				headerContent: '<h4>Foo</h4>',
 				destroyOnHide: true,
 				centered: true,
 				width: 700,
@@ -106,9 +99,3 @@
 
 	}
 </script>
-<%--------------------------------------------------------------------------------------------------------------------%>
-<div class="separator"></div><%---------------------------------------------------------------------------------------%>
-<%--------------------------------------------------------------------------------------------------------------------%>
-
-<h4>History of Changes</h4>
-<jsp:include page="foo_change_history.jsp"/>

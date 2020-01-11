@@ -1,8 +1,8 @@
-package ru.isands.akimov.history.dto;
+package ru.isands.akimov.audit.dto;
 
 import com.liferay.portal.model.User;
-import ru.isands.akimov.history.enums.ActionType;
-import ru.isands.akimov.history.enums.EntityType;
+import ru.isands.akimov.audit.enums.ActionType;
+import ru.isands.akimov.audit.enums.EntityType;
 
 import java.util.Date;
 import java.util.HashMap;

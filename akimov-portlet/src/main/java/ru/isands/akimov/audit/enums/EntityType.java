@@ -1,8 +1,8 @@
-package ru.isands.akimov.history.enums;
+package ru.isands.akimov.audit.enums;
 
 public enum EntityType {
 
-	FOO;
+	USER, FOO;
 
 	@Override
 	public String toString() {

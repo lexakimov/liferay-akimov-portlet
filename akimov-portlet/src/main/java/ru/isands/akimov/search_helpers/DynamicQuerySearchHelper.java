@@ -12,7 +12,7 @@ public abstract class DynamicQuerySearchHelper<T extends BaseModel<T>> implement
 
 	private final Class<T> modelClass;
 
-	protected DynamicQuerySearchHelper(Class<T> modelClass) {
+	public DynamicQuerySearchHelper(Class<T> modelClass) {
 		this.modelClass = modelClass;
 	}
 

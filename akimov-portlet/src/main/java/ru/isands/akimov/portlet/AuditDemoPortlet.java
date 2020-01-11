@@ -13,7 +13,7 @@ import javax.portlet.PortletURL;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
-public class EntityChangeHistoryPortlet extends ExtendedMVCPortlet {
+public class AuditDemoPortlet extends ExtendedMVCPortlet {
 
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
 

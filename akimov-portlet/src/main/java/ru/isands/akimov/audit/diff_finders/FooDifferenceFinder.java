@@ -1,13 +1,13 @@
-package ru.isands.akimov.history.change_detectors;
+package ru.isands.akimov.audit.diff_finders;
 
-import ru.isands.akimov.history.exceptions.EntityFieldChangeDetectorException;
+import ru.isands.akimov.audit.exceptions.EntityFieldChangeDetectorException;
 import ru.isands.akimov.model.Foo;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FooChangeDetector extends ChangeDetector<Foo> {
+public class FooDifferenceFinder extends ModelDifferenceFinder<Foo> {
 
 	private static final List<String> WATCH_ONLY_FIELDS;
 
@@ -28,7 +28,7 @@ public class FooChangeDetector extends ChangeDetector<Foo> {
 		WATCH_ONLY_FIELDS = Collections.unmodifiableList(columns);
 	}
 
-	public FooChangeDetector(Foo old, Foo new_) throws EntityFieldChangeDetectorException {
+	public FooDifferenceFinder(Foo old, Foo new_) throws EntityFieldChangeDetectorException {
 		super(old, new_);
 	}
 

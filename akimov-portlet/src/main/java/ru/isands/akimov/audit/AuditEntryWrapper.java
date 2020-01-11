@@ -1,9 +1,9 @@
-package ru.isands.akimov.history;
+package ru.isands.akimov.audit;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
-import ru.isands.akimov.history.enums.EntityType;
+import ru.isands.akimov.audit.enums.EntityType;
 import ru.isands.akimov.model.EntityEditingHistory;
 import ru.isands.akimov.model.EntityFieldChange;
 import ru.isands.akimov.service.EntityEditingHistoryLocalServiceUtil;
@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class EntityEditingHistoryWrapper {
+public class AuditEntryWrapper {
 
 	private EntityEditingHistory editingHistoryEntry;
 
 	private List<EntityFieldChange> fieldChanges;
 
-	public EntityEditingHistoryWrapper(int entityId, EntityType entityType, long userId, Date dateOfChange)
+	public AuditEntryWrapper(int entityId, EntityType entityType, String description, long userId, Date dateOfChange)
 			throws SystemException {
 
 		int historyEntryId = (int) CounterLocalServiceUtil.increment(EntityEditingHistory.class.getName());
@@ -29,6 +29,7 @@ public class EntityEditingHistoryWrapper {
 		editingHistoryEntry.setEntityType(entityType.toString());
 		editingHistoryEntry.setUserId(userId);
 		editingHistoryEntry.setDateOfChange(dateOfChange);
+		editingHistoryEntry.setDescription(description);
 
 		fieldChanges = new ArrayList<>();
 	}

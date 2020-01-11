@@ -1,4 +1,4 @@
-package ru.isands.akimov.history.exceptions;
+package ru.isands.akimov.audit.exceptions;
 
 import com.liferay.portal.ModelListenerException;
 
