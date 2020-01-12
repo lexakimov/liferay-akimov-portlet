@@ -1,5 +1,9 @@
 /**
  * выполнить асинхронный экшн.
+ *
+ * @param params.data                   (необязательно) payload post запроса
+ * @param params.messageBox             (необязательно) куда загрузить html с сообщениями из ответа.
+ * @param params.callback(jsonResponse) (необязательно) функция обратного вызова.
  */
 function asyncAction(url, params) {
 	var func = function (jsonResponse) {
@@ -29,6 +33,11 @@ function asyncAction(url, params) {
 	$.post(url, params.data, func, 'json');
 }
 
+/**
+ * Преобразовать ответ от асинхронного метода из json в html-уведомления (ошибки, предупреждения, и т.д.)
+ * @param jsonResponse      ответ от асинхроного метода.
+ * @returns                 html
+ */
 function buildActionResultHtml(jsonResponse) {
 	var html = '';
 
@@ -74,9 +83,10 @@ function buildActionResultHtml(jsonResponse) {
 }
 
 /**
- * Перезагрузить элемент, содержимым ответа на запрос по урлу. предельно просто, без спецэффектов.
- * @param element - jquery объект или строковы селектор.
- * @param url
+ * Асинхронная перезагрузка элемента страницы содержимым ответа на запрос по урлу.
+ * Предельно просто, без каких-либо спецэффектов.
+ * @param element   jquery объект или строковый селектор.
+ * @param url       предполагается, что это renderURL с windowState="exclusive", хотя по идее можно указать какой угодно.
  */
 function reloadElementContent(element, url) {
 	var _element = element;
@@ -88,13 +98,14 @@ function reloadElementContent(element, url) {
 
 
 /**
- * Перезагрузить контент блочного элемента с fade-эффектом.
+ * Асинхронная перезагрузка элемента страницы с fade-эффектом. Рекомендуется использоваться для запросов, которые
+ * обрабатываются не сразу.
  *
- * @param element - jquery объект или строковы селектор.
- * @param url     - URL post-запроса
+ * @param element           jquery объект или строковы селектор.
+ * @param url               URL post-запроса
  * @param params
- * @param params.postData      тело запроса
- * @param params.callback      коллбэк после выполения действия
+ * @param params.postData   тело запроса
+ * @param params.callback   коллбэк после выполения действия
  */
 function reloadElementContentAdvanced(element, url, params) {
 	var _element = element;
