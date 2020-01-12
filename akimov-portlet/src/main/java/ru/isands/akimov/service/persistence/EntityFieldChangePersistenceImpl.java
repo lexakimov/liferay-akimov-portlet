@@ -335,7 +335,7 @@ public class EntityFieldChangePersistenceImpl extends BasePersistenceImpl<Entity
         entityFieldChangeImpl.setPrimaryKey(entityFieldChange.getPrimaryKey());
 
         entityFieldChangeImpl.setId(entityFieldChange.getId());
-        entityFieldChangeImpl.setHistoryId(entityFieldChange.getHistoryId());
+        entityFieldChangeImpl.setAuditEntryId(entityFieldChange.getAuditEntryId());
         entityFieldChangeImpl.setFieldName(entityFieldChange.getFieldName());
         entityFieldChangeImpl.setOldValue(entityFieldChange.getOldValue());
         entityFieldChangeImpl.setNewValue(entityFieldChange.getNewValue());

@@ -4,14 +4,13 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import ru.isands.akimov.model.EntityEditingHistory;
+import ru.isands.akimov.model.AuditEntry;
 import ru.isands.akimov.model.EntityFieldChange;
-import ru.isands.akimov.service.base.EntityEditingHistoryLocalServiceBaseImpl;
+import ru.isands.akimov.service.base.AuditEntryLocalServiceBaseImpl;
 
 import java.util.List;
 
-
-public class EntityEditingHistoryLocalServiceImpl extends EntityEditingHistoryLocalServiceBaseImpl {
+public class AuditEntryLocalServiceImpl extends AuditEntryLocalServiceBaseImpl {
 
 	/**
 	 * Удалить записи истории для сущности.
@@ -21,36 +20,36 @@ public class EntityEditingHistoryLocalServiceImpl extends EntityEditingHistoryLo
 	 * @throws SystemException
 	 */
 	public void deleteFor(String entityType, int entityId) throws SystemException {
-		DynamicQuery dynamicQuery = entityEditingHistoryLocalService.dynamicQuery();
+		DynamicQuery dynamicQuery = auditEntryLocalService.dynamicQuery();
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("entityType", entityType));
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("entityId", entityId));
-		List<EntityEditingHistory> list = entityEditingHistoryLocalService.dynamicQuery(dynamicQuery);
-		for (EntityEditingHistory history : list) {
-			entityEditingHistoryLocalService.deleteEntityEditingHistory(history);
+		List<AuditEntry> list = auditEntryLocalService.dynamicQuery(dynamicQuery);
+		for (AuditEntry history : list) {
+			auditEntryLocalService.deleteAuditEntry(history);
 		}
 	}
 
 	@Override
-	public EntityEditingHistory deleteEntityEditingHistory(int id) throws PortalException, SystemException {
+	public AuditEntry deleteAuditEntry(int id) throws PortalException, SystemException {
 		DynamicQuery dynamicQuery = entityFieldChangeLocalService.dynamicQuery();
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("historyId", id));
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("auditEntryId", id));
 		List<EntityFieldChange> list = entityFieldChangeLocalService.dynamicQuery(dynamicQuery);
 		for (EntityFieldChange efc : list) {
 			entityFieldChangeLocalService.deleteEntityFieldChange(efc);
 		}
 
-		return super.deleteEntityEditingHistory(id);
+		return super.deleteAuditEntry(id);
 	}
 
 	@Override
-	public EntityEditingHistory deleteEntityEditingHistory(EntityEditingHistory entityEditingHistory) throws SystemException {
+	public AuditEntry deleteAuditEntry(AuditEntry auditEntry) throws SystemException {
 		DynamicQuery dynamicQuery = entityFieldChangeLocalService.dynamicQuery();
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("historyId", entityEditingHistory.getId()));
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("auditEntryId", auditEntry.getId()));
 		List<EntityFieldChange> list = entityFieldChangeLocalService.dynamicQuery(dynamicQuery);
 		for (EntityFieldChange efc : list) {
 			entityFieldChangeLocalService.deleteEntityFieldChange(efc);
 		}
 
-		return super.deleteEntityEditingHistory(entityEditingHistory);
+		return super.deleteAuditEntry(auditEntry);
 	}
 }

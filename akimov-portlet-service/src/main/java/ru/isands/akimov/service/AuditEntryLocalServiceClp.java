@@ -6,8 +6,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class EntityEditingHistoryLocalServiceClp
-    implements EntityEditingHistoryLocalService {
+public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     private InvokableLocalService _invokableLocalService;
     private String _methodName0;
     private String[] _methodParameterTypes0;
@@ -48,28 +47,28 @@ public class EntityEditingHistoryLocalServiceClp
     private String _methodName19;
     private String[] _methodParameterTypes19;
 
-    public EntityEditingHistoryLocalServiceClp(
+    public AuditEntryLocalServiceClp(
         InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
 
-        _methodName0 = "addEntityEditingHistory";
+        _methodName0 = "addAuditEntry";
 
         _methodParameterTypes0 = new String[] {
-                "ru.isands.akimov.model.EntityEditingHistory"
+                "ru.isands.akimov.model.AuditEntry"
             };
 
-        _methodName1 = "createEntityEditingHistory";
+        _methodName1 = "createAuditEntry";
 
         _methodParameterTypes1 = new String[] { "int" };
 
-        _methodName2 = "deleteEntityEditingHistory";
+        _methodName2 = "deleteAuditEntry";
 
         _methodParameterTypes2 = new String[] { "int" };
 
-        _methodName3 = "deleteEntityEditingHistory";
+        _methodName3 = "deleteAuditEntry";
 
         _methodParameterTypes3 = new String[] {
-                "ru.isands.akimov.model.EntityEditingHistory"
+                "ru.isands.akimov.model.AuditEntry"
             };
 
         _methodName4 = "dynamicQuery";
@@ -108,11 +107,11 @@ public class EntityEditingHistoryLocalServiceClp
                 "com.liferay.portal.kernel.dao.orm.Projection"
             };
 
-        _methodName10 = "fetchEntityEditingHistory";
+        _methodName10 = "fetchAuditEntry";
 
         _methodParameterTypes10 = new String[] { "int" };
 
-        _methodName11 = "getEntityEditingHistory";
+        _methodName11 = "getAuditEntry";
 
         _methodParameterTypes11 = new String[] { "int" };
 
@@ -120,18 +119,18 @@ public class EntityEditingHistoryLocalServiceClp
 
         _methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-        _methodName13 = "getEntityEditingHistories";
+        _methodName13 = "getAuditEntries";
 
         _methodParameterTypes13 = new String[] { "int", "int" };
 
-        _methodName14 = "getEntityEditingHistoriesCount";
+        _methodName14 = "getAuditEntriesCount";
 
         _methodParameterTypes14 = new String[] {  };
 
-        _methodName15 = "updateEntityEditingHistory";
+        _methodName15 = "updateAuditEntry";
 
         _methodParameterTypes15 = new String[] {
-                "ru.isands.akimov.model.EntityEditingHistory"
+                "ru.isands.akimov.model.AuditEntry"
             };
 
         _methodName16 = "getBeanIdentifier";
@@ -148,17 +147,15 @@ public class EntityEditingHistoryLocalServiceClp
     }
 
     @Override
-    public ru.isands.akimov.model.EntityEditingHistory addEntityEditingHistory(
-        ru.isands.akimov.model.EntityEditingHistory entityEditingHistory)
+    public ru.isands.akimov.model.AuditEntry addAuditEntry(
+        ru.isands.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName0,
                     _methodParameterTypes0,
-                    new Object[] {
-                        ClpSerializer.translateInput(entityEditingHistory)
-                    });
+                    new Object[] { ClpSerializer.translateInput(auditEntry) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -174,12 +171,11 @@ public class EntityEditingHistoryLocalServiceClp
             }
         }
 
-        return (ru.isands.akimov.model.EntityEditingHistory) ClpSerializer.translateOutput(returnObj);
+        return (ru.isands.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public ru.isands.akimov.model.EntityEditingHistory createEntityEditingHistory(
-        int id) {
+    public ru.isands.akimov.model.AuditEntry createAuditEntry(int id) {
         Object returnObj = null;
 
         try {
@@ -196,12 +192,11 @@ public class EntityEditingHistoryLocalServiceClp
             }
         }
 
-        return (ru.isands.akimov.model.EntityEditingHistory) ClpSerializer.translateOutput(returnObj);
+        return (ru.isands.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public ru.isands.akimov.model.EntityEditingHistory deleteEntityEditingHistory(
-        int id)
+    public ru.isands.akimov.model.AuditEntry deleteAuditEntry(int id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -228,21 +223,19 @@ public class EntityEditingHistoryLocalServiceClp
             }
         }
 
-        return (ru.isands.akimov.model.EntityEditingHistory) ClpSerializer.translateOutput(returnObj);
+        return (ru.isands.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public ru.isands.akimov.model.EntityEditingHistory deleteEntityEditingHistory(
-        ru.isands.akimov.model.EntityEditingHistory entityEditingHistory)
+    public ru.isands.akimov.model.AuditEntry deleteAuditEntry(
+        ru.isands.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName3,
                     _methodParameterTypes3,
-                    new Object[] {
-                        ClpSerializer.translateInput(entityEditingHistory)
-                    });
+                    new Object[] { ClpSerializer.translateInput(auditEntry) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -258,7 +251,7 @@ public class EntityEditingHistoryLocalServiceClp
             }
         }
 
-        return (ru.isands.akimov.model.EntityEditingHistory) ClpSerializer.translateOutput(returnObj);
+        return (ru.isands.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -447,8 +440,8 @@ public class EntityEditingHistoryLocalServiceClp
     }
 
     @Override
-    public ru.isands.akimov.model.EntityEditingHistory fetchEntityEditingHistory(
-        int id) throws com.liferay.portal.kernel.exception.SystemException {
+    public ru.isands.akimov.model.AuditEntry fetchAuditEntry(int id)
+        throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
@@ -469,12 +462,11 @@ public class EntityEditingHistoryLocalServiceClp
             }
         }
 
-        return (ru.isands.akimov.model.EntityEditingHistory) ClpSerializer.translateOutput(returnObj);
+        return (ru.isands.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public ru.isands.akimov.model.EntityEditingHistory getEntityEditingHistory(
-        int id)
+    public ru.isands.akimov.model.AuditEntry getAuditEntry(int id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -501,7 +493,7 @@ public class EntityEditingHistoryLocalServiceClp
             }
         }
 
-        return (ru.isands.akimov.model.EntityEditingHistory) ClpSerializer.translateOutput(returnObj);
+        return (ru.isands.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -538,7 +530,7 @@ public class EntityEditingHistoryLocalServiceClp
     }
 
     @Override
-    public java.util.List<ru.isands.akimov.model.EntityEditingHistory> getEntityEditingHistories(
+    public java.util.List<ru.isands.akimov.model.AuditEntry> getAuditEntries(
         int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -561,11 +553,11 @@ public class EntityEditingHistoryLocalServiceClp
             }
         }
 
-        return (java.util.List<ru.isands.akimov.model.EntityEditingHistory>) ClpSerializer.translateOutput(returnObj);
+        return (java.util.List<ru.isands.akimov.model.AuditEntry>) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public int getEntityEditingHistoriesCount()
+    public int getAuditEntriesCount()
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -591,17 +583,15 @@ public class EntityEditingHistoryLocalServiceClp
     }
 
     @Override
-    public ru.isands.akimov.model.EntityEditingHistory updateEntityEditingHistory(
-        ru.isands.akimov.model.EntityEditingHistory entityEditingHistory)
+    public ru.isands.akimov.model.AuditEntry updateAuditEntry(
+        ru.isands.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName15,
                     _methodParameterTypes15,
-                    new Object[] {
-                        ClpSerializer.translateInput(entityEditingHistory)
-                    });
+                    new Object[] { ClpSerializer.translateInput(auditEntry) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -617,7 +607,7 @@ public class EntityEditingHistoryLocalServiceClp
             }
         }
 
-        return (ru.isands.akimov.model.EntityEditingHistory) ClpSerializer.translateOutput(returnObj);
+        return (ru.isands.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override

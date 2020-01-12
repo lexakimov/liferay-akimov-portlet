@@ -38,7 +38,7 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
         Map<String, Object> attributes = new HashMap<String, Object>();
 
         attributes.put("id", getId());
-        attributes.put("historyId", getHistoryId());
+        attributes.put("auditEntryId", getAuditEntryId());
         attributes.put("fieldName", getFieldName());
         attributes.put("oldValue", getOldValue());
         attributes.put("newValue", getNewValue());
@@ -54,10 +54,10 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
             setId(id);
         }
 
-        Integer historyId = (Integer) attributes.get("historyId");
+        Integer auditEntryId = (Integer) attributes.get("auditEntryId");
 
-        if (historyId != null) {
-            setHistoryId(historyId);
+        if (auditEntryId != null) {
+            setAuditEntryId(auditEntryId);
         }
 
         String fieldName = (String) attributes.get("fieldName");
@@ -120,23 +120,23 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     /**
-    * Returns the history ID of this entity field change.
+    * Returns the audit entry ID of this entity field change.
     *
-    * @return the history ID of this entity field change
+    * @return the audit entry ID of this entity field change
     */
     @Override
-    public int getHistoryId() {
-        return _entityFieldChange.getHistoryId();
+    public int getAuditEntryId() {
+        return _entityFieldChange.getAuditEntryId();
     }
 
     /**
-    * Sets the history ID of this entity field change.
+    * Sets the audit entry ID of this entity field change.
     *
-    * @param historyId the history ID of this entity field change
+    * @param auditEntryId the audit entry ID of this entity field change
     */
     @Override
-    public void setHistoryId(int historyId) {
-        _entityFieldChange.setHistoryId(historyId);
+    public void setAuditEntryId(int auditEntryId) {
+        _entityFieldChange.setAuditEntryId(auditEntryId);
     }
 
     /**

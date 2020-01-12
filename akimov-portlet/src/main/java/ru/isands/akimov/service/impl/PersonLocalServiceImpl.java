@@ -4,5 +4,4 @@ import ru.isands.akimov.service.base.PersonLocalServiceBaseImpl;
 
 public class PersonLocalServiceImpl extends PersonLocalServiceBaseImpl {
 
-
 }

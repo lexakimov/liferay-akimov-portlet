@@ -4,16 +4,16 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import ru.isands.akimov.audit.enums.ActionType;
-import ru.isands.akimov.model.EntityEditingHistory;
+import ru.isands.akimov.model.AuditEntry;
 
 import javax.portlet.PortletException;
 import java.util.Date;
 
-public class AuditEntryAdapter extends EntryAdapter<EntityEditingHistory> {
+public class AuditEntryAdapter extends EntryAdapter<AuditEntry> {
 
 	private User user;
 
-	public AuditEntryAdapter(EntityEditingHistory model) throws PortletException {
+	public AuditEntryAdapter(AuditEntry model) throws PortletException {
 		super(model);
 		long userId = model.getUserId();
 		try {

@@ -19,21 +19,21 @@ import com.liferay.portal.NoSuchModelException;
 /**
  * @author Brian Wing Shun Chan
  */
-public class NoSuchEntityEditingHistoryException extends NoSuchModelException {
+public class NoSuchAuditEntryException extends NoSuchModelException {
 
-	public NoSuchEntityEditingHistoryException() {
+	public NoSuchAuditEntryException() {
 		super();
 	}
 
-	public NoSuchEntityEditingHistoryException(String msg) {
+	public NoSuchAuditEntryException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchEntityEditingHistoryException(String msg, Throwable cause) {
+	public NoSuchAuditEntryException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchEntityEditingHistoryException(Throwable cause) {
+	public NoSuchAuditEntryException(Throwable cause) {
 		super(cause);
 	}
 

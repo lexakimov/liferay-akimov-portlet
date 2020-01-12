@@ -11,73 +11,71 @@ import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
- * Provides the local service interface for EntityEditingHistory. Methods of this
+ * Provides the local service interface for AuditEntry. Methods of this
  * service will not have security checks based on the propagated JAAS
  * credentials because this service can only be accessed from within the same
  * VM.
  *
  * @author Brian Wing Shun Chan
- * @see EntityEditingHistoryLocalServiceUtil
- * @see ru.isands.akimov.service.base.EntityEditingHistoryLocalServiceBaseImpl
- * @see ru.isands.akimov.service.impl.EntityEditingHistoryLocalServiceImpl
+ * @see AuditEntryLocalServiceUtil
+ * @see ru.isands.akimov.service.base.AuditEntryLocalServiceBaseImpl
+ * @see ru.isands.akimov.service.impl.AuditEntryLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
     PortalException.class, SystemException.class}
 )
-public interface EntityEditingHistoryLocalService extends BaseLocalService,
+public interface AuditEntryLocalService extends BaseLocalService,
     InvokableLocalService, PersistedModelLocalService {
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify or reference this interface directly. Always use {@link EntityEditingHistoryLocalServiceUtil} to access the entity editing history local service. Add custom service methods to {@link ru.isands.akimov.service.impl.EntityEditingHistoryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+     * Never modify or reference this interface directly. Always use {@link AuditEntryLocalServiceUtil} to access the audit entry local service. Add custom service methods to {@link ru.isands.akimov.service.impl.AuditEntryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
      */
 
     /**
-    * Adds the entity editing history to the database. Also notifies the appropriate model listeners.
+    * Adds the audit entry to the database. Also notifies the appropriate model listeners.
     *
-    * @param entityEditingHistory the entity editing history
-    * @return the entity editing history that was added
+    * @param auditEntry the audit entry
+    * @return the audit entry that was added
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-    public ru.isands.akimov.model.EntityEditingHistory addEntityEditingHistory(
-        ru.isands.akimov.model.EntityEditingHistory entityEditingHistory)
+    public ru.isands.akimov.model.AuditEntry addAuditEntry(
+        ru.isands.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Creates a new entity editing history with the primary key. Does not add the entity editing history to the database.
+    * Creates a new audit entry with the primary key. Does not add the audit entry to the database.
     *
-    * @param id the primary key for the new entity editing history
-    * @return the new entity editing history
+    * @param id the primary key for the new audit entry
+    * @return the new audit entry
     */
-    public ru.isands.akimov.model.EntityEditingHistory createEntityEditingHistory(
-        int id);
+    public ru.isands.akimov.model.AuditEntry createAuditEntry(int id);
 
     /**
-    * Deletes the entity editing history with the primary key from the database. Also notifies the appropriate model listeners.
+    * Deletes the audit entry with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param id the primary key of the entity editing history
-    * @return the entity editing history that was removed
-    * @throws PortalException if a entity editing history with the primary key could not be found
+    * @param id the primary key of the audit entry
+    * @return the audit entry that was removed
+    * @throws PortalException if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-    public ru.isands.akimov.model.EntityEditingHistory deleteEntityEditingHistory(
-        int id)
+    public ru.isands.akimov.model.AuditEntry deleteAuditEntry(int id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Deletes the entity editing history from the database. Also notifies the appropriate model listeners.
+    * Deletes the audit entry from the database. Also notifies the appropriate model listeners.
     *
-    * @param entityEditingHistory the entity editing history
-    * @return the entity editing history that was removed
+    * @param auditEntry the audit entry
+    * @return the audit entry that was removed
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-    public ru.isands.akimov.model.EntityEditingHistory deleteEntityEditingHistory(
-        ru.isands.akimov.model.EntityEditingHistory entityEditingHistory)
+    public ru.isands.akimov.model.AuditEntry deleteAuditEntry(
+        ru.isands.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -98,7 +96,7 @@ public interface EntityEditingHistoryLocalService extends BaseLocalService,
     * Performs a dynamic query on the database and returns a range of the matching rows.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.EntityEditingHistoryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param dynamicQuery the dynamic query
@@ -116,7 +114,7 @@ public interface EntityEditingHistoryLocalService extends BaseLocalService,
     * Performs a dynamic query on the database and returns an ordered range of the matching rows.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.EntityEditingHistoryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param dynamicQuery the dynamic query
@@ -158,20 +156,19 @@ public interface EntityEditingHistoryLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public ru.isands.akimov.model.EntityEditingHistory fetchEntityEditingHistory(
-        int id) throws com.liferay.portal.kernel.exception.SystemException;
+    public ru.isands.akimov.model.AuditEntry fetchAuditEntry(int id)
+        throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Returns the entity editing history with the primary key.
+    * Returns the audit entry with the primary key.
     *
-    * @param id the primary key of the entity editing history
-    * @return the entity editing history
-    * @throws PortalException if a entity editing history with the primary key could not be found
+    * @param id the primary key of the audit entry
+    * @return the audit entry
+    * @throws PortalException if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public ru.isands.akimov.model.EntityEditingHistory getEntityEditingHistory(
-        int id)
+    public ru.isands.akimov.model.AuditEntry getAuditEntry(int id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
@@ -183,42 +180,42 @@ public interface EntityEditingHistoryLocalService extends BaseLocalService,
             com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Returns a range of all the entity editing histories.
+    * Returns a range of all the audit entries.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.EntityEditingHistoryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param start the lower bound of the range of entity editing histories
-    * @param end the upper bound of the range of entity editing histories (not inclusive)
-    * @return the range of entity editing histories
+    * @param start the lower bound of the range of audit entries
+    * @param end the upper bound of the range of audit entries (not inclusive)
+    * @return the range of audit entries
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public java.util.List<ru.isands.akimov.model.EntityEditingHistory> getEntityEditingHistories(
+    public java.util.List<ru.isands.akimov.model.AuditEntry> getAuditEntries(
         int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Returns the number of entity editing histories.
+    * Returns the number of audit entries.
     *
-    * @return the number of entity editing histories
+    * @return the number of audit entries
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public int getEntityEditingHistoriesCount()
+    public int getAuditEntriesCount()
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Updates the entity editing history in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+    * Updates the audit entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
     *
-    * @param entityEditingHistory the entity editing history
-    * @return the entity editing history that was updated
+    * @param auditEntry the audit entry
+    * @return the audit entry that was updated
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-    public ru.isands.akimov.model.EntityEditingHistory updateEntityEditingHistory(
-        ru.isands.akimov.model.EntityEditingHistory entityEditingHistory)
+    public ru.isands.akimov.model.AuditEntry updateAuditEntry(
+        ru.isands.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**

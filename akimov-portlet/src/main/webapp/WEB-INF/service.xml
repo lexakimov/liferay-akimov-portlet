@@ -41,8 +41,8 @@
 		<column name="blobField" type="Blob"/>
 	</entity>
 
-	<!-- TODO add indexes -->
-	<entity name="EntityEditingHistory" table="akimov_entity_editing_history" local-service="true" remote-service="false">
+	<!-- TODO add indexes if necessary -->
+	<entity name="AuditEntry" table="akimov_audit_entry" local-service="true" remote-service="false">
 		<column name="id" type="int" primary="true"/>
 		<column name="entityId" type="int"/>
 		<column name="entityType" type="String"/>
@@ -51,10 +51,10 @@
 		<column name="dateOfChange" type="Date"/>
 	</entity>
 
-	<!-- TODO add indexes -->
+	<!-- TODO add indexes if necessary -->
 	<entity name="EntityFieldChange" table="akimov_entity_field_change" local-service="true" remote-service="false">
 		<column name="id" type="int" primary="true"/>
-		<column name="historyId" type="int"/>
+		<column name="auditEntryId" type="int"/>
 		<column name="fieldName" type="String"/>
 		<column name="oldValue" type="String"/>
 		<column name="newValue" type="String"/>

@@ -21,7 +21,7 @@ import java.util.Map;
 public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
     implements EntityFieldChange {
     private int _id;
-    private int _historyId;
+    private int _auditEntryId;
     private String _fieldName;
     private String _oldValue;
     private String _newValue;
@@ -66,7 +66,7 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
         Map<String, Object> attributes = new HashMap<String, Object>();
 
         attributes.put("id", getId());
-        attributes.put("historyId", getHistoryId());
+        attributes.put("auditEntryId", getAuditEntryId());
         attributes.put("fieldName", getFieldName());
         attributes.put("oldValue", getOldValue());
         attributes.put("newValue", getNewValue());
@@ -82,10 +82,10 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
             setId(id);
         }
 
-        Integer historyId = (Integer) attributes.get("historyId");
+        Integer auditEntryId = (Integer) attributes.get("auditEntryId");
 
-        if (historyId != null) {
-            setHistoryId(historyId);
+        if (auditEntryId != null) {
+            setAuditEntryId(auditEntryId);
         }
 
         String fieldName = (String) attributes.get("fieldName");
@@ -130,21 +130,21 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
     }
 
     @Override
-    public int getHistoryId() {
-        return _historyId;
+    public int getAuditEntryId() {
+        return _auditEntryId;
     }
 
     @Override
-    public void setHistoryId(int historyId) {
-        _historyId = historyId;
+    public void setAuditEntryId(int auditEntryId) {
+        _auditEntryId = auditEntryId;
 
         if (_entityFieldChangeRemoteModel != null) {
             try {
                 Class<?> clazz = _entityFieldChangeRemoteModel.getClass();
 
-                Method method = clazz.getMethod("setHistoryId", int.class);
+                Method method = clazz.getMethod("setAuditEntryId", int.class);
 
-                method.invoke(_entityFieldChangeRemoteModel, historyId);
+                method.invoke(_entityFieldChangeRemoteModel, auditEntryId);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -287,7 +287,7 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
         EntityFieldChangeClp clone = new EntityFieldChangeClp();
 
         clone.setId(getId());
-        clone.setHistoryId(getHistoryId());
+        clone.setAuditEntryId(getAuditEntryId());
         clone.setFieldName(getFieldName());
         clone.setOldValue(getOldValue());
         clone.setNewValue(getNewValue());
@@ -344,8 +344,8 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
 
         sb.append("{id=");
         sb.append(getId());
-        sb.append(", historyId=");
-        sb.append(getHistoryId());
+        sb.append(", auditEntryId=");
+        sb.append(getAuditEntryId());
         sb.append(", fieldName=");
         sb.append(getFieldName());
         sb.append(", oldValue=");
@@ -370,8 +370,8 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
         sb.append(getId());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>historyId</column-name><column-value><![CDATA[");
-        sb.append(getHistoryId());
+            "<column><column-name>auditEntryId</column-name><column-value><![CDATA[");
+        sb.append(getAuditEntryId());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>fieldName</column-name><column-value><![CDATA[");

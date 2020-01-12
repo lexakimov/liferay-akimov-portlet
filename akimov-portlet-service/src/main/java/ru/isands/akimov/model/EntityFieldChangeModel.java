@@ -58,18 +58,18 @@ public interface EntityFieldChangeModel extends BaseModel<EntityFieldChange> {
     public void setId(int id);
 
     /**
-     * Returns the history ID of this entity field change.
+     * Returns the audit entry ID of this entity field change.
      *
-     * @return the history ID of this entity field change
+     * @return the audit entry ID of this entity field change
      */
-    public int getHistoryId();
+    public int getAuditEntryId();
 
     /**
-     * Sets the history ID of this entity field change.
+     * Sets the audit entry ID of this entity field change.
      *
-     * @param historyId the history ID of this entity field change
+     * @param auditEntryId the audit entry ID of this entity field change
      */
-    public void setHistoryId(int historyId);
+    public void setAuditEntryId(int auditEntryId);
 
     /**
      * Returns the field name of this entity field change.

@@ -41,12 +41,12 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     public static final String TABLE_NAME = "akimov_entity_field_change";
     public static final Object[][] TABLE_COLUMNS = {
             { "id_", Types.INTEGER },
-            { "historyId", Types.INTEGER },
+            { "auditEntryId", Types.INTEGER },
             { "fieldName", Types.VARCHAR },
             { "oldValue", Types.VARCHAR },
             { "newValue", Types.VARCHAR }
         };
-    public static final String TABLE_SQL_CREATE = "create table akimov_entity_field_change (id_ INTEGER not null primary key,historyId INTEGER,fieldName VARCHAR(75) null,oldValue VARCHAR(75) null,newValue VARCHAR(75) null)";
+    public static final String TABLE_SQL_CREATE = "create table akimov_entity_field_change (id_ INTEGER not null primary key,auditEntryId INTEGER,fieldName VARCHAR(75) null,oldValue VARCHAR(75) null,newValue VARCHAR(75) null)";
     public static final String TABLE_SQL_DROP = "drop table akimov_entity_field_change";
     public static final String ORDER_BY_JPQL = " ORDER BY entityFieldChange.id ASC";
     public static final String ORDER_BY_SQL = " ORDER BY akimov_entity_field_change.id_ ASC";
@@ -67,7 +67,7 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
             EntityFieldChange.class
         };
     private int _id;
-    private int _historyId;
+    private int _auditEntryId;
     private String _fieldName;
     private String _oldValue;
     private String _newValue;
@@ -111,7 +111,7 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
         Map<String, Object> attributes = new HashMap<String, Object>();
 
         attributes.put("id", getId());
-        attributes.put("historyId", getHistoryId());
+        attributes.put("auditEntryId", getAuditEntryId());
         attributes.put("fieldName", getFieldName());
         attributes.put("oldValue", getOldValue());
         attributes.put("newValue", getNewValue());
@@ -127,10 +127,10 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
             setId(id);
         }
 
-        Integer historyId = (Integer) attributes.get("historyId");
+        Integer auditEntryId = (Integer) attributes.get("auditEntryId");
 
-        if (historyId != null) {
-            setHistoryId(historyId);
+        if (auditEntryId != null) {
+            setAuditEntryId(auditEntryId);
         }
 
         String fieldName = (String) attributes.get("fieldName");
@@ -163,13 +163,13 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     }
 
     @Override
-    public int getHistoryId() {
-        return _historyId;
+    public int getAuditEntryId() {
+        return _auditEntryId;
     }
 
     @Override
-    public void setHistoryId(int historyId) {
-        _historyId = historyId;
+    public void setAuditEntryId(int auditEntryId) {
+        _auditEntryId = auditEntryId;
     }
 
     @Override
@@ -229,7 +229,7 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
         EntityFieldChangeImpl entityFieldChangeImpl = new EntityFieldChangeImpl();
 
         entityFieldChangeImpl.setId(getId());
-        entityFieldChangeImpl.setHistoryId(getHistoryId());
+        entityFieldChangeImpl.setAuditEntryId(getAuditEntryId());
         entityFieldChangeImpl.setFieldName(getFieldName());
         entityFieldChangeImpl.setOldValue(getOldValue());
         entityFieldChangeImpl.setNewValue(getNewValue());
@@ -288,7 +288,7 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
 
         entityFieldChangeCacheModel.id = getId();
 
-        entityFieldChangeCacheModel.historyId = getHistoryId();
+        entityFieldChangeCacheModel.auditEntryId = getAuditEntryId();
 
         entityFieldChangeCacheModel.fieldName = getFieldName();
 
@@ -323,8 +323,8 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
 
         sb.append("{id=");
         sb.append(getId());
-        sb.append(", historyId=");
-        sb.append(getHistoryId());
+        sb.append(", auditEntryId=");
+        sb.append(getAuditEntryId());
         sb.append(", fieldName=");
         sb.append(getFieldName());
         sb.append(", oldValue=");
@@ -349,8 +349,8 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
         sb.append(getId());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>historyId</column-name><column-value><![CDATA[");
-        sb.append(getHistoryId());
+            "<column><column-name>auditEntryId</column-name><column-value><![CDATA[");
+        sb.append(getAuditEntryId());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>fieldName</column-name><column-value><![CDATA[");

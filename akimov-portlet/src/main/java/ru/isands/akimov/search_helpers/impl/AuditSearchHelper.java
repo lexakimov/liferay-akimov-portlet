@@ -3,7 +3,7 @@ package ru.isands.akimov.search_helpers.impl;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import ru.isands.akimov.model.EntityEditingHistory;
+import ru.isands.akimov.model.AuditEntry;
 import ru.isands.akimov.search_helpers.AdaptedDynamicQuerySearchHelper;
 import ru.isands.akimov.search_helpers.adapters.AuditEntryAdapter;
 import ru.isands.akimov.search_helpers.adapters.PersonEntryAdapter;
@@ -11,10 +11,10 @@ import ru.isands.akimov.search_helpers.adapters.PersonEntryAdapter;
 import javax.portlet.PortletException;
 import java.util.List;
 
-public class AuditSearchHelper extends AdaptedDynamicQuerySearchHelper<AuditEntryAdapter, EntityEditingHistory> {
+public class AuditSearchHelper extends AdaptedDynamicQuerySearchHelper<AuditEntryAdapter, AuditEntry> {
 
 	public AuditSearchHelper() {
-		super(EntityEditingHistory.class);
+		super(AuditEntry.class);
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class AuditSearchHelper extends AdaptedDynamicQuerySearchHelper<AuditEntr
 	}
 
 	@Override
-	public AuditEntryAdapter adapt(EntityEditingHistory model) throws PortletException {
+	public AuditEntryAdapter adapt(AuditEntry model) throws PortletException {
 		return new AuditEntryAdapter(model);
 	}
 

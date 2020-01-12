@@ -11,7 +11,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
-import ru.isands.akimov.model.EntityEditingHistoryClp;
+import ru.isands.akimov.model.AuditEntryClp;
 import ru.isands.akimov.model.EntityFieldChangeClp;
 import ru.isands.akimov.model.FooClp;
 import ru.isands.akimov.model.PersonClp;
@@ -91,8 +91,8 @@ public class ClpSerializer {
 
         String oldModelClassName = oldModelClass.getName();
 
-        if (oldModelClassName.equals(EntityEditingHistoryClp.class.getName())) {
-            return translateInputEntityEditingHistory(oldModel);
+        if (oldModelClassName.equals(AuditEntryClp.class.getName())) {
+            return translateInputAuditEntry(oldModel);
         }
 
         if (oldModelClassName.equals(EntityFieldChangeClp.class.getName())) {
@@ -122,11 +122,10 @@ public class ClpSerializer {
         return newList;
     }
 
-    public static Object translateInputEntityEditingHistory(
-        BaseModel<?> oldModel) {
-        EntityEditingHistoryClp oldClpModel = (EntityEditingHistoryClp) oldModel;
+    public static Object translateInputAuditEntry(BaseModel<?> oldModel) {
+        AuditEntryClp oldClpModel = (AuditEntryClp) oldModel;
 
-        BaseModel<?> newModel = oldClpModel.getEntityEditingHistoryRemoteModel();
+        BaseModel<?> newModel = oldClpModel.getAuditEntryRemoteModel();
 
         newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -179,8 +178,8 @@ public class ClpSerializer {
         String oldModelClassName = oldModelClass.getName();
 
         if (oldModelClassName.equals(
-                    "ru.isands.akimov.model.impl.EntityEditingHistoryImpl")) {
-            return translateOutputEntityEditingHistory(oldModel);
+                    "ru.isands.akimov.model.impl.AuditEntryImpl")) {
+            return translateOutputAuditEntry(oldModel);
         } else if (oldModelClassName.endsWith("Clp")) {
             try {
                 ClassLoader classLoader = ClpSerializer.class.getClassLoader();
@@ -392,9 +391,8 @@ public class ClpSerializer {
             return new SystemException();
         }
 
-        if (className.equals(
-                    "ru.isands.akimov.NoSuchEntityEditingHistoryException")) {
-            return new ru.isands.akimov.NoSuchEntityEditingHistoryException();
+        if (className.equals("ru.isands.akimov.NoSuchAuditEntryException")) {
+            return new ru.isands.akimov.NoSuchAuditEntryException();
         }
 
         if (className.equals(
@@ -413,13 +411,12 @@ public class ClpSerializer {
         return throwable;
     }
 
-    public static Object translateOutputEntityEditingHistory(
-        BaseModel<?> oldModel) {
-        EntityEditingHistoryClp newModel = new EntityEditingHistoryClp();
+    public static Object translateOutputAuditEntry(BaseModel<?> oldModel) {
+        AuditEntryClp newModel = new AuditEntryClp();
 
         newModel.setModelAttributes(oldModel.getModelAttributes());
 
-        newModel.setEntityEditingHistoryRemoteModel(oldModel);
+        newModel.setAuditEntryRemoteModel(oldModel);
 
         return newModel;
     }

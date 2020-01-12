@@ -8,8 +8,8 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import ru.isands.akimov.service.AuditEntryLocalServiceUtil;
 import ru.isands.akimov.service.ClpSerializer;
-import ru.isands.akimov.service.EntityEditingHistoryLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -20,8 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
-    implements EntityEditingHistory {
+public class AuditEntryClp extends BaseModelImpl<AuditEntry>
+    implements AuditEntry {
     private int _id;
     private int _entityId;
     private String _entityType;
@@ -29,20 +29,20 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
     private String _userUuid;
     private String _description;
     private Date _dateOfChange;
-    private BaseModel<?> _entityEditingHistoryRemoteModel;
+    private BaseModel<?> _auditEntryRemoteModel;
     private Class<?> _clpSerializerClass = ru.isands.akimov.service.ClpSerializer.class;
 
-    public EntityEditingHistoryClp() {
+    public AuditEntryClp() {
     }
 
     @Override
     public Class<?> getModelClass() {
-        return EntityEditingHistory.class;
+        return AuditEntry.class;
     }
 
     @Override
     public String getModelClassName() {
-        return EntityEditingHistory.class.getName();
+        return AuditEntry.class.getName();
     }
 
     @Override
@@ -127,13 +127,13 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
     public void setId(int id) {
         _id = id;
 
-        if (_entityEditingHistoryRemoteModel != null) {
+        if (_auditEntryRemoteModel != null) {
             try {
-                Class<?> clazz = _entityEditingHistoryRemoteModel.getClass();
+                Class<?> clazz = _auditEntryRemoteModel.getClass();
 
                 Method method = clazz.getMethod("setId", int.class);
 
-                method.invoke(_entityEditingHistoryRemoteModel, id);
+                method.invoke(_auditEntryRemoteModel, id);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -149,13 +149,13 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
     public void setEntityId(int entityId) {
         _entityId = entityId;
 
-        if (_entityEditingHistoryRemoteModel != null) {
+        if (_auditEntryRemoteModel != null) {
             try {
-                Class<?> clazz = _entityEditingHistoryRemoteModel.getClass();
+                Class<?> clazz = _auditEntryRemoteModel.getClass();
 
                 Method method = clazz.getMethod("setEntityId", int.class);
 
-                method.invoke(_entityEditingHistoryRemoteModel, entityId);
+                method.invoke(_auditEntryRemoteModel, entityId);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -171,13 +171,13 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
     public void setEntityType(String entityType) {
         _entityType = entityType;
 
-        if (_entityEditingHistoryRemoteModel != null) {
+        if (_auditEntryRemoteModel != null) {
             try {
-                Class<?> clazz = _entityEditingHistoryRemoteModel.getClass();
+                Class<?> clazz = _auditEntryRemoteModel.getClass();
 
                 Method method = clazz.getMethod("setEntityType", String.class);
 
-                method.invoke(_entityEditingHistoryRemoteModel, entityType);
+                method.invoke(_auditEntryRemoteModel, entityType);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -193,13 +193,13 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
     public void setUserId(long userId) {
         _userId = userId;
 
-        if (_entityEditingHistoryRemoteModel != null) {
+        if (_auditEntryRemoteModel != null) {
             try {
-                Class<?> clazz = _entityEditingHistoryRemoteModel.getClass();
+                Class<?> clazz = _auditEntryRemoteModel.getClass();
 
                 Method method = clazz.getMethod("setUserId", long.class);
 
-                method.invoke(_entityEditingHistoryRemoteModel, userId);
+                method.invoke(_auditEntryRemoteModel, userId);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -225,13 +225,13 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
     public void setDescription(String description) {
         _description = description;
 
-        if (_entityEditingHistoryRemoteModel != null) {
+        if (_auditEntryRemoteModel != null) {
             try {
-                Class<?> clazz = _entityEditingHistoryRemoteModel.getClass();
+                Class<?> clazz = _auditEntryRemoteModel.getClass();
 
                 Method method = clazz.getMethod("setDescription", String.class);
 
-                method.invoke(_entityEditingHistoryRemoteModel, description);
+                method.invoke(_auditEntryRemoteModel, description);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -247,26 +247,25 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
     public void setDateOfChange(Date dateOfChange) {
         _dateOfChange = dateOfChange;
 
-        if (_entityEditingHistoryRemoteModel != null) {
+        if (_auditEntryRemoteModel != null) {
             try {
-                Class<?> clazz = _entityEditingHistoryRemoteModel.getClass();
+                Class<?> clazz = _auditEntryRemoteModel.getClass();
 
                 Method method = clazz.getMethod("setDateOfChange", Date.class);
 
-                method.invoke(_entityEditingHistoryRemoteModel, dateOfChange);
+                method.invoke(_auditEntryRemoteModel, dateOfChange);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
         }
     }
 
-    public BaseModel<?> getEntityEditingHistoryRemoteModel() {
-        return _entityEditingHistoryRemoteModel;
+    public BaseModel<?> getAuditEntryRemoteModel() {
+        return _auditEntryRemoteModel;
     }
 
-    public void setEntityEditingHistoryRemoteModel(
-        BaseModel<?> entityEditingHistoryRemoteModel) {
-        _entityEditingHistoryRemoteModel = entityEditingHistoryRemoteModel;
+    public void setAuditEntryRemoteModel(BaseModel<?> auditEntryRemoteModel) {
+        _auditEntryRemoteModel = auditEntryRemoteModel;
     }
 
     public Object invokeOnRemoteModel(String methodName,
@@ -280,7 +279,7 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
             }
         }
 
-        Class<?> remoteModelClass = _entityEditingHistoryRemoteModel.getClass();
+        Class<?> remoteModelClass = _auditEntryRemoteModel.getClass();
 
         ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
 
@@ -299,7 +298,7 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
         Method method = remoteModelClass.getMethod(methodName,
                 remoteParameterTypes);
 
-        Object returnValue = method.invoke(_entityEditingHistoryRemoteModel,
+        Object returnValue = method.invoke(_auditEntryRemoteModel,
                 remoteParameterValues);
 
         if (returnValue != null) {
@@ -312,22 +311,21 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
     @Override
     public void persist() throws SystemException {
         if (this.isNew()) {
-            EntityEditingHistoryLocalServiceUtil.addEntityEditingHistory(this);
+            AuditEntryLocalServiceUtil.addAuditEntry(this);
         } else {
-            EntityEditingHistoryLocalServiceUtil.updateEntityEditingHistory(this);
+            AuditEntryLocalServiceUtil.updateAuditEntry(this);
         }
     }
 
     @Override
-    public EntityEditingHistory toEscapedModel() {
-        return (EntityEditingHistory) ProxyUtil.newProxyInstance(EntityEditingHistory.class.getClassLoader(),
-            new Class[] { EntityEditingHistory.class },
-            new AutoEscapeBeanHandler(this));
+    public AuditEntry toEscapedModel() {
+        return (AuditEntry) ProxyUtil.newProxyInstance(AuditEntry.class.getClassLoader(),
+            new Class[] { AuditEntry.class }, new AutoEscapeBeanHandler(this));
     }
 
     @Override
     public Object clone() {
-        EntityEditingHistoryClp clone = new EntityEditingHistoryClp();
+        AuditEntryClp clone = new AuditEntryClp();
 
         clone.setId(getId());
         clone.setEntityId(getEntityId());
@@ -340,8 +338,8 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
     }
 
     @Override
-    public int compareTo(EntityEditingHistory entityEditingHistory) {
-        int primaryKey = entityEditingHistory.getPrimaryKey();
+    public int compareTo(AuditEntry auditEntry) {
+        int primaryKey = auditEntry.getPrimaryKey();
 
         if (getPrimaryKey() < primaryKey) {
             return -1;
@@ -358,13 +356,13 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
             return true;
         }
 
-        if (!(obj instanceof EntityEditingHistoryClp)) {
+        if (!(obj instanceof AuditEntryClp)) {
             return false;
         }
 
-        EntityEditingHistoryClp entityEditingHistory = (EntityEditingHistoryClp) obj;
+        AuditEntryClp auditEntry = (AuditEntryClp) obj;
 
-        int primaryKey = entityEditingHistory.getPrimaryKey();
+        int primaryKey = auditEntry.getPrimaryKey();
 
         if (getPrimaryKey() == primaryKey) {
             return true;
@@ -408,7 +406,7 @@ public class EntityEditingHistoryClp extends BaseModelImpl<EntityEditingHistory>
         StringBundler sb = new StringBundler(22);
 
         sb.append("<model><model-name>");
-        sb.append("ru.isands.akimov.model.EntityEditingHistory");
+        sb.append("ru.isands.akimov.model.AuditEntry");
         sb.append("</model-name>");
 
         sb.append(

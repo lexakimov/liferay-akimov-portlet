@@ -7,7 +7,7 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<mapped-superclass class="ru.isands.akimov.model.impl.EntityEditingHistoryModelImpl">
+	<mapped-superclass class="ru.isands.akimov.model.impl.AuditEntryModelImpl">
 		<attributes>
 			<id name="id">
 				<column name="ID_" />
@@ -30,7 +30,7 @@
 			<id name="id">
 				<column name="ID_" />
 			</id>
-			<basic name="historyId" />
+			<basic name="auditEntryId" />
 			<basic name="fieldName" />
 			<basic name="oldValue" />
 			<basic name="newValue" />
@@ -74,8 +74,8 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<entity class="ru.isands.akimov.model.impl.EntityEditingHistoryImpl" name="EntityEditingHistory">
-		<table name="akimov_entity_editing_history" />
+	<entity class="ru.isands.akimov.model.impl.AuditEntryImpl" name="AuditEntry">
+		<table name="akimov_audit_entry" />
 		<attributes />
 	</entity>
 	<entity class="ru.isands.akimov.model.impl.EntityFieldChangeImpl" name="EntityFieldChange">

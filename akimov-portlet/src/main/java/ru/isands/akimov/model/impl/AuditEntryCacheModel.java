@@ -4,7 +4,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import ru.isands.akimov.model.EntityEditingHistory;
+import ru.isands.akimov.model.AuditEntry;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -14,13 +14,13 @@ import java.io.ObjectOutput;
 import java.util.Date;
 
 /**
- * The cache model class for representing EntityEditingHistory in entity cache.
+ * The cache model class for representing AuditEntry in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see EntityEditingHistory
+ * @see AuditEntry
  * @generated
  */
-public class EntityEditingHistoryCacheModel implements CacheModel<EntityEditingHistory>,
+public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
     Externalizable {
     public int id;
     public int entityId;
@@ -51,35 +51,35 @@ public class EntityEditingHistoryCacheModel implements CacheModel<EntityEditingH
     }
 
     @Override
-    public EntityEditingHistory toEntityModel() {
-        EntityEditingHistoryImpl entityEditingHistoryImpl = new EntityEditingHistoryImpl();
+    public AuditEntry toEntityModel() {
+        AuditEntryImpl auditEntryImpl = new AuditEntryImpl();
 
-        entityEditingHistoryImpl.setId(id);
-        entityEditingHistoryImpl.setEntityId(entityId);
+        auditEntryImpl.setId(id);
+        auditEntryImpl.setEntityId(entityId);
 
         if (entityType == null) {
-            entityEditingHistoryImpl.setEntityType(StringPool.BLANK);
+            auditEntryImpl.setEntityType(StringPool.BLANK);
         } else {
-            entityEditingHistoryImpl.setEntityType(entityType);
+            auditEntryImpl.setEntityType(entityType);
         }
 
-        entityEditingHistoryImpl.setUserId(userId);
+        auditEntryImpl.setUserId(userId);
 
         if (description == null) {
-            entityEditingHistoryImpl.setDescription(StringPool.BLANK);
+            auditEntryImpl.setDescription(StringPool.BLANK);
         } else {
-            entityEditingHistoryImpl.setDescription(description);
+            auditEntryImpl.setDescription(description);
         }
 
         if (dateOfChange == Long.MIN_VALUE) {
-            entityEditingHistoryImpl.setDateOfChange(null);
+            auditEntryImpl.setDateOfChange(null);
         } else {
-            entityEditingHistoryImpl.setDateOfChange(new Date(dateOfChange));
+            auditEntryImpl.setDateOfChange(new Date(dateOfChange));
         }
 
-        entityEditingHistoryImpl.resetOriginalValues();
+        auditEntryImpl.resetOriginalValues();
 
-        return entityEditingHistoryImpl;
+        return auditEntryImpl;
     }
 
     @Override

@@ -21,7 +21,7 @@ import java.io.ObjectOutput;
 public class EntityFieldChangeCacheModel implements CacheModel<EntityFieldChange>,
     Externalizable {
     public int id;
-    public int historyId;
+    public int auditEntryId;
     public String fieldName;
     public String oldValue;
     public String newValue;
@@ -32,8 +32,8 @@ public class EntityFieldChangeCacheModel implements CacheModel<EntityFieldChange
 
         sb.append("{id=");
         sb.append(id);
-        sb.append(", historyId=");
-        sb.append(historyId);
+        sb.append(", auditEntryId=");
+        sb.append(auditEntryId);
         sb.append(", fieldName=");
         sb.append(fieldName);
         sb.append(", oldValue=");
@@ -50,7 +50,7 @@ public class EntityFieldChangeCacheModel implements CacheModel<EntityFieldChange
         EntityFieldChangeImpl entityFieldChangeImpl = new EntityFieldChangeImpl();
 
         entityFieldChangeImpl.setId(id);
-        entityFieldChangeImpl.setHistoryId(historyId);
+        entityFieldChangeImpl.setAuditEntryId(auditEntryId);
 
         if (fieldName == null) {
             entityFieldChangeImpl.setFieldName(StringPool.BLANK);
@@ -78,7 +78,7 @@ public class EntityFieldChangeCacheModel implements CacheModel<EntityFieldChange
     @Override
     public void readExternal(ObjectInput objectInput) throws IOException {
         id = objectInput.readInt();
-        historyId = objectInput.readInt();
+        auditEntryId = objectInput.readInt();
         fieldName = objectInput.readUTF();
         oldValue = objectInput.readUTF();
         newValue = objectInput.readUTF();
@@ -88,7 +88,7 @@ public class EntityFieldChangeCacheModel implements CacheModel<EntityFieldChange
     public void writeExternal(ObjectOutput objectOutput)
         throws IOException {
         objectOutput.writeInt(id);
-        objectOutput.writeInt(historyId);
+        objectOutput.writeInt(auditEntryId);
 
         if (fieldName == null) {
             objectOutput.writeUTF(StringPool.BLANK);

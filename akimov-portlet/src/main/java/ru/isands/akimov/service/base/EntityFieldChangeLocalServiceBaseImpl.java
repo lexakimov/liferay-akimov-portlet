@@ -19,7 +19,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import ru.isands.akimov.model.EntityFieldChange;
 import ru.isands.akimov.service.EntityFieldChangeLocalService;
-import ru.isands.akimov.service.persistence.EntityEditingHistoryPersistence;
+import ru.isands.akimov.service.persistence.AuditEntryPersistence;
 import ru.isands.akimov.service.persistence.EntityFieldChangePersistence;
 import ru.isands.akimov.service.persistence.FooPersistence;
 import ru.isands.akimov.service.persistence.PersonPersistence;
@@ -45,10 +45,10 @@ import javax.sql.DataSource;
 public abstract class EntityFieldChangeLocalServiceBaseImpl
     extends BaseLocalServiceImpl implements EntityFieldChangeLocalService,
         IdentifiableBean {
-    @BeanReference(type = ru.isands.akimov.service.EntityEditingHistoryLocalService.class)
-    protected ru.isands.akimov.service.EntityEditingHistoryLocalService entityEditingHistoryLocalService;
-    @BeanReference(type = EntityEditingHistoryPersistence.class)
-    protected EntityEditingHistoryPersistence entityEditingHistoryPersistence;
+    @BeanReference(type = ru.isands.akimov.service.AuditEntryLocalService.class)
+    protected ru.isands.akimov.service.AuditEntryLocalService auditEntryLocalService;
+    @BeanReference(type = AuditEntryPersistence.class)
+    protected AuditEntryPersistence auditEntryPersistence;
     @BeanReference(type = ru.isands.akimov.service.EntityFieldChangeLocalService.class)
     protected ru.isands.akimov.service.EntityFieldChangeLocalService entityFieldChangeLocalService;
     @BeanReference(type = EntityFieldChangePersistence.class)
@@ -300,41 +300,41 @@ public abstract class EntityFieldChangeLocalServiceBaseImpl
     }
 
     /**
-     * Returns the entity editing history local service.
+     * Returns the audit entry local service.
      *
-     * @return the entity editing history local service
+     * @return the audit entry local service
      */
-    public ru.isands.akimov.service.EntityEditingHistoryLocalService getEntityEditingHistoryLocalService() {
-        return entityEditingHistoryLocalService;
+    public ru.isands.akimov.service.AuditEntryLocalService getAuditEntryLocalService() {
+        return auditEntryLocalService;
     }
 
     /**
-     * Sets the entity editing history local service.
+     * Sets the audit entry local service.
      *
-     * @param entityEditingHistoryLocalService the entity editing history local service
+     * @param auditEntryLocalService the audit entry local service
      */
-    public void setEntityEditingHistoryLocalService(
-        ru.isands.akimov.service.EntityEditingHistoryLocalService entityEditingHistoryLocalService) {
-        this.entityEditingHistoryLocalService = entityEditingHistoryLocalService;
+    public void setAuditEntryLocalService(
+        ru.isands.akimov.service.AuditEntryLocalService auditEntryLocalService) {
+        this.auditEntryLocalService = auditEntryLocalService;
     }
 
     /**
-     * Returns the entity editing history persistence.
+     * Returns the audit entry persistence.
      *
-     * @return the entity editing history persistence
+     * @return the audit entry persistence
      */
-    public EntityEditingHistoryPersistence getEntityEditingHistoryPersistence() {
-        return entityEditingHistoryPersistence;
+    public AuditEntryPersistence getAuditEntryPersistence() {
+        return auditEntryPersistence;
     }
 
     /**
-     * Sets the entity editing history persistence.
+     * Sets the audit entry persistence.
      *
-     * @param entityEditingHistoryPersistence the entity editing history persistence
+     * @param auditEntryPersistence the audit entry persistence
      */
-    public void setEntityEditingHistoryPersistence(
-        EntityEditingHistoryPersistence entityEditingHistoryPersistence) {
-        this.entityEditingHistoryPersistence = entityEditingHistoryPersistence;
+    public void setAuditEntryPersistence(
+        AuditEntryPersistence auditEntryPersistence) {
+        this.auditEntryPersistence = auditEntryPersistence;
     }
 
     /**

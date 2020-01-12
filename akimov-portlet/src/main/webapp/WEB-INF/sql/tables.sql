@@ -21,7 +21,7 @@ create table akimov_Person (
 	address VARCHAR(75) null
 );
 
-create table akimov_entity_editing_history (
+create table akimov_audit_entry (
 	id_ INTEGER not null primary key,
 	entityId INTEGER,
 	entityType VARCHAR(75) null,
@@ -32,7 +32,7 @@ create table akimov_entity_editing_history (
 
 create table akimov_entity_field_change (
 	id_ INTEGER not null primary key,
-	historyId INTEGER,
+	auditEntryId INTEGER,
 	fieldName VARCHAR(75) null,
 	oldValue VARCHAR(75) null,
 	newValue VARCHAR(75) null

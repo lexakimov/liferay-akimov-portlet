@@ -21,22 +21,22 @@ public class FooHistorySearchHelper extends SqlBasedSearchHelper<EntityHistoryEn
 	@Override
 	protected String getSqlQuery(int start, int end) {
 		return "SELECT\n" +
-				"\thistory.dateOfChange,\n" +
+				"\taudit.dateOfChange,\n" +
 				"\tarray_agg_arrays ( ARRAY [ ARRAY [ changes.fieldName, changes.oldValue, changes.newValue ] ] ) changes,\n" +
-				"\thistory.entityId,\n" +
-				"\thistory.entityType,\n" +
-				"\thistory.userId,\n" +
-				"\thistory.description\n" +
+				"\taudit.entityId,\n" +
+				"\taudit.entityType,\n" +
+				"\taudit.userId,\n" +
+				"\taudit.description\n" +
 				"\t\n" +
 				"FROM\n" +
-				"\takimov_entity_editing_history history\n" +
-				"\tLEFT JOIN akimov_entity_field_change changes ON history.id_ = changes.historyid \n" +
+				"\takimov_audit_entry audit\n" +
+				"\tLEFT JOIN akimov_entity_field_change changes ON audit.id_ = changes.auditEntryId \n" +
 				"WHERE\n" +
-				"\thistory.entityType = 'foo' \n" +
+				"\taudit.entityType = 'foo' \n" +
 				"GROUP BY\n" +
-				"\thistory.entityId, history.entityType, history.userId, history.description, history.dateOfChange \n" +
+				"\taudit.entityId, audit.entityType, audit.userId, audit.description, audit.dateOfChange \n" +
 				"ORDER BY\n" +
-				"\thistory.dateOfChange DESC;";
+				"\taudit.dateOfChange DESC;";
 	}
 
 	@Override

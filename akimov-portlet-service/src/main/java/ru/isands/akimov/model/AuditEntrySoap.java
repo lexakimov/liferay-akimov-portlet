@@ -12,7 +12,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class EntityEditingHistorySoap implements Serializable {
+public class AuditEntrySoap implements Serializable {
     private int _id;
     private int _entityId;
     private String _entityType;
@@ -20,12 +20,11 @@ public class EntityEditingHistorySoap implements Serializable {
     private String _description;
     private Date _dateOfChange;
 
-    public EntityEditingHistorySoap() {
+    public AuditEntrySoap() {
     }
 
-    public static EntityEditingHistorySoap toSoapModel(
-        EntityEditingHistory model) {
-        EntityEditingHistorySoap soapModel = new EntityEditingHistorySoap();
+    public static AuditEntrySoap toSoapModel(AuditEntry model) {
+        AuditEntrySoap soapModel = new AuditEntrySoap();
 
         soapModel.setId(model.getId());
         soapModel.setEntityId(model.getEntityId());
@@ -37,9 +36,8 @@ public class EntityEditingHistorySoap implements Serializable {
         return soapModel;
     }
 
-    public static EntityEditingHistorySoap[] toSoapModels(
-        EntityEditingHistory[] models) {
-        EntityEditingHistorySoap[] soapModels = new EntityEditingHistorySoap[models.length];
+    public static AuditEntrySoap[] toSoapModels(AuditEntry[] models) {
+        AuditEntrySoap[] soapModels = new AuditEntrySoap[models.length];
 
         for (int i = 0; i < models.length; i++) {
             soapModels[i] = toSoapModel(models[i]);
@@ -48,14 +46,13 @@ public class EntityEditingHistorySoap implements Serializable {
         return soapModels;
     }
 
-    public static EntityEditingHistorySoap[][] toSoapModels(
-        EntityEditingHistory[][] models) {
-        EntityEditingHistorySoap[][] soapModels = null;
+    public static AuditEntrySoap[][] toSoapModels(AuditEntry[][] models) {
+        AuditEntrySoap[][] soapModels = null;
 
         if (models.length > 0) {
-            soapModels = new EntityEditingHistorySoap[models.length][models[0].length];
+            soapModels = new AuditEntrySoap[models.length][models[0].length];
         } else {
-            soapModels = new EntityEditingHistorySoap[0][0];
+            soapModels = new AuditEntrySoap[0][0];
         }
 
         for (int i = 0; i < models.length; i++) {
@@ -65,15 +62,14 @@ public class EntityEditingHistorySoap implements Serializable {
         return soapModels;
     }
 
-    public static EntityEditingHistorySoap[] toSoapModels(
-        List<EntityEditingHistory> models) {
-        List<EntityEditingHistorySoap> soapModels = new ArrayList<EntityEditingHistorySoap>(models.size());
+    public static AuditEntrySoap[] toSoapModels(List<AuditEntry> models) {
+        List<AuditEntrySoap> soapModels = new ArrayList<AuditEntrySoap>(models.size());
 
-        for (EntityEditingHistory model : models) {
+        for (AuditEntry model : models) {
             soapModels.add(toSoapModel(model));
         }
 
-        return soapModels.toArray(new EntityEditingHistorySoap[soapModels.size()]);
+        return soapModels.toArray(new AuditEntrySoap[soapModels.size()]);
     }
 
     public int getPrimaryKey() {

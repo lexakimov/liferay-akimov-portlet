@@ -4,9 +4,9 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import ru.isands.akimov.audit.enums.EntityType;
-import ru.isands.akimov.model.EntityEditingHistory;
+import ru.isands.akimov.model.AuditEntry;
 import ru.isands.akimov.model.EntityFieldChange;
-import ru.isands.akimov.service.EntityEditingHistoryLocalServiceUtil;
+import ru.isands.akimov.service.AuditEntryLocalServiceUtil;
 import ru.isands.akimov.service.EntityFieldChangeLocalServiceUtil;
 
 import java.util.ArrayList;
@@ -21,16 +21,16 @@ import java.util.List;
  */
 public class AuditEntryWrapper {
 
-	private EntityEditingHistory editingHistoryEntry;
+	private AuditEntry editingHistoryEntry;
 
 	private List<EntityFieldChange> fieldChanges;
 
 	public AuditEntryWrapper(int entityId, EntityType entityType, String description, long userId, Date dateOfChange)
 			throws SystemException {
 
-		int historyEntryId = (int) CounterLocalServiceUtil.increment(EntityEditingHistory.class.getName());
+		int historyEntryId = (int) CounterLocalServiceUtil.increment(AuditEntry.class.getName());
 
-		editingHistoryEntry = EntityEditingHistoryLocalServiceUtil.createEntityEditingHistory(historyEntryId);
+		editingHistoryEntry = AuditEntryLocalServiceUtil.createAuditEntry(historyEntryId);
 		editingHistoryEntry.setEntityId(entityId);
 		editingHistoryEntry.setEntityType(entityType.toString());
 		editingHistoryEntry.setUserId(userId);
@@ -52,7 +52,7 @@ public class AuditEntryWrapper {
 		int fieldChangeId = (int) CounterLocalServiceUtil.increment(EntityFieldChange.class.getName());
 
 		EntityFieldChange fieldChange = EntityFieldChangeLocalServiceUtil.createEntityFieldChange(fieldChangeId);
-		fieldChange.setHistoryId(editingHistoryEntry.getId());
+		fieldChange.setAuditEntryId(editingHistoryEntry.getId());
 		fieldChange.setFieldName(fieldName);
 		fieldChange.setOldValue(oldValue != null ? oldValue.toString() : StringPool.BLANK);
 		fieldChange.setNewValue(newValue != null ? newValue.toString() : StringPool.BLANK);

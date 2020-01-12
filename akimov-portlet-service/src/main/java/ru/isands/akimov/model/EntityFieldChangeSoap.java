@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class EntityFieldChangeSoap implements Serializable {
     private int _id;
-    private int _historyId;
+    private int _auditEntryId;
     private String _fieldName;
     private String _oldValue;
     private String _newValue;
@@ -25,7 +25,7 @@ public class EntityFieldChangeSoap implements Serializable {
         EntityFieldChangeSoap soapModel = new EntityFieldChangeSoap();
 
         soapModel.setId(model.getId());
-        soapModel.setHistoryId(model.getHistoryId());
+        soapModel.setAuditEntryId(model.getAuditEntryId());
         soapModel.setFieldName(model.getFieldName());
         soapModel.setOldValue(model.getOldValue());
         soapModel.setNewValue(model.getNewValue());
@@ -88,12 +88,12 @@ public class EntityFieldChangeSoap implements Serializable {
         _id = id;
     }
 
-    public int getHistoryId() {
-        return _historyId;
+    public int getAuditEntryId() {
+        return _auditEntryId;
     }
 
-    public void setHistoryId(int historyId) {
-        _historyId = historyId;
+    public void setAuditEntryId(int auditEntryId) {
+        _auditEntryId = auditEntryId;
     }
 
     public String getFieldName() {

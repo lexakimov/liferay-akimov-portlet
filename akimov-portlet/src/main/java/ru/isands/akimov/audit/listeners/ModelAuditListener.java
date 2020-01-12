@@ -12,7 +12,7 @@ import ru.isands.akimov.audit.enums.ActionType;
 import ru.isands.akimov.audit.enums.EntityType;
 import ru.isands.akimov.audit.exceptions.EntityHistoryException;
 import ru.isands.akimov.audit.exceptions.NoSuchModelAttributeException;
-import ru.isands.akimov.service.EntityEditingHistoryLocalServiceUtil;
+import ru.isands.akimov.service.AuditEntryLocalServiceUtil;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -83,7 +83,7 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 	}
 
 	/**
-	 * удаление сущности, сопровождается удалением закрепленных за ней записей истории из EntityEditingHistory и
+	 * удаление сущности, сопровождается удалением закрепленных за ней записей истории из AuditEntry и
 	 * EntityFieldChange, а также созданием записи в журнале об удалении (FIXME).
 	 */
 	@Override
@@ -91,7 +91,7 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 		try {
 			int entityId = getEntityId(model);
 			String entityType = getEntityType().toString().toLowerCase();
-			EntityEditingHistoryLocalServiceUtil.deleteFor(entityType, entityId);
+			AuditEntryLocalServiceUtil.deleteFor(entityType, entityId);
 
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 			long userId = serviceContext.getUserId();
