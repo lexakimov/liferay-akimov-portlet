@@ -10,8 +10,8 @@ import ru.isands.akimov.audit.AuditEntryWrapper;
 import ru.isands.akimov.audit.diff_finders.ModelDifferenceFinder;
 import ru.isands.akimov.audit.enums.ActionType;
 import ru.isands.akimov.audit.enums.EntityType;
-import ru.isands.akimov.audit.exceptions.NoSuchModelAttributeException;
 import ru.isands.akimov.audit.exceptions.EntityHistoryException;
+import ru.isands.akimov.audit.exceptions.NoSuchModelAttributeException;
 import ru.isands.akimov.service.EntityEditingHistoryLocalServiceUtil;
 
 import java.io.Serializable;
@@ -22,6 +22,7 @@ import java.util.Map;
  * Класс отслеживающий изменения в сущности для ведения истории изменений.
  *
  * @param <T>
+ * @author akimov
  */
 public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseModelListener<T> {
 

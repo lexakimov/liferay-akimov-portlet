@@ -7,8 +7,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -20,7 +18,6 @@ import ru.isands.akimov.util.MessagesRU;
 
 import javax.portlet.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -31,7 +28,9 @@ import static ru.isands.akimov.constants.Param.ASYNC_ACTION_RESOURCE_ID;
 /**
  * MVC портлет, расширенный дополнительными возможностями:
  * выполнение асинхронных действий портлета.
+ *
  * @author akimov
+ * created at 14.12.19 9:09
  */
 public abstract class ExtendedMVCPortlet extends MVCPortlet {
 

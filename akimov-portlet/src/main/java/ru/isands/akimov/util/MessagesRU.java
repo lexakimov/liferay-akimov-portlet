@@ -1,5 +1,8 @@
 package ru.isands.akimov.util;
 
+import com.liferay.portal.kernel.language.LanguageUtil;
+import ru.isands.akimov.portlet.ExtendedMVCPortlet;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -7,6 +10,14 @@ import java.util.Properties;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * Альтернатива {@link LanguageUtil}
+ *
+ * @author akimov
+ * created at 14.12.19 19:21
+ * @see LanguageUtil
+ * @see ExtendedMVCPortlet
+ */
 public class MessagesRU {
 
 	private static Properties _props;

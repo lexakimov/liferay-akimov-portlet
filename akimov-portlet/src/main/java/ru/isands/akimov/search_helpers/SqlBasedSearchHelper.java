@@ -11,6 +11,14 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Объект для поиска сущностей в базе данных с помощью SQL запроса.
+ * Рекомендуется использовать, когда нужно выполнить поиск в базе с нестандартной логикой (join-ы, функции и.т.д);
+ *
+ * @author akimov
+ * created at 10.01.20 9:27
+ * @see SearchHelper
+ */
 public abstract class SqlBasedSearchHelper<T> implements SearchHelper<T> {
 
 	private final ResultSetHandler<List<T>> rsHandler;

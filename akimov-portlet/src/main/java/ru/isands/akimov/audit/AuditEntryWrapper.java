@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Класс-обёртка над записью аудита.
+ *
+ * @author akimov
+ * created at 10.01.20 11:11
+ */
 public class AuditEntryWrapper {
 
 	private EntityEditingHistory editingHistoryEntry;

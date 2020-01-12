@@ -12,6 +12,7 @@ import java.util.List;
  * Класс упрощающий рефлексивные вывовы сервисов для работы с сущностями.
  *
  * @author akimov
+ * created at 14.12.19 18:55
  */
 public final class ModelServiceUtil {
 
@@ -44,7 +45,7 @@ public final class ModelServiceUtil {
 					"dynamicQuery",
 					new String[]{"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"},
 					new Object[]{dynamicQuery, start, end}
-					);
+			);
 		} catch (Throwable throwable) {
 			throw new PortletException("can't execute dynamic query", throwable);
 		}
@@ -58,7 +59,7 @@ public final class ModelServiceUtil {
 					"dynamicQueryCount",
 					new String[]{"com.liferay.portal.kernel.dao.orm.DynamicQuery"},
 					new Object[]{dynamicQuery}
-					);
+			);
 		} catch (Throwable throwable) {
 			throw new PortletException("can't execute dynamic query count", throwable);
 		}

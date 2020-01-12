@@ -4,6 +4,8 @@ import java.util.Date;
 
 /**
  * Изменение атрибута сущности.
+ *
+ * @author akimov
  */
 public class ModelAttributeChange {
 

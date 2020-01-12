@@ -10,6 +10,8 @@ import java.util.Map;
 
 /**
  * Запись истории изменений сущности на дату.
+ *
+ * @author akimov
  */
 public class EntityHistoryEntryWithChanges {
 
@@ -63,5 +65,5 @@ public class EntityHistoryEntryWithChanges {
 	public Map<String, ModelAttributeChange> getChanges() {
 		return changes;
 	}
-	
+
 }

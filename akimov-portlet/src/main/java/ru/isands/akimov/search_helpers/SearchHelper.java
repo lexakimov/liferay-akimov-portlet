@@ -3,6 +3,13 @@ package ru.isands.akimov.search_helpers;
 import javax.portlet.PortletException;
 import java.util.List;
 
+/**
+ * Базовый интерфейс объекта для поиска каких-либо сущностей.
+ *
+ * @param <T> тип объекта, экземпляры которого будем искать.
+ * @author akimov
+ * created at 14.12.19 18:55
+ */
 public interface SearchHelper<T> {
 
 	int getTotal() throws PortletException;

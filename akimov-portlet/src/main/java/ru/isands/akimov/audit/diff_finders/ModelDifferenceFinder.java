@@ -12,7 +12,9 @@ import java.util.Set;
 /**
  * Объект для поиска изменившихся атрибутов двух объектов-сущностей одного класса.
  *
- * @param <T>
+ * @param <T> класс модели.
+ * @author akimov
+ * created at 10.01.20 11:11
  */
 public abstract class ModelDifferenceFinder<T extends BaseModel<T>> {
 
@@ -48,7 +50,7 @@ public abstract class ModelDifferenceFinder<T extends BaseModel<T>> {
 			}
 
 			// was changed
-			if ( (oldValue == null ^ newValue == null) || !oldValue.equals(newValue) ) {
+			if ((oldValue == null ^ newValue == null) || !oldValue.equals(newValue)) {
 				oldValues.put(attributeName, oldValue);
 				newValues.put(attributeName, newValue);
 			}

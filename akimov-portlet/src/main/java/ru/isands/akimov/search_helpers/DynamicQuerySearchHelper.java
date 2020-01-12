@@ -1,13 +1,20 @@
 package ru.isands.akimov.search_helpers;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.model.BaseModel;
+import ru.isands.akimov.search_helpers.adapters.EntryAdapter;
 import ru.isands.akimov.util.ModelServiceUtil;
 
 import javax.portlet.PortletException;
 import java.util.List;
 
+/**
+ * Объект для поиска моделей с использованием объекта {@link DynamicQuery}.
+ *
+ * @param <T> тип модели, экземпляры которой будем искать.
+ * @author akimov
+ * created at 14.12.19 18:55
+ */
 public abstract class DynamicQuerySearchHelper<T extends BaseModel<T>> implements SearchHelper<T> {
 
 	private final Class<T> modelClass;

@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
+/**
+ * Обработчик события при выходе пользователя из ситемы. Прописан в resources/portal.properties.
+ *
+ * @author akimov
+ * created at 11.01.20 20:59
+ */
 public class UserPostLogoutAction extends Action {
 
 	@Override

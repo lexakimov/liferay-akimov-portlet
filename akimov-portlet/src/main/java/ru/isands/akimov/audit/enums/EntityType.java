@@ -2,6 +2,8 @@ package ru.isands.akimov.audit.enums;
 
 /**
  * Типы сущностей в журнале аудита.
+ *
+ * @author akimov
  */
 public enum EntityType {
 

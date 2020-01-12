@@ -1,5 +1,11 @@
 package ru.isands.akimov.enums;
 
+import ru.isands.akimov.portlet.ExtendedMVCPortlet;
+
+/**
+ * @author akimov
+ * created at 14.12.19 10:36
+ */
 public enum Gender {
 	UNKNOWN(0, "не указан"),
 	MALE(1, "мужской"),
