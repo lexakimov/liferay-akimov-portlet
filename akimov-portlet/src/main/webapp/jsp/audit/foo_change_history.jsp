@@ -42,7 +42,7 @@
 							<td class="table-cell" rowspan="${historyEntry.changes.size() + 1}">
 								<fmt:formatDate value="${historyEntry.dateOfChanges}"
 												pattern="dd.MM.yyyy HH:mm:ss"
-												timeZone="GMT+7"/>
+												timeZone="${timeZone}"/>
 							</td>
 							<td class="table-cell" rowspan="${historyEntry.changes.size() + 1}">
 									${historyEntry.user.fullName}

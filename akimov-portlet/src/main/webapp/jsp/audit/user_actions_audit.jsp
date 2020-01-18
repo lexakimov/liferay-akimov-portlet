@@ -41,7 +41,7 @@
 							<td class="table-cell">
 								<fmt:formatDate value="${historyEntry.dateOfChange}"
 												pattern="dd.MM.yyyy HH:mm:ss"
-												timeZone="GMT+7"/>
+												timeZone="${timeZone}"/>
 							</td>
 							<td class="table-cell">${historyEntry.userFullName}</td>
 							<td class="table-cell">${historyEntry.description}</td>
