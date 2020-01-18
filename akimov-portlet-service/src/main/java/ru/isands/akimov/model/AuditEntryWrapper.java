@@ -40,7 +40,9 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
         attributes.put("id", getId());
         attributes.put("entityId", getEntityId());
         attributes.put("entityType", getEntityType());
+        attributes.put("companyId", getCompanyId());
         attributes.put("userId", getUserId());
+        attributes.put("userName", getUserName());
         attributes.put("description", getDescription());
         attributes.put("dateOfChange", getDateOfChange());
 
@@ -67,10 +69,22 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
             setEntityType(entityType);
         }
 
+        Long companyId = (Long) attributes.get("companyId");
+
+        if (companyId != null) {
+            setCompanyId(companyId);
+        }
+
         Long userId = (Long) attributes.get("userId");
 
         if (userId != null) {
             setUserId(userId);
+        }
+
+        String userName = (String) attributes.get("userName");
+
+        if (userName != null) {
+            setUserName(userName);
         }
 
         String description = (String) attributes.get("description");
@@ -167,6 +181,26 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
+    * Returns the company ID of this audit entry.
+    *
+    * @return the company ID of this audit entry
+    */
+    @Override
+    public long getCompanyId() {
+        return _auditEntry.getCompanyId();
+    }
+
+    /**
+    * Sets the company ID of this audit entry.
+    *
+    * @param companyId the company ID of this audit entry
+    */
+    @Override
+    public void setCompanyId(long companyId) {
+        _auditEntry.setCompanyId(companyId);
+    }
+
+    /**
     * Returns the user ID of this audit entry.
     *
     * @return the user ID of this audit entry
@@ -206,6 +240,26 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     @Override
     public void setUserUuid(java.lang.String userUuid) {
         _auditEntry.setUserUuid(userUuid);
+    }
+
+    /**
+    * Returns the user name of this audit entry.
+    *
+    * @return the user name of this audit entry
+    */
+    @Override
+    public java.lang.String getUserName() {
+        return _auditEntry.getUserName();
+    }
+
+    /**
+    * Sets the user name of this audit entry.
+    *
+    * @param userName the user name of this audit entry
+    */
+    @Override
+    public void setUserName(java.lang.String userName) {
+        _auditEntry.setUserName(userName);
     }
 
     /**

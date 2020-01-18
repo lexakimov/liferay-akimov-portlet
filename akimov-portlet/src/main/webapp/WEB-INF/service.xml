@@ -46,7 +46,9 @@
 		<column name="id" type="int" primary="true"/>
 		<column name="entityId" type="int"/>
 		<column name="entityType" type="String"/>
+		<column name="companyId" type="long" />
 		<column name="userId" type="long"/>
+		<column name="userName" type="String" />
 		<column name="description" type="String"/>
 		<column name="dateOfChange" type="Date"/>
 	</entity>

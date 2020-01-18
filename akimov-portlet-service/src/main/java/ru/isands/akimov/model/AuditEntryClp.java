@@ -25,8 +25,10 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     private int _id;
     private int _entityId;
     private String _entityType;
+    private long _companyId;
     private long _userId;
     private String _userUuid;
+    private String _userName;
     private String _description;
     private Date _dateOfChange;
     private BaseModel<?> _auditEntryRemoteModel;
@@ -72,7 +74,9 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         attributes.put("id", getId());
         attributes.put("entityId", getEntityId());
         attributes.put("entityType", getEntityType());
+        attributes.put("companyId", getCompanyId());
         attributes.put("userId", getUserId());
+        attributes.put("userName", getUserName());
         attributes.put("description", getDescription());
         attributes.put("dateOfChange", getDateOfChange());
 
@@ -99,10 +103,22 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
             setEntityType(entityType);
         }
 
+        Long companyId = (Long) attributes.get("companyId");
+
+        if (companyId != null) {
+            setCompanyId(companyId);
+        }
+
         Long userId = (Long) attributes.get("userId");
 
         if (userId != null) {
             setUserId(userId);
+        }
+
+        String userName = (String) attributes.get("userName");
+
+        if (userName != null) {
+            setUserName(userName);
         }
 
         String description = (String) attributes.get("description");
@@ -185,6 +201,28 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     }
 
     @Override
+    public long getCompanyId() {
+        return _companyId;
+    }
+
+    @Override
+    public void setCompanyId(long companyId) {
+        _companyId = companyId;
+
+        if (_auditEntryRemoteModel != null) {
+            try {
+                Class<?> clazz = _auditEntryRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setCompanyId", long.class);
+
+                method.invoke(_auditEntryRemoteModel, companyId);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
     public long getUserId() {
         return _userId;
     }
@@ -214,6 +252,28 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     @Override
     public void setUserUuid(String userUuid) {
         _userUuid = userUuid;
+    }
+
+    @Override
+    public String getUserName() {
+        return _userName;
+    }
+
+    @Override
+    public void setUserName(String userName) {
+        _userName = userName;
+
+        if (_auditEntryRemoteModel != null) {
+            try {
+                Class<?> clazz = _auditEntryRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setUserName", String.class);
+
+                method.invoke(_auditEntryRemoteModel, userName);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
     }
 
     @Override
@@ -330,7 +390,9 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         clone.setId(getId());
         clone.setEntityId(getEntityId());
         clone.setEntityType(getEntityType());
+        clone.setCompanyId(getCompanyId());
         clone.setUserId(getUserId());
+        clone.setUserName(getUserName());
         clone.setDescription(getDescription());
         clone.setDateOfChange(getDateOfChange());
 
@@ -382,7 +444,7 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(13);
+        StringBundler sb = new StringBundler(17);
 
         sb.append("{id=");
         sb.append(getId());
@@ -390,8 +452,12 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         sb.append(getEntityId());
         sb.append(", entityType=");
         sb.append(getEntityType());
+        sb.append(", companyId=");
+        sb.append(getCompanyId());
         sb.append(", userId=");
         sb.append(getUserId());
+        sb.append(", userName=");
+        sb.append(getUserName());
         sb.append(", description=");
         sb.append(getDescription());
         sb.append(", dateOfChange=");
@@ -403,7 +469,7 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(22);
+        StringBundler sb = new StringBundler(28);
 
         sb.append("<model><model-name>");
         sb.append("ru.isands.akimov.model.AuditEntry");
@@ -422,8 +488,16 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         sb.append(getEntityType());
         sb.append("]]></column-value></column>");
         sb.append(
+            "<column><column-name>companyId</column-name><column-value><![CDATA[");
+        sb.append(getCompanyId());
+        sb.append("]]></column-value></column>");
+        sb.append(
             "<column><column-name>userId</column-name><column-value><![CDATA[");
         sb.append(getUserId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>userName</column-name><column-value><![CDATA[");
+        sb.append(getUserName());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>description</column-name><column-value><![CDATA[");

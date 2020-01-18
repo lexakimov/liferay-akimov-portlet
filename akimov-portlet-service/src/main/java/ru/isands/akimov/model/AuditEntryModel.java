@@ -90,6 +90,20 @@ public interface AuditEntryModel extends BaseModel<AuditEntry> {
     public void setEntityType(String entityType);
 
     /**
+     * Returns the company ID of this audit entry.
+     *
+     * @return the company ID of this audit entry
+     */
+    public long getCompanyId();
+
+    /**
+     * Sets the company ID of this audit entry.
+     *
+     * @param companyId the company ID of this audit entry
+     */
+    public void setCompanyId(long companyId);
+
+    /**
      * Returns the user ID of this audit entry.
      *
      * @return the user ID of this audit entry
@@ -117,6 +131,21 @@ public interface AuditEntryModel extends BaseModel<AuditEntry> {
      * @param userUuid the user uuid of this audit entry
      */
     public void setUserUuid(String userUuid);
+
+    /**
+     * Returns the user name of this audit entry.
+     *
+     * @return the user name of this audit entry
+     */
+    @AutoEscape
+    public String getUserName();
+
+    /**
+     * Sets the user name of this audit entry.
+     *
+     * @param userName the user name of this audit entry
+     */
+    public void setUserName(String userName);
 
     /**
      * Returns the description of this audit entry.

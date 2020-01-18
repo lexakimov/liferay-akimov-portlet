@@ -329,7 +329,9 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
         auditEntryImpl.setId(auditEntry.getId());
         auditEntryImpl.setEntityId(auditEntry.getEntityId());
         auditEntryImpl.setEntityType(auditEntry.getEntityType());
+        auditEntryImpl.setCompanyId(auditEntry.getCompanyId());
         auditEntryImpl.setUserId(auditEntry.getUserId());
+        auditEntryImpl.setUserName(auditEntry.getUserName());
         auditEntryImpl.setDescription(auditEntry.getDescription());
         auditEntryImpl.setDateOfChange(auditEntry.getDateOfChange());
 

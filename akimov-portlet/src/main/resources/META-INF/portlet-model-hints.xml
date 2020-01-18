@@ -5,7 +5,9 @@
 		<field name="id" type="int" />
 		<field name="entityId" type="int" />
 		<field name="entityType" type="String" />
+		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
+		<field name="userName" type="String" />
 		<field name="description" type="String" />
 		<field name="dateOfChange" type="Date" />
 	</model>

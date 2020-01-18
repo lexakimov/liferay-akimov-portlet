@@ -4,8 +4,10 @@ import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.BaseModelListener;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextThreadLocal;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import ru.isands.akimov.audit.AuditEntryWrapper;
 import ru.isands.akimov.audit.diff_finders.ModelDifferenceFinder;
 import ru.isands.akimov.audit.enums.ActionType;
@@ -51,13 +53,14 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 	private void process(T updatedModel, ActionType actionType) throws EntityHistoryException {
 		try {
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
-			long userId = serviceContext.getUserId();
+			User user = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
+			long companyId = serviceContext.getCompanyId();
 			int entityId = getEntityId(updatedModel);
 			Date dateOfChange = new Date();
 
 			String description = actionType.toString();
 			AuditEntryWrapper editingHistory =
-					new AuditEntryWrapper(entityId, getEntityType(), description, userId, dateOfChange);
+					new AuditEntryWrapper(entityId, getEntityType(), description, companyId, user, dateOfChange);
 
 			T oldModel = fetchOldModel(entityId);
 			ModelDifferenceFinder<T> modelDifferenceFinder = getChangeDetector(oldModel, updatedModel);
@@ -94,13 +97,14 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 			AuditEntryLocalServiceUtil.deleteFor(entityType, entityId);
 
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
-			long userId = serviceContext.getUserId();
+			User user = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
+			long companyId = serviceContext.getCompanyId();
 			Date dateOfChange = new Date();
 
 			String description = getDeleteType().toString();
 
 			AuditEntryWrapper editingHistory =
-					new AuditEntryWrapper(entityId, getEntityType(), description, userId, dateOfChange);
+					new AuditEntryWrapper(entityId, getEntityType(), description, companyId, user, dateOfChange);
 
 			editingHistory.addFieldChange("fooId", entityId, null);
 			editingHistory.persist();

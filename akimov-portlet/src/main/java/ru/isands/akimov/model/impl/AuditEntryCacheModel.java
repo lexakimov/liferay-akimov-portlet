@@ -25,13 +25,15 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
     public int id;
     public int entityId;
     public String entityType;
+    public long companyId;
     public long userId;
+    public String userName;
     public String description;
     public long dateOfChange;
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(13);
+        StringBundler sb = new StringBundler(17);
 
         sb.append("{id=");
         sb.append(id);
@@ -39,8 +41,12 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
         sb.append(entityId);
         sb.append(", entityType=");
         sb.append(entityType);
+        sb.append(", companyId=");
+        sb.append(companyId);
         sb.append(", userId=");
         sb.append(userId);
+        sb.append(", userName=");
+        sb.append(userName);
         sb.append(", description=");
         sb.append(description);
         sb.append(", dateOfChange=");
@@ -63,7 +69,14 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
             auditEntryImpl.setEntityType(entityType);
         }
 
+        auditEntryImpl.setCompanyId(companyId);
         auditEntryImpl.setUserId(userId);
+
+        if (userName == null) {
+            auditEntryImpl.setUserName(StringPool.BLANK);
+        } else {
+            auditEntryImpl.setUserName(userName);
+        }
 
         if (description == null) {
             auditEntryImpl.setDescription(StringPool.BLANK);
@@ -87,7 +100,9 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
         id = objectInput.readInt();
         entityId = objectInput.readInt();
         entityType = objectInput.readUTF();
+        companyId = objectInput.readLong();
         userId = objectInput.readLong();
+        userName = objectInput.readUTF();
         description = objectInput.readUTF();
         dateOfChange = objectInput.readLong();
     }
@@ -104,7 +119,14 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
             objectOutput.writeUTF(entityType);
         }
 
+        objectOutput.writeLong(companyId);
         objectOutput.writeLong(userId);
+
+        if (userName == null) {
+            objectOutput.writeUTF(StringPool.BLANK);
+        } else {
+            objectOutput.writeUTF(userName);
+        }
 
         if (description == null) {
             objectOutput.writeUTF(StringPool.BLANK);

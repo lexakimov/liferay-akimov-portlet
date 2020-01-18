@@ -13,7 +13,9 @@
 		</id>
 		<property name="entityId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="entityType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="dateOfChange" type="org.hibernate.type.TimestampType" />
 	</class>

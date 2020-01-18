@@ -46,11 +46,13 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
             { "id_", Types.INTEGER },
             { "entityId", Types.INTEGER },
             { "entityType", Types.VARCHAR },
+            { "companyId", Types.BIGINT },
             { "userId", Types.BIGINT },
+            { "userName", Types.VARCHAR },
             { "description", Types.VARCHAR },
             { "dateOfChange", Types.TIMESTAMP }
         };
-    public static final String TABLE_SQL_CREATE = "create table akimov_audit_entry (id_ INTEGER not null primary key,entityId INTEGER,entityType VARCHAR(75) null,userId LONG,description VARCHAR(75) null,dateOfChange DATE null)";
+    public static final String TABLE_SQL_CREATE = "create table akimov_audit_entry (id_ INTEGER not null primary key,entityId INTEGER,entityType VARCHAR(75) null,companyId LONG,userId LONG,userName VARCHAR(75) null,description VARCHAR(75) null,dateOfChange DATE null)";
     public static final String TABLE_SQL_DROP = "drop table akimov_audit_entry";
     public static final String ORDER_BY_JPQL = " ORDER BY auditEntry.id ASC";
     public static final String ORDER_BY_SQL = " ORDER BY akimov_audit_entry.id_ ASC";
@@ -73,8 +75,10 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     private int _id;
     private int _entityId;
     private String _entityType;
+    private long _companyId;
     private long _userId;
     private String _userUuid;
+    private String _userName;
     private String _description;
     private Date _dateOfChange;
     private AuditEntry _escapedModel;
@@ -119,7 +123,9 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         attributes.put("id", getId());
         attributes.put("entityId", getEntityId());
         attributes.put("entityType", getEntityType());
+        attributes.put("companyId", getCompanyId());
         attributes.put("userId", getUserId());
+        attributes.put("userName", getUserName());
         attributes.put("description", getDescription());
         attributes.put("dateOfChange", getDateOfChange());
 
@@ -146,10 +152,22 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
             setEntityType(entityType);
         }
 
+        Long companyId = (Long) attributes.get("companyId");
+
+        if (companyId != null) {
+            setCompanyId(companyId);
+        }
+
         Long userId = (Long) attributes.get("userId");
 
         if (userId != null) {
             setUserId(userId);
+        }
+
+        String userName = (String) attributes.get("userName");
+
+        if (userName != null) {
+            setUserName(userName);
         }
 
         String description = (String) attributes.get("description");
@@ -200,6 +218,16 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     }
 
     @Override
+    public long getCompanyId() {
+        return _companyId;
+    }
+
+    @Override
+    public void setCompanyId(long companyId) {
+        _companyId = companyId;
+    }
+
+    @Override
     public long getUserId() {
         return _userId;
     }
@@ -217,6 +245,20 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     @Override
     public void setUserUuid(String userUuid) {
         _userUuid = userUuid;
+    }
+
+    @Override
+    public String getUserName() {
+        if (_userName == null) {
+            return StringPool.BLANK;
+        } else {
+            return _userName;
+        }
+    }
+
+    @Override
+    public void setUserName(String userName) {
+        _userName = userName;
     }
 
     @Override
@@ -260,7 +302,9 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         auditEntryImpl.setId(getId());
         auditEntryImpl.setEntityId(getEntityId());
         auditEntryImpl.setEntityType(getEntityType());
+        auditEntryImpl.setCompanyId(getCompanyId());
         auditEntryImpl.setUserId(getUserId());
+        auditEntryImpl.setUserName(getUserName());
         auditEntryImpl.setDescription(getDescription());
         auditEntryImpl.setDateOfChange(getDateOfChange());
 
@@ -328,7 +372,17 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
             auditEntryCacheModel.entityType = null;
         }
 
+        auditEntryCacheModel.companyId = getCompanyId();
+
         auditEntryCacheModel.userId = getUserId();
+
+        auditEntryCacheModel.userName = getUserName();
+
+        String userName = auditEntryCacheModel.userName;
+
+        if ((userName != null) && (userName.length() == 0)) {
+            auditEntryCacheModel.userName = null;
+        }
 
         auditEntryCacheModel.description = getDescription();
 
@@ -351,7 +405,7 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(13);
+        StringBundler sb = new StringBundler(17);
 
         sb.append("{id=");
         sb.append(getId());
@@ -359,8 +413,12 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         sb.append(getEntityId());
         sb.append(", entityType=");
         sb.append(getEntityType());
+        sb.append(", companyId=");
+        sb.append(getCompanyId());
         sb.append(", userId=");
         sb.append(getUserId());
+        sb.append(", userName=");
+        sb.append(getUserName());
         sb.append(", description=");
         sb.append(getDescription());
         sb.append(", dateOfChange=");
@@ -372,7 +430,7 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(22);
+        StringBundler sb = new StringBundler(28);
 
         sb.append("<model><model-name>");
         sb.append("ru.isands.akimov.model.AuditEntry");
@@ -391,8 +449,16 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         sb.append(getEntityType());
         sb.append("]]></column-value></column>");
         sb.append(
+            "<column><column-name>companyId</column-name><column-value><![CDATA[");
+        sb.append(getCompanyId());
+        sb.append("]]></column-value></column>");
+        sb.append(
             "<column><column-name>userId</column-name><column-value><![CDATA[");
         sb.append(getUserId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>userName</column-name><column-value><![CDATA[");
+        sb.append(getUserName());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>description</column-name><column-value><![CDATA[");

@@ -14,7 +14,9 @@
 			</id>
 			<basic name="entityId" />
 			<basic name="entityType" />
+			<basic name="companyId" />
 			<basic name="userId" />
+			<basic name="userName" />
 			<basic name="description" />
 			<basic name="dateOfChange">
 				<temporal>TIMESTAMP</temporal>

@@ -31,12 +31,9 @@ public class UserPostLoginAction extends Action {
 
 	private void handleEvent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		long companyId = PortalUtil.getCompanyId(request);
-		long userId = PortalUtil.getUserId(request);
 		User user = PortalUtil.getUser(request);
-
 		AuditEntryWrapper auditEntry =
-				new AuditEntryWrapper((int) userId, EntityType.USER, ActionType.USER_LOGIN.toString(), userId, new Date());
-
+				new AuditEntryWrapper((int) user.getUserId(), EntityType.USER, ActionType.USER_LOGIN.toString(),companyId, user, new Date());
 		auditEntry.persist();
 	}
 

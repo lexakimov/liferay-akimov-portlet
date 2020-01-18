@@ -3,6 +3,7 @@ package ru.isands.akimov.audit;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.User;
 import ru.isands.akimov.audit.enums.EntityType;
 import ru.isands.akimov.model.AuditEntry;
 import ru.isands.akimov.model.EntityFieldChange;
@@ -25,7 +26,8 @@ public class AuditEntryWrapper {
 
 	private List<EntityFieldChange> fieldChanges;
 
-	public AuditEntryWrapper(int entityId, EntityType entityType, String description, long userId, Date dateOfChange)
+	public AuditEntryWrapper(
+			int entityId, EntityType entityType, String description, long companyId, User user, Date dateOfChange)
 			throws SystemException {
 
 		int historyEntryId = (int) CounterLocalServiceUtil.increment(AuditEntry.class.getName());
@@ -33,7 +35,9 @@ public class AuditEntryWrapper {
 		editingHistoryEntry = AuditEntryLocalServiceUtil.createAuditEntry(historyEntryId);
 		editingHistoryEntry.setEntityId(entityId);
 		editingHistoryEntry.setEntityType(entityType.toString());
-		editingHistoryEntry.setUserId(userId);
+		editingHistoryEntry.setCompanyId(companyId);
+		editingHistoryEntry.setUserId(user.getUserId());
+		editingHistoryEntry.setUserName(user.getFullName());
 		editingHistoryEntry.setDateOfChange(dateOfChange);
 		editingHistoryEntry.setDescription(description);
 

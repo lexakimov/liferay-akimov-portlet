@@ -25,7 +25,9 @@ create table akimov_audit_entry (
 	id_ INTEGER not null primary key,
 	entityId INTEGER,
 	entityType VARCHAR(75) null,
+	companyId LONG,
 	userId LONG,
+	userName VARCHAR(75) null,
 	description VARCHAR(75) null,
 	dateOfChange DATE null
 );
