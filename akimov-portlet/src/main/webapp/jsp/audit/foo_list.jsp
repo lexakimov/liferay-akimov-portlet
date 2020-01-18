@@ -23,7 +23,9 @@
 		<liferay-ui:search-container-column-text name="foo.field.doubleField" property="doubleField"/>
 		<liferay-ui:search-container-column-text name="foo.field.floatField" property="floatField"/>
 		<liferay-ui:search-container-column-text name="foo.field.stringField" property="stringField"/>
-		<liferay-ui:search-container-column-text name="foo.field.dateField" property="dateField"/>
+		<liferay-ui:search-container-column-text name="foo.field.dateField">
+			<fmt:formatDate value="${model.dateField}" pattern="dd.MM.yyyy HH:mm"/>
+		</liferay-ui:search-container-column-text>
 
 		<portlet:actionURL var="deleteURL" name="deleteFoo">
 			<portlet:param name="fooId" value="${model.fooId}"/>

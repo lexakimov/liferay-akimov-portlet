@@ -48,6 +48,14 @@ function initInputMasks() {
 			}
 		});
 	});
+
+	$('input.date-dd-mm-yyyy-MM-HH').inputmask({
+		alias: 'datetime',
+		placeholder: "дд.мм.гггг чч:мм",
+		mask: "1.2.y h:s",
+		leapday: "29.02.",
+		separator: "."
+	});
 }
 
 $(function () {

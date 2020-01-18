@@ -18,7 +18,7 @@ public class BasicSqlSearchHelper extends SqlBasedSearchHelper<SqlEntity> {
 	private String orderByCol;
 	private String orderByType;
 
-	private BasicSqlSearchHelper() throws PortletException {
+	public BasicSqlSearchHelper() throws PortletException {
 		super(SqlEntity.class);
 	}
 
