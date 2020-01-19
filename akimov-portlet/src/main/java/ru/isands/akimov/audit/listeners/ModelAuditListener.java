@@ -21,9 +21,10 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * Класс отслеживающий изменения в сущности для ведения истории изменений.
+ * Базовый класс отслеживающий изменения в сущности для ведения истории изменений.
+ * Классы наследники прописываются в файл service-ext.properties.
  *
- * @param <T>
+ * @param <T> тип сущности
  * @author akimov
  */
 public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseModelListener<T> {
@@ -52,10 +53,11 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 
 	private void process(T updatedModel, ActionType actionType) throws EntityHistoryException {
 		try {
+			int entityId = getEntityId(updatedModel);
+
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 			User user = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
 			long companyId = serviceContext.getCompanyId();
-			int entityId = getEntityId(updatedModel);
 			Date dateOfChange = new Date();
 
 			String description = actionType.toString();
@@ -71,8 +73,6 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 			for (String fieldName : oldValues.keySet()) {
 				Object oldValue = oldValues.get(fieldName);
 				Object newValue = newValues.get(fieldName);
-
-				// TODO handle null-values
 				editingHistory.addFieldChange(fieldName, oldValue, newValue);
 			}
 
@@ -87,7 +87,8 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 
 	/**
 	 * удаление сущности, сопровождается удалением закрепленных за ней записей истории из AuditEntry и
-	 * EntityFieldChange, а также созданием записи в журнале об удалении (FIXME).
+	 * EntityFieldChange, а также созданием записи в журнале об удалении.
+	 * TODO что делать с id?
 	 */
 	@Override
 	public void onAfterRemove(T model) throws EntityHistoryException {

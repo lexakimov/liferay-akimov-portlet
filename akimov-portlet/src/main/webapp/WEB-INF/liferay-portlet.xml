@@ -12,6 +12,7 @@
 		<footer-portlet-javascript>/js/jquery.inputmask.bundle.min.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
 
@@ -24,6 +25,7 @@
 		<footer-portlet-javascript>/js/jquery.inputmask.bundle.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
 
@@ -36,6 +38,20 @@
 		<footer-portlet-javascript>/js/jquery.inputmask.bundle.min.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
+	</portlet>
+
+	<portlet>
+		<portlet-name>permissionsTest</portlet-name>
+		<icon>/icon.png</icon>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+
+		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
+		<footer-portlet-javascript>/js/jquery.inputmask.bundle.min.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
 
@@ -55,4 +71,5 @@
 		<role-name>user</role-name>
 		<role-link>User</role-link>
 	</role-mapper>
+
 </liferay-portlet-app>

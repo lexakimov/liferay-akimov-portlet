@@ -1,4 +1,5 @@
 <%@ page import="ru.isands.akimov.search_helpers.impl.FooHistorySearchHelper" %>
+<%@ page import="ru.isands.akimov.audit.attribute_adapters.FooAttributeAdapter" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -52,13 +53,15 @@
 							</td>
 						</tr>
 
+						<c:set var="adapter" value="<%= new FooAttributeAdapter() %>"/>
+
 						<c:forEach var="change" items="${historyEntry.changes}">
 							<tr>
 								<td class="table-cell">
 									<liferay-ui:message key="${historyEntry.entityType}.field.${change.key}"/>
 								</td>
-								<td class="table-cell">${change.value.oldValue}</td>
-								<td class="table-cell">${change.value.newValue}</td>
+								<td class="table-cell">${adapter.adapt(change.key, change.value.oldValue)}</td>
+								<td class="table-cell">${adapter.adapt(change.key, change.value.newValue)}</td>
 							</tr>
 						</c:forEach>
 					</c:forEach>

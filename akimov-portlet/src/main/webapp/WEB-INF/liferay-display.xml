@@ -6,5 +6,6 @@
 		<portlet id="asyncActions"/>
 		<portlet id="asyncSearchContainers"/>
 		<portlet id="auditDemo"/>
+		<portlet id="permissionsTest"/>
 	</category>
 </display>

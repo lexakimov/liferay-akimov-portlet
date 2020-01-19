@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
+import static ru.isands.akimov.audit.enums.ActionType.USER_LOGIN;
+import static ru.isands.akimov.audit.enums.EntityType.USER;
+
 /**
  * Обработчик события при входе пользователя в систему. Прописан в resources/portal.properties.
  *
@@ -33,7 +36,7 @@ public class UserPostLoginAction extends Action {
 		long companyId = PortalUtil.getCompanyId(request);
 		User user = PortalUtil.getUser(request);
 		AuditEntryWrapper auditEntry =
-				new AuditEntryWrapper((int) user.getUserId(), EntityType.USER, ActionType.USER_LOGIN.toString(),companyId, user, new Date());
+				new AuditEntryWrapper((int) user.getUserId(), USER, USER_LOGIN.toString(), companyId, user, new Date());
 		auditEntry.persist();
 	}
 

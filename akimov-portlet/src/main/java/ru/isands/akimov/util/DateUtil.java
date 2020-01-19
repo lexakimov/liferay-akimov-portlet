@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import static com.liferay.portal.kernel.util.DateUtil.ISO_8601_PATTERN;
+
 /**
  * @author akimov
  * created at 18.01.20 19:45
@@ -26,6 +28,8 @@ public final class DateUtil {
 	public static final DateFormat DD_MM_YYYY__HH_MM_SS = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
 	public static final DateFormat YYYY_MM_DD__HH_MM_SS = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+
+	public static final DateFormat ISO_8601 = new SimpleDateFormat(ISO_8601_PATTERN);
 
 	/**
 	 * <fmt:formatDate timeZone="${timeZone}" value='<%= date %>' pattern="dd.MM.yyyy HH:mm:ss"/>
@@ -67,7 +71,7 @@ public final class DateUtil {
 		try {
 			return format.parse(dateString);
 		} catch (ParseException e) {
-			log.error("Date parsing error");
+			log.error("Date parsing error: " + e.getMessage());
 			throw e;
 		}
 	}

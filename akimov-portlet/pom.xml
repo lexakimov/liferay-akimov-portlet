@@ -128,7 +128,7 @@
 		</dependency>
 
 		<!-- - - - - - - - - - - - - - - - - - - - -  Unit testing - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<!-- https://mvnrepository.com/artifact/com.liferay.portal/com.liferay.portal.test -->
+		<!--&lt;!&ndash; https://mvnrepository.com/artifact/com.liferay.portal/com.liferay.portal.test &ndash;&gt;
 		<dependency>
 			<groupId>com.liferay.portal</groupId>
 			<artifactId>com.liferay.portal.test</artifactId>
@@ -136,13 +136,13 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.liferay.portal/com.liferay.portal.test.integration -->
+		&lt;!&ndash; https://mvnrepository.com/artifact/com.liferay.portal/com.liferay.portal.test.integration &ndash;&gt;
 		<dependency>
 			<groupId>com.liferay.portal</groupId>
 			<artifactId>com.liferay.portal.test.integration</artifactId>
 			<version>6.0.23</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency>-->
 
 
 		<dependency>

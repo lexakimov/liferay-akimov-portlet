@@ -47,6 +47,7 @@
 		<portlet-info>
 			<title>asyncSearchContainers</title>
 		</portlet-info>
+
 		<security-role-ref>
 			<role-name>administrator</role-name>
 		</security-role-ref>
@@ -77,6 +78,38 @@
 		<portlet-info>
 			<title>auditDemo</title>
 		</portlet-info>
+
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+
+	<portlet>
+		<portlet-name>permissionsTest</portlet-name>
+		<display-name>permissionsTest</display-name>
+		<portlet-class>ru.isands.akimov.portlet.PermissionsTestPortlet</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/permissions/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<resource-bundle>messages</resource-bundle>
+		<portlet-info>
+			<title>permissionsTest</title>
+		</portlet-info>
+
 		<security-role-ref>
 			<role-name>administrator</role-name>
 		</security-role-ref>

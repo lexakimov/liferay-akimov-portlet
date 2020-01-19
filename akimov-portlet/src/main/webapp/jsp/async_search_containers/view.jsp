@@ -1,7 +1,10 @@
+<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="ru.isands.akimov.enums.Gender" %>
-<%@ page import="ru.isands.akimov.search_helpers.impl.AdaptedPersonSearchHelper" %>
 <%@ page import="static ru.isands.akimov.constants.Param.ASYNC_ACTION_METHOD_PARAM" %>
 <%@ page import="static ru.isands.akimov.constants.Param.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="ru.isands.akimov.search_helpers.adapters.SqlEntity" %>
+<%@ page import="ru.isands.akimov.search_helpers.containers.BasicSqlSearchContainer" %>
+<%@ page import="ru.isands.akimov.search_helpers.impl.AdaptedPersonSearchHelper" %>
 <%@ page import="ru.isands.akimov.search_helpers.impl.BasicSqlSearchHelper" %>
 <%@ page import="ru.isands.akimov.search_helpers.impl.PersonSearchHelper" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -87,3 +90,26 @@
 	<liferay-ui:search-iterator paginate="false"/>
 	<liferay-ui:search-paginator searchContainer="${searchContainer}" type="article"/>
 </liferay-ui:search-container>
+
+
+
+<%--
+
+<%
+	SearchContainer<SqlEntity> searchContainer222 = new BasicSqlSearchContainer(new BasicSqlSearchHelper());
+%>
+
+<liferay-ui:search-container searchContainer="<%= searchContainer222 %>">
+	<liferay-ui:search-container-row className="ru.isands.akimov.search_helpers.adapters.SqlEntity">
+		<liferay-ui:search-container-column-text name="Имя" property="firstName"
+												 orderable="true" orderableProperty="firstName"/>
+		<liferay-ui:search-container-column-text name="Фамилия" property="lastName"
+												 orderable="true" orderableProperty="lastName"/>
+		<liferay-ui:search-container-column-text name="Дата рождения"
+												 orderable="true" orderableProperty="birthDate">
+			<fmt:formatDate value="${model.birthDate}" pattern="dd.MM.yyyy"/>
+		</liferay-ui:search-container-column-text>
+	</liferay-ui:search-container-row>
+	<liferay-ui:search-iterator paginate="false"/>
+	<liferay-ui:search-paginator searchContainer="${searchContainer}" type="article"/>
+</liferay-ui:search-container>--%>

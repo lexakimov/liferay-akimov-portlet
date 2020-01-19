@@ -5,12 +5,13 @@ import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 import ru.isands.akimov.audit.AuditEntryWrapper;
-import ru.isands.akimov.audit.enums.ActionType;
-import ru.isands.akimov.audit.enums.EntityType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+
+import static ru.isands.akimov.audit.enums.ActionType.USER_LOGOUT;
+import static ru.isands.akimov.audit.enums.EntityType.USER;
 
 /**
  * Обработчик события при выходе пользователя из ситемы. Прописан в resources/portal.properties.
@@ -33,7 +34,7 @@ public class UserPostLogoutAction extends Action {
 		long companyId = PortalUtil.getCompanyId(request);
 		User user = PortalUtil.getUser(request);
 		AuditEntryWrapper auditEntry =
-				new AuditEntryWrapper((int) user.getUserId(), EntityType.USER, ActionType.USER_LOGOUT.toString(), companyId, user, new Date());
+				new AuditEntryWrapper((int) user.getUserId(), USER, USER_LOGOUT.toString(), companyId, user, new Date());
 		auditEntry.persist();
 	}
 

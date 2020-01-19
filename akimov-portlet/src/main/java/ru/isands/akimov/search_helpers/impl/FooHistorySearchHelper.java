@@ -67,9 +67,8 @@ public class FooHistorySearchHelper extends SqlBasedSearchHelper<EntityHistoryEn
 				String[][] changesArray = (String[][]) changes.getArray();
 
 
-				EntityHistoryEntryWithChanges entry =
-						new EntityHistoryEntryWithChanges(EntityType.FOO, user, description, dateOfChange, changesArray);
-				result.add(entry);
+
+				result.add(new EntityHistoryEntryWithChanges(EntityType.FOO, user, description, dateOfChange, changesArray));
 			}
 
 			return result;

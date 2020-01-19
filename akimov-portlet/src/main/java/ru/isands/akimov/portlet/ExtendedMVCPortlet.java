@@ -76,6 +76,28 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 	}
 	*/
 
+	/*
+	// завершить асинхнронный action
+	void completeAsyncAction(ActionRequest request, ActionResponse response) {
+		LiferayPortletURL portletURL = createPortletURL(request);
+		Map<String, String[]> parameterMap = new HashMap<>(request.getParameterMap());
+		String mvcPath = getPath(request);
+		if (mvcPath != null) {
+			parameterMap.remove("jspPage");
+			parameterMap.put("mvcPath", new String[]{mvcPath});
+		}
+		parameterMap.remove("javax.portlet.action");
+		portletURL.setParameters(parameterMap);
+
+		try {
+			portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+			response.sendRedirect(portletURL.toString());
+		} catch (WindowStateException | IOException e) {
+			throw new RuntimeException(e);
+		}
+	}*/
+
+
 	@Override
 	public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
 		String resourceId = request.getResourceID();
@@ -206,26 +228,5 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 		System.out.println(joiner2);
 		System.out.println("--------------------------");
 	}
-
-
-/*	// завершить асинхнронный action
-	void completeAsyncAction(ActionRequest request, ActionResponse response) {
-		LiferayPortletURL portletURL = createPortletURL(request);
-		Map<String, String[]> parameterMap = new HashMap<>(request.getParameterMap());
-		String mvcPath = getPath(request);
-		if (mvcPath != null) {
-			parameterMap.remove("jspPage");
-			parameterMap.put("mvcPath", new String[]{mvcPath});
-		}
-		parameterMap.remove("javax.portlet.action");
-		portletURL.setParameters(parameterMap);
-
-		try {
-			portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-			response.sendRedirect(portletURL.toString());
-		} catch (WindowStateException | IOException e) {
-			throw new RuntimeException(e);
-		}
-	}*/
 
 }
