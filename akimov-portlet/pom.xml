@@ -18,14 +18,14 @@
 				<groupId>com.liferay.maven.plugins</groupId>
 				<artifactId>liferay-maven-plugin</artifactId>
 				<version>${liferay.maven.plugin.version}</version>
-			<!--	<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>build-css</goal>
-						</goals>
-					</execution>
-				</executions>-->
+				<!--	<executions>
+						<execution>
+							<phase>generate-sources</phase>
+							<goals>
+								<goal>build-css</goal>
+							</goals>
+						</execution>
+					</executions>-->
 				<configuration>
 					<apiBaseDir>${basedir}/../akimov-portlet-service</apiBaseDir>
 				</configuration>
@@ -46,19 +46,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.liferay.portal</groupId>
-			<artifactId>portal-impl</artifactId>
-			<version>${liferay.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.liferay.portal</groupId>
-			<artifactId>portal-web</artifactId>
-			<version>${liferay.version}</version>
-			<type>war</type>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.liferay.portal</groupId>
 			<artifactId>util-bridges</artifactId>
 			<version>${liferay.version}</version>
 			<scope>provided</scope>
@@ -75,6 +62,39 @@
 			<version>${liferay.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>portal-impl</artifactId>
+			<version>${liferay.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>portal-web</artifactId>
+			<version>${liferay.version}</version>
+			<type>war</type>
+			<scope>provided</scope>
+		</dependency>
+		<!--
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>portal-client</artifactId>
+			<version>${liferay.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>portal-pacl</artifactId>
+			<version>${liferay.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>util-slf4j</artifactId>
+			<version>${liferay.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		-->
 		<dependency>
 			<groupId>javax.portlet</groupId>
 			<artifactId>portlet-api</artifactId>
@@ -108,6 +128,22 @@
 		</dependency>
 
 		<!-- - - - - - - - - - - - - - - - - - - - -  Unit testing - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- https://mvnrepository.com/artifact/com.liferay.portal/com.liferay.portal.test -->
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>com.liferay.portal.test</artifactId>
+			<version>6.2.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.liferay.portal/com.liferay.portal.test.integration -->
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>com.liferay.portal.test.integration</artifactId>
+			<version>6.0.23</version>
+			<scope>test</scope>
+		</dependency>
+
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -145,8 +181,6 @@
 			<version>1.7.4</version>
 			<scope>test</scope>
 		</dependency>
-
-
 
 	</dependencies>
 </project>

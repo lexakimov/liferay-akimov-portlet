@@ -41,10 +41,10 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 	@Override
 	public void init(PortletConfig config) throws PortletException {
 		super.init(config);
-		initAsyncActionAnnotatedMethods();
+		cacheAsyncActionAnnotatedMethods();
 	}
 
-	private void initAsyncActionAnnotatedMethods() {
+	private void cacheAsyncActionAnnotatedMethods() {
 		Class<?> klass = getClass();
 		while (klass != MVCPortlet.class) {
 			final List<Method> allMethods = new ArrayList<>(Arrays.asList(klass.getDeclaredMethods()));
@@ -57,6 +57,24 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 			klass = klass.getSuperclass();
 		}
 	}
+
+	/*
+	// Try to make async action method
+	// <portlet:actionURL var="actURL" name="A_actionMethodName" >
+	//		<portlet:param name="param1" value="value1"/>
+	// </portlet:actionURL>
+
+	@Override
+	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		String actionName = ParamUtil.getString(actionRequest, ActionRequest.ACTION_NAME);
+		if (actionName.startsWith("A_")) {
+			log.info("success!");
+			_debugPrintParams(actionRequest);
+			return;
+		}
+		super.processAction(actionRequest, actionResponse);
+	}
+	*/
 
 	@Override
 	public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
@@ -98,7 +116,7 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 
 			String methodClass = method.getDeclaringClass().getSimpleName();
 
-			log.debug(String.format("Invocation of async action method '%s.%s'", methodClass, actionMethod));
+			log.debug(String.format("Invocation of async action method '%s.%s()'", methodClass, actionMethod));
 
 			method.invoke(this, request, response);
 
@@ -169,10 +187,10 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 		if (!log.isDebugEnabled()) {
 			return;
 		}
-		Enumeration params = request.getParameterNames();
+		Enumeration<String> params = request.getParameterNames();
 		Map<String, Object> paramMap = new TreeMap<>();
 		while (params.hasMoreElements()) {
-			String key = (String) params.nextElement();
+			String key = params.nextElement();
 			paramMap.put(key, request.getParameter(key));
 		}
 		printDebugMessage(paramMap, "params");
