@@ -5,14 +5,12 @@ import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 import ru.isands.akimov.audit.AuditEntryWrapper;
-import ru.isands.akimov.audit.enums.ActionType;
-import ru.isands.akimov.audit.enums.EntityType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
-import static ru.isands.akimov.audit.enums.ActionType.USER_LOGIN;
+import static ru.isands.akimov.audit.enums.AuditType.USER_LOGIN;
 import static ru.isands.akimov.audit.enums.EntityType.USER;
 
 /**

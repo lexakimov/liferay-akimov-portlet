@@ -1,13 +1,12 @@
 package ru.isands.akimov.audit.attribute_adapters;
 
-import com.liferay.portal.kernel.util.StringPool;
-
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 
 /**
  * Адаптер для вывода значений атрибутов сущности из базы на страницу.
+ * Данная дефолтная реализация просто выводит значени атрибутов как они хранятся в базе.
  *
  * @author akimov
  * created at 19.01.20 13:53
@@ -21,6 +20,6 @@ public class DefaultAttributeAdapter {
 	public String adapt(String fieldName, String rawValue) {
 		Function<String, String> adapter = getAttributeAdapters().get(fieldName);
 
-		return adapter != null ? adapter.apply(rawValue) : StringPool.BLANK;
+		return adapter != null ? adapter.apply(rawValue) : rawValue;
 	}
 }

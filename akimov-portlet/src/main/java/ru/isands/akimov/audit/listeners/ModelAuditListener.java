@@ -9,8 +9,8 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import ru.isands.akimov.audit.AuditEntryWrapper;
-import ru.isands.akimov.audit.diff_finders.ModelDifferenceFinder;
-import ru.isands.akimov.audit.enums.ActionType;
+import ru.isands.akimov.audit.comparators.ModelComparator;
+import ru.isands.akimov.audit.enums.AuditType;
 import ru.isands.akimov.audit.enums.EntityType;
 import ru.isands.akimov.audit.exceptions.EntityHistoryException;
 import ru.isands.akimov.audit.exceptions.NoSuchModelAttributeException;
@@ -29,15 +29,15 @@ import java.util.Map;
  */
 public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseModelListener<T> {
 
-	abstract ModelDifferenceFinder<T> getChangeDetector(T oldModel, T updatedModel) throws NoSuchModelAttributeException;
+	abstract ModelComparator<T> getChangeDetector(T oldModel, T updatedModel) throws NoSuchModelAttributeException;
 
 	abstract EntityType getEntityType();
 
-	abstract ActionType getCreateType();
+	abstract AuditType getCreateType();
 
-	abstract ActionType getEditType();
+	abstract AuditType getEditType();
 
-	abstract ActionType getDeleteType();
+	abstract AuditType getDeleteType();
 
 	abstract T fetchOldModel(int entityId) throws SystemException;
 
@@ -51,7 +51,7 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 		process(model, getEditType());
 	}
 
-	private void process(T updatedModel, ActionType actionType) throws EntityHistoryException {
+	private void process(T updatedModel, AuditType auditType) throws EntityHistoryException {
 		try {
 			int entityId = getEntityId(updatedModel);
 
@@ -60,15 +60,15 @@ public abstract class ModelAuditListener<T extends BaseModel<T>> extends BaseMod
 			long companyId = serviceContext.getCompanyId();
 			Date dateOfChange = new Date();
 
-			String description = actionType.toString();
+			String description = auditType.toString();
 			AuditEntryWrapper editingHistory =
 					new AuditEntryWrapper(entityId, getEntityType(), description, companyId, user, dateOfChange);
 
 			T oldModel = fetchOldModel(entityId);
-			ModelDifferenceFinder<T> modelDifferenceFinder = getChangeDetector(oldModel, updatedModel);
+			ModelComparator<T> modelComparator = getChangeDetector(oldModel, updatedModel);
 
-			Map<String, Object> newValues = modelDifferenceFinder.getNewValues();
-			Map<String, Object> oldValues = modelDifferenceFinder.getOldValues();
+			Map<String, Object> newValues = modelComparator.getNewValues();
+			Map<String, Object> oldValues = modelComparator.getOldValues();
 
 			for (String fieldName : oldValues.keySet()) {
 				Object oldValue = oldValues.get(fieldName);

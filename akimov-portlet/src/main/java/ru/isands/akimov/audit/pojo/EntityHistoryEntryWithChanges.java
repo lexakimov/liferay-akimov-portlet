@@ -1,7 +1,7 @@
 package ru.isands.akimov.audit.pojo;
 
 import com.liferay.portal.model.User;
-import ru.isands.akimov.audit.enums.ActionType;
+import ru.isands.akimov.audit.enums.AuditType;
 import ru.isands.akimov.audit.enums.EntityType;
 
 import java.util.Date;
@@ -52,8 +52,8 @@ public class EntityHistoryEntryWithChanges {
 
 	public String getDescription() {
 		try {
-			ActionType actionType = ActionType.valueOf(description);
-			return actionType.getDescription(user);
+			AuditType auditType = AuditType.valueOf(description);
+			return auditType.getDescription(user);
 		} catch (IllegalArgumentException e) {
 			return description;
 		}

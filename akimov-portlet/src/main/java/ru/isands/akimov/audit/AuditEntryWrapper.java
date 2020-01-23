@@ -9,13 +9,13 @@ import ru.isands.akimov.model.AuditEntry;
 import ru.isands.akimov.model.EntityFieldChange;
 import ru.isands.akimov.service.AuditEntryLocalServiceUtil;
 import ru.isands.akimov.service.EntityFieldChangeLocalServiceUtil;
-import ru.isands.akimov.util.DateUtil;
+import ru.isands.akimov.utils.DateUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static ru.isands.akimov.util.DateUtil.ISO_8601;
+import static ru.isands.akimov.utils.DateUtil.ISO_8601;
 
 /**
  * Класс-обёртка над записью аудита.

@@ -2,8 +2,7 @@ package ru.isands.akimov.search_helpers;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.model.BaseModel;
-import ru.isands.akimov.search_helpers.adapters.EntryAdapter;
-import ru.isands.akimov.util.ModelServiceUtil;
+import ru.isands.akimov.utils.ModelServiceUtil;
 
 import javax.portlet.PortletException;
 import java.util.List;

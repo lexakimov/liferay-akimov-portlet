@@ -1,16 +1,14 @@
-package ru.isands.akimov.util;
+package ru.isands.akimov.utils;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.text.ParseException;
 import java.util.Date;
-import java.util.SimpleTimeZone;
-import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static ru.isands.akimov.util.DateUtil.DD_MM_YYYY__HH_MM_SS;
+import static ru.isands.akimov.utils.DateUtil.DD_MM_YYYY__HH_MM_SS;
 
 /**
  * @author akimov

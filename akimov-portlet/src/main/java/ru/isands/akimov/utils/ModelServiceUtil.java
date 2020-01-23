@@ -1,4 +1,4 @@
-package ru.isands.akimov.util;
+package ru.isands.akimov.utils;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.model.BaseModel;

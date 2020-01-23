@@ -1,4 +1,4 @@
-package ru.isands.akimov.audit.diff_finders;
+package ru.isands.akimov.audit.comparators;
 
 import ru.isands.akimov.audit.exceptions.NoSuchModelAttributeException;
 import ru.isands.akimov.model.Foo;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FooDifferenceFinder extends ModelDifferenceFinder<Foo> {
+public class FooComparator extends ModelComparator<Foo> {
 
 	private static final List<String> WATCH_ONLY_FIELDS;
 
@@ -28,7 +28,7 @@ public class FooDifferenceFinder extends ModelDifferenceFinder<Foo> {
 		WATCH_ONLY_FIELDS = Collections.unmodifiableList(columns);
 	}
 
-	public FooDifferenceFinder(Foo old, Foo new_) throws NoSuchModelAttributeException {
+	public FooComparator(Foo old, Foo new_) throws NoSuchModelAttributeException {
 		super(old, new_);
 	}
 

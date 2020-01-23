@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
-import static ru.isands.akimov.audit.enums.ActionType.USER_LOGOUT;
+import static ru.isands.akimov.audit.enums.AuditType.USER_LOGOUT;
 import static ru.isands.akimov.audit.enums.EntityType.USER;
 
 /**

@@ -1,4 +1,4 @@
-package ru.isands.akimov.util;
+package ru.isands.akimov.utils;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
 import ru.isands.akimov.portlet.ExtendedMVCPortlet;

@@ -10,7 +10,7 @@ import ru.isands.akimov.portlet.ExtendedMVCPortlet;
  * created at 14.12.19 9:08
  * @see ExtendedMVCPortlet
  */
-public interface Param {
+public interface URLParams {
 
 	String ASYNC_ACTION_RESOURCE_ID = "async_action";
 

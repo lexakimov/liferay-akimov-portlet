@@ -14,7 +14,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import ru.isands.akimov.annotations.AsyncActionMethod;
-import ru.isands.akimov.util.MessagesRU;
+import ru.isands.akimov.utils.MessagesRU;
 
 import javax.portlet.*;
 import java.io.IOException;
@@ -22,8 +22,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static ru.isands.akimov.constants.Param.ASYNC_ACTION_METHOD_PARAM;
-import static ru.isands.akimov.constants.Param.ASYNC_ACTION_RESOURCE_ID;
+import static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM;
+import static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID;
 
 /**
  * MVC портлет, расширенный дополнительными возможностями:

@@ -12,7 +12,7 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletURL;
 import java.io.IOException;
 
-import static ru.isands.akimov.util.DateUtil.DD_MM_YYYY__HH_MM;
+import static ru.isands.akimov.utils.DateUtil.DD_MM_YYYY__HH_MM;
 
 public class AuditDemoPortlet extends ExtendedMVCPortlet {
 

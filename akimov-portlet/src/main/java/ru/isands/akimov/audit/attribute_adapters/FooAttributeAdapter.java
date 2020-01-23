@@ -3,7 +3,7 @@ package ru.isands.akimov.audit.attribute_adapters;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import ru.isands.akimov.util.DateUtil;
+import ru.isands.akimov.utils.DateUtil;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import static ru.isands.akimov.util.DateUtil.DD_MM_YYYY__HH_MM;
-import static ru.isands.akimov.util.DateUtil.ISO_8601;
+import static ru.isands.akimov.utils.DateUtil.DD_MM_YYYY__HH_MM;
+import static ru.isands.akimov.utils.DateUtil.ISO_8601;
 
 /**
  * @author akimov
@@ -28,8 +28,22 @@ public class FooAttributeAdapter extends DefaultAttributeAdapter {
 		Map<String, Function<String, String>> adapters = new HashMap<>();
 
 		adapters.put("dateField", getDateAdapter());
+		adapters.put("booleanField", getBooleanAdapter());
 
 		return adapters;
+	}
+
+	private Function<String, String> getBooleanAdapter() {
+		return rawValue -> {
+
+			if (rawValue == null || rawValue.isEmpty()) {
+				return StringPool.BLANK;
+			}
+
+			boolean parsed = Boolean.parseBoolean(rawValue);
+
+			return parsed ? "есть в наличии" : "отсутствует";
+		};
 	}
 
 	private Function<String, String> getDateAdapter() {

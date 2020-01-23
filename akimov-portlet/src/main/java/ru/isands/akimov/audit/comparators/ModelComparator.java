@@ -1,4 +1,4 @@
-package ru.isands.akimov.audit.diff_finders;
+package ru.isands.akimov.audit.comparators;
 
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.ModelHintsUtil;
@@ -10,13 +10,13 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Базовый класс объекта для поиска изменившихся атрибутов двух объектов-сущностей одного класса.
+ * Класс объекта для поиска изменившихся атрибутов двух объектов-сущностей одного класса.
  *
  * @param <T> класс модели.
  * @author akimov
  * created at 10.01.20 11:11
  */
-public abstract class ModelDifferenceFinder<T extends BaseModel<T>> {
+public abstract class ModelComparator<T extends BaseModel<T>> {
 
 	private Map<String, Object> oldValues = new HashMap<>();
 	private Map<String, Object> newValues = new HashMap<>();
@@ -28,7 +28,7 @@ public abstract class ModelDifferenceFinder<T extends BaseModel<T>> {
 
 	//String fieldType = ModelHintsUtil.getType(old.getModelClassName(), attributeName);
 
-	ModelDifferenceFinder(T old, T _new) throws NoSuchModelAttributeException {
+	ModelComparator(T old, T _new) throws NoSuchModelAttributeException {
 
 		checkFieldsExists(old != null ? old : _new);
 
@@ -60,14 +60,15 @@ public abstract class ModelDifferenceFinder<T extends BaseModel<T>> {
 	/**
 	 * Проверить, что все атрибуты из {@link #getWatchOnlyFields()} действительно присутствуют в модели.
 	 *
-	 * @param model
-	 * @throws NoSuchModelAttributeException
+	 * @param model модель у которой проверяем атрибуты.
+	 * @throws NoSuchModelAttributeException если в списке указан несуществующий атрибут.
 	 */
 	private void checkFieldsExists(T model) throws NoSuchModelAttributeException {
 		for (String field : getWatchOnlyFields()) {
 			boolean fieldExists = ModelHintsUtil.hasField(model.getModelClassName(), field);
 			if (!fieldExists) {
-				throw new NoSuchModelAttributeException("Field '" + field + "' not exists in model " + model.getModelClassName());
+				String msg = "Field '" + field + "' not exists in model " + model.getModelClassName();
+				throw new NoSuchModelAttributeException(msg);
 			}
 		}
 	}

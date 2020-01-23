@@ -1,9 +1,9 @@
 package ru.isands.akimov.audit.listeners;
 
 import com.liferay.portal.kernel.exception.SystemException;
-import ru.isands.akimov.audit.diff_finders.FooDifferenceFinder;
-import ru.isands.akimov.audit.diff_finders.ModelDifferenceFinder;
-import ru.isands.akimov.audit.enums.ActionType;
+import ru.isands.akimov.audit.comparators.FooComparator;
+import ru.isands.akimov.audit.comparators.ModelComparator;
+import ru.isands.akimov.audit.enums.AuditType;
 import ru.isands.akimov.audit.enums.EntityType;
 import ru.isands.akimov.audit.exceptions.NoSuchModelAttributeException;
 import ru.isands.akimov.model.Foo;
@@ -22,23 +22,23 @@ public class FooAuditListener extends ModelAuditListener<Foo> {
 	}
 
 	@Override
-	ModelDifferenceFinder<Foo> getChangeDetector(Foo oldModel, Foo updatedModel) throws NoSuchModelAttributeException {
-		return new FooDifferenceFinder(oldModel, updatedModel);
+	ModelComparator<Foo> getChangeDetector(Foo oldModel, Foo updatedModel) throws NoSuchModelAttributeException {
+		return new FooComparator(oldModel, updatedModel);
 	}
 
 	@Override
-	ActionType getCreateType() {
-		return ActionType.FOO_CREATE;
+	AuditType getCreateType() {
+		return AuditType.FOO_CREATE;
 	}
 
 	@Override
-	ActionType getEditType() {
-		return ActionType.FOO_EDIT;
+	AuditType getEditType() {
+		return AuditType.FOO_EDIT;
 	}
 
 	@Override
-	ActionType getDeleteType() {
-		return ActionType.FOO_DELETE;
+	AuditType getDeleteType() {
+		return AuditType.FOO_DELETE;
 	}
 
 }

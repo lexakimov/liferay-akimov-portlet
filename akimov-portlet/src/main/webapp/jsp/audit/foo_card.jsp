@@ -1,8 +1,8 @@
 <%@ page import="ru.isands.akimov.model.Foo" %>
-<%@ page import="static ru.isands.akimov.constants.Param.ASYNC_ACTION_METHOD_PARAM" %>
-<%@ page import="static ru.isands.akimov.constants.Param.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
+<%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
 <%@ page import="ru.isands.akimov.service.FooLocalServiceUtil" %>
-<%@ page import="ru.isands.akimov.util.DateUtil" %>
+<%@ page import="ru.isands.akimov.utils.DateUtil" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 

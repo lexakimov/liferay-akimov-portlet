@@ -1,5 +1,5 @@
-<%@ page import="static ru.isands.akimov.constants.Param.ASYNC_ACTION_METHOD_PARAM" %>
-<%@ page import="static ru.isands.akimov.constants.Param.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
+<%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 <%@ page import="ru.isands.akimov.model.Foo" %>
 <%@ page import="ru.isands.akimov.service.FooLocalServiceUtil" %>

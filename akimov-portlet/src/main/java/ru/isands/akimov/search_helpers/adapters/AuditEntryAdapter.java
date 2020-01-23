@@ -3,7 +3,7 @@ package ru.isands.akimov.search_helpers.adapters;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import ru.isands.akimov.audit.enums.ActionType;
+import ru.isands.akimov.audit.enums.AuditType;
 import ru.isands.akimov.model.AuditEntry;
 
 import javax.portlet.PortletException;
@@ -33,8 +33,8 @@ public class AuditEntryAdapter extends EntryAdapter<AuditEntry> {
 
 	public String getDescription() {
 		try {
-			ActionType actionType = ActionType.valueOf(model.getDescription());
-			return actionType.getDescription(user);
+			AuditType auditType = AuditType.valueOf(model.getDescription());
+			return auditType.getDescription(user);
 		} catch (IllegalArgumentException e) {
 			return model.getDescription();
 		}
