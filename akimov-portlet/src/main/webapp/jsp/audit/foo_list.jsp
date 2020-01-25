@@ -23,6 +23,7 @@
 		<liferay-ui:search-container-column-text name="foo.field.doubleField" property="doubleField"/>
 		<liferay-ui:search-container-column-text name="foo.field.floatField" property="floatField"/>
 		<liferay-ui:search-container-column-text name="foo.field.stringField" property="stringField"/>
+		<liferay-ui:search-container-column-text name="foo.field.status" property="status"/>
 		<liferay-ui:search-container-column-text name="foo.field.dateField">
 			<fmt:formatDate value="${model.dateField}" pattern="dd.MM.yyyy HH:mm"/>
 		</liferay-ui:search-container-column-text>

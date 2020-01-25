@@ -25,6 +25,7 @@ public class FooComparator extends ModelComparator<Foo> {
 		columns.add("stringField");
 		columns.add("dateField");
 		columns.add("blobField");
+		columns.add("status");
 
 		WATCH_ONLY_FIELDS = Collections.unmodifiableList(columns);
 	}

@@ -124,6 +124,7 @@ public class UserLocalServiceImpl extends UserLocalServiceWrapper {
 		log.trace("invoke");
 
 		long[] roleIdsBefore = fetchUser(userId).getRoleIds();
+		long[] orgIdsBefore = fetchUser(userId).getOrganizationIds();
 
 		User userAfter = super.updateUser(userId, oldPassword, newPassword1, newPassword2, passwordReset,
 				reminderQueryQuestion, reminderQueryAnswer, screenName, emailAddress, facebookId, openId, languageId,
@@ -133,14 +134,27 @@ public class UserLocalServiceImpl extends UserLocalServiceWrapper {
 				serviceContext);
 
 		long[] roleIdsAfter = userAfter.getRoleIds();
+		long[] orgIdsAfter = userAfter.getOrganizationIds();
 
 		log.debug("roles: " + Arrays.toString(roleIdsBefore));
 		log.debug("roles: " + Arrays.toString(roleIdsAfter));
+
+		log.debug("orgs: " + Arrays.toString(orgIdsBefore));
+		log.debug("orgs: " + Arrays.toString(orgIdsAfter));
 
 		long initiatorUserId = PrincipalThreadLocal.getUserId();
 		User initiator = UserLocalServiceUtil.fetchUser(initiatorUserId);
 		long companyId = serviceContext.getCompanyId();
 		Date dateOfChange = new Date();
+
+		processRoles((int) userId, roleIdsBefore, roleIdsAfter, initiator, companyId, dateOfChange);
+		processOrgs((int) userId, orgIdsBefore, orgIdsAfter, initiator, companyId, dateOfChange);
+
+		return userAfter;
+	}
+
+	private void processRoles(int userId, long[] roleIdsBefore, long[] roleIdsAfter, User initiator, long companyId,
+							  Date dateOfChange) throws SystemException {
 
 		Set<Long> rolesBefore = new HashSet<>(toLongList(roleIdsBefore));
 		Set<Long> rolesAfter = new HashSet<>(toLongList(roleIdsAfter));
@@ -152,17 +166,39 @@ public class UserLocalServiceImpl extends UserLocalServiceWrapper {
 		for (Long roleId : allRoles) {
 			if (!rolesBefore.contains(roleId) && rolesAfter.contains(roleId)) {
 				new AuditEntryWrapper(
-						(int) userId, EntityType.USER, AuditType.USER_ROLE_GRANT, companyId, initiator,
+						userId, EntityType.USER, AuditType.USER_ROLE_GRANT, companyId, initiator,
 						dateOfChange).persist();
 
 			} else if (rolesBefore.contains(roleId) && !rolesAfter.contains(roleId)) {
 				new AuditEntryWrapper(
-						(int) userId, EntityType.USER, AuditType.USER_ROLE_REMOVE, companyId, initiator,
+						userId, EntityType.USER, AuditType.USER_ROLE_REMOVE, companyId, initiator,
 						dateOfChange).persist();
 			}
 		}
+	}
 
-		return userAfter;
+	private void processOrgs(int userId, long[] roleIdsBefore, long[] roleIdsAfter, User initiator, long companyId,
+							 Date dateOfChange) throws SystemException {
+
+		Set<Long> rolesBefore = new HashSet<>(toLongList(roleIdsBefore));
+		Set<Long> rolesAfter = new HashSet<>(toLongList(roleIdsAfter));
+
+		Set<Long> allRoles = new HashSet<>();
+		allRoles.addAll(rolesBefore);
+		allRoles.addAll(rolesAfter);
+
+		for (Long roleId : allRoles) {
+			if (!rolesBefore.contains(roleId) && rolesAfter.contains(roleId)) {
+				new AuditEntryWrapper(
+						userId, EntityType.USER, AuditType.USER_ORG_JOINED, companyId, initiator,
+						dateOfChange).persist();
+
+			} else if (rolesBefore.contains(roleId) && !rolesAfter.contains(roleId)) {
+				new AuditEntryWrapper(
+						userId, EntityType.USER, AuditType.USER_ORG_LEFT, companyId, initiator,
+						dateOfChange).persist();
+			}
+		}
 	}
 
 	private List<Long> toLongList(long[] argument) {

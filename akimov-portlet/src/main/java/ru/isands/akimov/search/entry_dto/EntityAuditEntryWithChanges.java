@@ -1,7 +1,7 @@
 package ru.isands.akimov.search.entry_dto;
 
 import com.liferay.portal.model.User;
-import ru.isands.akimov.audit.description_adapters.DescriptionManager;
+import ru.isands.akimov.audit.description.DescriptionManager;
 import ru.isands.akimov.audit.enums.EntityType;
 import ru.isands.akimov.model.AuditEntry;
 

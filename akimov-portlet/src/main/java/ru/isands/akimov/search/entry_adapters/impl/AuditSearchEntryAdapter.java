@@ -5,7 +5,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import ru.isands.akimov.audit.description_adapters.DescriptionManager;
+import ru.isands.akimov.audit.description.DescriptionManager;
 import ru.isands.akimov.model.AuditEntry;
 import ru.isands.akimov.search.entry_adapters.SearchEntryAdapter;
 

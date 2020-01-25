@@ -42,6 +42,7 @@ public class AuditDemoPortlet extends ExtendedMVCPortlet {
 			foo = FooLocalServiceUtil.createFoo(fooId);
 		}
 
+		foo.setStatus(ParamUtil.getShort(request, "status"));
 		foo.setBooleanField(ParamUtil.getBoolean(request, "booleanField"));
 		foo.setShortField(ParamUtil.getShort(request, "shortField"));
 		foo.setIntField(ParamUtil.getInteger(request, "intField"));

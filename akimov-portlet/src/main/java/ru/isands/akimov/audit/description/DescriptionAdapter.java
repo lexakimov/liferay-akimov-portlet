@@ -1,4 +1,4 @@
-package ru.isands.akimov.audit.description_adapters;
+package ru.isands.akimov.audit.description;
 
 import ru.isands.akimov.model.AuditEntry;
 

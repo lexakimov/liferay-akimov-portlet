@@ -1,9 +1,8 @@
-package ru.isands.akimov.audit.description_adapters;
+package ru.isands.akimov.audit.description;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import ru.isands.akimov.audit.description_adapters.impl.UserLoginActionDescriptionAdapter;
-import ru.isands.akimov.audit.description_adapters.impl.UserLogoutActionDescriptionAdapter;
+import ru.isands.akimov.audit.description.impl.*;
 import ru.isands.akimov.audit.enums.AuditType;
 import ru.isands.akimov.model.AuditEntry;
 import ru.isands.akimov.utils.WebPageUtil;
@@ -23,8 +22,20 @@ public class DescriptionManager {
 
 	static {
 		ADAPTER_MAP = new HashMap<>();
+
 		ADAPTER_MAP.put(AuditType.USER_LOGIN, new UserLoginActionDescriptionAdapter());
 		ADAPTER_MAP.put(AuditType.USER_LOGOUT, new UserLogoutActionDescriptionAdapter());
+		ADAPTER_MAP.put(AuditType.USER_REGISTRATION, new UserRegistrationActionDescriptionAdapter());
+		ADAPTER_MAP.put(AuditType.USER_REMOVE, new UserRemoveActionDescriptionAdapter());
+		ADAPTER_MAP.put(AuditType.USER_ROLE_GRANT, new UserRoleGrantActionDescriptionAdapter());
+		ADAPTER_MAP.put(AuditType.USER_ROLE_REMOVE, new UserRoleRemoveActionDescriptionAdapter());
+		ADAPTER_MAP.put(AuditType.USER_ORG_JOINED, new UserOrgJoinedActionDescriptionAdapter());
+		ADAPTER_MAP.put(AuditType.USER_ORG_LEFT, new UserOrgLeftActionDescriptionAdapter());
+
+		ADAPTER_MAP.put(AuditType.FOO_CREATE, new FooCreateActionDescriptionAdapter());
+		ADAPTER_MAP.put(AuditType.FOO_EDIT, new FooEditActionDescriptionAdapter());
+		ADAPTER_MAP.put(AuditType.FOO_DELETE, new FooDeleteActionDescriptionAdapter());
+		ADAPTER_MAP.put(AuditType.FOO_STATUS_CHANGE, new FooStatusChangeActionDescriptionAdapter());
 	}
 
 	public static DescriptionAdapter get(AuditType auditType) {
@@ -40,31 +51,18 @@ public class DescriptionManager {
 		try {
 			AuditType auditType = AuditType.valueOf(auditEntry.getAuditType());
 
-			return get(auditType).adapt(auditEntry);
-		} catch (NullPointerException e) {
-			return WebPageUtil.setColor("[no adapter found] " + auditEntry.getAuditType(), "red");
+			DescriptionAdapter adapter = get(auditType);
+			if (adapter == null) {
+				return WebPageUtil.setColor("[no adapter found] " + auditEntry.getAuditType(), "red");
+			}
+			return adapter.adapt(auditEntry);
 		} catch (IllegalArgumentException e) {
 			log.error("No enum constant AuditType for string '" + auditEntry.getAuditType() + "'");
 			return WebPageUtil.setColor("[error] " + auditEntry.getAuditType(), "red");
 		}
 	}
+
 	/**
-	 *,
-	 *
-	 * 	USER_REGISTRATION("%s зарегистрировался в системе"),
-	 * 	USER_REMOVE("%s удалён из системы"),
-	 *
-	 * 	USER_ROLE_GRANT("%s выдал %s роль %s"),
-	 * 	USER_ROLE_REMOVE("%s забрал у %s роль %s"),
-	 *
-	 * 	USER_ORG_JOINED("Пользователь %s зачислен в организацию %s"),
-	 * 	USER_ORG_LEFT("Пользователь %s вышел из организации %s"),
-	 *
-	 * 	FOO_CREATE("%s создал Foo"),
-	 * 	FOO_EDIT("%s отредактировал Foo"),
-	 * 	FOO_DELETE("%s удалил Foo"),
-	 * 	FOO_STATUS("%s сменил статус Foo на %s");
-	 *
 	 * 	private final String description;
 	 *
 	 * 	AuditType(String description) {
