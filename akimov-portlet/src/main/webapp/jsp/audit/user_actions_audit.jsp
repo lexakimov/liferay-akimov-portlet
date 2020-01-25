@@ -1,5 +1,5 @@
-<%@ page import="ru.isands.akimov.search_helpers.impl.FooHistorySearchHelper" %>
-<%@ page import="ru.isands.akimov.search_helpers.impl.AuditSearchHelper" %>
+<%@ page import="ru.isands.akimov.search.helpers.impl.FooHistorySearchHelper" %>
+<%@ page import="ru.isands.akimov.search.helpers.impl.AuditSearchHelper" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 

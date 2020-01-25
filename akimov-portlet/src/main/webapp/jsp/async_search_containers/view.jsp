@@ -2,11 +2,11 @@
 <%@ page import="ru.isands.akimov.enums.Gender" %>
 <%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
 <%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
-<%@ page import="ru.isands.akimov.search_helpers.adapters.SqlEntity" %>
-<%@ page import="ru.isands.akimov.search_helpers.containers.BasicSqlSearchContainer" %>
-<%@ page import="ru.isands.akimov.search_helpers.impl.AdaptedPersonSearchHelper" %>
-<%@ page import="ru.isands.akimov.search_helpers.impl.BasicSqlSearchHelper" %>
-<%@ page import="ru.isands.akimov.search_helpers.impl.PersonSearchHelper" %>
+<%@ page import="ru.isands.akimov.search.entry_adapters.impl.SqlEntity" %>
+<%@ page import="ru.isands.akimov.search.containers.impl.BasicSqlSearchContainer" %>
+<%@ page import="ru.isands.akimov.search.helpers.impl.AdaptedPersonSearchHelper" %>
+<%@ page import="ru.isands.akimov.search.helpers.impl.BasicSqlSearchHelper" %>
+<%@ page import="ru.isands.akimov.search.helpers.impl.PersonSearchHelper" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -56,7 +56,7 @@
 	<%
 		new AdaptedPersonSearchHelper(searchContainer);
 	%>
-	<liferay-ui:search-container-row className="ru.isands.akimov.search_helpers.adapters.PersonEntryAdapter">
+	<liferay-ui:search-container-row className="ru.isands.akimov.search.entry_adapters.impl.PersonSearchEntryAdapter">
 		<liferay-ui:search-container-column-text name="ФИО" property="fio"/>
 		<liferay-ui:search-container-column-text name="gender" property="gender"/>
 		<liferay-ui:search-container-column-text name="Дата рождения" property="birthDate"/>
@@ -77,7 +77,7 @@
 	<%
 		new BasicSqlSearchHelper(searchContainer);
 	%>
-	<liferay-ui:search-container-row className="ru.isands.akimov.search_helpers.adapters.SqlEntity">
+	<liferay-ui:search-container-row className="ru.isands.akimov.search.entry_adapters.impl.SqlEntity">
 		<liferay-ui:search-container-column-text name="Имя" property="firstName"
 												 orderable="true" orderableProperty="firstName"/>
 		<liferay-ui:search-container-column-text name="Фамилия" property="lastName"
@@ -100,7 +100,7 @@
 %>
 
 <liferay-ui:search-container searchContainer="<%= searchContainer222 %>">
-	<liferay-ui:search-container-row className="ru.isands.akimov.search_helpers.adapters.SqlEntity">
+	<liferay-ui:search-container-row className="ru.isands.akimov.search.entry_adapters.impl.SqlEntity">
 		<liferay-ui:search-container-column-text name="Имя" property="firstName"
 												 orderable="true" orderableProperty="firstName"/>
 		<liferay-ui:search-container-column-text name="Фамилия" property="lastName"

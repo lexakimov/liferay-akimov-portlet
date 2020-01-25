@@ -27,10 +27,13 @@ import static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID;
 
 /**
  * MVC портлет, расширенный дополнительными возможностями:
- * выполнение асинхронных действий портлета.
  *
  * @author akimov
  * created at 14.12.19 9:09
+ * @see #processAsyncAction(ResourceRequest, ResourceResponse) выполнение асинхронных действий портлета.
+ * @see #createPortletURL(PortletRequest) создать новый урл.
+ * @see #_getRequestParamsMessage(PortletRequest) получить сообщение с параметрами запроса для вывода в консоль.
+ * @see #_getRequestAttrsMessage(PortletRequest) получить сообщение с аттрибутами запроса для вывода в консоль.
  */
 public abstract class ExtendedMVCPortlet extends MVCPortlet {
 
@@ -117,8 +120,8 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 	 * </portlet:resourceURL>
 	 * or like this:
 	 * <portlet:resourceURL var="urlName" id="<%=ASYNC_ACTION_RESOURCE_ID%>">
-	 * 	<portlet:param name="<%=ASYNC_ACTION_METHOD_PARAM%>" value="methodName"/>
-	 *  <portlet:param ... (other params)
+	 * <portlet:param name="<%=ASYNC_ACTION_METHOD_PARAM%>" value="methodName"/>
+	 * <portlet:param ... (other params)
 	 * </portlet:resourceURL>
 	 * <p>
 	 * portlet method 'public void methodName(PortletRequest request, PortletResponse response)' must be annotated with
@@ -173,60 +176,50 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 		writeJSON(request, response, json);
 	}
 
-	void hideDefaultErrorMessage(ActionRequest request) {
+	protected void hideDefaultErrorMessage(ActionRequest request) {
 		SessionMessages.add(request,
 				PortalUtil.getPortletId(request) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 	}
 
-	void hideDefaultSuccessMessage(ActionRequest request) {
+	protected void hideDefaultSuccessMessage(ActionRequest request) {
 		SessionMessages.add(request,
 				PortalUtil.getPortletId(request) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE);
 	}
 
-	LiferayPortletURL createPortletURL(PortletRequest request) {
+	protected LiferayPortletURL createPortletURL(PortletRequest request) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		String portletId = PortalUtil.getPortletId(request);
 		return PortletURLFactoryUtil.create(request, portletId, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 	}
 
 	@SuppressWarnings("unused")
-	void _debugPrintAttrs(PortletRequest request) {
-		if (!log.isDebugEnabled()) {
-			return;
-		}
-		Enumeration pageAttrs = request.getAttributeNames();
+	protected String _getRequestAttrsMessage(PortletRequest request) {
+		Enumeration<String> pageAttrs = request.getAttributeNames();
 		Map<String, Object> attributesMap = new TreeMap<>();
 		while (pageAttrs.hasMoreElements()) {
-			String key = (String) pageAttrs.nextElement();
+			String key = pageAttrs.nextElement();
 			attributesMap.put(key, request.getAttribute(key));
 		}
-		printDebugMessage(attributesMap, "attributes");
-
+		return makeDebugMessage(attributesMap, "attributes");
 	}
 
 	@SuppressWarnings("unused")
-	void _debugPrintParams(PortletRequest request) {
-		if (!log.isDebugEnabled()) {
-			return;
-		}
+	protected String _getRequestParamsMessage(PortletRequest request) {
 		Enumeration<String> params = request.getParameterNames();
 		Map<String, Object> paramMap = new TreeMap<>();
 		while (params.hasMoreElements()) {
 			String key = params.nextElement();
 			paramMap.put(key, request.getParameter(key));
 		}
-		printDebugMessage(paramMap, "params");
+		return makeDebugMessage(paramMap, "params");
 	}
 
-	private void printDebugMessage(Map<String, Object> paramMap, String prefix) {
-		StringJoiner joiner2 = new StringJoiner(", \n\t", prefix + ":\n{\n\t", "\n}");
+	private String makeDebugMessage(Map<String, Object> paramMap, String prefix) {
+		StringJoiner joiner = new StringJoiner(", \n\t", prefix + ":\n{\n\t", "\n}");
 		for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
-			joiner2.add(entry.getKey() + " = " + entry.getValue());
+			joiner.add(entry.getKey() + " = " + entry.getValue());
 		}
-		log.debug("");
-		System.out.println("--------------------------");
-		System.out.println(joiner2);
-		System.out.println("--------------------------");
+		return joiner.toString();
 	}
 
 }

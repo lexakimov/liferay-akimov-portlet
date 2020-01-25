@@ -20,12 +20,6 @@ public final class ModelServiceUtil {
 
 	private static final String SERVICES_PACKAGE_NAME = PORTLET_PACKAGE_NAME + ".service";
 
-	private static <T extends BaseModel<T>> InvokableLocalService getLocalService(Class<T> modelClass) {
-		String serviceBeanName = SERVICES_PACKAGE_NAME + "." + modelClass.getSimpleName() + "LocalService";
-		//return Class.forName(serviceBeanName + "Util");
-		return (InvokableLocalService) PortletBeanLocatorUtil.locate(serviceBeanName);
-	}
-
 	public static <T extends BaseModel<T>> DynamicQuery getDynamicQuery(Class<T> modelClass) throws PortletException {
 		//return (DynamicQuery) getLocalService(modelClass).getMethod("dynamicQuery").invoke(null);
 		try {
@@ -37,8 +31,9 @@ public final class ModelServiceUtil {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T extends BaseModel<T>> List<T>
-	doDynamicQuery(Class<T> modelClass, DynamicQuery dynamicQuery, int start, int end) throws PortletException {
+	public static <T extends BaseModel<T>> List<T> doDynamicQuery(
+			Class<T> modelClass, DynamicQuery dynamicQuery, int start, int end) throws PortletException {
+
 		//return (List<T>) getLocalService(modelClass).getMethod("dynamicQuery", DynamicQuery.class).invoke(null, dynamicQuery);
 		try {
 			return (List<T>) getLocalService(modelClass).invokeMethod(
@@ -51,8 +46,9 @@ public final class ModelServiceUtil {
 		}
 	}
 
-	public static <T extends BaseModel<T>> long
-	doDynamicQueryCount(Class<T> modelClass, DynamicQuery dynamicQuery) throws PortletException {
+	public static <T extends BaseModel<T>> long doDynamicQueryCount(
+			Class<T> modelClass, DynamicQuery dynamicQuery) throws PortletException {
+
 		//return (long) getLocalService(modelClass).getMethod("dynamicQueryCount", DynamicQuery.class).invoke(null, dynamicQuery);
 		try {
 			return (long) getLocalService(modelClass).invokeMethod(
@@ -63,6 +59,12 @@ public final class ModelServiceUtil {
 		} catch (Throwable throwable) {
 			throw new PortletException("can't execute dynamic query count", throwable);
 		}
+	}
+
+	private static <T extends BaseModel<T>> InvokableLocalService getLocalService(Class<T> modelClass) {
+		String serviceBeanName = SERVICES_PACKAGE_NAME + "." + modelClass.getSimpleName() + "LocalService";
+		//return Class.forName(serviceBeanName + "Util");
+		return (InvokableLocalService) PortletBeanLocatorUtil.locate(serviceBeanName);
 	}
 
 

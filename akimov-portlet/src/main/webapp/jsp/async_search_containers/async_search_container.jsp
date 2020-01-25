@@ -1,6 +1,6 @@
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
 <%@ page import="ru.isands.akimov.enums.Gender" %>
-<%@ page import="ru.isands.akimov.search_helpers.impl.PersonSearchHelper" %>
+<%@ page import="ru.isands.akimov.search.helpers.impl.PersonSearchHelper" %>
 <%@ page import="static com.liferay.portal.kernel.util.JavaConstants.JAVAX_SERVLET_INCLUDE_SERVLET_PATH" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>

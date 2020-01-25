@@ -2,6 +2,8 @@ package ru.isands.akimov.audit;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import ru.isands.akimov.audit.enums.EntityType;
@@ -25,7 +27,9 @@ import static ru.isands.akimov.utils.DateUtil.ISO_8601;
  */
 public class AuditEntryWrapper {
 
-	private AuditEntry editingHistoryEntry;
+	private static final Log log = LogFactoryUtil.getLog(AuditEntryWrapper.class);
+
+	private AuditEntry auditEntry;
 
 	private List<EntityFieldChange> fieldChanges;
 
@@ -35,14 +39,14 @@ public class AuditEntryWrapper {
 
 		int historyEntryId = (int) CounterLocalServiceUtil.increment(AuditEntry.class.getName());
 
-		editingHistoryEntry = AuditEntryLocalServiceUtil.createAuditEntry(historyEntryId);
-		editingHistoryEntry.setEntityId(entityId);
-		editingHistoryEntry.setEntityType(entityType.toString());
-		editingHistoryEntry.setCompanyId(companyId);
-		editingHistoryEntry.setUserId(user.getUserId());
-		editingHistoryEntry.setUserName(user.getFullName());
-		editingHistoryEntry.setDateOfChange(dateOfChange);
-		editingHistoryEntry.setDescription(description);
+		auditEntry = AuditEntryLocalServiceUtil.createAuditEntry(historyEntryId);
+		auditEntry.setEntityId(entityId);
+		auditEntry.setEntityType(entityType.toString());
+		auditEntry.setCompanyId(companyId);
+		auditEntry.setUserId(user.getUserId());
+		auditEntry.setUserName(user.getFullName());
+		auditEntry.setDateOfChange(dateOfChange);
+		auditEntry.setDescription(description);
 
 		fieldChanges = new ArrayList<>();
 	}
@@ -59,7 +63,7 @@ public class AuditEntryWrapper {
 		int fieldChangeId = (int) CounterLocalServiceUtil.increment(EntityFieldChange.class.getName());
 
 		EntityFieldChange fieldChange = EntityFieldChangeLocalServiceUtil.createEntityFieldChange(fieldChangeId);
-		fieldChange.setAuditEntryId(editingHistoryEntry.getId());
+		fieldChange.setAuditEntryId(auditEntry.getId());
 		fieldChange.setFieldName(fieldName);
 
 		fieldChange.setOldValue(attributeToString(oldValue));
@@ -96,6 +100,16 @@ public class AuditEntryWrapper {
 		for (EntityFieldChange fieldChange : fieldChanges) {
 			fieldChange.persist();
 		}
-		editingHistoryEntry.persist();
+		auditEntry.persist();
+
+		if (log.isDebugEnabled()) {
+			int auditId = auditEntry.getId();
+			String entityType = auditEntry.getEntityType();
+			int entityId = auditEntry.getEntityId();
+			log.debug(String.format(
+					"audit entry [%d] for entity %s(%d) with %d field changes persisted in database",
+					auditId, entityType, entityId, fieldChanges.size()
+			));
+		}
 	}
 }

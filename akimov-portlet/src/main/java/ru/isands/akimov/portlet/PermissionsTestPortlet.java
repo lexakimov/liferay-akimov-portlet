@@ -1,5 +1,7 @@
 package ru.isands.akimov.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.*;
@@ -17,6 +19,8 @@ import javax.portlet.ActionResponse;
  */
 public class PermissionsTestPortlet extends ExtendedMVCPortlet {
 
+	private static final Log log = LogFactoryUtil.getLog(PermissionsTestPortlet.class);
+
 	public void test(ActionRequest actionRequest, ActionResponse actionResponse) {
 
 		try {
@@ -24,7 +28,7 @@ public class PermissionsTestPortlet extends ExtendedMVCPortlet {
 			// RoleConstants.SITE_OWNER;
 
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
-			System.out.println(serviceContext.getTimeZone());
+			log.debug(serviceContext.getTimeZone());
 
 			User user = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
 

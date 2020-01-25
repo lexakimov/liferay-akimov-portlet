@@ -68,11 +68,6 @@ public final class DateUtil {
 		if (dateString == null || dateString.isEmpty()) {
 			return null;
 		}
-		try {
-			return format.parse(dateString);
-		} catch (ParseException e) {
-			log.error("Date parsing error: " + e.getMessage());
-			throw e;
-		}
+		return format.parse(dateString);
 	}
 }

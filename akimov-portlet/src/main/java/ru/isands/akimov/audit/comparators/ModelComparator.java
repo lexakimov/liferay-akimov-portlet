@@ -24,11 +24,11 @@ public abstract class ModelComparator<T extends BaseModel<T>> {
 	/**
 	 * @return список атрибутов, изменения которых надо "отслеживать";
 	 */
-	abstract List<String> getWatchOnlyFields();
+	protected abstract List<String> getWatchOnlyFields();
 
 	//String fieldType = ModelHintsUtil.getType(old.getModelClassName(), attributeName);
 
-	ModelComparator(T old, T _new) throws NoSuchModelAttributeException {
+	protected ModelComparator(T old, T _new) throws NoSuchModelAttributeException {
 
 		checkFieldsExists(old != null ? old : _new);
 

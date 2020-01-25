@@ -3,6 +3,8 @@ package ru.isands.akimov.portlet;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import ru.isands.akimov.model.Foo;
 import ru.isands.akimov.service.FooLocalServiceUtil;
@@ -16,6 +18,8 @@ import static ru.isands.akimov.utils.DateUtil.DD_MM_YYYY__HH_MM;
 
 public class AuditDemoPortlet extends ExtendedMVCPortlet {
 
+	private static final Log log = LogFactoryUtil.getLog(AuditDemoPortlet.class);
+
 	/**
 	 * TODO blobField
 	 *
@@ -26,7 +30,7 @@ public class AuditDemoPortlet extends ExtendedMVCPortlet {
 	 */
 	public void updateFoo(ActionRequest request, ActionResponse response) throws SystemException, IOException {
 
-		_debugPrintParams(request);
+		log.debug(_getRequestParamsMessage(request));
 
 		int fooId = ParamUtil.getInteger(request, "fooId");
 		Foo foo;

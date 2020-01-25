@@ -1,5 +1,5 @@
-<%@ page import="ru.isands.akimov.search_helpers.impl.FooHistorySearchHelper" %>
-<%@ page import="ru.isands.akimov.audit.attribute_adapters.FooAttributeAdapter" %>
+<%@ page import="ru.isands.akimov.search.helpers.impl.FooHistorySearchHelper" %>
+<%@ page import="ru.isands.akimov.audit.attribute_adapters.FooAttributeConverter" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -53,7 +53,7 @@
 							</td>
 						</tr>
 
-						<c:set var="adapter" value="<%= new FooAttributeAdapter() %>"/>
+						<c:set var="adapter" value="<%= new FooAttributeConverter() %>"/>
 
 						<c:forEach var="change" items="${historyEntry.changes}">
 							<tr>

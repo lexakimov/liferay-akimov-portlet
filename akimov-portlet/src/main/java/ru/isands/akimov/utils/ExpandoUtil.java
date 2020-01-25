@@ -11,6 +11,8 @@ import com.liferay.portal.theme.ThemeDisplay;
 import javax.portlet.PortletRequest;
 
 /**
+ * Утилиты для работы с доп полями.
+ *
  * @author akimov
  * created at 18.01.20 19:42
  */

@@ -2,6 +2,8 @@ package ru.isands.akimov.audit.events;
 
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -22,14 +24,23 @@ import java.util.Date;
  */
 public class UserListener extends BaseModelListener<User> {
 
+	private Log log = LogFactoryUtil.getLog(UserListener.class);
+
+	public UserListener() {
+		super();
+		log.debug("created");
+	}
+
 	@Override
 	public void onAfterCreate(User model) throws ModelListenerException {
+		log.debug("create new user");
 		String description = AuditType.USER_REGISTRATION.toString();
 		process(model, description);
 	}
 
 	@Override
 	public void onAfterRemove(User model) throws ModelListenerException {
+		log.debug("remove user");
 		String description = AuditType.USER_REMOVE.toString();
 		process(model, description);
 	}

@@ -1,4 +1,4 @@
-<%@ page import="ru.isands.akimov.search_helpers.impl.FooSearchHelper" %>
+<%@ page import="ru.isands.akimov.search.helpers.impl.FooSearchHelper" %>
 <%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
 <%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
