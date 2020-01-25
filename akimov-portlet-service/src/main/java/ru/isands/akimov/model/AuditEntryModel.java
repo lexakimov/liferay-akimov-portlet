@@ -47,32 +47,33 @@ public interface AuditEntryModel extends BaseModel<AuditEntry> {
     public void setPrimaryKey(int primaryKey);
 
     /**
-     * Returns the ID of this audit entry.
+     * Returns the audit entry ID of this audit entry.
      *
-     * @return the ID of this audit entry
+     * @return the audit entry ID of this audit entry
      */
-    public int getId();
+    public int getAuditEntryId();
 
     /**
-     * Sets the ID of this audit entry.
+     * Sets the audit entry ID of this audit entry.
      *
-     * @param id the ID of this audit entry
+     * @param auditEntryId the audit entry ID of this audit entry
      */
-    public void setId(int id);
+    public void setAuditEntryId(int auditEntryId);
 
     /**
-     * Returns the entity ID of this audit entry.
+     * Returns the audit type of this audit entry.
      *
-     * @return the entity ID of this audit entry
+     * @return the audit type of this audit entry
      */
-    public int getEntityId();
+    @AutoEscape
+    public String getAuditType();
 
     /**
-     * Sets the entity ID of this audit entry.
+     * Sets the audit type of this audit entry.
      *
-     * @param entityId the entity ID of this audit entry
+     * @param auditType the audit type of this audit entry
      */
-    public void setEntityId(int entityId);
+    public void setAuditType(String auditType);
 
     /**
      * Returns the entity type of this audit entry.
@@ -88,6 +89,20 @@ public interface AuditEntryModel extends BaseModel<AuditEntry> {
      * @param entityType the entity type of this audit entry
      */
     public void setEntityType(String entityType);
+
+    /**
+     * Returns the entity ID of this audit entry.
+     *
+     * @return the entity ID of this audit entry
+     */
+    public int getEntityId();
+
+    /**
+     * Sets the entity ID of this audit entry.
+     *
+     * @param entityId the entity ID of this audit entry
+     */
+    public void setEntityId(int entityId);
 
     /**
      * Returns the company ID of this audit entry.
@@ -146,21 +161,6 @@ public interface AuditEntryModel extends BaseModel<AuditEntry> {
      * @param userName the user name of this audit entry
      */
     public void setUserName(String userName);
-
-    /**
-     * Returns the description of this audit entry.
-     *
-     * @return the description of this audit entry
-     */
-    @AutoEscape
-    public String getDescription();
-
-    /**
-     * Sets the description of this audit entry.
-     *
-     * @param description the description of this audit entry
-     */
-    public void setDescription(String description);
 
     /**
      * Returns the date of change of this audit entry.

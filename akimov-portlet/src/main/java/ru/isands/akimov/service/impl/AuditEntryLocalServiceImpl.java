@@ -15,13 +15,13 @@ public class AuditEntryLocalServiceImpl extends AuditEntryLocalServiceBaseImpl {
 	/**
 	 * Удалить записи истории для сущности.
 	 *
-	 * @param entityType тип сущности
+	 * @param entityType тип сущности (any case)
 	 * @param entityId   ключ
 	 * @throws SystemException
 	 */
 	public void deleteFor(String entityType, int entityId) throws SystemException {
 		DynamicQuery dynamicQuery = auditEntryLocalService.dynamicQuery();
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("entityType", entityType));
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("entityType", entityType.toLowerCase()));
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("entityId", entityId));
 		List<AuditEntry> list = auditEntryLocalService.dynamicQuery(dynamicQuery);
 		for (AuditEntry history : list) {
@@ -44,7 +44,7 @@ public class AuditEntryLocalServiceImpl extends AuditEntryLocalServiceBaseImpl {
 	@Override
 	public AuditEntry deleteAuditEntry(AuditEntry auditEntry) throws SystemException {
 		DynamicQuery dynamicQuery = entityFieldChangeLocalService.dynamicQuery();
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("auditEntryId", auditEntry.getId()));
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("auditEntryId", auditEntry.getAuditEntryId()));
 		List<EntityFieldChange> list = entityFieldChangeLocalService.dynamicQuery(dynamicQuery);
 		for (EntityFieldChange efc : list) {
 			entityFieldChangeLocalService.deleteEntityFieldChange(efc);

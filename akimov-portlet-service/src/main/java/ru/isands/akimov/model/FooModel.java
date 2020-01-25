@@ -195,6 +195,20 @@ public interface FooModel extends BaseModel<Foo> {
      */
     public void setBlobField(Blob blobField);
 
+    /**
+     * Returns the status of this foo.
+     *
+     * @return the status of this foo
+     */
+    public short getStatus();
+
+    /**
+     * Sets the status of this foo.
+     *
+     * @param status the status of this foo
+     */
+    public void setStatus(short status);
+
     @Override
     public boolean isNew();
 

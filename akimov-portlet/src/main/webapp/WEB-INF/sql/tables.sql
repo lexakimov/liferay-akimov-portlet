@@ -8,7 +8,8 @@ create table akimov_Foo (
 	floatField DOUBLE,
 	stringField VARCHAR(75) null,
 	dateField DATE null,
-	blobField BLOB
+	blobField BLOB,
+	status INTEGER
 );
 
 create table akimov_Person (
@@ -22,13 +23,13 @@ create table akimov_Person (
 );
 
 create table akimov_audit_entry (
-	id_ INTEGER not null primary key,
-	entityId INTEGER,
+	auditEntryId INTEGER not null primary key,
+	auditType VARCHAR(75) null,
 	entityType VARCHAR(75) null,
+	entityId INTEGER,
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,
-	description VARCHAR(75) null,
 	dateOfChange DATE null
 );
 

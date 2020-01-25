@@ -1,9 +1,11 @@
 package ru.isands.akimov.search.entry_adapters.impl;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import ru.isands.akimov.audit.enums.AuditType;
+import ru.isands.akimov.audit.description_adapters.DescriptionManager;
 import ru.isands.akimov.model.AuditEntry;
 import ru.isands.akimov.search.entry_adapters.SearchEntryAdapter;
 
@@ -11,6 +13,8 @@ import javax.portlet.PortletException;
 import java.util.Date;
 
 public class AuditSearchEntryAdapter extends SearchEntryAdapter<AuditEntry> {
+
+	private static final Log log = LogFactoryUtil.getLog(AuditSearchEntryAdapter.class);
 
 	private User user;
 
@@ -33,12 +37,7 @@ public class AuditSearchEntryAdapter extends SearchEntryAdapter<AuditEntry> {
 	}
 
 	public String getDescription() {
-		try {
-			AuditType auditType = AuditType.valueOf(model.getDescription());
-			return auditType.getDescription(user);
-		} catch (IllegalArgumentException e) {
-			return model.getDescription();
-		}
+		return DescriptionManager.formDescription(model);
 	}
 
 }

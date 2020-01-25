@@ -47,6 +47,8 @@ public class FooLocalServiceClpInvoker {
     private String[] _methodParameterTypes45;
     private String _methodName46;
     private String[] _methodParameterTypes46;
+    private String _methodName51;
+    private String[] _methodParameterTypes51;
 
     public FooLocalServiceClpInvoker() {
         _methodName0 = "addFoo";
@@ -136,6 +138,10 @@ public class FooLocalServiceClpInvoker {
         _methodName46 = "setBeanIdentifier";
 
         _methodParameterTypes46 = new String[] { "java.lang.String" };
+
+        _methodName51 = "addFoo";
+
+        _methodParameterTypes51 = new String[] { "ru.isands.akimov.model.Foo" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -242,6 +248,11 @@ public class FooLocalServiceClpInvoker {
             FooLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
+        }
+
+        if (_methodName51.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+            return FooLocalServiceUtil.addFoo((ru.isands.akimov.model.Foo) arguments[0]);
         }
 
         throw new UnsupportedOperationException();

@@ -31,49 +31,32 @@ import java.util.Map;
  */
 public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseModelListener<T> {
 
-	protected Log log = LogFactoryUtil.getLog(this.getClass());
-
-	public AuditModelListener() {
-		log.debug("created");
-	}
-
-	protected abstract ModelComparator<T> getChangeDetector(T oldModel, T updatedModel) throws NoSuchModelAttributeException;
-
-	protected abstract EntityType getEntityType();
-
-	protected abstract AuditType getCreateType();
-
-	protected abstract AuditType getEditType();
-
-	protected abstract AuditType getDeleteType();
-
-	protected abstract T fetchOldModel(int entityId) throws SystemException;
+	private static final Log log = LogFactoryUtil.getLog(AuditModelListener.class);
 
 	@Override
 	public void onBeforeCreate(T model) throws ModelListenerException {
+		log.trace("onBeforeCreate()");
 		process(model, getCreateType());
 	}
 
 	@Override
 	public void onBeforeUpdate(T model) throws ModelListenerException {
+		log.trace("onBeforeUpdate()");
 		process(model, getEditType());
 	}
 
 	private void process(T updatedModel, AuditType auditType) throws EntityHistoryException {
+		int entityId = getEntityId(updatedModel);
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		long companyId = serviceContext.getCompanyId();
+		Date dateOfChange = new Date();
 		try {
-			int entityId = getEntityId(updatedModel);
-
-			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 			User user = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
-			long companyId = serviceContext.getCompanyId();
-			Date dateOfChange = new Date();
-
-			String description = auditType.toString();
-			AuditEntryWrapper editingHistory =
-					new AuditEntryWrapper(entityId, getEntityType(), description, companyId, user, dateOfChange);
+			AuditEntryWrapper auditEntry =
+					new AuditEntryWrapper(entityId, getEntityType(), auditType, companyId, user, dateOfChange);
 
 			T oldModel = fetchOldModel(entityId);
-			ModelComparator<T> modelComparator = getChangeDetector(oldModel, updatedModel);
+			ModelComparator<T> modelComparator = getModelComparator(oldModel, updatedModel);
 
 			Map<String, Object> newValues = modelComparator.getNewValues();
 			Map<String, Object> oldValues = modelComparator.getOldValues();
@@ -81,11 +64,11 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 			for (String fieldName : oldValues.keySet()) {
 				Object oldValue = oldValues.get(fieldName);
 				Object newValue = newValues.get(fieldName);
-				editingHistory.addFieldChange(fieldName, oldValue, newValue);
+				auditEntry.addFieldChange(fieldName, oldValue, newValue);
 			}
 
-			if (!editingHistory.isEmpty()) {
-				editingHistory.persist();
+			if (auditEntry.hasFieldChanges()) {
+				auditEntry.persist();
 			} else {
 				log.debug("Audit entry was not created because model had no changes");
 			}
@@ -98,35 +81,45 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 	/**
 	 * удаление сущности, сопровождается удалением закрепленных за ней записей истории из AuditEntry и
 	 * EntityFieldChange, а также созданием записи в журнале об удалении.
-	 * TODO что делать с id?
 	 */
 	@Override
 	public void onAfterRemove(T model) throws EntityHistoryException {
+		log.trace("onAfterRemove()");
 		try {
 			int entityId = getEntityId(model);
-			String entityType = getEntityType().toString().toLowerCase();
+			// удаление всех записей журнала сущности.
+			String entityType = getEntityType().toString();
 			AuditEntryLocalServiceUtil.deleteFor(entityType, entityId);
 
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
-			User user = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
 			long companyId = serviceContext.getCompanyId();
 			Date dateOfChange = new Date();
+			User user = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
+			AuditEntryWrapper auditEntry =
+					new AuditEntryWrapper(entityId, getEntityType(), getDeleteType(), companyId, user, dateOfChange);
 
-			String description = getDeleteType().toString();
-
-			AuditEntryWrapper editingHistory =
-					new AuditEntryWrapper(entityId, getEntityType(), description, companyId, user, dateOfChange);
-
-			editingHistory.addFieldChange("fooId", entityId, null);
-			editingHistory.persist();
-
+			// FIXME что делать с id?
+			auditEntry.addFieldChange("fooId", entityId, null);
+			auditEntry.persist();
 		} catch (SystemException e) {
 			throw new EntityHistoryException(e);
 		}
 	}
 
-	private int getEntityId(T updatedModel) {
+	protected int getEntityId(T updatedModel) {
 		Serializable pkObject = updatedModel.getPrimaryKeyObj();
 		return pkObject instanceof Long ? ((Long) pkObject).intValue() : (Integer) pkObject;
 	}
+
+	protected abstract ModelComparator<T> getModelComparator(T oldModel, T updatedModel) throws NoSuchModelAttributeException;
+
+	protected abstract EntityType getEntityType();
+
+	protected abstract AuditType getCreateType();
+
+	protected abstract AuditType getEditType();
+
+	protected abstract AuditType getDeleteType();
+
+	protected abstract T fetchOldModel(int entityId) throws SystemException;
 }

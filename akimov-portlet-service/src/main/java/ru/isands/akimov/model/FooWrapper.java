@@ -49,6 +49,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
         attributes.put("stringField", getStringField());
         attributes.put("dateField", getDateField());
         attributes.put("blobField", getBlobField());
+        attributes.put("status", getStatus());
 
         return attributes;
     }
@@ -113,6 +114,12 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 
         if (blobField != null) {
             setBlobField(blobField);
+        }
+
+        Short status = (Short) attributes.get("status");
+
+        if (status != null) {
+            setStatus(status);
         }
     }
 
@@ -344,6 +351,26 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
     @Override
     public void setBlobField(java.sql.Blob blobField) {
         _foo.setBlobField(blobField);
+    }
+
+    /**
+    * Returns the status of this foo.
+    *
+    * @return the status of this foo
+    */
+    @Override
+    public short getStatus() {
+        return _foo.getStatus();
+    }
+
+    /**
+    * Sets the status of this foo.
+    *
+    * @param status the status of this foo
+    */
+    @Override
+    public void setStatus(short status) {
+        _foo.setStatus(status);
     }
 
     @Override

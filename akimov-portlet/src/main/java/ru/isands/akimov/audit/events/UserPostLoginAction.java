@@ -14,7 +14,7 @@ import static ru.isands.akimov.audit.enums.AuditType.USER_LOGIN;
 import static ru.isands.akimov.audit.enums.EntityType.USER;
 
 /**
- * Обработчик события при входе пользователя в систему. Прописан в resources/portal.properties.
+ * Обработчик события при входе пользователя в систему. Прописан в resources/hook.properties.
  *
  * @author akimov
  * created at 11.01.20 20:59
@@ -34,7 +34,7 @@ public class UserPostLoginAction extends Action {
 		long companyId = PortalUtil.getCompanyId(request);
 		User user = PortalUtil.getUser(request);
 		AuditEntryWrapper auditEntry =
-				new AuditEntryWrapper((int) user.getUserId(), USER, USER_LOGIN.toString(), companyId, user, new Date());
+				new AuditEntryWrapper((int) user.getUserId(), USER, USER_LOGIN, companyId, user, new Date());
 		auditEntry.persist();
 	}
 

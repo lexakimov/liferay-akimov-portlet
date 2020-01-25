@@ -39,17 +39,18 @@
 		<column name="stringField" type="String"/>
 		<column name="dateField" type="Date"/>
 		<column name="blobField" type="Blob"/>
+		<column name="status" type="short"/>
 	</entity>
 
 	<!-- TODO add indexes if necessary -->
 	<entity name="AuditEntry" table="akimov_audit_entry" local-service="true" remote-service="false">
-		<column name="id" type="int" primary="true"/>
-		<column name="entityId" type="int"/>
+		<column name="auditEntryId" type="int" primary="true"/>
+		<column name="auditType" type="String"/>
 		<column name="entityType" type="String"/>
+		<column name="entityId" type="int"/>
 		<column name="companyId" type="long" />
 		<column name="userId" type="long"/>
 		<column name="userName" type="String" />
-		<column name="description" type="String"/>
 		<column name="dateOfChange" type="Date"/>
 	</entity>
 

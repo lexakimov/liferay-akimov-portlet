@@ -30,10 +30,11 @@ public class FooCacheModel implements CacheModel<Foo>, Externalizable {
     public float floatField;
     public String stringField;
     public long dateField;
+    public short status;
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(19);
+        StringBundler sb = new StringBundler(21);
 
         sb.append("{fooId=");
         sb.append(fooId);
@@ -53,6 +54,9 @@ public class FooCacheModel implements CacheModel<Foo>, Externalizable {
         sb.append(stringField);
         sb.append(", dateField=");
         sb.append(dateField);
+        sb.append(", status=");
+        sb.append(status);
+        sb.append("}");
 
         return sb.toString();
     }
@@ -81,6 +85,8 @@ public class FooCacheModel implements CacheModel<Foo>, Externalizable {
             fooImpl.setDateField(new Date(dateField));
         }
 
+        fooImpl.setStatus(status);
+
         fooImpl.resetOriginalValues();
 
         return fooImpl;
@@ -97,6 +103,7 @@ public class FooCacheModel implements CacheModel<Foo>, Externalizable {
         floatField = objectInput.readFloat();
         stringField = objectInput.readUTF();
         dateField = objectInput.readLong();
+        status = objectInput.readShort();
     }
 
     @Override
@@ -117,5 +124,6 @@ public class FooCacheModel implements CacheModel<Foo>, Externalizable {
         }
 
         objectOutput.writeLong(dateField);
+        objectOutput.writeShort(status);
     }
 }

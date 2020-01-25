@@ -35,27 +35,27 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     /**
     * Creates a new audit entry with the primary key. Does not add the audit entry to the database.
     *
-    * @param id the primary key for the new audit entry
+    * @param auditEntryId the primary key for the new audit entry
     * @return the new audit entry
     */
     @Override
-    public ru.isands.akimov.model.AuditEntry createAuditEntry(int id) {
-        return _auditEntryLocalService.createAuditEntry(id);
+    public ru.isands.akimov.model.AuditEntry createAuditEntry(int auditEntryId) {
+        return _auditEntryLocalService.createAuditEntry(auditEntryId);
     }
 
     /**
     * Deletes the audit entry with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param id the primary key of the audit entry
+    * @param auditEntryId the primary key of the audit entry
     * @return the audit entry that was removed
     * @throws PortalException if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @Override
-    public ru.isands.akimov.model.AuditEntry deleteAuditEntry(int id)
+    public ru.isands.akimov.model.AuditEntry deleteAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        return _auditEntryLocalService.deleteAuditEntry(id);
+        return _auditEntryLocalService.deleteAuditEntry(auditEntryId);
     }
 
     /**
@@ -170,24 +170,24 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     }
 
     @Override
-    public ru.isands.akimov.model.AuditEntry fetchAuditEntry(int id)
+    public ru.isands.akimov.model.AuditEntry fetchAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return _auditEntryLocalService.fetchAuditEntry(id);
+        return _auditEntryLocalService.fetchAuditEntry(auditEntryId);
     }
 
     /**
     * Returns the audit entry with the primary key.
     *
-    * @param id the primary key of the audit entry
+    * @param auditEntryId the primary key of the audit entry
     * @return the audit entry
     * @throws PortalException if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @Override
-    public ru.isands.akimov.model.AuditEntry getAuditEntry(int id)
+    public ru.isands.akimov.model.AuditEntry getAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        return _auditEntryLocalService.getAuditEntry(id);
+        return _auditEntryLocalService.getAuditEntry(auditEntryId);
     }
 
     @Override
@@ -274,7 +274,7 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     /**
     * Удалить записи истории для сущности.
     *
-    * @param entityType тип сущности
+    * @param entityType тип сущности (any case)
     * @param entityId   ключ
     * @throws SystemException
     */

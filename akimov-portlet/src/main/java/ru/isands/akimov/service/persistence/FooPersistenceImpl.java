@@ -332,6 +332,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
         fooImpl.setStringField(foo.getStringField());
         fooImpl.setDateField(foo.getDateField());
         fooImpl.setBlobField(foo.getBlobField());
+        fooImpl.setStatus(foo.getStatus());
 
         return fooImpl;
     }

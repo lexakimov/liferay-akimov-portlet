@@ -32,6 +32,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
     private String _stringField;
     private Date _dateField;
     private Blob _blobField;
+    private short _status;
     private BaseModel<?> _fooRemoteModel;
     private Class<?> _clpSerializerClass = ru.isands.akimov.service.ClpSerializer.class;
 
@@ -82,6 +83,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
         attributes.put("stringField", getStringField());
         attributes.put("dateField", getDateField());
         attributes.put("blobField", getBlobField());
+        attributes.put("status", getStatus());
 
         return attributes;
     }
@@ -146,6 +148,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
         if (blobField != null) {
             setBlobField(blobField);
+        }
+
+        Short status = (Short) attributes.get("status");
+
+        if (status != null) {
+            setStatus(status);
         }
     }
 
@@ -374,6 +382,28 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
         }
     }
 
+    @Override
+    public short getStatus() {
+        return _status;
+    }
+
+    @Override
+    public void setStatus(short status) {
+        _status = status;
+
+        if (_fooRemoteModel != null) {
+            try {
+                Class<?> clazz = _fooRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setStatus", short.class);
+
+                method.invoke(_fooRemoteModel, status);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
     public BaseModel<?> getFooRemoteModel() {
         return _fooRemoteModel;
     }
@@ -451,6 +481,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
         clone.setStringField(getStringField());
         clone.setDateField(getDateField());
         clone.setBlobField(getBlobField());
+        clone.setStatus(getStatus());
 
         return clone;
     }
@@ -500,7 +531,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(21);
+        StringBundler sb = new StringBundler(23);
 
         sb.append("{fooId=");
         sb.append(getFooId());
@@ -522,6 +553,8 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
         sb.append(getDateField());
         sb.append(", blobField=");
         sb.append(getBlobField());
+        sb.append(", status=");
+        sb.append(getStatus());
         sb.append("}");
 
         return sb.toString();
@@ -529,7 +562,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(34);
+        StringBundler sb = new StringBundler(37);
 
         sb.append("<model><model-name>");
         sb.append("ru.isands.akimov.model.Foo");
@@ -574,6 +607,10 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
         sb.append(
             "<column><column-name>blobField</column-name><column-value><![CDATA[");
         sb.append(getBlobField());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>status</column-name><column-value><![CDATA[");
+        sb.append(getStatus());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

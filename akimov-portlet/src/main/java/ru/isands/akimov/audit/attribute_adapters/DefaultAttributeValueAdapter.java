@@ -11,8 +11,12 @@ import java.util.function.Function;
  * @author akimov
  * created at 19.01.20 13:53
  */
-public class DefaultAttributeConverter {
+public class DefaultAttributeValueAdapter {
 
+	/**
+	 *
+	 * @return карту, где ключ - название поля из бд, значение - функция преобразования значения атрибута.
+	 */
 	public Map<String, Function<String, String>> getAttributeAdapters() {
 		return Collections.emptyMap();
 	}

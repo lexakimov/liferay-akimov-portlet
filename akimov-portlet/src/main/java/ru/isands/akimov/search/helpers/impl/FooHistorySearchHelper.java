@@ -1,18 +1,21 @@
 package ru.isands.akimov.search.helpers.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import org.apache.commons.dbutils.ResultSetHandler;
-import ru.isands.akimov.audit.pojo.EntityHistoryEntryWithChanges;
 import ru.isands.akimov.audit.enums.EntityType;
+import ru.isands.akimov.model.AuditEntry;
+import ru.isands.akimov.search.entry_dto.EntityAuditEntryWithChanges;
 import ru.isands.akimov.search.helpers.SqlBasedSearchHelper;
+import ru.isands.akimov.service.AuditEntryLocalServiceUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FooHistorySearchHelper extends SqlBasedSearchHelper<EntityHistoryEntryWithChanges> {
+public class FooHistorySearchHelper extends SqlBasedSearchHelper<EntityAuditEntryWithChanges> {
 
 	public FooHistorySearchHelper() {
 		super(new HistoryResultSetHandler());
@@ -26,15 +29,15 @@ public class FooHistorySearchHelper extends SqlBasedSearchHelper<EntityHistoryEn
 				"\taudit.entityId,\n" +
 				"\taudit.entityType,\n" +
 				"\taudit.userId,\n" +
-				"\taudit.description\n" +
+				"\taudit.auditEntryId\n" +
 				"\t\n" +
 				"FROM\n" +
 				"\takimov_audit_entry audit\n" +
-				"\tLEFT JOIN akimov_entity_field_change changes ON audit.id_ = changes.auditEntryId \n" +
+				"\tLEFT JOIN akimov_entity_field_change changes ON audit.auditEntryId = changes.auditEntryId \n" +
 				"WHERE\n" +
 				"\taudit.entityType = 'foo' \n" +
 				"GROUP BY\n" +
-				"\taudit.entityId, audit.entityType, audit.userId, audit.description, audit.dateOfChange \n" +
+				"\taudit.auditEntryId \n" +
 				"ORDER BY\n" +
 				"\taudit.dateOfChange DESC;";
 	}
@@ -44,13 +47,22 @@ public class FooHistorySearchHelper extends SqlBasedSearchHelper<EntityHistoryEn
 		return null; // not used
 	}
 
-	private static class HistoryResultSetHandler implements ResultSetHandler<List<EntityHistoryEntryWithChanges>> {
+	private static class HistoryResultSetHandler implements ResultSetHandler<List<EntityAuditEntryWithChanges>> {
 
 		@Override
-		public List<EntityHistoryEntryWithChanges> handle(ResultSet rs) throws SQLException {
-			List<EntityHistoryEntryWithChanges> result = new ArrayList<>();
+		public List<EntityAuditEntryWithChanges> handle(ResultSet rs) throws SQLException {
+			List<EntityAuditEntryWithChanges> result = new ArrayList<>();
 
 			while (rs.next()) {
+
+				int auditEntryId = rs.getInt("auditEntryId");
+				AuditEntry auditEntry;
+				try {
+					auditEntry = AuditEntryLocalServiceUtil.getAuditEntry(auditEntryId);
+				} catch (PortalException | SystemException e) {
+					throw new SQLException(e);
+				}
+
 				Timestamp dateOfChangeTs = rs.getTimestamp("dateOfChange");
 				Date dateOfChange = new Date(dateOfChangeTs.getTime());
 
@@ -61,12 +73,11 @@ public class FooHistorySearchHelper extends SqlBasedSearchHelper<EntityHistoryEn
 				} catch (SystemException e) {
 					throw new SQLException(e);
 				}
-				String description = rs.getString("description");
 
 				Array changes = rs.getArray("changes");
 				String[][] changesArray = (String[][]) changes.getArray();
 
-				result.add(new EntityHistoryEntryWithChanges(EntityType.FOO, user, description, dateOfChange, changesArray));
+				result.add(new EntityAuditEntryWithChanges(auditEntry, EntityType.FOO, user, dateOfChange, changesArray));
 			}
 
 			return result;

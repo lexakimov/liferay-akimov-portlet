@@ -2,13 +2,13 @@
 
 <model-hints>
 	<model name="ru.isands.akimov.model.AuditEntry">
-		<field name="id" type="int" />
-		<field name="entityId" type="int" />
+		<field name="auditEntryId" type="int" />
+		<field name="auditType" type="String" />
 		<field name="entityType" type="String" />
+		<field name="entityId" type="int" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />
-		<field name="description" type="String" />
 		<field name="dateOfChange" type="Date" />
 	</model>
 	<model name="ru.isands.akimov.model.EntityFieldChange">
@@ -29,6 +29,7 @@
 		<field name="stringField" type="String" />
 		<field name="dateField" type="Date" />
 		<field name="blobField" type="Blob" />
+		<field name="status" type="short" />
 	</model>
 	<model name="ru.isands.akimov.model.Person">
 		<field name="personId" type="int" />

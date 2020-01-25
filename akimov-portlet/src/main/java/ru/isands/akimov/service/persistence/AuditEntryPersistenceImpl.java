@@ -15,7 +15,6 @@ import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
@@ -34,7 +33,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 /**
  * The persistence implementation for the audit entry service.
@@ -76,9 +74,6 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
     private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
                 PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
     private static Log _log = LogFactoryUtil.getLog(AuditEntryPersistenceImpl.class);
-    private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-                "id"
-            });
     private static AuditEntry _nullAuditEntry = new AuditEntryImpl() {
             @Override
             public Object clone() {
@@ -183,15 +178,15 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
     /**
      * Creates a new audit entry with the primary key. Does not add the audit entry to the database.
      *
-     * @param id the primary key for the new audit entry
+     * @param auditEntryId the primary key for the new audit entry
      * @return the new audit entry
      */
     @Override
-    public AuditEntry create(int id) {
+    public AuditEntry create(int auditEntryId) {
         AuditEntry auditEntry = new AuditEntryImpl();
 
         auditEntry.setNew(true);
-        auditEntry.setPrimaryKey(id);
+        auditEntry.setPrimaryKey(auditEntryId);
 
         return auditEntry;
     }
@@ -199,15 +194,15 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
     /**
      * Removes the audit entry with the primary key from the database. Also notifies the appropriate model listeners.
      *
-     * @param id the primary key of the audit entry
+     * @param auditEntryId the primary key of the audit entry
      * @return the audit entry that was removed
      * @throws ru.isands.akimov.NoSuchAuditEntryException if a audit entry with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
-    public AuditEntry remove(int id)
+    public AuditEntry remove(int auditEntryId)
         throws NoSuchAuditEntryException, SystemException {
-        return remove((Serializable) id);
+        return remove((Serializable) auditEntryId);
     }
 
     /**
@@ -326,13 +321,13 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
         auditEntryImpl.setNew(auditEntry.isNew());
         auditEntryImpl.setPrimaryKey(auditEntry.getPrimaryKey());
 
-        auditEntryImpl.setId(auditEntry.getId());
-        auditEntryImpl.setEntityId(auditEntry.getEntityId());
+        auditEntryImpl.setAuditEntryId(auditEntry.getAuditEntryId());
+        auditEntryImpl.setAuditType(auditEntry.getAuditType());
         auditEntryImpl.setEntityType(auditEntry.getEntityType());
+        auditEntryImpl.setEntityId(auditEntry.getEntityId());
         auditEntryImpl.setCompanyId(auditEntry.getCompanyId());
         auditEntryImpl.setUserId(auditEntry.getUserId());
         auditEntryImpl.setUserName(auditEntry.getUserName());
-        auditEntryImpl.setDescription(auditEntry.getDescription());
         auditEntryImpl.setDateOfChange(auditEntry.getDateOfChange());
 
         return auditEntryImpl;
@@ -366,15 +361,15 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
     /**
      * Returns the audit entry with the primary key or throws a {@link ru.isands.akimov.NoSuchAuditEntryException} if it could not be found.
      *
-     * @param id the primary key of the audit entry
+     * @param auditEntryId the primary key of the audit entry
      * @return the audit entry
      * @throws ru.isands.akimov.NoSuchAuditEntryException if a audit entry with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
-    public AuditEntry findByPrimaryKey(int id)
+    public AuditEntry findByPrimaryKey(int auditEntryId)
         throws NoSuchAuditEntryException, SystemException {
-        return findByPrimaryKey((Serializable) id);
+        return findByPrimaryKey((Serializable) auditEntryId);
     }
 
     /**
@@ -425,13 +420,14 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
     /**
      * Returns the audit entry with the primary key or returns <code>null</code> if it could not be found.
      *
-     * @param id the primary key of the audit entry
+     * @param auditEntryId the primary key of the audit entry
      * @return the audit entry, or <code>null</code> if a audit entry with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
-    public AuditEntry fetchByPrimaryKey(int id) throws SystemException {
-        return fetchByPrimaryKey((Serializable) id);
+    public AuditEntry fetchByPrimaryKey(int auditEntryId)
+        throws SystemException {
+        return fetchByPrimaryKey((Serializable) auditEntryId);
     }
 
     /**
@@ -598,11 +594,6 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
         }
 
         return count.intValue();
-    }
-
-    @Override
-    protected Set<String> getBadColumnNames() {
-        return _badColumnNames;
     }
 
     /**

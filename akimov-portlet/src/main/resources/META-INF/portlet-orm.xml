@@ -9,15 +9,13 @@
 	</persistence-unit-metadata>
 	<mapped-superclass class="ru.isands.akimov.model.impl.AuditEntryModelImpl">
 		<attributes>
-			<id name="id">
-				<column name="ID_" />
-			</id>
-			<basic name="entityId" />
+			<id name="auditEntryId" />
+			<basic name="auditType" />
 			<basic name="entityType" />
+			<basic name="entityId" />
 			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
-			<basic name="description" />
 			<basic name="dateOfChange">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -55,6 +53,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="blobField" />
+			<basic name="status" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

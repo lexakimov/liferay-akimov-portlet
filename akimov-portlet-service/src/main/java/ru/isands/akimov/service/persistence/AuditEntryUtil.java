@@ -120,25 +120,25 @@ public class AuditEntryUtil {
     /**
     * Creates a new audit entry with the primary key. Does not add the audit entry to the database.
     *
-    * @param id the primary key for the new audit entry
+    * @param auditEntryId the primary key for the new audit entry
     * @return the new audit entry
     */
-    public static ru.isands.akimov.model.AuditEntry create(int id) {
-        return getPersistence().create(id);
+    public static ru.isands.akimov.model.AuditEntry create(int auditEntryId) {
+        return getPersistence().create(auditEntryId);
     }
 
     /**
     * Removes the audit entry with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param id the primary key of the audit entry
+    * @param auditEntryId the primary key of the audit entry
     * @return the audit entry that was removed
     * @throws ru.isands.akimov.NoSuchAuditEntryException if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.isands.akimov.model.AuditEntry remove(int id)
+    public static ru.isands.akimov.model.AuditEntry remove(int auditEntryId)
         throws com.liferay.portal.kernel.exception.SystemException,
             ru.isands.akimov.NoSuchAuditEntryException {
-        return getPersistence().remove(id);
+        return getPersistence().remove(auditEntryId);
     }
 
     public static ru.isands.akimov.model.AuditEntry updateImpl(
@@ -150,27 +150,29 @@ public class AuditEntryUtil {
     /**
     * Returns the audit entry with the primary key or throws a {@link ru.isands.akimov.NoSuchAuditEntryException} if it could not be found.
     *
-    * @param id the primary key of the audit entry
+    * @param auditEntryId the primary key of the audit entry
     * @return the audit entry
     * @throws ru.isands.akimov.NoSuchAuditEntryException if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.isands.akimov.model.AuditEntry findByPrimaryKey(int id)
+    public static ru.isands.akimov.model.AuditEntry findByPrimaryKey(
+        int auditEntryId)
         throws com.liferay.portal.kernel.exception.SystemException,
             ru.isands.akimov.NoSuchAuditEntryException {
-        return getPersistence().findByPrimaryKey(id);
+        return getPersistence().findByPrimaryKey(auditEntryId);
     }
 
     /**
     * Returns the audit entry with the primary key or returns <code>null</code> if it could not be found.
     *
-    * @param id the primary key of the audit entry
+    * @param auditEntryId the primary key of the audit entry
     * @return the audit entry, or <code>null</code> if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.isands.akimov.model.AuditEntry fetchByPrimaryKey(int id)
+    public static ru.isands.akimov.model.AuditEntry fetchByPrimaryKey(
+        int auditEntryId)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getPersistence().fetchByPrimaryKey(id);
+        return getPersistence().fetchByPrimaryKey(auditEntryId);
     }
 
     /**

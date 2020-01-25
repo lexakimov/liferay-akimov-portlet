@@ -30,7 +30,8 @@ public class AuditDemoPortlet extends ExtendedMVCPortlet {
 	 */
 	public void updateFoo(ActionRequest request, ActionResponse response) throws SystemException, IOException {
 
-		log.debug(_getRequestParamsMessage(request));
+		log.debug("");
+		System.out.println(_getRequestParamsMessage(request));
 
 		int fooId = ParamUtil.getInteger(request, "fooId");
 		Foo foo;

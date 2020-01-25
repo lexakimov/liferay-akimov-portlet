@@ -52,9 +52,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
             { "floatField", Types.FLOAT },
             { "stringField", Types.VARCHAR },
             { "dateField", Types.TIMESTAMP },
-            { "blobField", Types.BLOB }
+            { "blobField", Types.BLOB },
+            { "status", Types.INTEGER }
         };
-    public static final String TABLE_SQL_CREATE = "create table akimov_Foo (fooId INTEGER not null primary key,booleanField BOOLEAN,shortField INTEGER,intField INTEGER,longField LONG,doubleField DOUBLE,floatField DOUBLE,stringField VARCHAR(75) null,dateField DATE null,blobField BLOB)";
+    public static final String TABLE_SQL_CREATE = "create table akimov_Foo (fooId INTEGER not null primary key,booleanField BOOLEAN,shortField INTEGER,intField INTEGER,longField LONG,doubleField DOUBLE,floatField DOUBLE,stringField VARCHAR(75) null,dateField DATE null,blobField BLOB,status INTEGER)";
     public static final String TABLE_SQL_DROP = "drop table akimov_Foo";
     public static final String ORDER_BY_JPQL = " ORDER BY foo.fooId ASC";
     public static final String ORDER_BY_SQL = " ORDER BY akimov_Foo.fooId ASC";
@@ -82,6 +83,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
     private String _stringField;
     private Date _dateField;
     private FooBlobFieldBlobModel _blobFieldBlobModel;
+    private short _status;
     private Foo _escapedModel;
 
     public FooModelImpl() {
@@ -131,6 +133,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
         attributes.put("stringField", getStringField());
         attributes.put("dateField", getDateField());
         attributes.put("blobField", getBlobField());
+        attributes.put("status", getStatus());
 
         return attributes;
     }
@@ -195,6 +198,12 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
         if (blobField != null) {
             setBlobField(blobField);
+        }
+
+        Short status = (Short) attributes.get("status");
+
+        if (status != null) {
+            setStatus(status);
         }
     }
 
@@ -326,6 +335,16 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
     }
 
     @Override
+    public short getStatus() {
+        return _status;
+    }
+
+    @Override
+    public void setStatus(short status) {
+        _status = status;
+    }
+
+    @Override
     public Foo toEscapedModel() {
         if (_escapedModel == null) {
             _escapedModel = (Foo) ProxyUtil.newProxyInstance(_classLoader,
@@ -348,6 +367,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
         fooImpl.setFloatField(getFloatField());
         fooImpl.setStringField(getStringField());
         fooImpl.setDateField(getDateField());
+        fooImpl.setStatus(getStatus());
 
         fooImpl.resetOriginalValues();
 
@@ -434,12 +454,14 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
             fooCacheModel.dateField = Long.MIN_VALUE;
         }
 
+        fooCacheModel.status = getStatus();
+
         return fooCacheModel;
     }
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(21);
+        StringBundler sb = new StringBundler(23);
 
         sb.append("{fooId=");
         sb.append(getFooId());
@@ -459,13 +481,16 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
         sb.append(getStringField());
         sb.append(", dateField=");
         sb.append(getDateField());
+        sb.append(", status=");
+        sb.append(getStatus());
+        sb.append("}");
 
         return sb.toString();
     }
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(34);
+        StringBundler sb = new StringBundler(37);
 
         sb.append("<model><model-name>");
         sb.append("ru.isands.akimov.model.Foo");
@@ -506,6 +531,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
         sb.append(
             "<column><column-name>dateField</column-name><column-value><![CDATA[");
         sb.append(getDateField());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>status</column-name><column-value><![CDATA[");
+        sb.append(getStatus());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

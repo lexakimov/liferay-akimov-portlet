@@ -6,6 +6,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
+import ru.isands.akimov.audit.enums.AuditType;
 import ru.isands.akimov.audit.enums.EntityType;
 import ru.isands.akimov.model.AuditEntry;
 import ru.isands.akimov.model.EntityFieldChange;
@@ -34,7 +35,7 @@ public class AuditEntryWrapper {
 	private List<EntityFieldChange> fieldChanges;
 
 	public AuditEntryWrapper(
-			int entityId, EntityType entityType, String description, long companyId, User user, Date dateOfChange)
+			int entityId, EntityType entityType, AuditType auditType, long companyId, User user, Date dateOfChange)
 			throws SystemException {
 
 		int historyEntryId = (int) CounterLocalServiceUtil.increment(AuditEntry.class.getName());
@@ -46,7 +47,7 @@ public class AuditEntryWrapper {
 		auditEntry.setUserId(user.getUserId());
 		auditEntry.setUserName(user.getFullName());
 		auditEntry.setDateOfChange(dateOfChange);
-		auditEntry.setDescription(description);
+		auditEntry.setAuditType(auditType.toString());
 
 		fieldChanges = new ArrayList<>();
 	}
@@ -63,7 +64,7 @@ public class AuditEntryWrapper {
 		int fieldChangeId = (int) CounterLocalServiceUtil.increment(EntityFieldChange.class.getName());
 
 		EntityFieldChange fieldChange = EntityFieldChangeLocalServiceUtil.createEntityFieldChange(fieldChangeId);
-		fieldChange.setAuditEntryId(auditEntry.getId());
+		fieldChange.setAuditEntryId(auditEntry.getAuditEntryId());
 		fieldChange.setFieldName(fieldName);
 
 		fieldChange.setOldValue(attributeToString(oldValue));
@@ -89,8 +90,8 @@ public class AuditEntryWrapper {
 	/**
 	 * @return true если запись истории изменения сущности не имеет закрепленных за собой записей об изменениях атрибутов.
 	 */
-	public boolean isEmpty() {
-		return fieldChanges.isEmpty();
+	public boolean hasFieldChanges() {
+		return !fieldChanges.isEmpty();
 	}
 
 	/**
@@ -103,7 +104,7 @@ public class AuditEntryWrapper {
 		auditEntry.persist();
 
 		if (log.isDebugEnabled()) {
-			int auditId = auditEntry.getId();
+			int auditId = auditEntry.getAuditEntryId();
 			String entityType = auditEntry.getEntityType();
 			int entityId = auditEntry.getEntityId();
 			log.debug(String.format(

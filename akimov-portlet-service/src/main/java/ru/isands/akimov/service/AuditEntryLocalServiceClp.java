@@ -175,12 +175,12 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public ru.isands.akimov.model.AuditEntry createAuditEntry(int id) {
+    public ru.isands.akimov.model.AuditEntry createAuditEntry(int auditEntryId) {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName1,
-                    _methodParameterTypes1, new Object[] { id });
+                    _methodParameterTypes1, new Object[] { auditEntryId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -196,14 +196,14 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public ru.isands.akimov.model.AuditEntry deleteAuditEntry(int id)
+    public ru.isands.akimov.model.AuditEntry deleteAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName2,
-                    _methodParameterTypes2, new Object[] { id });
+                    _methodParameterTypes2, new Object[] { auditEntryId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -440,13 +440,13 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public ru.isands.akimov.model.AuditEntry fetchAuditEntry(int id)
+    public ru.isands.akimov.model.AuditEntry fetchAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName10,
-                    _methodParameterTypes10, new Object[] { id });
+                    _methodParameterTypes10, new Object[] { auditEntryId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -466,14 +466,14 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public ru.isands.akimov.model.AuditEntry getAuditEntry(int id)
+    public ru.isands.akimov.model.AuditEntry getAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName11,
-                    _methodParameterTypes11, new Object[] { id });
+                    _methodParameterTypes11, new Object[] { auditEntryId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 

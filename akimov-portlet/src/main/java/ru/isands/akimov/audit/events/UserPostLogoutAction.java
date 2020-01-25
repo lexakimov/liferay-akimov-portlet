@@ -14,7 +14,7 @@ import static ru.isands.akimov.audit.enums.AuditType.USER_LOGOUT;
 import static ru.isands.akimov.audit.enums.EntityType.USER;
 
 /**
- * Обработчик события при выходе пользователя из ситемы. Прописан в resources/portal.properties.
+ * Обработчик события при выходе пользователя из ситемы. Прописан в resources/hook.properties.
  *
  * @author akimov
  * created at 11.01.20 20:59
@@ -34,7 +34,7 @@ public class UserPostLogoutAction extends Action {
 		long companyId = PortalUtil.getCompanyId(request);
 		User user = PortalUtil.getUser(request);
 		AuditEntryWrapper auditEntry =
-				new AuditEntryWrapper((int) user.getUserId(), USER, USER_LOGOUT.toString(), companyId, user, new Date());
+				new AuditEntryWrapper((int) user.getUserId(), USER, USER_LOGOUT, companyId, user, new Date());
 		auditEntry.persist();
 	}
 

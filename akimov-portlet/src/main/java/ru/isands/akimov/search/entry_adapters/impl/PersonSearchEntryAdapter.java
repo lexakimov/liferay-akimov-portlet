@@ -3,6 +3,7 @@ package ru.isands.akimov.search.entry_adapters.impl;
 import ru.isands.akimov.enums.Gender;
 import ru.isands.akimov.model.Person;
 import ru.isands.akimov.search.entry_adapters.SearchEntryAdapter;
+import ru.isands.akimov.utils.WebPageUtil;
 
 import javax.portlet.PortletException;
 import java.text.SimpleDateFormat;
@@ -26,7 +27,9 @@ public class PersonSearchEntryAdapter extends SearchEntryAdapter<Person> {
 	}
 
 	public String getAddress() {
-		return !model.getAddress().isEmpty() ? model.getAddress() : "<span style='color: gray;'>не указан</span>";
+		return !model.getAddress().isEmpty()
+				? model.getAddress()
+				: WebPageUtil.setColor("не указан", "gray");
 	}
 
 }

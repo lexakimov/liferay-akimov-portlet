@@ -43,25 +43,27 @@ public class AuditEntryLocalServiceUtil {
     /**
     * Creates a new audit entry with the primary key. Does not add the audit entry to the database.
     *
-    * @param id the primary key for the new audit entry
+    * @param auditEntryId the primary key for the new audit entry
     * @return the new audit entry
     */
-    public static ru.isands.akimov.model.AuditEntry createAuditEntry(int id) {
-        return getService().createAuditEntry(id);
+    public static ru.isands.akimov.model.AuditEntry createAuditEntry(
+        int auditEntryId) {
+        return getService().createAuditEntry(auditEntryId);
     }
 
     /**
     * Deletes the audit entry with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param id the primary key of the audit entry
+    * @param auditEntryId the primary key of the audit entry
     * @return the audit entry that was removed
     * @throws PortalException if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.isands.akimov.model.AuditEntry deleteAuditEntry(int id)
+    public static ru.isands.akimov.model.AuditEntry deleteAuditEntry(
+        int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        return getService().deleteAuditEntry(id);
+        return getService().deleteAuditEntry(auditEntryId);
     }
 
     /**
@@ -167,23 +169,25 @@ public class AuditEntryLocalServiceUtil {
         return getService().dynamicQueryCount(dynamicQuery, projection);
     }
 
-    public static ru.isands.akimov.model.AuditEntry fetchAuditEntry(int id)
+    public static ru.isands.akimov.model.AuditEntry fetchAuditEntry(
+        int auditEntryId)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getService().fetchAuditEntry(id);
+        return getService().fetchAuditEntry(auditEntryId);
     }
 
     /**
     * Returns the audit entry with the primary key.
     *
-    * @param id the primary key of the audit entry
+    * @param auditEntryId the primary key of the audit entry
     * @return the audit entry
     * @throws PortalException if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.isands.akimov.model.AuditEntry getAuditEntry(int id)
+    public static ru.isands.akimov.model.AuditEntry getAuditEntry(
+        int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        return getService().getAuditEntry(id);
+        return getService().getAuditEntry(auditEntryId);
     }
 
     public static com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -262,7 +266,7 @@ public class AuditEntryLocalServiceUtil {
     /**
     * Удалить записи истории для сущности.
     *
-    * @param entityType тип сущности
+    * @param entityType тип сущности (any case)
     * @param entityId   ключ
     * @throws SystemException
     */

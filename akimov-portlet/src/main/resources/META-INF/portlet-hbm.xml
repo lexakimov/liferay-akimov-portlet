@@ -8,15 +8,15 @@
 	<import class="ru.isands.akimov.model.Person" />
 	<class name="ru.isands.akimov.model.impl.AuditEntryImpl" table="akimov_audit_entry">
 		<cache usage="read-write" />
-		<id name="id" column="id_" type="int">
+		<id name="auditEntryId" type="int">
 			<generator class="assigned" />
 		</id>
-		<property name="entityId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="auditType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="entityType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="entityId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="dateOfChange" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="ru.isands.akimov.model.impl.EntityFieldChangeImpl" table="akimov_entity_field_change">
@@ -43,6 +43,7 @@
 		<property name="stringField" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="dateField" type="org.hibernate.type.TimestampType" />
 		<one-to-one name="blobFieldBlobModel" access="com.liferay.portal.dao.orm.hibernate.PrivatePropertyAccessor" class="ru.isands.akimov.model.FooBlobFieldBlobModel" cascade="save-update" outer-join="false" constrained="true" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.ShortType" />
 	</class>
 	<class name="ru.isands.akimov.model.FooBlobFieldBlobModel" table="akimov_Foo" lazy="true">
 		<id name="fooId" column="fooId">

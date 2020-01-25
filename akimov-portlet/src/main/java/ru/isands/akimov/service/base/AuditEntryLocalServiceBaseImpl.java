@@ -100,27 +100,27 @@ public abstract class AuditEntryLocalServiceBaseImpl
     /**
      * Creates a new audit entry with the primary key. Does not add the audit entry to the database.
      *
-     * @param id the primary key for the new audit entry
+     * @param auditEntryId the primary key for the new audit entry
      * @return the new audit entry
      */
     @Override
-    public AuditEntry createAuditEntry(int id) {
-        return auditEntryPersistence.create(id);
+    public AuditEntry createAuditEntry(int auditEntryId) {
+        return auditEntryPersistence.create(auditEntryId);
     }
 
     /**
      * Deletes the audit entry with the primary key from the database. Also notifies the appropriate model listeners.
      *
-     * @param id the primary key of the audit entry
+     * @param auditEntryId the primary key of the audit entry
      * @return the audit entry that was removed
      * @throws PortalException if a audit entry with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Indexable(type = IndexableType.DELETE)
     @Override
-    public AuditEntry deleteAuditEntry(int id)
+    public AuditEntry deleteAuditEntry(int auditEntryId)
         throws PortalException, SystemException {
-        return auditEntryPersistence.remove(id);
+        return auditEntryPersistence.remove(auditEntryId);
     }
 
     /**
@@ -231,22 +231,23 @@ public abstract class AuditEntryLocalServiceBaseImpl
     }
 
     @Override
-    public AuditEntry fetchAuditEntry(int id) throws SystemException {
-        return auditEntryPersistence.fetchByPrimaryKey(id);
+    public AuditEntry fetchAuditEntry(int auditEntryId)
+        throws SystemException {
+        return auditEntryPersistence.fetchByPrimaryKey(auditEntryId);
     }
 
     /**
      * Returns the audit entry with the primary key.
      *
-     * @param id the primary key of the audit entry
+     * @param auditEntryId the primary key of the audit entry
      * @return the audit entry
      * @throws PortalException if a audit entry with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
-    public AuditEntry getAuditEntry(int id)
+    public AuditEntry getAuditEntry(int auditEntryId)
         throws PortalException, SystemException {
-        return auditEntryPersistence.findByPrimaryKey(id);
+        return auditEntryPersistence.findByPrimaryKey(auditEntryId);
     }
 
     @Override

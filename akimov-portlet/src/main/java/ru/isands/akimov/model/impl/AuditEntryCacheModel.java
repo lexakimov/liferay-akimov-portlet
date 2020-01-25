@@ -22,33 +22,33 @@ import java.util.Date;
  */
 public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
     Externalizable {
-    public int id;
-    public int entityId;
+    public int auditEntryId;
+    public String auditType;
     public String entityType;
+    public int entityId;
     public long companyId;
     public long userId;
     public String userName;
-    public String description;
     public long dateOfChange;
 
     @Override
     public String toString() {
         StringBundler sb = new StringBundler(17);
 
-        sb.append("{id=");
-        sb.append(id);
-        sb.append(", entityId=");
-        sb.append(entityId);
+        sb.append("{auditEntryId=");
+        sb.append(auditEntryId);
+        sb.append(", auditType=");
+        sb.append(auditType);
         sb.append(", entityType=");
         sb.append(entityType);
+        sb.append(", entityId=");
+        sb.append(entityId);
         sb.append(", companyId=");
         sb.append(companyId);
         sb.append(", userId=");
         sb.append(userId);
         sb.append(", userName=");
         sb.append(userName);
-        sb.append(", description=");
-        sb.append(description);
         sb.append(", dateOfChange=");
         sb.append(dateOfChange);
         sb.append("}");
@@ -60,8 +60,13 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
     public AuditEntry toEntityModel() {
         AuditEntryImpl auditEntryImpl = new AuditEntryImpl();
 
-        auditEntryImpl.setId(id);
-        auditEntryImpl.setEntityId(entityId);
+        auditEntryImpl.setAuditEntryId(auditEntryId);
+
+        if (auditType == null) {
+            auditEntryImpl.setAuditType(StringPool.BLANK);
+        } else {
+            auditEntryImpl.setAuditType(auditType);
+        }
 
         if (entityType == null) {
             auditEntryImpl.setEntityType(StringPool.BLANK);
@@ -69,6 +74,7 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
             auditEntryImpl.setEntityType(entityType);
         }
 
+        auditEntryImpl.setEntityId(entityId);
         auditEntryImpl.setCompanyId(companyId);
         auditEntryImpl.setUserId(userId);
 
@@ -76,12 +82,6 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
             auditEntryImpl.setUserName(StringPool.BLANK);
         } else {
             auditEntryImpl.setUserName(userName);
-        }
-
-        if (description == null) {
-            auditEntryImpl.setDescription(StringPool.BLANK);
-        } else {
-            auditEntryImpl.setDescription(description);
         }
 
         if (dateOfChange == Long.MIN_VALUE) {
@@ -97,21 +97,26 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
 
     @Override
     public void readExternal(ObjectInput objectInput) throws IOException {
-        id = objectInput.readInt();
-        entityId = objectInput.readInt();
+        auditEntryId = objectInput.readInt();
+        auditType = objectInput.readUTF();
         entityType = objectInput.readUTF();
+        entityId = objectInput.readInt();
         companyId = objectInput.readLong();
         userId = objectInput.readLong();
         userName = objectInput.readUTF();
-        description = objectInput.readUTF();
         dateOfChange = objectInput.readLong();
     }
 
     @Override
     public void writeExternal(ObjectOutput objectOutput)
         throws IOException {
-        objectOutput.writeInt(id);
-        objectOutput.writeInt(entityId);
+        objectOutput.writeInt(auditEntryId);
+
+        if (auditType == null) {
+            objectOutput.writeUTF(StringPool.BLANK);
+        } else {
+            objectOutput.writeUTF(auditType);
+        }
 
         if (entityType == null) {
             objectOutput.writeUTF(StringPool.BLANK);
@@ -119,6 +124,7 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
             objectOutput.writeUTF(entityType);
         }
 
+        objectOutput.writeInt(entityId);
         objectOutput.writeLong(companyId);
         objectOutput.writeLong(userId);
 
@@ -126,12 +132,6 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
             objectOutput.writeUTF(StringPool.BLANK);
         } else {
             objectOutput.writeUTF(userName);
-        }
-
-        if (description == null) {
-            objectOutput.writeUTF(StringPool.BLANK);
-        } else {
-            objectOutput.writeUTF(description);
         }
 
         objectOutput.writeLong(dateOfChange);

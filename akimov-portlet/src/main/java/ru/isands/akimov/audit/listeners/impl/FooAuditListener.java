@@ -23,7 +23,7 @@ public class FooAuditListener extends AuditModelListener<Foo> {
 	}
 
 	@Override
-	protected ModelComparator<Foo> getChangeDetector(Foo oldModel, Foo updatedModel) throws NoSuchModelAttributeException {
+	protected ModelComparator<Foo> getModelComparator(Foo oldModel, Foo updatedModel) throws NoSuchModelAttributeException {
 		return new FooComparator(oldModel, updatedModel);
 	}
 

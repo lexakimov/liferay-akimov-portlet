@@ -17,7 +17,7 @@ import ru.isands.akimov.audit.exceptions.AuditEntryCreateException;
 import java.util.Date;
 
 /**
- * Перехват события о регистрации или удалении пользователя.
+ * Перехват события о регистрации или удалении пользователя. Прописан в resources/service-ext.properties.
  *
  * @author akimov
  * created at 23.01.20 16:34
@@ -26,29 +26,21 @@ public class UserListener extends BaseModelListener<User> {
 
 	private Log log = LogFactoryUtil.getLog(UserListener.class);
 
-	public UserListener() {
-		super();
-		log.debug("created");
-	}
-
 	@Override
 	public void onAfterCreate(User model) throws ModelListenerException {
-		log.debug("create new user");
-		String description = AuditType.USER_REGISTRATION.toString();
-		process(model, description);
+		log.trace("onAfterCreate()");
+		process(model, AuditType.USER_REGISTRATION);
 	}
 
 	@Override
 	public void onAfterRemove(User model) throws ModelListenerException {
-		log.debug("remove user");
-		String description = AuditType.USER_REMOVE.toString();
-		process(model, description);
+		log.trace("onAfterRemove()");
+		process(model, AuditType.USER_REMOVE);
 	}
 
-	private void process(User model, String description) throws AuditEntryCreateException {
+	private void process(User model, AuditType description) throws AuditEntryCreateException {
 		try {
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
-
 			long companyId = model.getCompanyId();
 			int entityId = (int) model.getUserId();
 			User userAuthor = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
@@ -59,4 +51,5 @@ public class UserListener extends BaseModelListener<User> {
 			throw new AuditEntryCreateException(e);
 		}
 	}
+
 }

@@ -25,6 +25,7 @@ public class FooSoap implements Serializable {
     private String _stringField;
     private Date _dateField;
     private Blob _blobField;
+    private short _status;
 
     public FooSoap() {
     }
@@ -42,6 +43,7 @@ public class FooSoap implements Serializable {
         soapModel.setStringField(model.getStringField());
         soapModel.setDateField(model.getDateField());
         soapModel.setBlobField(model.getBlobField());
+        soapModel.setStatus(model.getStatus());
 
         return soapModel;
     }
@@ -172,5 +174,13 @@ public class FooSoap implements Serializable {
 
     public void setBlobField(Blob blobField) {
         _blobField = blobField;
+    }
+
+    public short getStatus() {
+        return _status;
+    }
+
+    public void setStatus(short status) {
+        _status = status;
     }
 }

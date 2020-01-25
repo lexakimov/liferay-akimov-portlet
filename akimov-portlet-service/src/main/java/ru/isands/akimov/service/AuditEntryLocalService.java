@@ -48,21 +48,21 @@ public interface AuditEntryLocalService extends BaseLocalService,
     /**
     * Creates a new audit entry with the primary key. Does not add the audit entry to the database.
     *
-    * @param id the primary key for the new audit entry
+    * @param auditEntryId the primary key for the new audit entry
     * @return the new audit entry
     */
-    public ru.isands.akimov.model.AuditEntry createAuditEntry(int id);
+    public ru.isands.akimov.model.AuditEntry createAuditEntry(int auditEntryId);
 
     /**
     * Deletes the audit entry with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param id the primary key of the audit entry
+    * @param auditEntryId the primary key of the audit entry
     * @return the audit entry that was removed
     * @throws PortalException if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-    public ru.isands.akimov.model.AuditEntry deleteAuditEntry(int id)
+    public ru.isands.akimov.model.AuditEntry deleteAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
@@ -156,19 +156,19 @@ public interface AuditEntryLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public ru.isands.akimov.model.AuditEntry fetchAuditEntry(int id)
+    public ru.isands.akimov.model.AuditEntry fetchAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
     * Returns the audit entry with the primary key.
     *
-    * @param id the primary key of the audit entry
+    * @param auditEntryId the primary key of the audit entry
     * @return the audit entry
     * @throws PortalException if a audit entry with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public ru.isands.akimov.model.AuditEntry getAuditEntry(int id)
+    public ru.isands.akimov.model.AuditEntry getAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
@@ -240,7 +240,7 @@ public interface AuditEntryLocalService extends BaseLocalService,
     /**
     * Удалить записи истории для сущности.
     *
-    * @param entityType тип сущности
+    * @param entityType тип сущности (any case)
     * @param entityId   ключ
     * @throws SystemException
     */

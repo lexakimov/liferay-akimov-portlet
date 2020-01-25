@@ -18,9 +18,9 @@ import static ru.isands.akimov.utils.DateUtil.ISO_8601;
  * @author akimov
  * created at 19.01.20 13:57
  */
-public class FooAttributeConverter extends DefaultAttributeConverter {
+public class FooAttributeValueAdapter extends DefaultAttributeValueAdapter {
 
-	private final Log _log = LogFactoryUtil.getLog(FooAttributeConverter.class);
+	private final Log _log = LogFactoryUtil.getLog(FooAttributeValueAdapter.class);
 
 	@Override
 	public Map<String, Function<String, String>> getAttributeAdapters() {

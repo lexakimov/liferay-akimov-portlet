@@ -37,13 +37,13 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     public Map<String, Object> getModelAttributes() {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
-        attributes.put("id", getId());
-        attributes.put("entityId", getEntityId());
+        attributes.put("auditEntryId", getAuditEntryId());
+        attributes.put("auditType", getAuditType());
         attributes.put("entityType", getEntityType());
+        attributes.put("entityId", getEntityId());
         attributes.put("companyId", getCompanyId());
         attributes.put("userId", getUserId());
         attributes.put("userName", getUserName());
-        attributes.put("description", getDescription());
         attributes.put("dateOfChange", getDateOfChange());
 
         return attributes;
@@ -51,22 +51,28 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
 
     @Override
     public void setModelAttributes(Map<String, Object> attributes) {
-        Integer id = (Integer) attributes.get("id");
+        Integer auditEntryId = (Integer) attributes.get("auditEntryId");
 
-        if (id != null) {
-            setId(id);
+        if (auditEntryId != null) {
+            setAuditEntryId(auditEntryId);
         }
 
-        Integer entityId = (Integer) attributes.get("entityId");
+        String auditType = (String) attributes.get("auditType");
 
-        if (entityId != null) {
-            setEntityId(entityId);
+        if (auditType != null) {
+            setAuditType(auditType);
         }
 
         String entityType = (String) attributes.get("entityType");
 
         if (entityType != null) {
             setEntityType(entityType);
+        }
+
+        Integer entityId = (Integer) attributes.get("entityId");
+
+        if (entityId != null) {
+            setEntityId(entityId);
         }
 
         Long companyId = (Long) attributes.get("companyId");
@@ -85,12 +91,6 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
 
         if (userName != null) {
             setUserName(userName);
-        }
-
-        String description = (String) attributes.get("description");
-
-        if (description != null) {
-            setDescription(description);
         }
 
         Date dateOfChange = (Date) attributes.get("dateOfChange");
@@ -121,43 +121,43 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Returns the ID of this audit entry.
+    * Returns the audit entry ID of this audit entry.
     *
-    * @return the ID of this audit entry
+    * @return the audit entry ID of this audit entry
     */
     @Override
-    public int getId() {
-        return _auditEntry.getId();
+    public int getAuditEntryId() {
+        return _auditEntry.getAuditEntryId();
     }
 
     /**
-    * Sets the ID of this audit entry.
+    * Sets the audit entry ID of this audit entry.
     *
-    * @param id the ID of this audit entry
+    * @param auditEntryId the audit entry ID of this audit entry
     */
     @Override
-    public void setId(int id) {
-        _auditEntry.setId(id);
+    public void setAuditEntryId(int auditEntryId) {
+        _auditEntry.setAuditEntryId(auditEntryId);
     }
 
     /**
-    * Returns the entity ID of this audit entry.
+    * Returns the audit type of this audit entry.
     *
-    * @return the entity ID of this audit entry
+    * @return the audit type of this audit entry
     */
     @Override
-    public int getEntityId() {
-        return _auditEntry.getEntityId();
+    public java.lang.String getAuditType() {
+        return _auditEntry.getAuditType();
     }
 
     /**
-    * Sets the entity ID of this audit entry.
+    * Sets the audit type of this audit entry.
     *
-    * @param entityId the entity ID of this audit entry
+    * @param auditType the audit type of this audit entry
     */
     @Override
-    public void setEntityId(int entityId) {
-        _auditEntry.setEntityId(entityId);
+    public void setAuditType(java.lang.String auditType) {
+        _auditEntry.setAuditType(auditType);
     }
 
     /**
@@ -178,6 +178,26 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     @Override
     public void setEntityType(java.lang.String entityType) {
         _auditEntry.setEntityType(entityType);
+    }
+
+    /**
+    * Returns the entity ID of this audit entry.
+    *
+    * @return the entity ID of this audit entry
+    */
+    @Override
+    public int getEntityId() {
+        return _auditEntry.getEntityId();
+    }
+
+    /**
+    * Sets the entity ID of this audit entry.
+    *
+    * @param entityId the entity ID of this audit entry
+    */
+    @Override
+    public void setEntityId(int entityId) {
+        _auditEntry.setEntityId(entityId);
     }
 
     /**
@@ -260,26 +280,6 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     @Override
     public void setUserName(java.lang.String userName) {
         _auditEntry.setUserName(userName);
-    }
-
-    /**
-    * Returns the description of this audit entry.
-    *
-    * @return the description of this audit entry
-    */
-    @Override
-    public java.lang.String getDescription() {
-        return _auditEntry.getDescription();
-    }
-
-    /**
-    * Sets the description of this audit entry.
-    *
-    * @param description the description of this audit entry
-    */
-    @Override
-    public void setDescription(java.lang.String description) {
-        _auditEntry.setDescription(description);
     }
 
     /**

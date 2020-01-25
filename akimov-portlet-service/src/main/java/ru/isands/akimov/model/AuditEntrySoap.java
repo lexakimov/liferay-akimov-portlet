@@ -13,13 +13,13 @@ import java.util.List;
  * @generated
  */
 public class AuditEntrySoap implements Serializable {
-    private int _id;
-    private int _entityId;
+    private int _auditEntryId;
+    private String _auditType;
     private String _entityType;
+    private int _entityId;
     private long _companyId;
     private long _userId;
     private String _userName;
-    private String _description;
     private Date _dateOfChange;
 
     public AuditEntrySoap() {
@@ -28,13 +28,13 @@ public class AuditEntrySoap implements Serializable {
     public static AuditEntrySoap toSoapModel(AuditEntry model) {
         AuditEntrySoap soapModel = new AuditEntrySoap();
 
-        soapModel.setId(model.getId());
-        soapModel.setEntityId(model.getEntityId());
+        soapModel.setAuditEntryId(model.getAuditEntryId());
+        soapModel.setAuditType(model.getAuditType());
         soapModel.setEntityType(model.getEntityType());
+        soapModel.setEntityId(model.getEntityId());
         soapModel.setCompanyId(model.getCompanyId());
         soapModel.setUserId(model.getUserId());
         soapModel.setUserName(model.getUserName());
-        soapModel.setDescription(model.getDescription());
         soapModel.setDateOfChange(model.getDateOfChange());
 
         return soapModel;
@@ -77,27 +77,27 @@ public class AuditEntrySoap implements Serializable {
     }
 
     public int getPrimaryKey() {
-        return _id;
+        return _auditEntryId;
     }
 
     public void setPrimaryKey(int pk) {
-        setId(pk);
+        setAuditEntryId(pk);
     }
 
-    public int getId() {
-        return _id;
+    public int getAuditEntryId() {
+        return _auditEntryId;
     }
 
-    public void setId(int id) {
-        _id = id;
+    public void setAuditEntryId(int auditEntryId) {
+        _auditEntryId = auditEntryId;
     }
 
-    public int getEntityId() {
-        return _entityId;
+    public String getAuditType() {
+        return _auditType;
     }
 
-    public void setEntityId(int entityId) {
-        _entityId = entityId;
+    public void setAuditType(String auditType) {
+        _auditType = auditType;
     }
 
     public String getEntityType() {
@@ -106,6 +106,14 @@ public class AuditEntrySoap implements Serializable {
 
     public void setEntityType(String entityType) {
         _entityType = entityType;
+    }
+
+    public int getEntityId() {
+        return _entityId;
+    }
+
+    public void setEntityId(int entityId) {
+        _entityId = entityId;
     }
 
     public long getCompanyId() {
@@ -130,14 +138,6 @@ public class AuditEntrySoap implements Serializable {
 
     public void setUserName(String userName) {
         _userName = userName;
-    }
-
-    public String getDescription() {
-        return _description;
-    }
-
-    public void setDescription(String description) {
-        _description = description;
     }
 
     public Date getDateOfChange() {

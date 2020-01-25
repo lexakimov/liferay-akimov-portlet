@@ -43,19 +43,19 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
      */
     public static final String TABLE_NAME = "akimov_audit_entry";
     public static final Object[][] TABLE_COLUMNS = {
-            { "id_", Types.INTEGER },
-            { "entityId", Types.INTEGER },
+            { "auditEntryId", Types.INTEGER },
+            { "auditType", Types.VARCHAR },
             { "entityType", Types.VARCHAR },
+            { "entityId", Types.INTEGER },
             { "companyId", Types.BIGINT },
             { "userId", Types.BIGINT },
             { "userName", Types.VARCHAR },
-            { "description", Types.VARCHAR },
             { "dateOfChange", Types.TIMESTAMP }
         };
-    public static final String TABLE_SQL_CREATE = "create table akimov_audit_entry (id_ INTEGER not null primary key,entityId INTEGER,entityType VARCHAR(75) null,companyId LONG,userId LONG,userName VARCHAR(75) null,description VARCHAR(75) null,dateOfChange DATE null)";
+    public static final String TABLE_SQL_CREATE = "create table akimov_audit_entry (auditEntryId INTEGER not null primary key,auditType VARCHAR(75) null,entityType VARCHAR(75) null,entityId INTEGER,companyId LONG,userId LONG,userName VARCHAR(75) null,dateOfChange DATE null)";
     public static final String TABLE_SQL_DROP = "drop table akimov_audit_entry";
-    public static final String ORDER_BY_JPQL = " ORDER BY auditEntry.id ASC";
-    public static final String ORDER_BY_SQL = " ORDER BY akimov_audit_entry.id_ ASC";
+    public static final String ORDER_BY_JPQL = " ORDER BY auditEntry.auditEntryId ASC";
+    public static final String ORDER_BY_SQL = " ORDER BY akimov_audit_entry.auditEntryId ASC";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
     public static final String TX_MANAGER = "liferayTransactionManager";
@@ -72,14 +72,14 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     private static Class<?>[] _escapedModelInterfaces = new Class[] {
             AuditEntry.class
         };
-    private int _id;
-    private int _entityId;
+    private int _auditEntryId;
+    private String _auditType;
     private String _entityType;
+    private int _entityId;
     private long _companyId;
     private long _userId;
     private String _userUuid;
     private String _userName;
-    private String _description;
     private Date _dateOfChange;
     private AuditEntry _escapedModel;
 
@@ -88,17 +88,17 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
 
     @Override
     public int getPrimaryKey() {
-        return _id;
+        return _auditEntryId;
     }
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        setId(primaryKey);
+        setAuditEntryId(primaryKey);
     }
 
     @Override
     public Serializable getPrimaryKeyObj() {
-        return _id;
+        return _auditEntryId;
     }
 
     @Override
@@ -120,13 +120,13 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     public Map<String, Object> getModelAttributes() {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
-        attributes.put("id", getId());
-        attributes.put("entityId", getEntityId());
+        attributes.put("auditEntryId", getAuditEntryId());
+        attributes.put("auditType", getAuditType());
         attributes.put("entityType", getEntityType());
+        attributes.put("entityId", getEntityId());
         attributes.put("companyId", getCompanyId());
         attributes.put("userId", getUserId());
         attributes.put("userName", getUserName());
-        attributes.put("description", getDescription());
         attributes.put("dateOfChange", getDateOfChange());
 
         return attributes;
@@ -134,22 +134,28 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
 
     @Override
     public void setModelAttributes(Map<String, Object> attributes) {
-        Integer id = (Integer) attributes.get("id");
+        Integer auditEntryId = (Integer) attributes.get("auditEntryId");
 
-        if (id != null) {
-            setId(id);
+        if (auditEntryId != null) {
+            setAuditEntryId(auditEntryId);
         }
 
-        Integer entityId = (Integer) attributes.get("entityId");
+        String auditType = (String) attributes.get("auditType");
 
-        if (entityId != null) {
-            setEntityId(entityId);
+        if (auditType != null) {
+            setAuditType(auditType);
         }
 
         String entityType = (String) attributes.get("entityType");
 
         if (entityType != null) {
             setEntityType(entityType);
+        }
+
+        Integer entityId = (Integer) attributes.get("entityId");
+
+        if (entityId != null) {
+            setEntityId(entityId);
         }
 
         Long companyId = (Long) attributes.get("companyId");
@@ -170,12 +176,6 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
             setUserName(userName);
         }
 
-        String description = (String) attributes.get("description");
-
-        if (description != null) {
-            setDescription(description);
-        }
-
         Date dateOfChange = (Date) attributes.get("dateOfChange");
 
         if (dateOfChange != null) {
@@ -184,23 +184,27 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     }
 
     @Override
-    public int getId() {
-        return _id;
+    public int getAuditEntryId() {
+        return _auditEntryId;
     }
 
     @Override
-    public void setId(int id) {
-        _id = id;
+    public void setAuditEntryId(int auditEntryId) {
+        _auditEntryId = auditEntryId;
     }
 
     @Override
-    public int getEntityId() {
-        return _entityId;
+    public String getAuditType() {
+        if (_auditType == null) {
+            return StringPool.BLANK;
+        } else {
+            return _auditType;
+        }
     }
 
     @Override
-    public void setEntityId(int entityId) {
-        _entityId = entityId;
+    public void setAuditType(String auditType) {
+        _auditType = auditType;
     }
 
     @Override
@@ -215,6 +219,16 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     @Override
     public void setEntityType(String entityType) {
         _entityType = entityType;
+    }
+
+    @Override
+    public int getEntityId() {
+        return _entityId;
+    }
+
+    @Override
+    public void setEntityId(int entityId) {
+        _entityId = entityId;
     }
 
     @Override
@@ -262,20 +276,6 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     }
 
     @Override
-    public String getDescription() {
-        if (_description == null) {
-            return StringPool.BLANK;
-        } else {
-            return _description;
-        }
-    }
-
-    @Override
-    public void setDescription(String description) {
-        _description = description;
-    }
-
-    @Override
     public Date getDateOfChange() {
         return _dateOfChange;
     }
@@ -299,13 +299,13 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     public Object clone() {
         AuditEntryImpl auditEntryImpl = new AuditEntryImpl();
 
-        auditEntryImpl.setId(getId());
-        auditEntryImpl.setEntityId(getEntityId());
+        auditEntryImpl.setAuditEntryId(getAuditEntryId());
+        auditEntryImpl.setAuditType(getAuditType());
         auditEntryImpl.setEntityType(getEntityType());
+        auditEntryImpl.setEntityId(getEntityId());
         auditEntryImpl.setCompanyId(getCompanyId());
         auditEntryImpl.setUserId(getUserId());
         auditEntryImpl.setUserName(getUserName());
-        auditEntryImpl.setDescription(getDescription());
         auditEntryImpl.setDateOfChange(getDateOfChange());
 
         auditEntryImpl.resetOriginalValues();
@@ -360,9 +360,15 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     public CacheModel<AuditEntry> toCacheModel() {
         AuditEntryCacheModel auditEntryCacheModel = new AuditEntryCacheModel();
 
-        auditEntryCacheModel.id = getId();
+        auditEntryCacheModel.auditEntryId = getAuditEntryId();
 
-        auditEntryCacheModel.entityId = getEntityId();
+        auditEntryCacheModel.auditType = getAuditType();
+
+        String auditType = auditEntryCacheModel.auditType;
+
+        if ((auditType != null) && (auditType.length() == 0)) {
+            auditEntryCacheModel.auditType = null;
+        }
 
         auditEntryCacheModel.entityType = getEntityType();
 
@@ -371,6 +377,8 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         if ((entityType != null) && (entityType.length() == 0)) {
             auditEntryCacheModel.entityType = null;
         }
+
+        auditEntryCacheModel.entityId = getEntityId();
 
         auditEntryCacheModel.companyId = getCompanyId();
 
@@ -382,14 +390,6 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
 
         if ((userName != null) && (userName.length() == 0)) {
             auditEntryCacheModel.userName = null;
-        }
-
-        auditEntryCacheModel.description = getDescription();
-
-        String description = auditEntryCacheModel.description;
-
-        if ((description != null) && (description.length() == 0)) {
-            auditEntryCacheModel.description = null;
         }
 
         Date dateOfChange = getDateOfChange();
@@ -407,20 +407,20 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     public String toString() {
         StringBundler sb = new StringBundler(17);
 
-        sb.append("{id=");
-        sb.append(getId());
-        sb.append(", entityId=");
-        sb.append(getEntityId());
+        sb.append("{auditEntryId=");
+        sb.append(getAuditEntryId());
+        sb.append(", auditType=");
+        sb.append(getAuditType());
         sb.append(", entityType=");
         sb.append(getEntityType());
+        sb.append(", entityId=");
+        sb.append(getEntityId());
         sb.append(", companyId=");
         sb.append(getCompanyId());
         sb.append(", userId=");
         sb.append(getUserId());
         sb.append(", userName=");
         sb.append(getUserName());
-        sb.append(", description=");
-        sb.append(getDescription());
         sb.append(", dateOfChange=");
         sb.append(getDateOfChange());
         sb.append("}");
@@ -437,16 +437,20 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         sb.append("</model-name>");
 
         sb.append(
-            "<column><column-name>id</column-name><column-value><![CDATA[");
-        sb.append(getId());
+            "<column><column-name>auditEntryId</column-name><column-value><![CDATA[");
+        sb.append(getAuditEntryId());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>entityId</column-name><column-value><![CDATA[");
-        sb.append(getEntityId());
+            "<column><column-name>auditType</column-name><column-value><![CDATA[");
+        sb.append(getAuditType());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>entityType</column-name><column-value><![CDATA[");
         sb.append(getEntityType());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>entityId</column-name><column-value><![CDATA[");
+        sb.append(getEntityId());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -459,10 +463,6 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         sb.append(
             "<column><column-name>userName</column-name><column-value><![CDATA[");
         sb.append(getUserName());
-        sb.append("]]></column-value></column>");
-        sb.append(
-            "<column><column-name>description</column-name><column-value><![CDATA[");
-        sb.append(getDescription());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>dateOfChange</column-name><column-value><![CDATA[");
