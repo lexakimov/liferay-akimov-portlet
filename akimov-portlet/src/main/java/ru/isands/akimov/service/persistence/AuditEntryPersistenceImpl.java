@@ -329,6 +329,7 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
         auditEntryImpl.setUserId(auditEntry.getUserId());
         auditEntryImpl.setUserName(auditEntry.getUserName());
         auditEntryImpl.setDateOfChange(auditEntry.getDateOfChange());
+        auditEntryImpl.setMetadata(auditEntry.getMetadata());
 
         return auditEntryImpl;
     }

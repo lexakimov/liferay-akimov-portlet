@@ -24,10 +24,10 @@ public class FooStatusChangeActionDescriptionAdapter implements ru.isands.akimov
 		int fooId = entry.getEntityId();
 		try {
 			User user = UserLocalServiceUtil.fetchUser(userId);
-			return String.format(DESCRIPTION_PATTERN, user.getFullName(), fooId);
+			return String.format(DESCRIPTION_PATTERN, user.getFullName(), fooId, "some_status");
 		} catch (SystemException e) {
 			log.error(e);
-			return String.format(DESCRIPTION_PATTERN, WebPageUtil.setColor("[ошибка]", "red"));
+			return WebPageUtil.setColor(entry.getAuditType(), "red");
 		}
 	}
 }

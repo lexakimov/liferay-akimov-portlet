@@ -50,9 +50,10 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
             { "companyId", Types.BIGINT },
             { "userId", Types.BIGINT },
             { "userName", Types.VARCHAR },
-            { "dateOfChange", Types.TIMESTAMP }
+            { "dateOfChange", Types.TIMESTAMP },
+            { "metadata", Types.CLOB }
         };
-    public static final String TABLE_SQL_CREATE = "create table akimov_audit_entry (auditEntryId INTEGER not null primary key,auditType VARCHAR(75) null,entityType VARCHAR(75) null,entityId INTEGER,companyId LONG,userId LONG,userName VARCHAR(75) null,dateOfChange DATE null)";
+    public static final String TABLE_SQL_CREATE = "create table akimov_audit_entry (auditEntryId INTEGER not null primary key,auditType VARCHAR(75) null,entityType VARCHAR(75) null,entityId INTEGER,companyId LONG,userId LONG,userName VARCHAR(75) null,dateOfChange DATE null,metadata TEXT null)";
     public static final String TABLE_SQL_DROP = "drop table akimov_audit_entry";
     public static final String ORDER_BY_JPQL = " ORDER BY auditEntry.auditEntryId ASC";
     public static final String ORDER_BY_SQL = " ORDER BY akimov_audit_entry.auditEntryId ASC";
@@ -81,6 +82,7 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     private String _userUuid;
     private String _userName;
     private Date _dateOfChange;
+    private String _metadata;
     private AuditEntry _escapedModel;
 
     public AuditEntryModelImpl() {
@@ -128,6 +130,7 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         attributes.put("userId", getUserId());
         attributes.put("userName", getUserName());
         attributes.put("dateOfChange", getDateOfChange());
+        attributes.put("metadata", getMetadata());
 
         return attributes;
     }
@@ -180,6 +183,12 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
 
         if (dateOfChange != null) {
             setDateOfChange(dateOfChange);
+        }
+
+        String metadata = (String) attributes.get("metadata");
+
+        if (metadata != null) {
+            setMetadata(metadata);
         }
     }
 
@@ -286,6 +295,20 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
     }
 
     @Override
+    public String getMetadata() {
+        if (_metadata == null) {
+            return StringPool.BLANK;
+        } else {
+            return _metadata;
+        }
+    }
+
+    @Override
+    public void setMetadata(String metadata) {
+        _metadata = metadata;
+    }
+
+    @Override
     public AuditEntry toEscapedModel() {
         if (_escapedModel == null) {
             _escapedModel = (AuditEntry) ProxyUtil.newProxyInstance(_classLoader,
@@ -307,6 +330,7 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         auditEntryImpl.setUserId(getUserId());
         auditEntryImpl.setUserName(getUserName());
         auditEntryImpl.setDateOfChange(getDateOfChange());
+        auditEntryImpl.setMetadata(getMetadata());
 
         auditEntryImpl.resetOriginalValues();
 
@@ -400,12 +424,20 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
             auditEntryCacheModel.dateOfChange = Long.MIN_VALUE;
         }
 
+        auditEntryCacheModel.metadata = getMetadata();
+
+        String metadata = auditEntryCacheModel.metadata;
+
+        if ((metadata != null) && (metadata.length() == 0)) {
+            auditEntryCacheModel.metadata = null;
+        }
+
         return auditEntryCacheModel;
     }
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(17);
+        StringBundler sb = new StringBundler(19);
 
         sb.append("{auditEntryId=");
         sb.append(getAuditEntryId());
@@ -423,6 +455,8 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         sb.append(getUserName());
         sb.append(", dateOfChange=");
         sb.append(getDateOfChange());
+        sb.append(", metadata=");
+        sb.append(getMetadata());
         sb.append("}");
 
         return sb.toString();
@@ -430,7 +464,7 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(28);
+        StringBundler sb = new StringBundler(31);
 
         sb.append("<model><model-name>");
         sb.append("ru.isands.akimov.model.AuditEntry");
@@ -467,6 +501,10 @@ public class AuditEntryModelImpl extends BaseModelImpl<AuditEntry>
         sb.append(
             "<column><column-name>dateOfChange</column-name><column-value><![CDATA[");
         sb.append(getDateOfChange());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>metadata</column-name><column-value><![CDATA[");
+        sb.append(getMetadata());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

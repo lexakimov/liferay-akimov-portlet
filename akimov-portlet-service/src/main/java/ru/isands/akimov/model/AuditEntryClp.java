@@ -31,6 +31,7 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     private String _userUuid;
     private String _userName;
     private Date _dateOfChange;
+    private String _metadata;
     private BaseModel<?> _auditEntryRemoteModel;
     private Class<?> _clpSerializerClass = ru.isands.akimov.service.ClpSerializer.class;
 
@@ -79,6 +80,7 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         attributes.put("userId", getUserId());
         attributes.put("userName", getUserName());
         attributes.put("dateOfChange", getDateOfChange());
+        attributes.put("metadata", getMetadata());
 
         return attributes;
     }
@@ -131,6 +133,12 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
 
         if (dateOfChange != null) {
             setDateOfChange(dateOfChange);
+        }
+
+        String metadata = (String) attributes.get("metadata");
+
+        if (metadata != null) {
+            setMetadata(metadata);
         }
     }
 
@@ -320,6 +328,28 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         }
     }
 
+    @Override
+    public String getMetadata() {
+        return _metadata;
+    }
+
+    @Override
+    public void setMetadata(String metadata) {
+        _metadata = metadata;
+
+        if (_auditEntryRemoteModel != null) {
+            try {
+                Class<?> clazz = _auditEntryRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setMetadata", String.class);
+
+                method.invoke(_auditEntryRemoteModel, metadata);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
     public BaseModel<?> getAuditEntryRemoteModel() {
         return _auditEntryRemoteModel;
     }
@@ -395,6 +425,7 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         clone.setUserId(getUserId());
         clone.setUserName(getUserName());
         clone.setDateOfChange(getDateOfChange());
+        clone.setMetadata(getMetadata());
 
         return clone;
     }
@@ -444,7 +475,7 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(17);
+        StringBundler sb = new StringBundler(19);
 
         sb.append("{auditEntryId=");
         sb.append(getAuditEntryId());
@@ -462,6 +493,8 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         sb.append(getUserName());
         sb.append(", dateOfChange=");
         sb.append(getDateOfChange());
+        sb.append(", metadata=");
+        sb.append(getMetadata());
         sb.append("}");
 
         return sb.toString();
@@ -469,7 +502,7 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(28);
+        StringBundler sb = new StringBundler(31);
 
         sb.append("<model><model-name>");
         sb.append("ru.isands.akimov.model.AuditEntry");
@@ -506,6 +539,10 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         sb.append(
             "<column><column-name>dateOfChange</column-name><column-value><![CDATA[");
         sb.append(getDateOfChange());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>metadata</column-name><column-value><![CDATA[");
+        sb.append(getMetadata());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

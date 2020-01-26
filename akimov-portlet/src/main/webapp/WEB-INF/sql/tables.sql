@@ -30,7 +30,8 @@ create table akimov_audit_entry (
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,
-	dateOfChange DATE null
+	dateOfChange DATE null,
+	metadata TEXT null
 );
 
 create table akimov_entity_field_change (

@@ -176,6 +176,21 @@ public interface AuditEntryModel extends BaseModel<AuditEntry> {
      */
     public void setDateOfChange(Date dateOfChange);
 
+    /**
+     * Returns the metadata of this audit entry.
+     *
+     * @return the metadata of this audit entry
+     */
+    @AutoEscape
+    public String getMetadata();
+
+    /**
+     * Sets the metadata of this audit entry.
+     *
+     * @param metadata the metadata of this audit entry
+     */
+    public void setMetadata(String metadata);
+
     @Override
     public boolean isNew();
 

@@ -1,5 +1,5 @@
-<%@ page import="ru.isands.akimov.search.helpers.impl.FooHistorySearchHelper" %>
 <%@ page import="ru.isands.akimov.audit.attribute_adapters.FooAttributeValueAdapter" %>
+<%@ page import="ru.isands.akimov.search.helpers.impl.FooHistorySearchHelper" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -8,8 +8,6 @@
 %>
 
 <c:set var="historyEntries" value="<%=searchHelper.getResult()%>"/>
-
-<%--request attribute: ${historyEntries}--%>
 
 <h4>"Foo" change history</h4>
 
@@ -38,32 +36,31 @@
 				</c:if>
 
 				<c:if test="${not empty historyEntries}">
-					<c:forEach var="historyEntry" items="${historyEntries}">
-						<tr>
-							<td class="table-cell" rowspan="${historyEntry.changes.size() + 1}">
-								<fmt:formatDate value="${historyEntry.dateOfChanges}"
-												pattern="dd.MM.yyyy HH:mm:ss"
-												timeZone="${timeZone}"/>
-							</td>
-							<td class="table-cell" rowspan="${historyEntry.changes.size() + 1}">
-									${historyEntry.user.fullName}
-							</td>
-							<td class="table-cell" rowspan="${historyEntry.changes.size() + 1}">
-									${historyEntry.description}
-							</td>
-						</tr>
+					<c:set var="adapter" value="<%= new FooAttributeValueAdapter() %>"/>
 
-						<c:set var="adapter" value="<%= new FooAttributeValueAdapter() %>"/>
+					<c:forEach var="historyEntry" items="${historyEntries}">
+						<c:set var="rowSpan"
+							   value="${historyEntry.changes.size() > 1 ? historyEntry.changes.size() : 1}"/>
+						<tr>
+						<td class="table-cell" rowspan="${rowSpan}">
+							<fmt:formatDate value="${historyEntry.dateOfChanges}"
+											pattern="dd.MM.yyyy HH:mm:ss"
+											timeZone="${timeZone}"/>
+						</td>
+
+						<td class="table-cell" rowspan="${rowSpan}">${historyEntry.user.fullName}</td>
+
+						<td class="table-cell" rowspan="${rowSpan}">${historyEntry.description}</td>
 
 						<c:forEach var="change" items="${historyEntry.changes}">
-							<tr>
-								<td class="table-cell">
-									<liferay-ui:message key="${historyEntry.entityType}.field.${change.key}"/>
-								</td>
-								<td class="table-cell">${adapter.adapt(change.key, change.value.oldValue)}</td>
-								<td class="table-cell">${adapter.adapt(change.key, change.value.newValue)}</td>
-							</tr>
+							<td class="table-cell">
+								<liferay-ui:message key="${historyEntry.entityType}.field.${change.key}"/>
+							</td>
+							<td class="table-cell">${adapter.adapt(change.key, change.value.oldValue)}</td>
+							<td class="table-cell">${adapter.adapt(change.key, change.value.newValue)}</td>
+							<tr/>
 						</c:forEach>
+						</tr>
 					</c:forEach>
 				</c:if>
 				</tbody>

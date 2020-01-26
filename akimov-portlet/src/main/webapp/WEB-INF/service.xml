@@ -52,6 +52,7 @@
 		<column name="userId" type="long"/>
 		<column name="userName" type="String" />
 		<column name="dateOfChange" type="Date"/>
+		<column name="metadata" type="String"/>
 	</entity>
 
 	<!-- TODO add indexes if necessary -->

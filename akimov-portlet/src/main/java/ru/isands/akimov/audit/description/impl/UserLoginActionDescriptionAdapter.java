@@ -30,7 +30,7 @@ public class UserLoginActionDescriptionAdapter implements DescriptionAdapter {
 			return String.format(DESCRIPTION_PATTERN, user.getFullName());
 		} catch (SystemException e) {
 			log.error(e);
-			return String.format(DESCRIPTION_PATTERN, WebPageUtil.setColor("[ошибка]", "red"));
+			return WebPageUtil.setColor(entry.getAuditType(), "red");
 		}
 	}
 

@@ -38,4 +38,6 @@ public class FooComparator extends ModelComparator<Foo> {
 	protected List<String> getWatchOnlyFields() {
 		return WATCH_ONLY_FIELDS;
 	}
+
+
 }

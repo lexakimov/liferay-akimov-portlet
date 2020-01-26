@@ -12,6 +12,7 @@
 	<artifactId>akimov-portlet</artifactId>
 	<packaging>war</packaging>
 	<name>akimov Portlet</name>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -32,6 +33,7 @@
 			</plugin>
 		</plugins>
 	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>ru.isands</groupId>
@@ -119,6 +121,7 @@
 			<version>1.2</version>
 			<scope>provided</scope>
 		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
 		<dependency>

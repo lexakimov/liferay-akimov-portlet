@@ -162,17 +162,17 @@ public class UserLocalServiceImpl extends UserLocalServiceWrapper {
 		Set<Long> allRoles = new HashSet<>();
 		allRoles.addAll(rolesBefore);
 		allRoles.addAll(rolesAfter);
-
+		String metadata = "";
 		for (Long roleId : allRoles) {
 			if (!rolesBefore.contains(roleId) && rolesAfter.contains(roleId)) {
 				new AuditEntryWrapper(
 						userId, EntityType.USER, AuditType.USER_ROLE_GRANT, companyId, initiator,
-						dateOfChange).persist();
+						dateOfChange, metadata).persist();
 
 			} else if (rolesBefore.contains(roleId) && !rolesAfter.contains(roleId)) {
 				new AuditEntryWrapper(
 						userId, EntityType.USER, AuditType.USER_ROLE_REMOVE, companyId, initiator,
-						dateOfChange).persist();
+						dateOfChange, metadata).persist();
 			}
 		}
 	}
@@ -186,17 +186,17 @@ public class UserLocalServiceImpl extends UserLocalServiceWrapper {
 		Set<Long> allRoles = new HashSet<>();
 		allRoles.addAll(rolesBefore);
 		allRoles.addAll(rolesAfter);
-
+		String metadata = "";
 		for (Long roleId : allRoles) {
 			if (!rolesBefore.contains(roleId) && rolesAfter.contains(roleId)) {
 				new AuditEntryWrapper(
 						userId, EntityType.USER, AuditType.USER_ORG_JOINED, companyId, initiator,
-						dateOfChange).persist();
+						dateOfChange, metadata).persist();
 
 			} else if (rolesBefore.contains(roleId) && !rolesAfter.contains(roleId)) {
 				new AuditEntryWrapper(
 						userId, EntityType.USER, AuditType.USER_ORG_LEFT, companyId, initiator,
-						dateOfChange).persist();
+						dateOfChange, metadata).persist();
 			}
 		}
 	}

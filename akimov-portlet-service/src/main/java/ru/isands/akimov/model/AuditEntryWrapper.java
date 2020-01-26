@@ -45,6 +45,7 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
         attributes.put("userId", getUserId());
         attributes.put("userName", getUserName());
         attributes.put("dateOfChange", getDateOfChange());
+        attributes.put("metadata", getMetadata());
 
         return attributes;
     }
@@ -97,6 +98,12 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
 
         if (dateOfChange != null) {
             setDateOfChange(dateOfChange);
+        }
+
+        String metadata = (String) attributes.get("metadata");
+
+        if (metadata != null) {
+            setMetadata(metadata);
         }
     }
 
@@ -300,6 +307,26 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     @Override
     public void setDateOfChange(java.util.Date dateOfChange) {
         _auditEntry.setDateOfChange(dateOfChange);
+    }
+
+    /**
+    * Returns the metadata of this audit entry.
+    *
+    * @return the metadata of this audit entry
+    */
+    @Override
+    public java.lang.String getMetadata() {
+        return _auditEntry.getMetadata();
+    }
+
+    /**
+    * Sets the metadata of this audit entry.
+    *
+    * @param metadata the metadata of this audit entry
+    */
+    @Override
+    public void setMetadata(java.lang.String metadata) {
+        _auditEntry.setMetadata(metadata);
     }
 
     @Override

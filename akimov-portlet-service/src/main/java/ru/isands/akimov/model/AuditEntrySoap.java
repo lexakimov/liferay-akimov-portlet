@@ -21,6 +21,7 @@ public class AuditEntrySoap implements Serializable {
     private long _userId;
     private String _userName;
     private Date _dateOfChange;
+    private String _metadata;
 
     public AuditEntrySoap() {
     }
@@ -36,6 +37,7 @@ public class AuditEntrySoap implements Serializable {
         soapModel.setUserId(model.getUserId());
         soapModel.setUserName(model.getUserName());
         soapModel.setDateOfChange(model.getDateOfChange());
+        soapModel.setMetadata(model.getMetadata());
 
         return soapModel;
     }
@@ -146,5 +148,13 @@ public class AuditEntrySoap implements Serializable {
 
     public void setDateOfChange(Date dateOfChange) {
         _dateOfChange = dateOfChange;
+    }
+
+    public String getMetadata() {
+        return _metadata;
+    }
+
+    public void setMetadata(String metadata) {
+        _metadata = metadata;
     }
 }

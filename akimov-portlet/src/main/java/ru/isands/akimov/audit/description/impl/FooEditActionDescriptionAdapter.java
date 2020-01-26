@@ -27,7 +27,7 @@ public class FooEditActionDescriptionAdapter implements ru.isands.akimov.audit.d
 			return String.format(DESCRIPTION_PATTERN, user.getFullName(), fooId);
 		} catch (SystemException e) {
 			log.error(e);
-			return String.format(DESCRIPTION_PATTERN, WebPageUtil.setColor("[ошибка]", "red"));
+			return WebPageUtil.setColor(entry.getAuditType(), "red");
 		}
 	}
 }

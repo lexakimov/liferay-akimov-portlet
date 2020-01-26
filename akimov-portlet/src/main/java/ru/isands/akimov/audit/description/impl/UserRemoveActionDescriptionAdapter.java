@@ -29,7 +29,7 @@ public class UserRemoveActionDescriptionAdapter implements ru.isands.akimov.audi
 			return String.format(DESCRIPTION_PATTERN, user.getFullName());
 		} catch (SystemException e) {
 			log.error(e);
-			return String.format(DESCRIPTION_PATTERN, WebPageUtil.setColor("[ошибка]", "red"));
+			return WebPageUtil.setColor(entry.getAuditType(), "red");
 		}
 	}
 }

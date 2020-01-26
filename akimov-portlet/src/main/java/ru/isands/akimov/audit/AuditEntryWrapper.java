@@ -35,7 +35,7 @@ public class AuditEntryWrapper {
 	private List<EntityFieldChange> fieldChanges;
 
 	public AuditEntryWrapper(
-			int entityId, EntityType entityType, AuditType auditType, long companyId, User user, Date dateOfChange)
+			int entityId, EntityType entityType, AuditType auditType, long companyId, User user, Date dateOfChange, String metadata)
 			throws SystemException {
 
 		int historyEntryId = (int) CounterLocalServiceUtil.increment(AuditEntry.class.getName());
@@ -48,6 +48,7 @@ public class AuditEntryWrapper {
 		auditEntry.setUserName(user.getFullName());
 		auditEntry.setDateOfChange(dateOfChange);
 		auditEntry.setAuditType(auditType.toString());
+		auditEntry.setMetadata(metadata);
 
 		fieldChanges = new ArrayList<>();
 	}

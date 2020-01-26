@@ -44,8 +44,11 @@ public class UserListener extends BaseModelListener<User> {
 			long companyId = model.getCompanyId();
 			int entityId = (int) model.getUserId();
 			User userAuthor = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
-
-			new AuditEntryWrapper(entityId, EntityType.USER, description, companyId, userAuthor, new Date()).persist();
+			if (userAuthor == null) {
+				userAuthor = model;
+			}
+			String metadata = "";
+			new AuditEntryWrapper(entityId, EntityType.USER, description, companyId, userAuthor, new Date(), metadata).persist();
 
 		} catch (SystemException e) {
 			throw new AuditEntryCreateException(e);

@@ -4,10 +4,7 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.ModelHintsUtil;
 import ru.isands.akimov.audit.exceptions.NoSuchModelAttributeException;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Класс объекта для поиска изменившихся атрибутов двух объектов-сущностей одного класса.
@@ -21,13 +18,15 @@ public abstract class ModelComparator<T extends BaseModel<T>> {
 	private Map<String, Object> oldValues = new HashMap<>();
 	private Map<String, Object> newValues = new HashMap<>();
 
+	private Set<String> changedFields = new HashSet<>();
+
 	/**
 	 * @return список атрибутов, изменения которых надо "отслеживать";
 	 */
 	protected abstract List<String> getWatchOnlyFields();
 
-	//String fieldType = ModelHintsUtil.getType(old.getModelClassName(), attributeName);
 
+	//String fieldType = ModelHintsUtil.getType(old.getModelClassName(), attributeName);
 	protected ModelComparator(T old, T _new) throws NoSuchModelAttributeException {
 
 		checkFieldsExists(old != null ? old : _new);
@@ -38,6 +37,7 @@ public abstract class ModelComparator<T extends BaseModel<T>> {
 		Set<String> fieldNames = oldAttributes != null ? oldAttributes.keySet() : newAttributes.keySet();
 
 		for (String attributeName : fieldNames) {
+
 			if (!getWatchOnlyFields().contains(attributeName)) {
 				continue;
 			}
@@ -53,6 +53,7 @@ public abstract class ModelComparator<T extends BaseModel<T>> {
 			if ((oldValue == null ^ newValue == null) || !oldValue.equals(newValue)) {
 				oldValues.put(attributeName, oldValue);
 				newValues.put(attributeName, newValue);
+				changedFields.add(attributeName);
 			}
 		}
 	}
@@ -87,5 +88,12 @@ public abstract class ModelComparator<T extends BaseModel<T>> {
 	 */
 	public Map<String, Object> getNewValues() {
 		return newValues;
+	}
+
+	/**
+	 * @return set с названиями изменёных полей.
+	 */
+	public Set<String> getChangedFields() {
+		return changedFields;
 	}
 }

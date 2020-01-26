@@ -19,6 +19,7 @@
 			<basic name="dateOfChange">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="metadata" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

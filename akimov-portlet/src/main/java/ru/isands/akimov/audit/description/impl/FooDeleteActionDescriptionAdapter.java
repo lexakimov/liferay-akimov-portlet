@@ -27,7 +27,7 @@ public class FooDeleteActionDescriptionAdapter implements ru.isands.akimov.audit
 			return String.format(DESCRIPTION_PATTERN, user.getFullName(), fooId);
 		} catch (SystemException e) {
 			log.error(e);
-			return String.format(DESCRIPTION_PATTERN, WebPageUtil.setColor("[ошибка]", "red"));
+			return WebPageUtil.setColor(entry.getAuditType(), "red");
 		}
 	}
 }

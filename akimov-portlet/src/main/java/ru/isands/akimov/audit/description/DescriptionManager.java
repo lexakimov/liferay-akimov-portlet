@@ -8,6 +8,7 @@ import ru.isands.akimov.model.AuditEntry;
 import ru.isands.akimov.utils.WebPageUtil;
 
 import java.util.HashMap;
+import java.util.IllegalFormatException;
 import java.util.Map;
 
 /**
@@ -57,7 +58,12 @@ public class DescriptionManager {
 			}
 			return adapter.adapt(auditEntry);
 		} catch (IllegalArgumentException e) {
-			log.error("No enum constant AuditType for string '" + auditEntry.getAuditType() + "'");
+			if (e instanceof IllegalFormatException) {
+				log.error("Action type: " + auditEntry.getAuditType() + "; " + e.toString());
+				log.error(e);
+			} else {
+				log.error("No enum constant AuditType for string '" + auditEntry.getAuditType() + "'");
+			}
 			return WebPageUtil.setColor("[error] " + auditEntry.getAuditType(), "red");
 		}
 	}

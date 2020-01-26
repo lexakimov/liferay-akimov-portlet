@@ -30,10 +30,11 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
     public long userId;
     public String userName;
     public long dateOfChange;
+    public String metadata;
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(17);
+        StringBundler sb = new StringBundler(19);
 
         sb.append("{auditEntryId=");
         sb.append(auditEntryId);
@@ -51,6 +52,8 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
         sb.append(userName);
         sb.append(", dateOfChange=");
         sb.append(dateOfChange);
+        sb.append(", metadata=");
+        sb.append(metadata);
         sb.append("}");
 
         return sb.toString();
@@ -90,6 +93,12 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
             auditEntryImpl.setDateOfChange(new Date(dateOfChange));
         }
 
+        if (metadata == null) {
+            auditEntryImpl.setMetadata(StringPool.BLANK);
+        } else {
+            auditEntryImpl.setMetadata(metadata);
+        }
+
         auditEntryImpl.resetOriginalValues();
 
         return auditEntryImpl;
@@ -105,6 +114,7 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
         userId = objectInput.readLong();
         userName = objectInput.readUTF();
         dateOfChange = objectInput.readLong();
+        metadata = objectInput.readUTF();
     }
 
     @Override
@@ -135,5 +145,11 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
         }
 
         objectOutput.writeLong(dateOfChange);
+
+        if (metadata == null) {
+            objectOutput.writeUTF(StringPool.BLANK);
+        } else {
+            objectOutput.writeUTF(metadata);
+        }
     }
 }

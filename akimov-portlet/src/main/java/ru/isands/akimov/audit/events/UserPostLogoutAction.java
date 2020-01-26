@@ -33,8 +33,10 @@ public class UserPostLogoutAction extends Action {
 	private void handleEvent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		long companyId = PortalUtil.getCompanyId(request);
 		User user = PortalUtil.getUser(request);
+
+		String metadata = "";
 		AuditEntryWrapper auditEntry =
-				new AuditEntryWrapper((int) user.getUserId(), USER, USER_LOGOUT, companyId, user, new Date());
+				new AuditEntryWrapper((int) user.getUserId(), USER, USER_LOGOUT, companyId, user, new Date(), metadata);
 		auditEntry.persist();
 	}
 

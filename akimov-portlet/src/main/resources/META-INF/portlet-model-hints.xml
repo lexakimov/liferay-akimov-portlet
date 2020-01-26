@@ -10,6 +10,9 @@
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />
 		<field name="dateOfChange" type="Date" />
+		<field name="metadata" type="String">
+			<hint-collection name="CLOB" />
+		</field>
 	</model>
 	<model name="ru.isands.akimov.model.EntityFieldChange">
 		<field name="id" type="int" />

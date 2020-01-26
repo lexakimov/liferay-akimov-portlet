@@ -18,6 +18,7 @@
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="dateOfChange" type="org.hibernate.type.TimestampType" />
+		<property name="metadata" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="ru.isands.akimov.model.impl.EntityFieldChangeImpl" table="akimov_entity_field_change">
 		<cache usage="read-write" />
