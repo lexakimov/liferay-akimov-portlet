@@ -7,17 +7,23 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import ru.isands.akimov.annotations.AsyncActionMethod;
-import ru.isands.akimov.utils.MessagesRU;
 
 import javax.portlet.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -101,6 +107,31 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 	}*/
 
 
+	public void tempFileUpload(ThemeDisplay themeDisplay, PortletRequest portletRequest) {
+		UploadPortletRequest uploadPortletRequest = PortalUtil.getUploadPortletRequest(portletRequest);
+
+		//uploadPortletRequest.file
+
+		String fileName = uploadPortletRequest.getFileName("uploadedFile");
+		File file = uploadPortletRequest.getFile("uploadedFile");
+		String mimeType = uploadPortletRequest.getContentType("uploadedFile");
+		String title = fileName;
+		String description = "This file is added via programatically";
+		long repositoryId = themeDisplay.getScopeGroupId();
+		System.out.println("Title=>" + title);
+		try {
+			//Folder folder = getFolder(themeDisplay);
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFileEntry.class.getName(), portletRequest);
+			InputStream is = new FileInputStream(file);
+			//DLAppServiceUtil.addFileEntry(repositoryId, folder.getFolderId(), fileName, mimeType,
+			//title, description, "", is, file.getTotalSpace(), serviceContext);
+
+		} catch (Exception e) {
+			log.error(e);
+		}
+
+	}
+
 	@Override
 	public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
 		String resourceId = request.getResourceID();
@@ -156,7 +187,8 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 			JSONObject messagesJson = JSONFactoryUtil.createJSONObject();
 			for (String messageKey : messages) {
 				//Object errorObject = SessionErrors.get(request, errorKey);
-				messagesJson.put(messageKey, MessagesRU.getMessage(messageKey));
+
+				messagesJson.put(messageKey, translate(request, messageKey));
 			}
 			json.put("messages", messagesJson);
 		}
@@ -168,7 +200,7 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 			JSONObject errorsJson = JSONFactoryUtil.createJSONObject();
 			for (String errorKey : errors) {
 				//Object errorObject = SessionErrors.get(request, errorKey);
-				errorsJson.put(errorKey, MessagesRU.getMessage(errorKey));
+				errorsJson.put(errorKey, translate(request, errorKey));
 			}
 			json.put("errors", errorsJson);
 		}
