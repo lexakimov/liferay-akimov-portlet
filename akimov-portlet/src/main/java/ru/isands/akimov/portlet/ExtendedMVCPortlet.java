@@ -171,9 +171,7 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 			}
 
 			String methodClass = method.getDeclaringClass().getSimpleName();
-
 			log.debug(String.format("Invocation of async action method '%s.%s()'", methodClass, actionMethod));
-
 			method.invoke(this, request, response);
 
 		} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
@@ -183,29 +181,44 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 		JSONObject json = JSONFactoryUtil.createJSONObject();
 
 		if (!SessionMessages.isEmpty(request)) {
-			Set<String> messages = SessionMessages.keySet(request);
-			JSONObject messagesJson = JSONFactoryUtil.createJSONObject();
-			for (String messageKey : messages) {
-				//Object errorObject = SessionErrors.get(request, errorKey);
-
-				messagesJson.put(messageKey, translate(request, messageKey));
-			}
-			json.put("messages", messagesJson);
+			processRequestErrors(request, json);
 		}
 
 		if (SessionErrors.isEmpty(request)) {
 			json.put("success", true);
 		} else {
-			Set<String> errors = SessionErrors.keySet(request);
-			JSONObject errorsJson = JSONFactoryUtil.createJSONObject();
-			for (String errorKey : errors) {
-				//Object errorObject = SessionErrors.get(request, errorKey);
-				errorsJson.put(errorKey, translate(request, errorKey));
-			}
-			json.put("errors", errorsJson);
+			processRequestMessages(request, json);
 		}
 
 		writeJSON(request, response, json);
+	}
+
+	private void processRequestErrors(ResourceRequest request, JSONObject json) {
+		Set<String> messages = SessionMessages.keySet(request);
+		JSONObject messagesJson = JSONFactoryUtil.createJSONObject();
+		for (String messageKey : messages) {
+			Object messageObject = SessionMessages.get(request, messageKey);
+			if (messageObject != null && messageObject.getClass().isArray()) {
+				messagesJson.put(messageKey, translate(request, messageKey, (Object[]) messageObject));
+			} else {
+				messagesJson.put(messageKey, translate(request, messageKey, messageObject));
+			}
+		}
+		json.put("messages", messagesJson);
+	}
+
+	private void processRequestMessages(ResourceRequest request, JSONObject json) {
+		Set<String> errors = SessionErrors.keySet(request);
+		JSONObject errorsJson = JSONFactoryUtil.createJSONObject();
+		for (String errorKey : errors) {
+			Object errorObject = SessionErrors.get(request, errorKey);
+			if (errorObject != null && errorObject.getClass().isArray()) {
+				errorsJson.put(errorKey, translate(request, errorKey, (Object[]) errorObject));
+			} else {
+				errorsJson.put(errorKey, translate(request, errorKey, errorObject));
+			}
+		}
+		json.put("errors", errorsJson);
 	}
 
 	protected void hideDefaultErrorMessage(ActionRequest request) {

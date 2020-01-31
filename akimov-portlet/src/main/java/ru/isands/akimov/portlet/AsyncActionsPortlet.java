@@ -30,6 +30,8 @@ public class AsyncActionsPortlet extends ExtendedMVCPortlet {
 		SessionMessages.add(request, "success.message.key");
 		SessionMessages.add(request, "block.message.key");
 		SessionMessages.add(request, "simple.message.key");
+		SessionMessages.add(request, "simple.message.key.fmt.1", new String[]{"Чук", "Гек"});
+		SessionMessages.add(request, "simple.message.key.fmt.2", "param from backend");
 	}
 
 }
