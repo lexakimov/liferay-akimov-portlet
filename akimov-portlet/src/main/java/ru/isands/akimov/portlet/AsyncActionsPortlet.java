@@ -15,8 +15,8 @@ public class AsyncActionsPortlet extends ExtendedMVCPortlet {
 
 	@AsyncActionMethod
 	public void simpleAsyncAction(PortletRequest request, PortletResponse response) {
-		log.debug(_getRequestParamsMessage(request));
-		log.debug(_getRequestAttrsMessage(request));
+		System.out.println(_getRequestParamsMessage(request));
+		System.out.println(_getRequestAttrsMessage(request));
 	}
 
 	@AsyncActionMethod
