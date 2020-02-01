@@ -9,9 +9,9 @@ import ru.isands.akimov.annotations.AsyncActionMethod;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 
-public class AsyncActionsPortlet extends ExtendedMVCPortlet {
+public class AsyncActionsPortlet extends MVCExtendedPortlet {
 
-	private static final Log log = LogFactoryUtil.getLog(AsyncActionsPortlet.class);
+	private Log log = LogFactoryUtil.getLog(AsyncActionsPortlet.class);
 
 	@AsyncActionMethod
 	public void simpleAsyncAction(PortletRequest request, PortletResponse response) {

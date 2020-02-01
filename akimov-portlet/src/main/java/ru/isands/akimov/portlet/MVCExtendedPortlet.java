@@ -8,28 +8,23 @@ import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import ru.isands.akimov.annotations.AsyncActionMethod;
 
 import javax.portlet.*;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM;
-import static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID;
+import static ru.isands.akimov.constants.URLParams.*;
 
 /**
  * MVC портлет, расширенный дополнительными возможностями:
@@ -41,9 +36,9 @@ import static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID;
  * @see #_getRequestParamsMessage(PortletRequest) получить сообщение с параметрами запроса для вывода в консоль.
  * @see #_getRequestAttrsMessage(PortletRequest) получить сообщение с аттрибутами запроса для вывода в консоль.
  */
-public abstract class ExtendedMVCPortlet extends MVCPortlet {
+public abstract class MVCExtendedPortlet extends MVCPortlet {
 
-	private static final Log log = LogFactoryUtil.getLog(ExtendedMVCPortlet.class);
+	private Log log = LogFactoryUtil.getLog(MVCExtendedPortlet.class);
 
 	private final Map<String, Method> asyncActionMethods = new HashMap<>();
 
@@ -106,40 +101,47 @@ public abstract class ExtendedMVCPortlet extends MVCPortlet {
 		}
 	}*/
 
+	@Override
+	public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
+		String resourceId = GetterUtil.getString(request.getResourceID());
+		log.debug("RESOURCE ACTION: " + resourceId);
+		switch (resourceId) {
+			case ASYNC_ACTION_RESOURCE_ID:
+				processAsyncAction(request, response);
+				break;
+			case ASYNC_FILE_UPLOAD:
+				uploadTempFile(request, response);
+				break;
+			default:
+				super.serveResource(request, response);
+		}
+	}
 
-	public void tempFileUpload(ThemeDisplay themeDisplay, PortletRequest portletRequest) {
-		UploadPortletRequest uploadPortletRequest = PortalUtil.getUploadPortletRequest(portletRequest);
-
+	public void uploadTempFile(PortletRequest request, PortletResponse response) {
+		//ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		//uploadPortletRequest.file
 
-		String fileName = uploadPortletRequest.getFileName("uploadedFile");
-		File file = uploadPortletRequest.getFile("uploadedFile");
-		String mimeType = uploadPortletRequest.getContentType("uploadedFile");
-		String title = fileName;
-		String description = "This file is added via programatically";
-		long repositoryId = themeDisplay.getScopeGroupId();
-		System.out.println("Title=>" + title);
-		try {
+		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(request);
+
+		String fileName = uploadRequest.getFileName("file");
+		File file = uploadRequest.getFile("file");
+		String mimeType = uploadRequest.getContentType("file");
+
+		//log.debug(uploadRequest.getSession());
+		log.debug(Arrays.toString(uploadRequest.getFileNames("file")));
+		log.debug(Arrays.toString(uploadRequest.getFiles("file")));
+
+		/*try {
 			//Folder folder = getFolder(themeDisplay);
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFileEntry.class.getName(), portletRequest);
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFileEntry.class.getName(), request);
 			InputStream is = new FileInputStream(file);
 			//DLAppServiceUtil.addFileEntry(repositoryId, folder.getFolderId(), fileName, mimeType,
 			//title, description, "", is, file.getTotalSpace(), serviceContext);
 
 		} catch (Exception e) {
 			log.error(e);
-		}
+		}*/
 
-	}
-
-	@Override
-	public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
-		String resourceId = request.getResourceID();
-		if (resourceId != null && resourceId.equals(ASYNC_ACTION_RESOURCE_ID)) {
-			processAsyncAction(request, response);
-			return;
-		}
-		super.serveResource(request, response);
 	}
 
 	/**

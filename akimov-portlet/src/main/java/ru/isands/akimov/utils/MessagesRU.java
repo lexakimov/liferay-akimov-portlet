@@ -1,7 +1,7 @@
 package ru.isands.akimov.utils;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
-import ru.isands.akimov.portlet.ExtendedMVCPortlet;
+import ru.isands.akimov.portlet.MVCExtendedPortlet;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +16,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * @author akimov
  * created at 14.12.19 19:21
  * @see LanguageUtil
- * @see ExtendedMVCPortlet
+ * @see MVCExtendedPortlet
  */
 public class MessagesRU {
 

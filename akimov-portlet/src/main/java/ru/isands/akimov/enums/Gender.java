@@ -1,7 +1,5 @@
 package ru.isands.akimov.enums;
 
-import ru.isands.akimov.portlet.ExtendedMVCPortlet;
-
 /**
  * @author akimov
  * created at 14.12.19 10:36

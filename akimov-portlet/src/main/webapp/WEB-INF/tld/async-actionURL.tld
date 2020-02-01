@@ -1,0 +1,29 @@
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>Isands TLD</short-name>
+	<uri>http://isands.ru/liferay/tld</uri>
+
+	<tag>
+		<name>async-actionURL</name>
+		<tag-class>ru.isands.tld.AsyncActionURLTag</tag-class>
+		<tei-class>com.liferay.taglib.portlet.ResourceURLTei</tei-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>asyncActionMethod</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>varImpl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+</taglib>

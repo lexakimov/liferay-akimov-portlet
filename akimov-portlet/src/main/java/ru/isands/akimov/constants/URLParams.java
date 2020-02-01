@@ -1,14 +1,13 @@
 package ru.isands.akimov.constants;
 
-import com.liferay.portal.kernel.util.WebKeys;
-import ru.isands.akimov.portlet.ExtendedMVCPortlet;
+import ru.isands.akimov.portlet.MVCExtendedPortlet;
 
 /**
  * Названия параметров запросов.
  *
  * @author akimov
  * created at 14.12.19 9:08
- * @see ExtendedMVCPortlet
+ * @see MVCExtendedPortlet
  */
 public interface URLParams {
 
@@ -16,4 +15,5 @@ public interface URLParams {
 
 	String ASYNC_ACTION_METHOD_PARAM = "async_action_method";
 
+	String ASYNC_FILE_UPLOAD = "async_file_upload";
 }

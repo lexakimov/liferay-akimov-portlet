@@ -17,9 +17,9 @@ import javax.portlet.ActionResponse;
  * @author akimov
  * created at 18.01.20 21:33
  */
-public class PermissionsTestPortlet extends ExtendedMVCPortlet {
+public class PermissionsTestPortlet extends MVCExtendedPortlet {
 
-	private static final Log log = LogFactoryUtil.getLog(PermissionsTestPortlet.class);
+	private Log log = LogFactoryUtil.getLog(PermissionsTestPortlet.class);
 
 	public void test(ActionRequest actionRequest, ActionResponse actionResponse) {
 

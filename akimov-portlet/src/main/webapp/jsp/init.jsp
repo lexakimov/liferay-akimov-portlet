@@ -11,6 +11,8 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
+<%@ taglib uri="http://isands.ru/liferay/tld" prefix="akimov"%>
+
 <%@ page import="com.liferay.portal.kernel.log.Log" %>
 <%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>

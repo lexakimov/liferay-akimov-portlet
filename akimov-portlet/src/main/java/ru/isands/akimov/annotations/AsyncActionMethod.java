@@ -1,6 +1,6 @@
 package ru.isands.akimov.annotations;
 
-import ru.isands.akimov.portlet.ExtendedMVCPortlet;
+import ru.isands.akimov.portlet.MVCExtendedPortlet;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  *
  * @author akimov
  * created at 14.12.19 9:08
- * @see ExtendedMVCPortlet
+ * @see MVCExtendedPortlet
  */
 @Target(value = ElementType.METHOD)
 @Retention(value = RetentionPolicy.RUNTIME)

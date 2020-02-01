@@ -16,9 +16,9 @@ import java.io.IOException;
 
 import static ru.isands.akimov.utils.DateUtil.DD_MM_YYYY__HH_MM;
 
-public class AuditDemoPortlet extends ExtendedMVCPortlet {
+public class AuditDemoPortlet extends MVCExtendedPortlet {
 
-	private static final Log log = LogFactoryUtil.getLog(AuditDemoPortlet.class);
+	private Log log = LogFactoryUtil.getLog(AuditDemoPortlet.class);
 
 	/**
 	 * TODO blobField
