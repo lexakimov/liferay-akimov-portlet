@@ -34,7 +34,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
     private Blob _blobField;
     private short _status;
     private BaseModel<?> _fooRemoteModel;
-    private Class<?> _clpSerializerClass = ClpSerializer.class;
+    private Class<?> _clpSerializerClass = ru.akimov.service.ClpSerializer.class;
 
     public FooClp() {
     }
@@ -565,7 +565,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
         StringBundler sb = new StringBundler(37);
 
         sb.append("<model><model-name>");
-        sb.append("ru.isands.akimov.model.Foo");
+        sb.append("ru.akimov.model.Foo");
         sb.append("</model-name>");
 
         sb.append(

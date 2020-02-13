@@ -22,10 +22,13 @@ import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
+import ru.akimov.NoSuchAuditEntryException;
+
+import ru.akimov.model.AuditEntry;
 import ru.akimov.model.impl.AuditEntryImpl;
 import ru.akimov.model.impl.AuditEntryModelImpl;
-import ru.akimov.NoSuchAuditEntryException;
-import ru.akimov.model.AuditEntry;
+
+import ru.akimov.service.persistence.AuditEntryPersistence;
 
 import java.io.Serializable;
 
@@ -195,7 +198,7 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
      *
      * @param auditEntryId the primary key of the audit entry
      * @return the audit entry that was removed
-     * @throws NoSuchAuditEntryException if a audit entry with the primary key could not be found
+     * @throws ru.akimov.NoSuchAuditEntryException if a audit entry with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
@@ -209,7 +212,7 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
      *
      * @param primaryKey the primary key of the audit entry
      * @return the audit entry that was removed
-     * @throws NoSuchAuditEntryException if a audit entry with the primary key could not be found
+     * @throws ru.akimov.NoSuchAuditEntryException if a audit entry with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
@@ -274,7 +277,7 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
     }
 
     @Override
-    public AuditEntry updateImpl(AuditEntry auditEntry)
+    public AuditEntry updateImpl(ru.akimov.model.AuditEntry auditEntry)
         throws SystemException {
         auditEntry = toUnwrappedModel(auditEntry);
 
@@ -338,7 +341,7 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
      *
      * @param primaryKey the primary key of the audit entry
      * @return the audit entry
-     * @throws NoSuchAuditEntryException if a audit entry with the primary key could not be found
+     * @throws ru.akimov.NoSuchAuditEntryException if a audit entry with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
@@ -359,11 +362,11 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
     }
 
     /**
-     * Returns the audit entry with the primary key or throws a {@link NoSuchAuditEntryException} if it could not be found.
+     * Returns the audit entry with the primary key or throws a {@link ru.akimov.NoSuchAuditEntryException} if it could not be found.
      *
      * @param auditEntryId the primary key of the audit entry
      * @return the audit entry
-     * @throws NoSuchAuditEntryException if a audit entry with the primary key could not be found
+     * @throws ru.akimov.NoSuchAuditEntryException if a audit entry with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
@@ -445,7 +448,7 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
      * Returns a range of all the audit entries.
      *
      * <p>
-     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
      * </p>
      *
      * @param start the lower bound of the range of audit entries
@@ -463,7 +466,7 @@ public class AuditEntryPersistenceImpl extends BasePersistenceImpl<AuditEntry>
      * Returns an ordered range of all the audit entries.
      *
      * <p>
-     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
      * </p>
      *
      * @param start the lower bound of the range of audit entries

@@ -9,7 +9,6 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
-import ru.akimov.model.Person;
 
 /**
  * Provides the local service interface for Person. Methods of this
@@ -19,8 +18,8 @@ import ru.akimov.model.Person;
  *
  * @author Brian Wing Shun Chan
  * @see PersonLocalServiceUtil
- * @see ru.isands.akimov.service.base.PersonLocalServiceBaseImpl
- * @see ru.isands.akimov.service.impl.PersonLocalServiceImpl
+ * @see ru.akimov.service.base.PersonLocalServiceBaseImpl
+ * @see ru.akimov.service.impl.PersonLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
@@ -31,7 +30,7 @@ public interface PersonLocalService extends BaseLocalService,
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify or reference this interface directly. Always use {@link PersonLocalServiceUtil} to access the person local service. Add custom service methods to {@link ru.isands.akimov.service.impl.PersonLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+     * Never modify or reference this interface directly. Always use {@link PersonLocalServiceUtil} to access the person local service. Add custom service methods to {@link ru.akimov.service.impl.PersonLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
      */
 
     /**
@@ -42,8 +41,7 @@ public interface PersonLocalService extends BaseLocalService,
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-    public Person addPerson(
-        Person person)
+    public ru.akimov.model.Person addPerson(ru.akimov.model.Person person)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
@@ -52,7 +50,7 @@ public interface PersonLocalService extends BaseLocalService,
     * @param personId the primary key for the new person
     * @return the new person
     */
-    public Person createPerson(int personId);
+    public ru.akimov.model.Person createPerson(int personId);
 
     /**
     * Deletes the person with the primary key from the database. Also notifies the appropriate model listeners.
@@ -63,7 +61,7 @@ public interface PersonLocalService extends BaseLocalService,
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-    public Person deletePerson(int personId)
+    public ru.akimov.model.Person deletePerson(int personId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
@@ -75,8 +73,7 @@ public interface PersonLocalService extends BaseLocalService,
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-    public Person deletePerson(
-        Person person)
+    public ru.akimov.model.Person deletePerson(ru.akimov.model.Person person)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -97,7 +94,7 @@ public interface PersonLocalService extends BaseLocalService,
     * Performs a dynamic query on the database and returns a range of the matching rows.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param dynamicQuery the dynamic query
@@ -115,7 +112,7 @@ public interface PersonLocalService extends BaseLocalService,
     * Performs a dynamic query on the database and returns an ordered range of the matching rows.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param dynamicQuery the dynamic query
@@ -157,7 +154,7 @@ public interface PersonLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public Person fetchPerson(int personId)
+    public ru.akimov.model.Person fetchPerson(int personId)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
@@ -169,7 +166,7 @@ public interface PersonLocalService extends BaseLocalService,
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public Person getPerson(int personId)
+    public ru.akimov.model.Person getPerson(int personId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
@@ -184,7 +181,7 @@ public interface PersonLocalService extends BaseLocalService,
     * Returns a range of all the persons.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param start the lower bound of the range of persons
@@ -193,8 +190,8 @@ public interface PersonLocalService extends BaseLocalService,
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public java.util.List<Person> getPersons(int start,
-											 int end) throws com.liferay.portal.kernel.exception.SystemException;
+    public java.util.List<ru.akimov.model.Person> getPersons(int start, int end)
+        throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
     * Returns the number of persons.
@@ -214,8 +211,7 @@ public interface PersonLocalService extends BaseLocalService,
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-    public Person updatePerson(
-        Person person)
+    public ru.akimov.model.Person updatePerson(ru.akimov.model.Person person)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**

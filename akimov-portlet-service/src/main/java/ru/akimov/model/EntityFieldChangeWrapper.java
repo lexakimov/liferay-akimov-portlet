@@ -263,8 +263,7 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     @Override
-    public int compareTo(
-        EntityFieldChange entityFieldChange) {
+    public int compareTo(ru.akimov.model.EntityFieldChange entityFieldChange) {
         return _entityFieldChange.compareTo(entityFieldChange);
     }
 
@@ -274,17 +273,17 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     @Override
-    public com.liferay.portal.model.CacheModel<EntityFieldChange> toCacheModel() {
+    public com.liferay.portal.model.CacheModel<ru.akimov.model.EntityFieldChange> toCacheModel() {
         return _entityFieldChange.toCacheModel();
     }
 
     @Override
-    public EntityFieldChange toEscapedModel() {
+    public ru.akimov.model.EntityFieldChange toEscapedModel() {
         return new EntityFieldChangeWrapper(_entityFieldChange.toEscapedModel());
     }
 
     @Override
-    public EntityFieldChange toUnescapedModel() {
+    public ru.akimov.model.EntityFieldChange toUnescapedModel() {
         return new EntityFieldChangeWrapper(_entityFieldChange.toUnescapedModel());
     }
 

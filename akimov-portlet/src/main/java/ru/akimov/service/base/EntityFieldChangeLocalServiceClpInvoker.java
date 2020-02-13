@@ -1,6 +1,5 @@
 package ru.akimov.service.base;
 
-import ru.akimov.model.EntityFieldChange;
 import ru.akimov.service.EntityFieldChangeLocalServiceUtil;
 
 import java.util.Arrays;
@@ -143,7 +142,7 @@ public class EntityFieldChangeLocalServiceClpInvoker {
         Object[] arguments) throws Throwable {
         if (_methodName0.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-            return EntityFieldChangeLocalServiceUtil.addEntityFieldChange((EntityFieldChange) arguments[0]);
+            return EntityFieldChangeLocalServiceUtil.addEntityFieldChange((ru.akimov.model.EntityFieldChange) arguments[0]);
         }
 
         if (_methodName1.equals(name) &&
@@ -158,7 +157,7 @@ public class EntityFieldChangeLocalServiceClpInvoker {
 
         if (_methodName3.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-            return EntityFieldChangeLocalServiceUtil.deleteEntityFieldChange((EntityFieldChange) arguments[0]);
+            return EntityFieldChangeLocalServiceUtil.deleteEntityFieldChange((ru.akimov.model.EntityFieldChange) arguments[0]);
         }
 
         if (_methodName4.equals(name) &&
@@ -225,7 +224,7 @@ public class EntityFieldChangeLocalServiceClpInvoker {
 
         if (_methodName15.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-            return EntityFieldChangeLocalServiceUtil.updateEntityFieldChange((EntityFieldChange) arguments[0]);
+            return EntityFieldChangeLocalServiceUtil.updateEntityFieldChange((ru.akimov.model.EntityFieldChange) arguments[0]);
         }
 
         if (_methodName44.equals(name) &&

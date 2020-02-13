@@ -7,14 +7,14 @@ import com.liferay.portal.model.PersistedModel;
  *
  * @author Brian Wing Shun Chan
  * @see FooModel
- * @see ru.isands.akimov.model.impl.FooImpl
- * @see ru.isands.akimov.model.impl.FooModelImpl
+ * @see ru.akimov.model.impl.FooImpl
+ * @see ru.akimov.model.impl.FooModelImpl
  * @generated
  */
 public interface Foo extends FooModel, PersistedModel {
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify this interface directly. Add methods to {@link ru.isands.akimov.model.impl.FooImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+     * Never modify this interface directly. Add methods to {@link ru.akimov.model.impl.FooImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
      */
 }

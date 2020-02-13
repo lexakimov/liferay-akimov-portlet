@@ -4,7 +4,7 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import ru.akimov.model.Foo;
-import ru.akimov.service.ClpSerializer;
+
 import ru.akimov.service.FooLocalServiceUtil;
 
 /**
@@ -17,7 +17,7 @@ public abstract class FooActionableDynamicQuery
         setBaseLocalService(FooLocalServiceUtil.getService());
         setClass(Foo.class);
 
-        setClassLoader(ClpSerializer.class.getClassLoader());
+        setClassLoader(ru.akimov.service.ClpSerializer.class.getClassLoader());
 
         setPrimaryKeyPropertyName("fooId");
     }

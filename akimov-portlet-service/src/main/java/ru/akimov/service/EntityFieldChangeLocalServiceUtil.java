@@ -3,11 +3,10 @@ package ru.akimov.service;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
-import ru.akimov.model.EntityFieldChange;
 
 /**
  * Provides the local service utility for EntityFieldChange. This utility wraps
- * {@link ru.isands.akimov.service.impl.EntityFieldChangeLocalServiceImpl} and is the
+ * {@link ru.akimov.service.impl.EntityFieldChangeLocalServiceImpl} and is the
  * primary access point for service operations in application layer code running
  * on the local server. Methods of this service will not have security checks
  * based on the propagated JAAS credentials because this service can only be
@@ -15,8 +14,8 @@ import ru.akimov.model.EntityFieldChange;
  *
  * @author Brian Wing Shun Chan
  * @see EntityFieldChangeLocalService
- * @see ru.isands.akimov.service.base.EntityFieldChangeLocalServiceBaseImpl
- * @see ru.isands.akimov.service.impl.EntityFieldChangeLocalServiceImpl
+ * @see ru.akimov.service.base.EntityFieldChangeLocalServiceBaseImpl
+ * @see ru.akimov.service.impl.EntityFieldChangeLocalServiceImpl
  * @generated
  */
 public class EntityFieldChangeLocalServiceUtil {
@@ -25,7 +24,7 @@ public class EntityFieldChangeLocalServiceUtil {
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify this class directly. Add custom service methods to {@link ru.isands.akimov.service.impl.EntityFieldChangeLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+     * Never modify this class directly. Add custom service methods to {@link ru.akimov.service.impl.EntityFieldChangeLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
      */
 
     /**
@@ -35,8 +34,8 @@ public class EntityFieldChangeLocalServiceUtil {
     * @return the entity field change that was added
     * @throws SystemException if a system exception occurred
     */
-    public static EntityFieldChange addEntityFieldChange(
-        EntityFieldChange entityFieldChange)
+    public static ru.akimov.model.EntityFieldChange addEntityFieldChange(
+        ru.akimov.model.EntityFieldChange entityFieldChange)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getService().addEntityFieldChange(entityFieldChange);
     }
@@ -47,7 +46,7 @@ public class EntityFieldChangeLocalServiceUtil {
     * @param id the primary key for the new entity field change
     * @return the new entity field change
     */
-    public static EntityFieldChange createEntityFieldChange(
+    public static ru.akimov.model.EntityFieldChange createEntityFieldChange(
         int id) {
         return getService().createEntityFieldChange(id);
     }
@@ -60,7 +59,7 @@ public class EntityFieldChangeLocalServiceUtil {
     * @throws PortalException if a entity field change with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static EntityFieldChange deleteEntityFieldChange(
+    public static ru.akimov.model.EntityFieldChange deleteEntityFieldChange(
         int id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
@@ -74,8 +73,8 @@ public class EntityFieldChangeLocalServiceUtil {
     * @return the entity field change that was removed
     * @throws SystemException if a system exception occurred
     */
-    public static EntityFieldChange deleteEntityFieldChange(
-        EntityFieldChange entityFieldChange)
+    public static ru.akimov.model.EntityFieldChange deleteEntityFieldChange(
+        ru.akimov.model.EntityFieldChange entityFieldChange)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getService().deleteEntityFieldChange(entityFieldChange);
     }
@@ -102,7 +101,7 @@ public class EntityFieldChangeLocalServiceUtil {
     * Performs a dynamic query on the database and returns a range of the matching rows.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param dynamicQuery the dynamic query
@@ -122,7 +121,7 @@ public class EntityFieldChangeLocalServiceUtil {
     * Performs a dynamic query on the database and returns an ordered range of the matching rows.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param dynamicQuery the dynamic query
@@ -170,7 +169,7 @@ public class EntityFieldChangeLocalServiceUtil {
         return getService().dynamicQueryCount(dynamicQuery, projection);
     }
 
-    public static EntityFieldChange fetchEntityFieldChange(
+    public static ru.akimov.model.EntityFieldChange fetchEntityFieldChange(
         int id) throws com.liferay.portal.kernel.exception.SystemException {
         return getService().fetchEntityFieldChange(id);
     }
@@ -183,8 +182,7 @@ public class EntityFieldChangeLocalServiceUtil {
     * @throws PortalException if a entity field change with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static EntityFieldChange getEntityFieldChange(
-        int id)
+    public static ru.akimov.model.EntityFieldChange getEntityFieldChange(int id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         return getService().getEntityFieldChange(id);
@@ -201,7 +199,7 @@ public class EntityFieldChangeLocalServiceUtil {
     * Returns a range of all the entity field changes.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param start the lower bound of the range of entity field changes
@@ -209,7 +207,7 @@ public class EntityFieldChangeLocalServiceUtil {
     * @return the range of entity field changes
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<EntityFieldChange> getEntityFieldChanges(
+    public static java.util.List<ru.akimov.model.EntityFieldChange> getEntityFieldChanges(
         int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getService().getEntityFieldChanges(start, end);
@@ -233,8 +231,8 @@ public class EntityFieldChangeLocalServiceUtil {
     * @return the entity field change that was updated
     * @throws SystemException if a system exception occurred
     */
-    public static EntityFieldChange updateEntityFieldChange(
-        EntityFieldChange entityFieldChange)
+    public static ru.akimov.model.EntityFieldChange updateEntityFieldChange(
+        ru.akimov.model.EntityFieldChange entityFieldChange)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getService().updateEntityFieldChange(entityFieldChange);
     }

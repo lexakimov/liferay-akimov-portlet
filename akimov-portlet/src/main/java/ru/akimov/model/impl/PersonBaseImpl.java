@@ -3,6 +3,7 @@ package ru.akimov.model.impl;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import ru.akimov.model.Person;
+
 import ru.akimov.service.PersonLocalServiceUtil;
 
 /**
@@ -14,7 +15,7 @@ import ru.akimov.service.PersonLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see PersonImpl
- * @see Person
+ * @see ru.akimov.model.Person
  * @generated
  */
 public abstract class PersonBaseImpl extends PersonModelImpl implements Person {

@@ -393,7 +393,7 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     @Override
-    public int compareTo(AuditEntry auditEntry) {
+    public int compareTo(ru.akimov.model.AuditEntry auditEntry) {
         return _auditEntry.compareTo(auditEntry);
     }
 
@@ -403,17 +403,17 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     @Override
-    public com.liferay.portal.model.CacheModel<AuditEntry> toCacheModel() {
+    public com.liferay.portal.model.CacheModel<ru.akimov.model.AuditEntry> toCacheModel() {
         return _auditEntry.toCacheModel();
     }
 
     @Override
-    public AuditEntry toEscapedModel() {
+    public ru.akimov.model.AuditEntry toEscapedModel() {
         return new AuditEntryWrapper(_auditEntry.toEscapedModel());
     }
 
     @Override
-    public AuditEntry toUnescapedModel() {
+    public ru.akimov.model.AuditEntry toUnescapedModel() {
         return new AuditEntryWrapper(_auditEntry.toUnescapedModel());
     }
 

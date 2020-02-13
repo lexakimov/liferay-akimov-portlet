@@ -1,6 +1,5 @@
 package ru.akimov.service.base;
 
-import ru.akimov.model.AuditEntry;
 import ru.akimov.service.AuditEntryLocalServiceUtil;
 
 import java.util.Arrays;
@@ -56,9 +55,7 @@ public class AuditEntryLocalServiceClpInvoker {
     public AuditEntryLocalServiceClpInvoker() {
         _methodName0 = "addAuditEntry";
 
-        _methodParameterTypes0 = new String[] {
-                "ru.akimov.model.AuditEntry"
-            };
+        _methodParameterTypes0 = new String[] { "ru.akimov.model.AuditEntry" };
 
         _methodName1 = "createAuditEntry";
 
@@ -70,9 +67,7 @@ public class AuditEntryLocalServiceClpInvoker {
 
         _methodName3 = "deleteAuditEntry";
 
-        _methodParameterTypes3 = new String[] {
-                "ru.akimov.model.AuditEntry"
-            };
+        _methodParameterTypes3 = new String[] { "ru.akimov.model.AuditEntry" };
 
         _methodName4 = "dynamicQuery";
 
@@ -132,9 +127,7 @@ public class AuditEntryLocalServiceClpInvoker {
 
         _methodName15 = "updateAuditEntry";
 
-        _methodParameterTypes15 = new String[] {
-                "ru.akimov.model.AuditEntry"
-            };
+        _methodParameterTypes15 = new String[] { "ru.akimov.model.AuditEntry" };
 
         _methodName44 = "getBeanIdentifier";
 
@@ -154,16 +147,14 @@ public class AuditEntryLocalServiceClpInvoker {
 
         _methodName52 = "deleteAuditEntry";
 
-        _methodParameterTypes52 = new String[] {
-                "ru.akimov.model.AuditEntry"
-            };
+        _methodParameterTypes52 = new String[] { "ru.akimov.model.AuditEntry" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
         Object[] arguments) throws Throwable {
         if (_methodName0.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.addAuditEntry((AuditEntry) arguments[0]);
+            return AuditEntryLocalServiceUtil.addAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
         }
 
         if (_methodName1.equals(name) &&
@@ -178,7 +169,7 @@ public class AuditEntryLocalServiceClpInvoker {
 
         if (_methodName3.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.deleteAuditEntry((AuditEntry) arguments[0]);
+            return AuditEntryLocalServiceUtil.deleteAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
         }
 
         if (_methodName4.equals(name) &&
@@ -245,7 +236,7 @@ public class AuditEntryLocalServiceClpInvoker {
 
         if (_methodName15.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.updateAuditEntry((AuditEntry) arguments[0]);
+            return AuditEntryLocalServiceUtil.updateAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
         }
 
         if (_methodName44.equals(name) &&
@@ -275,7 +266,7 @@ public class AuditEntryLocalServiceClpInvoker {
 
         if (_methodName52.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.deleteAuditEntry((AuditEntry) arguments[0]);
+            return AuditEntryLocalServiceUtil.deleteAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
         }
 
         throw new UnsupportedOperationException();

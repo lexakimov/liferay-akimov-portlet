@@ -3,6 +3,7 @@ package ru.akimov.model.impl;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import ru.akimov.model.EntityFieldChange;
+
 import ru.akimov.service.EntityFieldChangeLocalServiceUtil;
 
 /**
@@ -14,7 +15,7 @@ import ru.akimov.service.EntityFieldChangeLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see EntityFieldChangeImpl
- * @see EntityFieldChange
+ * @see ru.akimov.model.EntityFieldChange
  * @generated
  */
 public abstract class EntityFieldChangeBaseImpl

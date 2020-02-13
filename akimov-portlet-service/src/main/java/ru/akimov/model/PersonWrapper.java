@@ -317,7 +317,7 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
     }
 
     @Override
-    public int compareTo(Person person) {
+    public int compareTo(ru.akimov.model.Person person) {
         return _person.compareTo(person);
     }
 
@@ -327,17 +327,17 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
     }
 
     @Override
-    public com.liferay.portal.model.CacheModel<Person> toCacheModel() {
+    public com.liferay.portal.model.CacheModel<ru.akimov.model.Person> toCacheModel() {
         return _person.toCacheModel();
     }
 
     @Override
-    public Person toEscapedModel() {
+    public ru.akimov.model.Person toEscapedModel() {
         return new PersonWrapper(_person.toEscapedModel());
     }
 
     @Override
-    public Person toUnescapedModel() {
+    public ru.akimov.model.Person toUnescapedModel() {
         return new PersonWrapper(_person.toUnescapedModel());
     }
 

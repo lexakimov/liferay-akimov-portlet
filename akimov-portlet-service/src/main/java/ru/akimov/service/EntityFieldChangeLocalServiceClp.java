@@ -1,7 +1,6 @@
 package ru.akimov.service;
 
 import com.liferay.portal.service.InvokableLocalService;
-import ru.akimov.model.EntityFieldChange;
 
 /**
  * @author Brian Wing Shun Chan
@@ -54,7 +53,7 @@ public class EntityFieldChangeLocalServiceClp
         _methodName0 = "addEntityFieldChange";
 
         _methodParameterTypes0 = new String[] {
-                "ru.isands.akimov.model.EntityFieldChange"
+                "ru.akimov.model.EntityFieldChange"
             };
 
         _methodName1 = "createEntityFieldChange";
@@ -68,7 +67,7 @@ public class EntityFieldChangeLocalServiceClp
         _methodName3 = "deleteEntityFieldChange";
 
         _methodParameterTypes3 = new String[] {
-                "ru.isands.akimov.model.EntityFieldChange"
+                "ru.akimov.model.EntityFieldChange"
             };
 
         _methodName4 = "dynamicQuery";
@@ -130,7 +129,7 @@ public class EntityFieldChangeLocalServiceClp
         _methodName15 = "updateEntityFieldChange";
 
         _methodParameterTypes15 = new String[] {
-                "ru.isands.akimov.model.EntityFieldChange"
+                "ru.akimov.model.EntityFieldChange"
             };
 
         _methodName16 = "getBeanIdentifier";
@@ -143,8 +142,8 @@ public class EntityFieldChangeLocalServiceClp
     }
 
     @Override
-    public EntityFieldChange addEntityFieldChange(
-        EntityFieldChange entityFieldChange)
+    public ru.akimov.model.EntityFieldChange addEntityFieldChange(
+        ru.akimov.model.EntityFieldChange entityFieldChange)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -168,12 +167,11 @@ public class EntityFieldChangeLocalServiceClp
             }
         }
 
-        return (EntityFieldChange) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.EntityFieldChange) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public EntityFieldChange createEntityFieldChange(
-        int id) {
+    public ru.akimov.model.EntityFieldChange createEntityFieldChange(int id) {
         Object returnObj = null;
 
         try {
@@ -190,12 +188,11 @@ public class EntityFieldChangeLocalServiceClp
             }
         }
 
-        return (EntityFieldChange) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.EntityFieldChange) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public EntityFieldChange deleteEntityFieldChange(
-        int id)
+    public ru.akimov.model.EntityFieldChange deleteEntityFieldChange(int id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -222,12 +219,12 @@ public class EntityFieldChangeLocalServiceClp
             }
         }
 
-        return (EntityFieldChange) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.EntityFieldChange) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public EntityFieldChange deleteEntityFieldChange(
-        EntityFieldChange entityFieldChange)
+    public ru.akimov.model.EntityFieldChange deleteEntityFieldChange(
+        ru.akimov.model.EntityFieldChange entityFieldChange)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -251,7 +248,7 @@ public class EntityFieldChangeLocalServiceClp
             }
         }
 
-        return (EntityFieldChange) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.EntityFieldChange) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -440,8 +437,8 @@ public class EntityFieldChangeLocalServiceClp
     }
 
     @Override
-    public EntityFieldChange fetchEntityFieldChange(
-        int id) throws com.liferay.portal.kernel.exception.SystemException {
+    public ru.akimov.model.EntityFieldChange fetchEntityFieldChange(int id)
+        throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
@@ -462,11 +459,11 @@ public class EntityFieldChangeLocalServiceClp
             }
         }
 
-        return (EntityFieldChange) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.EntityFieldChange) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public EntityFieldChange getEntityFieldChange(int id)
+    public ru.akimov.model.EntityFieldChange getEntityFieldChange(int id)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -493,7 +490,7 @@ public class EntityFieldChangeLocalServiceClp
             }
         }
 
-        return (EntityFieldChange) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.EntityFieldChange) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -530,7 +527,7 @@ public class EntityFieldChangeLocalServiceClp
     }
 
     @Override
-    public java.util.List<EntityFieldChange> getEntityFieldChanges(
+    public java.util.List<ru.akimov.model.EntityFieldChange> getEntityFieldChanges(
         int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -553,7 +550,7 @@ public class EntityFieldChangeLocalServiceClp
             }
         }
 
-        return (java.util.List<EntityFieldChange>) ClpSerializer.translateOutput(returnObj);
+        return (java.util.List<ru.akimov.model.EntityFieldChange>) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -583,8 +580,8 @@ public class EntityFieldChangeLocalServiceClp
     }
 
     @Override
-    public EntityFieldChange updateEntityFieldChange(
-        EntityFieldChange entityFieldChange)
+    public ru.akimov.model.EntityFieldChange updateEntityFieldChange(
+        ru.akimov.model.EntityFieldChange entityFieldChange)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -608,7 +605,7 @@ public class EntityFieldChangeLocalServiceClp
             }
         }
 
-        return (EntityFieldChange) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.EntityFieldChange) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override

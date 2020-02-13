@@ -3,8 +3,8 @@ package ru.akimov.service.persistence;
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 
-import ru.akimov.service.ClpSerializer;
 import ru.akimov.model.AuditEntry;
+
 import ru.akimov.service.AuditEntryLocalServiceUtil;
 
 /**
@@ -17,7 +17,7 @@ public abstract class AuditEntryActionableDynamicQuery
         setBaseLocalService(AuditEntryLocalServiceUtil.getService());
         setClass(AuditEntry.class);
 
-        setClassLoader(ClpSerializer.class.getClassLoader());
+        setClassLoader(ru.akimov.service.ClpSerializer.class.getClassLoader());
 
         setPrimaryKeyPropertyName("auditEntryId");
     }

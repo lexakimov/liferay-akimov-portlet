@@ -8,8 +8,8 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
-import ru.akimov.service.ClpSerializer;
 import ru.akimov.service.AuditEntryLocalServiceUtil;
+import ru.akimov.service.ClpSerializer;
 
 import java.io.Serializable;
 
@@ -33,7 +33,7 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     private Date _dateOfChange;
     private String _metadata;
     private BaseModel<?> _auditEntryRemoteModel;
-    private Class<?> _clpSerializerClass = ClpSerializer.class;
+    private Class<?> _clpSerializerClass = ru.akimov.service.ClpSerializer.class;
 
     public AuditEntryClp() {
     }
@@ -505,7 +505,7 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         StringBundler sb = new StringBundler(31);
 
         sb.append("<model><model-name>");
-        sb.append("ru.isands.akimov.model.AuditEntry");
+        sb.append("ru.akimov.model.AuditEntry");
         sb.append("</model-name>");
 
         sb.append(

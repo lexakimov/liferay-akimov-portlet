@@ -7,9 +7,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import ru.akimov.NoSuchPersonException;
 import ru.akimov.model.Person;
-import ru.akimov.service.ClpSerializer;
 
 import java.util.List;
 
@@ -103,7 +101,7 @@ public class PersonUtil {
     *
     * @param person the person
     */
-    public static void cacheResult(Person person) {
+    public static void cacheResult(ru.akimov.model.Person person) {
         getPersistence().cacheResult(person);
     }
 
@@ -113,7 +111,7 @@ public class PersonUtil {
     * @param persons the persons
     */
     public static void cacheResult(
-        java.util.List<Person> persons) {
+        java.util.List<ru.akimov.model.Person> persons) {
         getPersistence().cacheResult(persons);
     }
 
@@ -123,7 +121,7 @@ public class PersonUtil {
     * @param personId the primary key for the new person
     * @return the new person
     */
-    public static Person create(int personId) {
+    public static ru.akimov.model.Person create(int personId) {
         return getPersistence().create(personId);
     }
 
@@ -132,32 +130,32 @@ public class PersonUtil {
     *
     * @param personId the primary key of the person
     * @return the person that was removed
-    * @throws NoSuchPersonException if a person with the primary key could not be found
+    * @throws ru.akimov.NoSuchPersonException if a person with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static Person remove(int personId)
+    public static ru.akimov.model.Person remove(int personId)
         throws com.liferay.portal.kernel.exception.SystemException,
-			NoSuchPersonException {
+            ru.akimov.NoSuchPersonException {
         return getPersistence().remove(personId);
     }
 
-    public static Person updateImpl(
-        Person person)
+    public static ru.akimov.model.Person updateImpl(
+        ru.akimov.model.Person person)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getPersistence().updateImpl(person);
     }
 
     /**
-    * Returns the person with the primary key or throws a {@link NoSuchPersonException} if it could not be found.
+    * Returns the person with the primary key or throws a {@link ru.akimov.NoSuchPersonException} if it could not be found.
     *
     * @param personId the primary key of the person
     * @return the person
-    * @throws NoSuchPersonException if a person with the primary key could not be found
+    * @throws ru.akimov.NoSuchPersonException if a person with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static Person findByPrimaryKey(int personId)
+    public static ru.akimov.model.Person findByPrimaryKey(int personId)
         throws com.liferay.portal.kernel.exception.SystemException,
-			NoSuchPersonException {
+            ru.akimov.NoSuchPersonException {
         return getPersistence().findByPrimaryKey(personId);
     }
 
@@ -168,7 +166,7 @@ public class PersonUtil {
     * @return the person, or <code>null</code> if a person with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static Person fetchByPrimaryKey(int personId)
+    public static ru.akimov.model.Person fetchByPrimaryKey(int personId)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getPersistence().fetchByPrimaryKey(personId);
     }
@@ -179,7 +177,7 @@ public class PersonUtil {
     * @return the persons
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<Person> findAll()
+    public static java.util.List<ru.akimov.model.Person> findAll()
         throws com.liferay.portal.kernel.exception.SystemException {
         return getPersistence().findAll();
     }
@@ -188,7 +186,7 @@ public class PersonUtil {
     * Returns a range of all the persons.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param start the lower bound of the range of persons
@@ -196,9 +194,8 @@ public class PersonUtil {
     * @return the range of persons
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<Person> findAll(
-        int start, int end)
-        throws com.liferay.portal.kernel.exception.SystemException {
+    public static java.util.List<ru.akimov.model.Person> findAll(int start,
+        int end) throws com.liferay.portal.kernel.exception.SystemException {
         return getPersistence().findAll(start, end);
     }
 
@@ -206,7 +203,7 @@ public class PersonUtil {
     * Returns an ordered range of all the persons.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param start the lower bound of the range of persons
@@ -215,8 +212,8 @@ public class PersonUtil {
     * @return the ordered range of persons
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<Person> findAll(
-        int start, int end,
+    public static java.util.List<ru.akimov.model.Person> findAll(int start,
+        int end,
         com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getPersistence().findAll(start, end, orderByComparator);
@@ -245,7 +242,7 @@ public class PersonUtil {
 
     public static PersonPersistence getPersistence() {
         if (_persistence == null) {
-            _persistence = (PersonPersistence) PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+            _persistence = (PersonPersistence) PortletBeanLocatorUtil.locate(ru.akimov.service.ClpSerializer.getServletContextName(),
                     PersonPersistence.class.getName());
 
             ReferenceRegistry.registerReference(PersonUtil.class, "_persistence");

@@ -7,14 +7,14 @@ import com.liferay.portal.model.PersistedModel;
  *
  * @author Brian Wing Shun Chan
  * @see AuditEntryModel
- * @see ru.isands.akimov.model.impl.AuditEntryImpl
- * @see ru.isands.akimov.model.impl.AuditEntryModelImpl
+ * @see ru.akimov.model.impl.AuditEntryImpl
+ * @see ru.akimov.model.impl.AuditEntryModelImpl
  * @generated
  */
 public interface AuditEntry extends AuditEntryModel, PersistedModel {
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify this interface directly. Add methods to {@link ru.isands.akimov.model.impl.AuditEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+     * Never modify this interface directly. Add methods to {@link ru.akimov.model.impl.AuditEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
      */
 }

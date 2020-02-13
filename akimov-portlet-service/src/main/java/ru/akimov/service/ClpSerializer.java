@@ -11,14 +11,10 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
-import ru.akimov.NoSuchAuditEntryException;
-import ru.akimov.NoSuchEntityFieldChangeException;
-import ru.akimov.NoSuchFooException;
-import ru.akimov.NoSuchPersonException;
+import ru.akimov.model.AuditEntryClp;
 import ru.akimov.model.EntityFieldChangeClp;
 import ru.akimov.model.FooClp;
 import ru.akimov.model.PersonClp;
-import ru.akimov.model.AuditEntryClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -181,8 +177,7 @@ public class ClpSerializer {
 
         String oldModelClassName = oldModelClass.getName();
 
-        if (oldModelClassName.equals(
-                    "ru.isands.akimov.model.impl.AuditEntryImpl")) {
+        if (oldModelClassName.equals("ru.akimov.model.impl.AuditEntryImpl")) {
             return translateOutputAuditEntry(oldModel);
         } else if (oldModelClassName.endsWith("Clp")) {
             try {
@@ -217,7 +212,7 @@ public class ClpSerializer {
         }
 
         if (oldModelClassName.equals(
-                    "ru.isands.akimov.model.impl.EntityFieldChangeImpl")) {
+                    "ru.akimov.model.impl.EntityFieldChangeImpl")) {
             return translateOutputEntityFieldChange(oldModel);
         } else if (oldModelClassName.endsWith("Clp")) {
             try {
@@ -251,7 +246,7 @@ public class ClpSerializer {
             }
         }
 
-        if (oldModelClassName.equals("ru.isands.akimov.model.impl.FooImpl")) {
+        if (oldModelClassName.equals("ru.akimov.model.impl.FooImpl")) {
             return translateOutputFoo(oldModel);
         } else if (oldModelClassName.endsWith("Clp")) {
             try {
@@ -285,7 +280,7 @@ public class ClpSerializer {
             }
         }
 
-        if (oldModelClassName.equals("ru.isands.akimov.model.impl.PersonImpl")) {
+        if (oldModelClassName.equals("ru.akimov.model.impl.PersonImpl")) {
             return translateOutputPerson(oldModel);
         } else if (oldModelClassName.endsWith("Clp")) {
             try {
@@ -395,21 +390,20 @@ public class ClpSerializer {
             return new SystemException();
         }
 
-        if (className.equals("ru.isands.akimov.NoSuchAuditEntryException")) {
-            return new NoSuchAuditEntryException();
+        if (className.equals("ru.akimov.NoSuchAuditEntryException")) {
+            return new ru.akimov.NoSuchAuditEntryException();
         }
 
-        if (className.equals(
-                    "ru.isands.akimov.NoSuchEntityFieldChangeException")) {
-            return new NoSuchEntityFieldChangeException();
+        if (className.equals("ru.akimov.NoSuchEntityFieldChangeException")) {
+            return new ru.akimov.NoSuchEntityFieldChangeException();
         }
 
-        if (className.equals("ru.isands.akimov.NoSuchFooException")) {
-            return new NoSuchFooException();
+        if (className.equals("ru.akimov.NoSuchFooException")) {
+            return new ru.akimov.NoSuchFooException();
         }
 
-        if (className.equals("ru.isands.akimov.NoSuchPersonException")) {
-            return new NoSuchPersonException();
+        if (className.equals("ru.akimov.NoSuchPersonException")) {
+            return new ru.akimov.NoSuchPersonException();
         }
 
         return throwable;

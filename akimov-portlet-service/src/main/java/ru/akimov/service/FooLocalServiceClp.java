@@ -1,8 +1,6 @@
 package ru.akimov.service;
 
 import com.liferay.portal.service.InvokableLocalService;
-import ru.akimov.model.Foo;
-import ru.akimov.model.FooBlobFieldBlobModel;
 
 /**
  * @author Brian Wing Shun Chan
@@ -54,7 +52,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
         _methodName0 = "addFoo";
 
-        _methodParameterTypes0 = new String[] { "ru.isands.akimov.model.Foo" };
+        _methodParameterTypes0 = new String[] { "ru.akimov.model.Foo" };
 
         _methodName1 = "createFoo";
 
@@ -66,7 +64,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
         _methodName3 = "deleteFoo";
 
-        _methodParameterTypes3 = new String[] { "ru.isands.akimov.model.Foo" };
+        _methodParameterTypes3 = new String[] { "ru.akimov.model.Foo" };
 
         _methodName4 = "dynamicQuery";
 
@@ -126,7 +124,7 @@ public class FooLocalServiceClp implements FooLocalService {
 
         _methodName15 = "updateFoo";
 
-        _methodParameterTypes15 = new String[] { "ru.isands.akimov.model.Foo" };
+        _methodParameterTypes15 = new String[] { "ru.akimov.model.Foo" };
 
         _methodName16 = "getBlobFieldBlobModel";
 
@@ -142,7 +140,7 @@ public class FooLocalServiceClp implements FooLocalService {
     }
 
     @Override
-    public Foo addFoo(Foo foo)
+    public ru.akimov.model.Foo addFoo(ru.akimov.model.Foo foo)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -165,11 +163,11 @@ public class FooLocalServiceClp implements FooLocalService {
             }
         }
 
-        return (Foo) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Foo) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public Foo createFoo(int fooId) {
+    public ru.akimov.model.Foo createFoo(int fooId) {
         Object returnObj = null;
 
         try {
@@ -186,11 +184,11 @@ public class FooLocalServiceClp implements FooLocalService {
             }
         }
 
-        return (Foo) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Foo) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public Foo deleteFoo(int fooId)
+    public ru.akimov.model.Foo deleteFoo(int fooId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -217,11 +215,11 @@ public class FooLocalServiceClp implements FooLocalService {
             }
         }
 
-        return (Foo) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Foo) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public Foo deleteFoo(Foo foo)
+    public ru.akimov.model.Foo deleteFoo(ru.akimov.model.Foo foo)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -244,7 +242,7 @@ public class FooLocalServiceClp implements FooLocalService {
             }
         }
 
-        return (Foo) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Foo) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -433,7 +431,7 @@ public class FooLocalServiceClp implements FooLocalService {
     }
 
     @Override
-    public Foo fetchFoo(int fooId)
+    public ru.akimov.model.Foo fetchFoo(int fooId)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -455,11 +453,11 @@ public class FooLocalServiceClp implements FooLocalService {
             }
         }
 
-        return (Foo) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Foo) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public Foo getFoo(int fooId)
+    public ru.akimov.model.Foo getFoo(int fooId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -486,7 +484,7 @@ public class FooLocalServiceClp implements FooLocalService {
             }
         }
 
-        return (Foo) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Foo) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -523,7 +521,7 @@ public class FooLocalServiceClp implements FooLocalService {
     }
 
     @Override
-    public java.util.List<Foo> getFoos(int start, int end)
+    public java.util.List<ru.akimov.model.Foo> getFoos(int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -545,7 +543,7 @@ public class FooLocalServiceClp implements FooLocalService {
             }
         }
 
-        return (java.util.List<Foo>) ClpSerializer.translateOutput(returnObj);
+        return (java.util.List<ru.akimov.model.Foo>) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -575,7 +573,7 @@ public class FooLocalServiceClp implements FooLocalService {
     }
 
     @Override
-    public Foo updateFoo(Foo foo)
+    public ru.akimov.model.Foo updateFoo(ru.akimov.model.Foo foo)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -598,11 +596,11 @@ public class FooLocalServiceClp implements FooLocalService {
             }
         }
 
-        return (Foo) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Foo) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public FooBlobFieldBlobModel getBlobFieldBlobModel(
+    public ru.akimov.model.FooBlobFieldBlobModel getBlobFieldBlobModel(
         java.io.Serializable primaryKey)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -626,7 +624,7 @@ public class FooLocalServiceClp implements FooLocalService {
             }
         }
 
-        return (FooBlobFieldBlobModel) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.FooBlobFieldBlobModel) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override

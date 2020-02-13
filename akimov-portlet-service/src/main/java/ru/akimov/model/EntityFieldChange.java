@@ -7,14 +7,14 @@ import com.liferay.portal.model.PersistedModel;
  *
  * @author Brian Wing Shun Chan
  * @see EntityFieldChangeModel
- * @see ru.isands.akimov.model.impl.EntityFieldChangeImpl
- * @see ru.isands.akimov.model.impl.EntityFieldChangeModelImpl
+ * @see ru.akimov.model.impl.EntityFieldChangeImpl
+ * @see ru.akimov.model.impl.EntityFieldChangeModelImpl
  * @generated
  */
 public interface EntityFieldChange extends EntityFieldChangeModel, PersistedModel {
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify this interface directly. Add methods to {@link ru.isands.akimov.model.impl.EntityFieldChangeImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+     * Never modify this interface directly. Add methods to {@link ru.akimov.model.impl.EntityFieldChangeImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
      */
 }

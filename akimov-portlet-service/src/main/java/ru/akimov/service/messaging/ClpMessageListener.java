@@ -3,10 +3,10 @@ package ru.akimov.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
+import ru.akimov.service.AuditEntryLocalServiceUtil;
 import ru.akimov.service.ClpSerializer;
 import ru.akimov.service.EntityFieldChangeLocalServiceUtil;
 import ru.akimov.service.FooLocalServiceUtil;
-import ru.akimov.service.AuditEntryLocalServiceUtil;
 import ru.akimov.service.PersonLocalServiceUtil;
 
 

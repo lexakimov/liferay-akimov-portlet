@@ -1,7 +1,6 @@
 package ru.akimov.service;
 
 import com.liferay.portal.service.ServiceWrapper;
-import ru.akimov.model.AuditEntry;
 
 /**
  * Provides a wrapper for {@link AuditEntryLocalService}.
@@ -27,8 +26,8 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     * @throws SystemException if a system exception occurred
     */
     @Override
-    public AuditEntry addAuditEntry(
-        AuditEntry auditEntry)
+    public ru.akimov.model.AuditEntry addAuditEntry(
+        ru.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException {
         return _auditEntryLocalService.addAuditEntry(auditEntry);
     }
@@ -40,7 +39,7 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     * @return the new audit entry
     */
     @Override
-    public AuditEntry createAuditEntry(int auditEntryId) {
+    public ru.akimov.model.AuditEntry createAuditEntry(int auditEntryId) {
         return _auditEntryLocalService.createAuditEntry(auditEntryId);
     }
 
@@ -53,7 +52,7 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     * @throws SystemException if a system exception occurred
     */
     @Override
-    public AuditEntry deleteAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry deleteAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         return _auditEntryLocalService.deleteAuditEntry(auditEntryId);
@@ -67,8 +66,8 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     * @throws SystemException if a system exception occurred
     */
     @Override
-    public AuditEntry deleteAuditEntry(
-        AuditEntry auditEntry)
+    public ru.akimov.model.AuditEntry deleteAuditEntry(
+        ru.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException {
         return _auditEntryLocalService.deleteAuditEntry(auditEntry);
     }
@@ -97,7 +96,7 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     * Performs a dynamic query on the database and returns a range of the matching rows.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param dynamicQuery the dynamic query
@@ -118,7 +117,7 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     * Performs a dynamic query on the database and returns an ordered range of the matching rows.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param dynamicQuery the dynamic query
@@ -171,7 +170,7 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     }
 
     @Override
-    public AuditEntry fetchAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry fetchAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.SystemException {
         return _auditEntryLocalService.fetchAuditEntry(auditEntryId);
     }
@@ -185,7 +184,7 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     * @throws SystemException if a system exception occurred
     */
     @Override
-    public AuditEntry getAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry getAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         return _auditEntryLocalService.getAuditEntry(auditEntryId);
@@ -203,7 +202,7 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     * Returns a range of all the audit entries.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param start the lower bound of the range of audit entries
@@ -212,7 +211,7 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     * @throws SystemException if a system exception occurred
     */
     @Override
-    public java.util.List<AuditEntry> getAuditEntries(
+    public java.util.List<ru.akimov.model.AuditEntry> getAuditEntries(
         int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException {
         return _auditEntryLocalService.getAuditEntries(start, end);
@@ -238,8 +237,8 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     * @throws SystemException if a system exception occurred
     */
     @Override
-    public AuditEntry updateAuditEntry(
-        AuditEntry auditEntry)
+    public ru.akimov.model.AuditEntry updateAuditEntry(
+        ru.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException {
         return _auditEntryLocalService.updateAuditEntry(auditEntry);
     }

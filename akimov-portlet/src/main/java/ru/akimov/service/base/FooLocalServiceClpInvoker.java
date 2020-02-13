@@ -1,6 +1,5 @@
 package ru.akimov.service.base;
 
-import ru.akimov.model.Foo;
 import ru.akimov.service.FooLocalServiceUtil;
 
 import java.util.Arrays;
@@ -149,7 +148,7 @@ public class FooLocalServiceClpInvoker {
         Object[] arguments) throws Throwable {
         if (_methodName0.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-            return FooLocalServiceUtil.addFoo((Foo) arguments[0]);
+            return FooLocalServiceUtil.addFoo((ru.akimov.model.Foo) arguments[0]);
         }
 
         if (_methodName1.equals(name) &&
@@ -164,7 +163,7 @@ public class FooLocalServiceClpInvoker {
 
         if (_methodName3.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-            return FooLocalServiceUtil.deleteFoo((Foo) arguments[0]);
+            return FooLocalServiceUtil.deleteFoo((ru.akimov.model.Foo) arguments[0]);
         }
 
         if (_methodName4.equals(name) &&
@@ -231,7 +230,7 @@ public class FooLocalServiceClpInvoker {
 
         if (_methodName15.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-            return FooLocalServiceUtil.updateFoo((Foo) arguments[0]);
+            return FooLocalServiceUtil.updateFoo((ru.akimov.model.Foo) arguments[0]);
         }
 
         if (_methodName16.equals(name) &&
@@ -253,7 +252,7 @@ public class FooLocalServiceClpInvoker {
 
         if (_methodName51.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-            return FooLocalServiceUtil.addFoo((Foo) arguments[0]);
+            return FooLocalServiceUtil.addFoo((ru.akimov.model.Foo) arguments[0]);
         }
 
         throw new UnsupportedOperationException();

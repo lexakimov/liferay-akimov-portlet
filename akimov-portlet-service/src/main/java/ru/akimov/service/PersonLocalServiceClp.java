@@ -1,7 +1,6 @@
 package ru.akimov.service;
 
 import com.liferay.portal.service.InvokableLocalService;
-import ru.akimov.model.Person;
 
 /**
  * @author Brian Wing Shun Chan
@@ -51,7 +50,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 
         _methodName0 = "addPerson";
 
-        _methodParameterTypes0 = new String[] { "ru.isands.akimov.model.Person" };
+        _methodParameterTypes0 = new String[] { "ru.akimov.model.Person" };
 
         _methodName1 = "createPerson";
 
@@ -63,7 +62,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 
         _methodName3 = "deletePerson";
 
-        _methodParameterTypes3 = new String[] { "ru.isands.akimov.model.Person" };
+        _methodParameterTypes3 = new String[] { "ru.akimov.model.Person" };
 
         _methodName4 = "dynamicQuery";
 
@@ -123,7 +122,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 
         _methodName15 = "updatePerson";
 
-        _methodParameterTypes15 = new String[] { "ru.isands.akimov.model.Person" };
+        _methodParameterTypes15 = new String[] { "ru.akimov.model.Person" };
 
         _methodName16 = "getBeanIdentifier";
 
@@ -135,8 +134,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
     }
 
     @Override
-    public Person addPerson(
-        Person person)
+    public ru.akimov.model.Person addPerson(ru.akimov.model.Person person)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -159,11 +157,11 @@ public class PersonLocalServiceClp implements PersonLocalService {
             }
         }
 
-        return (Person) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Person) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public Person createPerson(int personId) {
+    public ru.akimov.model.Person createPerson(int personId) {
         Object returnObj = null;
 
         try {
@@ -180,11 +178,11 @@ public class PersonLocalServiceClp implements PersonLocalService {
             }
         }
 
-        return (Person) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Person) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public Person deletePerson(int personId)
+    public ru.akimov.model.Person deletePerson(int personId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -211,12 +209,11 @@ public class PersonLocalServiceClp implements PersonLocalService {
             }
         }
 
-        return (Person) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Person) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public Person deletePerson(
-        Person person)
+    public ru.akimov.model.Person deletePerson(ru.akimov.model.Person person)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -239,7 +236,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
             }
         }
 
-        return (Person) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Person) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -428,7 +425,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
     }
 
     @Override
-    public Person fetchPerson(int personId)
+    public ru.akimov.model.Person fetchPerson(int personId)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -450,11 +447,11 @@ public class PersonLocalServiceClp implements PersonLocalService {
             }
         }
 
-        return (Person) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Person) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public Person getPerson(int personId)
+    public ru.akimov.model.Person getPerson(int personId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -481,7 +478,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
             }
         }
 
-        return (Person) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Person) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -518,8 +515,8 @@ public class PersonLocalServiceClp implements PersonLocalService {
     }
 
     @Override
-    public java.util.List<Person> getPersons(int start,
-											 int end) throws com.liferay.portal.kernel.exception.SystemException {
+    public java.util.List<ru.akimov.model.Person> getPersons(int start, int end)
+        throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
@@ -540,7 +537,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
             }
         }
 
-        return (java.util.List<Person>) ClpSerializer.translateOutput(returnObj);
+        return (java.util.List<ru.akimov.model.Person>) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -570,8 +567,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
     }
 
     @Override
-    public Person updatePerson(
-        Person person)
+    public ru.akimov.model.Person updatePerson(ru.akimov.model.Person person)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -594,7 +590,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
             }
         }
 
-        return (Person) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.Person) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override

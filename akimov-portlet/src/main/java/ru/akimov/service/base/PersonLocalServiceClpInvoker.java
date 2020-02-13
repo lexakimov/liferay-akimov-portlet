@@ -1,6 +1,5 @@
 package ru.akimov.service.base;
 
-import ru.akimov.model.Person;
 import ru.akimov.service.PersonLocalServiceUtil;
 
 import java.util.Arrays;
@@ -137,7 +136,7 @@ public class PersonLocalServiceClpInvoker {
         Object[] arguments) throws Throwable {
         if (_methodName0.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-            return PersonLocalServiceUtil.addPerson((Person) arguments[0]);
+            return PersonLocalServiceUtil.addPerson((ru.akimov.model.Person) arguments[0]);
         }
 
         if (_methodName1.equals(name) &&
@@ -152,7 +151,7 @@ public class PersonLocalServiceClpInvoker {
 
         if (_methodName3.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-            return PersonLocalServiceUtil.deletePerson((Person) arguments[0]);
+            return PersonLocalServiceUtil.deletePerson((ru.akimov.model.Person) arguments[0]);
         }
 
         if (_methodName4.equals(name) &&
@@ -219,7 +218,7 @@ public class PersonLocalServiceClpInvoker {
 
         if (_methodName15.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-            return PersonLocalServiceUtil.updatePerson((Person) arguments[0]);
+            return PersonLocalServiceUtil.updatePerson((ru.akimov.model.Person) arguments[0]);
         }
 
         if (_methodName44.equals(name) &&

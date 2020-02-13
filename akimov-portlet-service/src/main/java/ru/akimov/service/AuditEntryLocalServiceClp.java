@@ -1,7 +1,6 @@
 package ru.akimov.service;
 
 import com.liferay.portal.service.InvokableLocalService;
-import ru.akimov.model.AuditEntry;
 
 /**
  * @author Brian Wing Shun Chan
@@ -54,9 +53,7 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
 
         _methodName0 = "addAuditEntry";
 
-        _methodParameterTypes0 = new String[] {
-                "ru.isands.akimov.model.AuditEntry"
-            };
+        _methodParameterTypes0 = new String[] { "ru.akimov.model.AuditEntry" };
 
         _methodName1 = "createAuditEntry";
 
@@ -68,9 +65,7 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
 
         _methodName3 = "deleteAuditEntry";
 
-        _methodParameterTypes3 = new String[] {
-                "ru.isands.akimov.model.AuditEntry"
-            };
+        _methodParameterTypes3 = new String[] { "ru.akimov.model.AuditEntry" };
 
         _methodName4 = "dynamicQuery";
 
@@ -130,9 +125,7 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
 
         _methodName15 = "updateAuditEntry";
 
-        _methodParameterTypes15 = new String[] {
-                "ru.isands.akimov.model.AuditEntry"
-            };
+        _methodParameterTypes15 = new String[] { "ru.akimov.model.AuditEntry" };
 
         _methodName16 = "getBeanIdentifier";
 
@@ -148,8 +141,8 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public AuditEntry addAuditEntry(
-        AuditEntry auditEntry)
+    public ru.akimov.model.AuditEntry addAuditEntry(
+        ru.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -172,11 +165,11 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
             }
         }
 
-        return (AuditEntry) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public AuditEntry createAuditEntry(int auditEntryId) {
+    public ru.akimov.model.AuditEntry createAuditEntry(int auditEntryId) {
         Object returnObj = null;
 
         try {
@@ -193,11 +186,11 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
             }
         }
 
-        return (AuditEntry) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public AuditEntry deleteAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry deleteAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -224,12 +217,12 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
             }
         }
 
-        return (AuditEntry) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public AuditEntry deleteAuditEntry(
-        AuditEntry auditEntry)
+    public ru.akimov.model.AuditEntry deleteAuditEntry(
+        ru.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -252,7 +245,7 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
             }
         }
 
-        return (AuditEntry) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -441,7 +434,7 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public AuditEntry fetchAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry fetchAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -463,11 +456,11 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
             }
         }
 
-        return (AuditEntry) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
-    public AuditEntry getAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry getAuditEntry(int auditEntryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -494,7 +487,7 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
             }
         }
 
-        return (AuditEntry) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -531,7 +524,7 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public java.util.List<AuditEntry> getAuditEntries(
+    public java.util.List<ru.akimov.model.AuditEntry> getAuditEntries(
         int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -554,7 +547,7 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
             }
         }
 
-        return (java.util.List<AuditEntry>) ClpSerializer.translateOutput(returnObj);
+        return (java.util.List<ru.akimov.model.AuditEntry>) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override
@@ -584,8 +577,8 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public AuditEntry updateAuditEntry(
-        AuditEntry auditEntry)
+    public ru.akimov.model.AuditEntry updateAuditEntry(
+        ru.akimov.model.AuditEntry auditEntry)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -608,7 +601,7 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
             }
         }
 
-        return (AuditEntry) ClpSerializer.translateOutput(returnObj);
+        return (ru.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
     }
 
     @Override

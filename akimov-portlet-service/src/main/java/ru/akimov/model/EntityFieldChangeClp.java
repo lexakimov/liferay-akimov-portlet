@@ -26,7 +26,7 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
     private String _oldValue;
     private String _newValue;
     private BaseModel<?> _entityFieldChangeRemoteModel;
-    private Class<?> _clpSerializerClass = ClpSerializer.class;
+    private Class<?> _clpSerializerClass = ru.akimov.service.ClpSerializer.class;
 
     public EntityFieldChangeClp() {
     }
@@ -362,7 +362,7 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
         StringBundler sb = new StringBundler(19);
 
         sb.append("<model><model-name>");
-        sb.append("ru.isands.akimov.model.EntityFieldChange");
+        sb.append("ru.akimov.model.EntityFieldChange");
         sb.append("</model-name>");
 
         sb.append(

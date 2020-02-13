@@ -3,6 +3,7 @@ package ru.akimov.model.impl;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import ru.akimov.model.AuditEntry;
+
 import ru.akimov.service.AuditEntryLocalServiceUtil;
 
 /**
@@ -14,7 +15,7 @@ import ru.akimov.service.AuditEntryLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see AuditEntryImpl
- * @see AuditEntry
+ * @see ru.akimov.model.AuditEntry
  * @generated
  */
 public abstract class AuditEntryBaseImpl extends AuditEntryModelImpl

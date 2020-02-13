@@ -7,14 +7,14 @@ import com.liferay.portal.model.PersistedModel;
  *
  * @author Brian Wing Shun Chan
  * @see PersonModel
- * @see ru.isands.akimov.model.impl.PersonImpl
- * @see ru.isands.akimov.model.impl.PersonModelImpl
+ * @see ru.akimov.model.impl.PersonImpl
+ * @see ru.akimov.model.impl.PersonModelImpl
  * @generated
  */
 public interface Person extends PersonModel, PersistedModel {
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify this interface directly. Add methods to {@link ru.isands.akimov.model.impl.PersonImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+     * Never modify this interface directly. Add methods to {@link ru.akimov.model.impl.PersonImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
      */
 }

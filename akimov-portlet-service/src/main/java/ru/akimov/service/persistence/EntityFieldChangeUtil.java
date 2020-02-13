@@ -7,9 +7,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import ru.akimov.NoSuchEntityFieldChangeException;
 import ru.akimov.model.EntityFieldChange;
-import ru.akimov.service.ClpSerializer;
 
 import java.util.List;
 
@@ -107,7 +105,7 @@ public class EntityFieldChangeUtil {
     * @param entityFieldChange the entity field change
     */
     public static void cacheResult(
-        EntityFieldChange entityFieldChange) {
+        ru.akimov.model.EntityFieldChange entityFieldChange) {
         getPersistence().cacheResult(entityFieldChange);
     }
 
@@ -117,7 +115,7 @@ public class EntityFieldChangeUtil {
     * @param entityFieldChanges the entity field changes
     */
     public static void cacheResult(
-        java.util.List<EntityFieldChange> entityFieldChanges) {
+        java.util.List<ru.akimov.model.EntityFieldChange> entityFieldChanges) {
         getPersistence().cacheResult(entityFieldChanges);
     }
 
@@ -127,7 +125,7 @@ public class EntityFieldChangeUtil {
     * @param id the primary key for the new entity field change
     * @return the new entity field change
     */
-    public static EntityFieldChange create(int id) {
+    public static ru.akimov.model.EntityFieldChange create(int id) {
         return getPersistence().create(id);
     }
 
@@ -136,33 +134,32 @@ public class EntityFieldChangeUtil {
     *
     * @param id the primary key of the entity field change
     * @return the entity field change that was removed
-    * @throws NoSuchEntityFieldChangeException if a entity field change with the primary key could not be found
+    * @throws ru.akimov.NoSuchEntityFieldChangeException if a entity field change with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static EntityFieldChange remove(int id)
+    public static ru.akimov.model.EntityFieldChange remove(int id)
         throws com.liferay.portal.kernel.exception.SystemException,
-			NoSuchEntityFieldChangeException {
+            ru.akimov.NoSuchEntityFieldChangeException {
         return getPersistence().remove(id);
     }
 
-    public static EntityFieldChange updateImpl(
-        EntityFieldChange entityFieldChange)
+    public static ru.akimov.model.EntityFieldChange updateImpl(
+        ru.akimov.model.EntityFieldChange entityFieldChange)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getPersistence().updateImpl(entityFieldChange);
     }
 
     /**
-    * Returns the entity field change with the primary key or throws a {@link NoSuchEntityFieldChangeException} if it could not be found.
+    * Returns the entity field change with the primary key or throws a {@link ru.akimov.NoSuchEntityFieldChangeException} if it could not be found.
     *
     * @param id the primary key of the entity field change
     * @return the entity field change
-    * @throws NoSuchEntityFieldChangeException if a entity field change with the primary key could not be found
+    * @throws ru.akimov.NoSuchEntityFieldChangeException if a entity field change with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static EntityFieldChange findByPrimaryKey(
-        int id)
+    public static ru.akimov.model.EntityFieldChange findByPrimaryKey(int id)
         throws com.liferay.portal.kernel.exception.SystemException,
-			NoSuchEntityFieldChangeException {
+            ru.akimov.NoSuchEntityFieldChangeException {
         return getPersistence().findByPrimaryKey(id);
     }
 
@@ -173,8 +170,8 @@ public class EntityFieldChangeUtil {
     * @return the entity field change, or <code>null</code> if a entity field change with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static EntityFieldChange fetchByPrimaryKey(
-        int id) throws com.liferay.portal.kernel.exception.SystemException {
+    public static ru.akimov.model.EntityFieldChange fetchByPrimaryKey(int id)
+        throws com.liferay.portal.kernel.exception.SystemException {
         return getPersistence().fetchByPrimaryKey(id);
     }
 
@@ -184,7 +181,7 @@ public class EntityFieldChangeUtil {
     * @return the entity field changes
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<EntityFieldChange> findAll()
+    public static java.util.List<ru.akimov.model.EntityFieldChange> findAll()
         throws com.liferay.portal.kernel.exception.SystemException {
         return getPersistence().findAll();
     }
@@ -193,7 +190,7 @@ public class EntityFieldChangeUtil {
     * Returns a range of all the entity field changes.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param start the lower bound of the range of entity field changes
@@ -201,7 +198,7 @@ public class EntityFieldChangeUtil {
     * @return the range of entity field changes
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<EntityFieldChange> findAll(
+    public static java.util.List<ru.akimov.model.EntityFieldChange> findAll(
         int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getPersistence().findAll(start, end);
@@ -211,7 +208,7 @@ public class EntityFieldChangeUtil {
     * Returns an ordered range of all the entity field changes.
     *
     * <p>
-    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.isands.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
     * @param start the lower bound of the range of entity field changes
@@ -220,7 +217,7 @@ public class EntityFieldChangeUtil {
     * @return the ordered range of entity field changes
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<EntityFieldChange> findAll(
+    public static java.util.List<ru.akimov.model.EntityFieldChange> findAll(
         int start, int end,
         com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
         throws com.liferay.portal.kernel.exception.SystemException {
@@ -250,7 +247,7 @@ public class EntityFieldChangeUtil {
 
     public static EntityFieldChangePersistence getPersistence() {
         if (_persistence == null) {
-            _persistence = (EntityFieldChangePersistence) PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+            _persistence = (EntityFieldChangePersistence) PortletBeanLocatorUtil.locate(ru.akimov.service.ClpSerializer.getServletContextName(),
                     EntityFieldChangePersistence.class.getName());
 
             ReferenceRegistry.registerReference(EntityFieldChangeUtil.class,

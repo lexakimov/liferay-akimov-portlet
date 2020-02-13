@@ -23,9 +23,12 @@ import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import ru.akimov.NoSuchPersonException;
+
 import ru.akimov.model.Person;
 import ru.akimov.model.impl.PersonImpl;
 import ru.akimov.model.impl.PersonModelImpl;
+
+import ru.akimov.service.persistence.PersonPersistence;
 
 import java.io.Serializable;
 
@@ -195,7 +198,7 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
      *
      * @param personId the primary key of the person
      * @return the person that was removed
-     * @throws NoSuchPersonException if a person with the primary key could not be found
+     * @throws ru.akimov.NoSuchPersonException if a person with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
@@ -209,7 +212,7 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
      *
      * @param primaryKey the primary key of the person
      * @return the person that was removed
-     * @throws NoSuchPersonException if a person with the primary key could not be found
+     * @throws ru.akimov.NoSuchPersonException if a person with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
@@ -272,7 +275,7 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
     }
 
     @Override
-    public Person updateImpl(Person person)
+    public Person updateImpl(ru.akimov.model.Person person)
         throws SystemException {
         person = toUnwrappedModel(person);
 
@@ -334,7 +337,7 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
      *
      * @param primaryKey the primary key of the person
      * @return the person
-     * @throws NoSuchPersonException if a person with the primary key could not be found
+     * @throws ru.akimov.NoSuchPersonException if a person with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
@@ -355,11 +358,11 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
     }
 
     /**
-     * Returns the person with the primary key or throws a {@link NoSuchPersonException} if it could not be found.
+     * Returns the person with the primary key or throws a {@link ru.akimov.NoSuchPersonException} if it could not be found.
      *
      * @param personId the primary key of the person
      * @return the person
-     * @throws NoSuchPersonException if a person with the primary key could not be found
+     * @throws ru.akimov.NoSuchPersonException if a person with the primary key could not be found
      * @throws SystemException if a system exception occurred
      */
     @Override
@@ -439,7 +442,7 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
      * Returns a range of all the persons.
      *
      * <p>
-     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
      * </p>
      *
      * @param start the lower bound of the range of persons
@@ -456,7 +459,7 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
      * Returns an ordered range of all the persons.
      *
      * <p>
-     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.PersonModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
      * </p>
      *
      * @param start the lower bound of the range of persons

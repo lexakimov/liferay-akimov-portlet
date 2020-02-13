@@ -28,7 +28,7 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
     private Date _birthDate;
     private String _address;
     private BaseModel<?> _personRemoteModel;
-    private Class<?> _clpSerializerClass = ClpSerializer.class;
+    private Class<?> _clpSerializerClass = ru.akimov.service.ClpSerializer.class;
 
     public PersonClp() {
     }
@@ -426,7 +426,7 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
         StringBundler sb = new StringBundler(25);
 
         sb.append("<model><model-name>");
-        sb.append("ru.isands.akimov.model.Person");
+        sb.append("ru.akimov.model.Person");
         sb.append("</model-name>");
 
         sb.append(

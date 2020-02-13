@@ -3,6 +3,7 @@ package ru.akimov.model.impl;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import ru.akimov.model.Foo;
+
 import ru.akimov.service.FooLocalServiceUtil;
 
 /**
@@ -14,7 +15,7 @@ import ru.akimov.service.FooLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see FooImpl
- * @see Foo
+ * @see ru.akimov.model.Foo
  * @generated
  */
 public abstract class FooBaseImpl extends FooModelImpl implements Foo {

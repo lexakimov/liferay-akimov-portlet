@@ -4,7 +4,7 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import ru.akimov.model.EntityFieldChange;
-import ru.akimov.service.ClpSerializer;
+
 import ru.akimov.service.EntityFieldChangeLocalServiceUtil;
 
 /**
@@ -17,7 +17,7 @@ public abstract class EntityFieldChangeActionableDynamicQuery
         setBaseLocalService(EntityFieldChangeLocalServiceUtil.getService());
         setClass(EntityFieldChange.class);
 
-        setClassLoader(ClpSerializer.class.getClassLoader());
+        setClassLoader(ru.akimov.service.ClpSerializer.class.getClassLoader());
 
         setPrimaryKeyPropertyName("id");
     }
