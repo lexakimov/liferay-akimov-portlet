@@ -1,4 +1,4 @@
-package ru.isands.tld;
+package ru.isands.akimov.taglib;
 
 import com.liferay.taglib.portlet.ResourceURLTag;
 import ru.isands.akimov.constants.URLParams;

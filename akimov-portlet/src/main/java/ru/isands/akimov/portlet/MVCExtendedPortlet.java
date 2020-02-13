@@ -4,21 +4,16 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import ru.isands.akimov.annotations.AsyncActionMethod;
+import ru.isands.akimov.annotations.ResourceActionMethod;
+import ru.isands.akimov.utils.PortletRequestUtil;
 
 import javax.portlet.*;
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -32,9 +27,9 @@ import static ru.isands.akimov.constants.URLParams.*;
  * @author akimov
  * created at 14.12.19 9:09
  * @see #processAsyncAction(ResourceRequest, ResourceResponse) выполнение асинхронных действий портлета.
- * @see #createPortletURL(PortletRequest) создать новый урл.
- * @see #_getRequestParamsMessage(PortletRequest) получить сообщение с параметрами запроса для вывода в консоль.
- * @see #_getRequestAttrsMessage(PortletRequest) получить сообщение с аттрибутами запроса для вывода в консоль.
+ * @see PortletRequestUtil#createPortletURL(PortletRequest) создать новый урл.
+ * @see PortletRequestUtil#paramsList(PortletRequest) получить сообщение с параметрами запроса для вывода в консоль.
+ * @see PortletRequestUtil#attrsList(PortletRequest) получить сообщение с аттрибутами запроса для вывода в консоль.
  */
 public abstract class MVCExtendedPortlet extends MVCPortlet {
 
@@ -42,11 +37,47 @@ public abstract class MVCExtendedPortlet extends MVCPortlet {
 
 	private final Map<String, Method> asyncActionMethods = new HashMap<>();
 
+	private final Map<String, ResourceActionMethod> resourceActionMethods = new HashMap<>();
+
 	@Override
 	public void init(PortletConfig config) throws PortletException {
 		super.init(config);
+		cacheResourceActionMethods();
 		cacheAsyncActionAnnotatedMethods();
 	}
+
+	/* ---------------------------------------- resource actions -----------------------------------------------------*/
+
+	@Override
+	public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
+		String resourceId = GetterUtil.getString(request.getResourceID());
+		log.debug("RESOURCE ACTION: " + resourceId);
+		ResourceActionMethod resourceAction = resourceActionMethods.get(resourceId);
+		if (resourceAction != null) {
+			resourceAction.execute(request, response);
+		} else {
+			super.serveResource(request, response);
+		}
+	}
+
+	private void cacheResourceActionMethods() {
+		resourceActionMethods.put(ASYNC_ACTION_RESOURCE_ID, this::processAsyncAction);
+		//resourceActionMethods.put(ASYNC_FILE_UPLOAD, this::uploadTempFile);
+		initResourceActions(resourceActionMethods);
+	}
+
+	/**
+	 * В этом методе можно добавить ссылки на resourceAction методы. например так
+	 * resourceActionMethods.put(ASYNC_FILE_UPLOAD, this::uploadTempFile);
+	 * где ASYNC_FILE_UPLOAD - resourceId, this::uploadTempFile ссылка на метод
+	 *
+	 * @param resourceActionMethods
+	 */
+	protected void initResourceActions(Map<String, ResourceActionMethod> resourceActionMethods) {
+		// implement this method in portlet if necessary
+	}
+
+	/* ---------------------------------------- async actions handling -----------------------------------------------*/
 
 	private void cacheAsyncActionAnnotatedMethods() {
 		Class<?> klass = getClass();
@@ -62,104 +93,6 @@ public abstract class MVCExtendedPortlet extends MVCPortlet {
 		}
 	}
 
-	/*
-	// Try to make async action method
-	// <portlet:actionURL var="actURL" name="A_actionMethodName" >
-	//		<portlet:param name="param1" value="value1"/>
-	// </portlet:actionURL>
-
-	@Override
-	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		String actionName = ParamUtil.getString(actionRequest, ActionRequest.ACTION_NAME);
-		if (actionName.startsWith("A_")) {
-			log.info("success!");
-			_debugPrintParams(actionRequest);
-			return;
-		}
-		super.processAction(actionRequest, actionResponse);
-	}
-	*/
-
-	/*
-	// завершить асинхнронный action
-	void completeAsyncAction(ActionRequest request, ActionResponse response) {
-		LiferayPortletURL portletURL = createPortletURL(request);
-		Map<String, String[]> parameterMap = new HashMap<>(request.getParameterMap());
-		String mvcPath = getPath(request);
-		if (mvcPath != null) {
-			parameterMap.remove("jspPage");
-			parameterMap.put("mvcPath", new String[]{mvcPath});
-		}
-		parameterMap.remove("javax.portlet.action");
-		portletURL.setParameters(parameterMap);
-
-		try {
-			portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-			response.sendRedirect(portletURL.toString());
-		} catch (WindowStateException | IOException e) {
-			throw new RuntimeException(e);
-		}
-	}*/
-
-	@Override
-	public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
-		String resourceId = GetterUtil.getString(request.getResourceID());
-		log.debug("RESOURCE ACTION: " + resourceId);
-		switch (resourceId) {
-			case ASYNC_ACTION_RESOURCE_ID:
-				processAsyncAction(request, response);
-				break;
-			case ASYNC_FILE_UPLOAD:
-				uploadTempFile(request, response);
-				break;
-			default:
-				super.serveResource(request, response);
-		}
-	}
-
-	public void uploadTempFile(PortletRequest request, PortletResponse response) {
-		//ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		//uploadPortletRequest.file
-
-		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(request);
-
-		String fileName = uploadRequest.getFileName("file");
-		File file = uploadRequest.getFile("file");
-		String mimeType = uploadRequest.getContentType("file");
-
-		//log.debug(uploadRequest.getSession());
-		log.debug(Arrays.toString(uploadRequest.getFileNames("file")));
-		log.debug(Arrays.toString(uploadRequest.getFiles("file")));
-
-		/*try {
-			//Folder folder = getFolder(themeDisplay);
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFileEntry.class.getName(), request);
-			InputStream is = new FileInputStream(file);
-			//DLAppServiceUtil.addFileEntry(repositoryId, folder.getFolderId(), fileName, mimeType,
-			//title, description, "", is, file.getTotalSpace(), serviceContext);
-
-		} catch (Exception e) {
-			log.error(e);
-		}*/
-
-	}
-
-	/**
-	 * Basic usage on async methods:
-	 * <p>
-	 * <portlet:resourceURL var="urlName" id="async_action">
-	 * <portlet:param name="async_action_method" value="methodName"/>
-	 * <portlet:param ... (other params)
-	 * </portlet:resourceURL>
-	 * or like this:
-	 * <portlet:resourceURL var="urlName" id="<%=ASYNC_ACTION_RESOURCE_ID%>">
-	 * <portlet:param name="<%=ASYNC_ACTION_METHOD_PARAM%>" value="methodName"/>
-	 * <portlet:param ... (other params)
-	 * </portlet:resourceURL>
-	 * <p>
-	 * portlet method 'public void methodName(PortletRequest request, PortletResponse response)' must be annotated with
-	 * {@link AsyncActionMethod}.
-	 */
 	private void processAsyncAction(ResourceRequest request, ResourceResponse response) throws PortletException, IOException {
 		String actionMethod = ParamUtil.getString(request, ASYNC_ACTION_METHOD_PARAM);
 		try {
@@ -223,50 +156,36 @@ public abstract class MVCExtendedPortlet extends MVCPortlet {
 		json.put("errors", errorsJson);
 	}
 
-	protected void hideDefaultErrorMessage(ActionRequest request) {
-		SessionMessages.add(request,
-				PortalUtil.getPortletId(request) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
-	}
+	/* ----------------------------- util methods ------------------------------------------------------------------- */
 
-	protected void hideDefaultSuccessMessage(ActionRequest request) {
-		SessionMessages.add(request,
-				PortalUtil.getPortletId(request) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE);
-	}
+	/*
+	public void uploadTempFile(PortletRequest request, PortletResponse response) throws IOException {
+		// TempFileUtil.
+		File tempFolder = FileUtil.createTempFolder();
+		// ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+		// uploadPortletRequest.file
 
-	protected LiferayPortletURL createPortletURL(PortletRequest request) {
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		String portletId = PortalUtil.getPortletId(request);
-		return PortletURLFactoryUtil.create(request, portletId, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
-	}
+		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(request);
 
-	@SuppressWarnings("unused")
-	protected String _getRequestAttrsMessage(PortletRequest request) {
-		Enumeration<String> pageAttrs = request.getAttributeNames();
-		Map<String, Object> attributesMap = new TreeMap<>();
-		while (pageAttrs.hasMoreElements()) {
-			String key = pageAttrs.nextElement();
-			attributesMap.put(key, request.getAttribute(key));
-		}
-		return makeDebugMessage(attributesMap, "attributes");
-	}
+		String fileName = uploadRequest.getFileName("file");
+		File file = uploadRequest.getFile("file");
+		String mimeType = uploadRequest.getContentType("file");
 
-	@SuppressWarnings("unused")
-	protected String _getRequestParamsMessage(PortletRequest request) {
-		Enumeration<String> params = request.getParameterNames();
-		Map<String, Object> paramMap = new TreeMap<>();
-		while (params.hasMoreElements()) {
-			String key = params.nextElement();
-			paramMap.put(key, request.getParameter(key));
-		}
-		return makeDebugMessage(paramMap, "params");
-	}
+		//log.debug(uploadRequest.getSession());
+		log.debug(Arrays.toString(uploadRequest.getFileNames("file")));
+		log.debug(Arrays.toString(uploadRequest.getFiles("file")));
 
-	private String makeDebugMessage(Map<String, Object> paramMap, String prefix) {
-		StringJoiner joiner = new StringJoiner(", \n\t", prefix + ":\n{\n\t", "\n}");
-		for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
-			joiner.add(entry.getKey() + " = " + entry.getValue());
-		}
-		return joiner.toString();
-	}
+		*//*try {
+			//Folder folder = getFolder(themeDisplay);
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFileEntry.class.getName(), request);
+			InputStream is = new FileInputStream(file);
+			//DLAppServiceUtil.addFileEntry(repositoryId, folder.getFolderId(), fileName, mimeType,
+			//title, description, "", is, file.getTotalSpace(), serviceContext);
+
+		} catch (Exception e) {
+			log.error(e);
+		}*//*
+
+	}*/
 
 }

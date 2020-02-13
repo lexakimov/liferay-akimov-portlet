@@ -1,12 +1,12 @@
 <taglib>
 	<tlib-version>1.0</tlib-version>
 	<jsp-version>2.0</jsp-version>
-	<short-name>Isands TLD</short-name>
+	<short-name>Isands taglib</short-name>
 	<uri>http://isands.ru/liferay/tld</uri>
 
 	<tag>
 		<name>async-actionURL</name>
-		<tag-class>ru.isands.tld.AsyncActionURLTag</tag-class>
+		<tag-class>ru.isands.akimov.taglib.AsyncActionURLTag</tag-class>
 		<tei-class>com.liferay.taglib.portlet.ResourceURLTei</tei-class>
 		<body-content>JSP</body-content>
 		<attribute>

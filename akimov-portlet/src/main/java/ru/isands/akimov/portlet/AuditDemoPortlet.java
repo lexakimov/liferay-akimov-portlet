@@ -8,6 +8,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import ru.isands.akimov.model.Foo;
 import ru.isands.akimov.service.FooLocalServiceUtil;
+import ru.isands.akimov.utils.PortletRequestUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -31,7 +32,7 @@ public class AuditDemoPortlet extends MVCExtendedPortlet {
 	public void updateFoo(ActionRequest request, ActionResponse response) throws SystemException, IOException {
 
 		log.debug("");
-		System.out.println(_getRequestParamsMessage(request));
+		System.out.println(PortletRequestUtil.paramsList(request));
 
 		int fooId = ParamUtil.getInteger(request, "fooId");
 		Foo foo;
@@ -53,18 +54,18 @@ public class AuditDemoPortlet extends MVCExtendedPortlet {
 		foo.setDateField(ParamUtil.getDate(request, "dateField", DD_MM_YYYY__HH_MM, null));
 		foo.persist();
 
-		PortletURL redirect = createPortletURL(request);
+		PortletURL redirect = PortletRequestUtil.createPortletURL(request);
 		response.sendRedirect(redirect.toString());
 	}
 
-	public void deleteFoo(ActionRequest request, ActionResponse response) throws SystemException, PortalException, IOException {
+	public static void deleteFoo(ActionRequest request, ActionResponse response) throws SystemException, PortalException, IOException {
 		int fooId = ParamUtil.getInteger(request, "fooId");
 
 		if (fooId > 0) {
 			FooLocalServiceUtil.deleteFoo(fooId);
 		}
 
-		PortletURL redirect = createPortletURL(request);
+		PortletURL redirect = PortletRequestUtil.createPortletURL(request);
 		response.sendRedirect(redirect.toString());
 	}
 

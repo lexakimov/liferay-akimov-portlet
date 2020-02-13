@@ -5,6 +5,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import ru.isands.akimov.annotations.AsyncActionMethod;
+import ru.isands.akimov.utils.PortletRequestUtil;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
@@ -15,8 +16,8 @@ public class AsyncActionsPortlet extends MVCExtendedPortlet {
 
 	@AsyncActionMethod
 	public void simpleAsyncAction(PortletRequest request, PortletResponse response) {
-		System.out.println(_getRequestParamsMessage(request));
-		System.out.println(_getRequestAttrsMessage(request));
+		System.out.println(PortletRequestUtil.paramsList(request));
+		System.out.println(PortletRequestUtil.attrsList(request));
 	}
 
 	@AsyncActionMethod
