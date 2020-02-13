@@ -1,6 +1,6 @@
-<%@ page import="ru.isands.akimov.search.helpers.impl.FooSearchHelper" %>
-<%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
-<%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="ru.akimov.search.helpers.impl.FooSearchHelper" %>
+<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
+<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -14,7 +14,7 @@
 	<%
 		new FooSearchHelper(searchContainer);
 	%>
-	<liferay-ui:search-container-row className="ru.isands.akimov.model.Foo">
+	<liferay-ui:search-container-row className="ru.akimov.model.Foo">
 		<liferay-ui:search-container-column-text property="fooId"/>
 		<liferay-ui:search-container-column-text name="foo.field.booleanField" property="booleanField"/>
 		<liferay-ui:search-container-column-text name="foo.field.shortField" property="shortField"/>

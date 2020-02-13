@@ -1,6 +1,6 @@
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
-<%@ page import="ru.isands.akimov.enums.Gender" %>
-<%@ page import="ru.isands.akimov.search.helpers.impl.PersonSearchHelper" %>
+<%@ page import="ru.akimov.enums.Gender" %>
+<%@ page import="ru.akimov.search.helpers.impl.PersonSearchHelper" %>
 <%@ page import="static com.liferay.portal.kernel.util.JavaConstants.JAVAX_SERVLET_INCLUDE_SERVLET_PATH" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
@@ -25,7 +25,7 @@ http://anilgurjar.blogspot.com/2012/08/search-container-with-pagination-on.html
 		<%
 			new PersonSearchHelper(searchContainer);
 		%>
-		<liferay-ui:search-container-row className="ru.isands.akimov.model.Person">
+		<liferay-ui:search-container-row className="ru.akimov.model.Person">
 			<liferay-ui:search-container-column-text name="Фамилия" property="lastName"/>
 			<liferay-ui:search-container-column-text name="Имя" property="firstName"/>
 			<liferay-ui:search-container-column-text name="Отчество" property="middleName"/>

@@ -1,9 +1,9 @@
-<%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
-<%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
+<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
-<%@ page import="ru.isands.akimov.model.Foo" %>
-<%@ page import="ru.isands.akimov.service.FooLocalServiceUtil" %>
-<%@ page import="ru.isands.akimov.service.permission.FooPermission" %>
+<%@ page import="ru.akimov.model.Foo" %>
+<%@ page import="ru.akimov.service.FooLocalServiceUtil" %>
+<%@ page import="ru.akimov.service.permission.FooPermission" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 

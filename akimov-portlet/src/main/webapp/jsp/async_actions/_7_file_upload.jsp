@@ -1,8 +1,10 @@
-<%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
-<%@ page import="static ru.isands.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
-<%@ page import="static ru.isands.akimov.constants.URLParams.*" %>
+<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
+<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="static ru.akimov.constants.URLParams.*" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <h4>Async File Upload</h4>
 
@@ -13,11 +15,7 @@
 </form>
 --%>
 <style>
-	.uploader-filename {
-		min-width: 200px;
-	}
-
-	#drop-area {
+	.drop-zone {
 		border: 2px dashed #ccc;
 		border-radius: 10px;
 		box-sizing: border-box;
@@ -29,30 +27,35 @@
 		transition-duration: 0.5s;
 	}
 
-	#drop-area.drag-and-drop-highlight {
+	.drop-zone.active {
 		border-color: #50a2f5;
 		background-color: #b3d8ed;
 		transition-duration: 0.5s;
 	}
 
-	#fileElem {
-		display: none;
+	.uploader-filename {
+		min-width: 200px;
 	}
 </style>
 
+<div id="app" style="width: 500px;">
 
-<div style="width: 500px;">
-	<div id="drop-area">
+	<pre>{{ $data }}</pre>
+
+	<div v-bind:class="['drop-zone', isDragZoneActive ? 'active' : '']"
+		 v-on:dragenter="isDragZoneActive = true"
+		 v-on:dragleave="isDragZoneActive = false"
+		 v-on:dragover.prevent
+		 v-on:drop.prevent="addFile"
+	>
+
 		Перетащите файл на эту область
-		<br/><br/>
-		<label class="btn btn-small" for="fileElem">Выбрать файлы</label>
+		<%--<br/><br/>
+		<input id="fileElem" type="hidden">
+		<label class="btn btn-small" for="fileElem">Выбрать файлы</label>--%>
 	</div>
 
-	<progress id="progress-bar" max=100 value=0></progress>
-
-	<input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-
-	<table class="uploader table table-bordered table-hover table-striped">
+	<table v-show="files.length > 0" class="table table-bordered table-hover table-striped">
 		<thead class="table-columns">
 		<tr>
 			<th colspan="4">Загруженные файлы</th>
@@ -64,16 +67,19 @@
 		</tr>
 		</thead>
 		<tbody class="table-data">
-		<tr>
-			<td class="table-cell">Пример.pdf</td>
-			<td class="table-cell">12,3 мб</td>
+
+
+		<tr v-for="file in files">
+			<input v-show="file.id" v-bind:name="file.id" type="hidden"/>
+			<td class="table-cell">{{ file.name }}</td>
+			<td class="table-cell">{{ getSize(file) }}</td>
 			<td class="table-cell">
-				<button class="btn btn-block btn-success" title="скачать">
+				<button class="btn btn-block btn-success" title="скачать" v-on:click="downloadFile(file)">
 					<i class="icon-download-alt"></i>
 				</button>
 			</td>
 			<td class="table-cell">
-				<button class="btn btn-block btn-danger" title="удалить">
+				<button class="btn btn-block btn-danger" title="удалить" v-on:click="deleteFile(file)">
 					<i class="icon-remove"></i>
 				</button>
 			</td>
@@ -81,91 +87,77 @@
 
 		</tbody>
 	</table>
+
 </div>
 
 <script>
-	var filesDone = 0;
-	var filesToDo = 0;
-	var progressBar = document.getElementById('progress-bar');
+	let vm = new Vue({
+		el: '#app',
+		data: {
+			isDragZoneActive: false,
+			files: []
+		},
+		computed: {},
+		methods: {
+			getSize: function (file) {
+				return fileSizeHumanReadable(file.size);
+			},
+			addFile: function (e) {
+				this.isDragZoneActive = false;
 
-	function initializeProgress(numfiles) {
-		progressBar.value = 0;
-		filesDone = 0;
-		filesToDo = numfiles;
-	}
+				let formData = new FormData();
 
-	function progressDone() {
-		filesDone++;
-		progressBar.value = filesDone / filesToDo * 100;
-	}
+				// <input name="temp-file--input-name" value="uuid"
 
-	var dropArea = document.getElementById('drop-area');
-	/*	dropArea.addEventListener('dragenter', handlerFunction, false);
-		dropArea.addEventListener('dragleave', handlerFunction, false);
-		dropArea.addEventListener('dragover', handlerFunction, false);
-		dropArea.addEventListener('drop', handlerFunction, false);*/
+				let droppedFiles = e.dataTransfer.files;
+				if (!droppedFiles) return;
+				([...droppedFiles]).forEach(f => {
 
-	['dragenter', 'dragover', 'dragleave', 'drop'].forEach(function (eventName) {
-		dropArea.addEventListener(eventName, preventDefaults, false)
+					let uuid = uuidv4();
+
+					formData.append('file', this.file);
+
+					let entry = {
+						id: uuid,
+						name: f.name,
+						size: f.size,
+						temporary: true
+					};
+					this.files.push(entry);
+				});
+			},
+			deleteFile: function (file) {
+				let confirmed = confirm("Удалить файл \"" + file.name + "\"");
+				if (confirmed)
+					this.files.splice(this.files.indexOf(file), 1);
+			},
+			downloadFile: function (file) {
+				console.log("downloadFile");
+			},
+
+		}
 	});
 
-	;['dragenter', 'dragover'].forEach(function (eventName) {
-		dropArea.addEventListener(eventName, highlight, false)
-	});
 
-	['dragleave', 'drop'].forEach(function (eventName) {
-		dropArea.addEventListener(eventName, unhighlight, false)
-	});
-
-	function highlight(e) {
-		dropArea.classList.add('drag-and-drop-highlight')
+	function fileSizeHumanReadable(bytes) {
+		let thresh = 1024;
+		if (Math.abs(bytes) < thresh) {
+			return bytes + ' Б';
+		}
+		let units = ['кб', 'мб', 'гб'];
+		let u = -1;
+		do {
+			bytes /= thresh;
+			++u;
+		} while (Math.abs(bytes) >= thresh && u < units.length - 1);
+		return bytes.toFixed(2) + ' ' + units[u];
 	}
 
-	function unhighlight(e) {
-		dropArea.classList.remove('drag-and-drop-highlight')
-	}
-
-	function preventDefaults(e) {
-		e.preventDefault();
-		e.stopPropagation()
-	}
-
-
-	dropArea.addEventListener('drop', handleDrop, false)
-
-
-	function handleDrop(e) {
-		var dt = e.dataTransfer;
-		var files = dt.files;
-		handleFiles(files)
-	}
-
-	function handleFiles(files) {
-		initializeProgress(files.length);
-
-		Array.prototype.forEach.call(files, function (file) {
-			uploadFile(file);
+	function uuidv4() {
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+			let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+			return v.toString(16);
 		});
-	}
-
-	function uploadFile(file) {
-		var url = '${uploadFileURL}';
-		var formData = new FormData();
-		formData.append('file', file);
-
-		fetch(url, {
-			method: 'POST',
-			body: formData
-		})
-			.then(function () {
-				console.log("файл " + file + " загружен");
-				progressDone();
-				/* Готово. Информируем пользователя */
-			})
-			.catch(function () {
-				console.log("файл " + file + "не загружен");
-				/* Ошибка. Информируем пользователя */
-			})
 	}
 
 </script>

@@ -22,7 +22,7 @@
 	</portlet-resource>
 
 	<model-resource>
-		<model-name>ru.isands.akimov.model</model-name>
+		<model-name>ru.akimov.model</model-name>
 		<portlet-ref>
 			<portlet-name>permissionsTest</portlet-name>
 		</portlet-ref>
@@ -42,7 +42,7 @@
 	</model-resource>
 
 	<model-resource>
-		<model-name>ru.isands.akimov.model.Foo</model-name>
+		<model-name>ru.akimov.model.Foo</model-name>
 		<portlet-ref>
 			<portlet-name>permissionsTest</portlet-name>
 		</portlet-ref>

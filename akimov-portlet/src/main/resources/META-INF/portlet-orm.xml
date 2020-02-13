@@ -7,7 +7,7 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<mapped-superclass class="ru.isands.akimov.model.impl.AuditEntryModelImpl">
+	<mapped-superclass class="ru.akimov.model.impl.AuditEntryModelImpl">
 		<attributes>
 			<id name="auditEntryId" />
 			<basic name="auditType" />
@@ -26,7 +26,7 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="ru.isands.akimov.model.impl.EntityFieldChangeModelImpl">
+	<mapped-superclass class="ru.akimov.model.impl.EntityFieldChangeModelImpl">
 		<attributes>
 			<id name="id">
 				<column name="ID_" />
@@ -40,7 +40,7 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="ru.isands.akimov.model.impl.FooModelImpl">
+	<mapped-superclass class="ru.akimov.model.impl.FooModelImpl">
 		<attributes>
 			<id name="fooId" />
 			<basic name="booleanField" />
@@ -60,7 +60,7 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="ru.isands.akimov.model.impl.PersonModelImpl">
+	<mapped-superclass class="ru.akimov.model.impl.PersonModelImpl">
 		<attributes>
 			<id name="personId" />
 			<basic name="lastName" />
@@ -76,19 +76,19 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<entity class="ru.isands.akimov.model.impl.AuditEntryImpl" name="AuditEntry">
+	<entity class="ru.akimov.model.impl.AuditEntryImpl" name="AuditEntry">
 		<table name="akimov_audit_entry" />
 		<attributes />
 	</entity>
-	<entity class="ru.isands.akimov.model.impl.EntityFieldChangeImpl" name="EntityFieldChange">
+	<entity class="ru.akimov.model.impl.EntityFieldChangeImpl" name="EntityFieldChange">
 		<table name="akimov_entity_field_change" />
 		<attributes />
 	</entity>
-	<entity class="ru.isands.akimov.model.impl.FooImpl" name="Foo">
+	<entity class="ru.akimov.model.impl.FooImpl" name="Foo">
 		<table name="akimov_Foo" />
 		<attributes />
 	</entity>
-	<entity class="ru.isands.akimov.model.impl.PersonImpl" name="Person">
+	<entity class="ru.akimov.model.impl.PersonImpl" name="Person">
 		<table name="akimov_Person" />
 		<attributes />
 	</entity>

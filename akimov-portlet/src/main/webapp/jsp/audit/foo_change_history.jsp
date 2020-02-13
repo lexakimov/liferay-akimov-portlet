@@ -1,5 +1,5 @@
-<%@ page import="ru.isands.akimov.audit.attribute_adapters.FooAttributeValueAdapter" %>
-<%@ page import="ru.isands.akimov.search.helpers.impl.FooHistorySearchHelper" %>
+<%@ page import="ru.akimov.audit.attribute_adapters.FooAttributeValueAdapter" %>
+<%@ page import="ru.akimov.search.helpers.impl.FooHistorySearchHelper" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 

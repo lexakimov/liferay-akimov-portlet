@@ -15,7 +15,7 @@
 
 		<property name="messageListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
-				<entry key="#{T(ru.isands.akimov.audit.messaging.Destinations).AUDIT_CREATE}">
+				<entry key="#{T(Destinations).AUDIT_CREATE}">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
 						<ref bean="auditListener"/>
 					</list>
@@ -26,11 +26,11 @@
 
 	<!-- destinations -->
 	<bean id="auditDestination" class="com.liferay.portal.kernel.messaging.ParallelDestination">
-		<property name="name" value="#{T(ru.isands.akimov.audit.messaging.Destinations).AUDIT_CREATE}"/>
+		<property name="name" value="#{T(Destinations).AUDIT_CREATE}"/>
 	</bean>
 <!--
 	<bean id="sendRequestsDestination" class="com.liferay.portal.kernel.messaging.ParallelDestination">
-		<property name="name" value="#{T(ru.isands.akimov.audit.messaging.Destinations).AUDIT_CREATE}"/>
+		<property name="name" value="#{T(Destinations).AUDIT_CREATE}"/>
 		<property name="workersCoreSize" value="1"/>
 		<property name="workersMaxSize" value="1"/>
 		<property name="maximumQueueSize" value="1"/>
@@ -38,6 +38,6 @@
 -->
 
 	<!-- listeners -->
-	<bean id="auditListener" class="ru.isands.akimov.audit.messaging.listener.AuditMessageListener"/>
+	<bean id="auditListener" class="AuditMessageListener"/>
 
 </beans>

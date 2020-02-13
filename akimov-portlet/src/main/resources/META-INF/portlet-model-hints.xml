@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="ru.isands.akimov.model.AuditEntry">
+	<model name="ru.akimov.model.AuditEntry">
 		<field name="auditEntryId" type="int" />
 		<field name="auditType" type="String" />
 		<field name="entityType" type="String" />
@@ -14,14 +14,14 @@
 			<hint-collection name="CLOB" />
 		</field>
 	</model>
-	<model name="ru.isands.akimov.model.EntityFieldChange">
+	<model name="ru.akimov.model.EntityFieldChange">
 		<field name="id" type="int" />
 		<field name="auditEntryId" type="int" />
 		<field name="fieldName" type="String" />
 		<field name="oldValue" type="String" />
 		<field name="newValue" type="String" />
 	</model>
-	<model name="ru.isands.akimov.model.Foo">
+	<model name="ru.akimov.model.Foo">
 		<field name="fooId" type="int" />
 		<field name="booleanField" type="boolean" />
 		<field name="shortField" type="short" />
@@ -34,7 +34,7 @@
 		<field name="blobField" type="Blob" />
 		<field name="status" type="short" />
 	</model>
-	<model name="ru.isands.akimov.model.Person">
+	<model name="ru.akimov.model.Person">
 		<field name="personId" type="int" />
 		<field name="lastName" type="String" />
 		<field name="firstName" type="String" />

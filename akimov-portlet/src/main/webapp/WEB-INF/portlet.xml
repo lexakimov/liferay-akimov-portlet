@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>asyncActions</portlet-name>
 		<display-name>asyncActions</display-name>
-		<portlet-class>ru.isands.akimov.portlet.AsyncActionsPortlet</portlet-class>
+		<portlet-class>ru.akimov.portlet.AsyncActionsPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/jsp/async_actions/view.jsp</value>
@@ -65,7 +65,7 @@
 	<portlet>
 		<portlet-name>auditDemo</portlet-name>
 		<display-name>auditDemo</display-name>
-		<portlet-class>ru.isands.akimov.portlet.AuditDemoPortlet</portlet-class>
+		<portlet-class>ru.akimov.portlet.AuditDemoPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/jsp/audit/view.jsp</value>
@@ -96,7 +96,7 @@
 	<portlet>
 		<portlet-name>permissionsTest</portlet-name>
 		<display-name>permissionsTest</display-name>
-		<portlet-class>ru.isands.akimov.portlet.PermissionsTestPortlet</portlet-class>
+		<portlet-class>ru.akimov.portlet.PermissionsTestPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/jsp/permissions/view.jsp</value>
