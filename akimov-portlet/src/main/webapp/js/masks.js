@@ -13,11 +13,11 @@ function initInputMasks() {
 		allowMinus: false
 	});
 
-	$('input.numeric-decimal').inputmask({
+	$('input.numeric-integer').inputmask({
 		alias: 'integer'
 	});
 
-	$('input.numeric-decimal-positive').inputmask({
+	$('input.numeric-integer-positive').inputmask({
 		alias: 'integer',
 		allowMinus: false
 	});
