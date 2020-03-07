@@ -19,7 +19,7 @@ public class WebPageUtil {
 			return StringPool.BLANK;
 		}
 
-		color = color == null ? StringPool.BLANK : color.trim();
+		color = (color != null) ? color.trim() : StringPool.BLANK;
 
 		String style = "";
 		if (!color.isEmpty()) {

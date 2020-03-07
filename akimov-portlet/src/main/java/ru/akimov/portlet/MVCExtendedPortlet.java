@@ -19,7 +19,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static ru.akimov.constants.URLParams.*;
+import static ru.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM;
+import static ru.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID;
 
 /**
  * MVC портлет, расширенный дополнительными возможностями:
@@ -46,7 +47,7 @@ public abstract class MVCExtendedPortlet extends MVCPortlet {
 		cacheAsyncActionAnnotatedMethods();
 	}
 
-	/* ---------------------------------------- resource actions -----------------------------------------------------*/
+	/* ---------------------------------------- resource actions ---------------------------------------------------- */
 
 	@Override
 	public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
@@ -147,7 +148,7 @@ public abstract class MVCExtendedPortlet extends MVCPortlet {
 		JSONObject errorsJson = JSONFactoryUtil.createJSONObject();
 		for (String errorKey : errors) {
 			Object errorObject = SessionErrors.get(request, errorKey);
-			if (errorObject != null && errorObject.getClass().isArray()) {
+			if ((errorObject != null) && errorObject.getClass().isArray()) {
 				errorsJson.put(errorKey, translate(request, errorKey, (Object[]) errorObject));
 			} else {
 				errorsJson.put(errorKey, translate(request, errorKey, errorObject));
@@ -155,37 +156,5 @@ public abstract class MVCExtendedPortlet extends MVCPortlet {
 		}
 		json.put("errors", errorsJson);
 	}
-
-	/* ----------------------------- util methods ------------------------------------------------------------------- */
-
-	/*
-	public void uploadTempFile(PortletRequest request, PortletResponse response) throws IOException {
-		// TempFileUtil.
-		File tempFolder = FileUtil.createTempFolder();
-		// ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		// uploadPortletRequest.file
-
-		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(request);
-
-		String fileName = uploadRequest.getFileName("file");
-		File file = uploadRequest.getFile("file");
-		String mimeType = uploadRequest.getContentType("file");
-
-		//log.debug(uploadRequest.getSession());
-		log.debug(Arrays.toString(uploadRequest.getFileNames("file")));
-		log.debug(Arrays.toString(uploadRequest.getFiles("file")));
-
-		*//*try {
-			//Folder folder = getFolder(themeDisplay);
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFileEntry.class.getName(), request);
-			InputStream is = new FileInputStream(file);
-			//DLAppServiceUtil.addFileEntry(repositoryId, folder.getFolderId(), fileName, mimeType,
-			//title, description, "", is, file.getTotalSpace(), serviceContext);
-
-		} catch (Exception e) {
-			log.error(e);
-		}*//*
-
-	}*/
 
 }

@@ -5,6 +5,7 @@
 <%@ include file="/jsp/init.jsp" %>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <h4>Async File Upload</h4>
 
@@ -49,10 +50,10 @@
 		 v-on:drop.prevent="addFile"
 	>
 
-		Перетащите файл на эту область
-		<%--<br/><br/>
+		Перетащите файлы на эту область
+		<br/><br/>
 		<input id="fileElem" type="hidden">
-		<label class="btn btn-small" for="fileElem">Выбрать файлы</label>--%>
+		<label class="btn btn-small" for="fileElem">Выбрать файлы</label>
 	</div>
 
 	<table v-show="files.length > 0" class="table table-bordered table-hover table-striped">
@@ -70,7 +71,7 @@
 
 
 		<tr v-for="file in files">
-			<input v-show="file.id" v-bind:name="file.id" type="hidden"/>
+			<input name="<portlet:namespace/>temp-file" v-bind:value="file.id" type="hidden"/>
 			<td class="table-cell">{{ file.name }}</td>
 			<td class="table-cell">{{ getSize(file) }}</td>
 			<td class="table-cell">
@@ -104,60 +105,58 @@
 			},
 			addFile: function (e) {
 				this.isDragZoneActive = false;
+				let uploadedFiles = this.files;
+				let droppedFiles = e.dataTransfer.files;
+				if (!droppedFiles) {
+					return;
+				}
 
 				let formData = new FormData();
+				([...droppedFiles]).forEach(f => formData.append(f.name, f));
 
-				// <input name="temp-file--input-name" value="uuid"
-
-				let droppedFiles = e.dataTransfer.files;
-				if (!droppedFiles) return;
-				([...droppedFiles]).forEach(f => {
-
-					let uuid = uuidv4();
-
-					formData.append('file', this.file);
-
-					let entry = {
-						id: uuid,
-						name: f.name,
-						size: f.size,
-						temporary: true
-					};
-					this.files.push(entry);
-				});
+				axios
+					.post(TEMP_FILE_UPLOAD_ENDPOINT, formData,
+						{
+							headers: {
+								'Content-Type': 'multipart/form-data'
+							}
+						})
+					.then(function (response) {
+						([...response.data]).forEach(entry => {
+							let newFileEntry = {
+								id: entry.id,
+								name: entry.name,
+								size: entry.size,
+								temporary: true
+							};
+							uploadedFiles.push(newFileEntry);
+							console.log("uploaded file " + newFileEntry.name);
+						});
+					})
+					.catch(function (error) {
+						console.log("error: " + error);
+					});
 			},
 			deleteFile: function (file) {
+				console.log("deleteFile " + file.name);
 				let confirmed = confirm("Удалить файл \"" + file.name + "\"");
-				if (confirmed)
-					this.files.splice(this.files.indexOf(file), 1);
+				if (confirmed) {
+					let uploadedFiles = this.files;
+					axios
+						.delete(TEMP_FILE_UPLOAD_ENDPOINT + "?fileId=" + file.id)
+						.then(function (response) {
+							console.log(response);
+							uploadedFiles.splice(uploadedFiles.indexOf(file), 1);
+						})
+						.catch(function (error) {
+							console.log("error: " + error);
+						});
+				}
 			},
 			downloadFile: function (file) {
-				console.log("downloadFile");
-			},
-
+				console.log("downloadFile " + file.name);
+				window.location = TEMP_FILE_UPLOAD_ENDPOINT + "?fileId=" + file.id;
+			}
 		}
 	});
-
-
-	function fileSizeHumanReadable(bytes) {
-		let thresh = 1024;
-		if (Math.abs(bytes) < thresh) {
-			return bytes + ' Б';
-		}
-		let units = ['кб', 'мб', 'гб'];
-		let u = -1;
-		do {
-			bytes /= thresh;
-			++u;
-		} while (Math.abs(bytes) >= thresh && u < units.length - 1);
-		return bytes.toFixed(2) + ' ' + units[u];
-	}
-
-	function uuidv4() {
-		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-			let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-			return v.toString(16);
-		});
-	}
-
 </script>

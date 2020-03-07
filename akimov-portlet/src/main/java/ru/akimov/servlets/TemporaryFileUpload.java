@@ -1,9 +1,14 @@
 package ru.akimov.servlets;
 
-import com.liferay.portal.kernel.servlet.FileTimestampUtil;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.servlet.ServletResponseUtil;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.SystemProperties;
-import com.liferay.portal.kernel.util.TempFileUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
+import ru.akimov.utils.TemporaryFileUploadUtil;
+import ru.akimov.utils.TemporaryFileUploadUtil.TempFile;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -12,9 +17,11 @@ import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Collection;
 
 /**
  * @author akimov
@@ -26,27 +33,60 @@ public class TemporaryFileUpload extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-/*
-		Part filePart = req.getPart("file"); // Retrieves <input type="file" name="file">
-		String fileName = Paths.get(filePart.getName()).getFileName().toString(); // MSIE fix.
-		InputStream fileContent = filePart.getInputStream();
+		resp.setContentType(ContentTypes.APPLICATION_JSON);
+		resp.setCharacterEncoding("UTF-8");
+		PrintWriter writer = resp.getWriter();
 
-		List<Part> fileParts = req.getParts().stream()
-				.filter(part -> "file".equals(part.getName()) && part.getSize() > 0)
-				.collect(Collectors.toList());
-		// Retrieves <input type="file" name="file" multiple="true">
+		Collection<Part> parts = req.getParts();
 
-		HttpSession session = req.getSession();
-		String sessionTempStorage = SystemProperties.get(SystemProperties.TMP_DIR) + File.separator + session.getId() + File.separator;
-		File tmpDir = new File(sessionTempStorage);
-		FileUtil.mkdirs(tmpDir);
-		FileUtil.copyFile();
+		if (parts.isEmpty()) {
+			writer.print("[]");
+			return;
+		}
 
+		File sessionStorage = TemporaryFileUploadUtil.initTempSessionStorage(req);
+		JSONArray array = JSONFactoryUtil.createJSONArray();
 
-		for (Part filePart : fileParts) {
-			String fileName = Paths.get(filePart.getName()).getFileName().toString(); // MSIE fix.
-			InputStream fileContent = filePart.getInputStream();
-			// ... (do your job here)
-		}*/
+		for (Part part : parts) {
+			JSONObject fileEntry = JSONFactoryUtil.createJSONObject();
+			String uuid = TemporaryFileUploadUtil.generateFileId();
+			fileEntry.put("id", uuid);
+			fileEntry.put("name", part.getName());
+			fileEntry.put("size", part.getSize());
+			array.put(fileEntry);
+
+			InputStream uploadingFile = part.getInputStream();
+			Path tempFilePath = Paths.get(sessionStorage.getPath(), uuid);
+			Files.copy(uploadingFile, tempFilePath);
+
+			Path tempFileMetaPath = Paths.get(sessionStorage.getPath(), uuid + ".meta");
+			FileUtil.write(tempFileMetaPath.toFile(), fileEntry.toString());
+
+			log("uploaded file: " + part.getName() + " as " + uuid);
+		}
+		writer.print(array.toString());
 	}
+
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession(true);
+		String fileId = ParamUtil.getString(req, "fileId");
+		try {
+			TemporaryFileUploadUtil.deleteFile(session, fileId);
+			log("file: " + fileId + " removed");
+		} catch (IOException e) {
+			resp.setStatus(500);
+			return;
+		}
+		resp.setStatus(200);
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String fileId = ParamUtil.getString(req, "fileId");
+		HttpSession session = req.getSession(true);
+		TempFile tempFile = TemporaryFileUploadUtil.getFile(session, fileId);
+		ServletResponseUtil.sendFile(req, resp, tempFile.getFileName(), tempFile.getInputStream());
+	}
+
 }

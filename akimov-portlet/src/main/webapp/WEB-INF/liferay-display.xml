@@ -7,5 +7,6 @@
 		<portlet id="asyncSearchContainers"/>
 		<portlet id="auditDemo"/>
 		<portlet id="permissionsTest"/>
+		<portlet id="fileUpload"/>
 	</category>
 </display>
