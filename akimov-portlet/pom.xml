@@ -130,6 +130,36 @@
 			<version>1.7</version>
 		</dependency>
 
+
+
+
+		<!-- - - - - - - - - - - - - - - - - - - - - SPRING FRAMEWORK - - - - - - - - - - - - - - - - - - - - - - - -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>3.0.7.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<!--<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>3.0.7.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>3.0.7.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>3.0.7.RELEASE</version>
+			<scope>test</scope>
+		</dependency>-->
+
 		<!-- - - - - - - - - - - - - - - - - - - - -  Unit testing - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<!--&lt;!&ndash; https://mvnrepository.com/artifact/com.liferay.portal/com.liferay.portal.test &ndash;&gt;
 		<dependency>
@@ -147,6 +177,12 @@
 			<scope>test</scope>
 		</dependency>-->
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>3.0.7.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>

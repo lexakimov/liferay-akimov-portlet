@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- see messaging-core-spring.xml-->
+<beans
+		default-destroy-method="destroy"
+		default-init-method="afterPropertiesSet"
+		xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+>
+	<!-- Destinations -->
+	<bean id="messagingAuditDestinationsCreate" class="com.liferay.portal.kernel.messaging.SerialDestination">
+		<property name="name" value="#{T(ru.akimov.audit.messaging.Destinations).AUDIT_CREATE}"/>
+	</bean>
+
+	<!--<bean id="akimov.audit.dest.create.2" class="com.liferay.portal.kernel.messaging.ParallelDestination">
+		<property name="name" value="insults/users" />
+	</bean>-->
+
+	<!-- Listeners -->
+	<bean id="auditMessagingListener" class="ru.akimov.audit.messaging.impl.AuditMessageListenerImpl"/>
+
+	<!-- Configurator -->
+	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
+
+		<property name="destinations">
+			<list>
+				<ref bean="messagingAuditDestinationsCreate"/>
+			</list>
+		</property>
+
+		<property name="messageListeners">
+			<map key-type="java.lang.String" value-type="java.util.List">
+				<entry key="#{T(ru.akimov.audit.messaging.Destinations).AUDIT_CREATE}">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="auditMessagingListener"/>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

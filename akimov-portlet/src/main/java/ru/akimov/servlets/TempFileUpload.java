@@ -29,7 +29,7 @@ import java.util.Collection;
  */
 @WebServlet(name = "tempFileUpload", urlPatterns = "/api/temp-file-upload")
 @MultipartConfig
-public class TemporaryFileUpload extends HttpServlet {
+public class TempFileUpload extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

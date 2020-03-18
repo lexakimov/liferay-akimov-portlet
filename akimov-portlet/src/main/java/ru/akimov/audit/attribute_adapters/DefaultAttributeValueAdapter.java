@@ -24,6 +24,6 @@ public class DefaultAttributeValueAdapter {
 	public String adapt(String fieldName, String rawValue) {
 		Function<String, String> adapter = getAttributeAdapters().get(fieldName);
 
-		return adapter != null ? adapter.apply(rawValue) : rawValue;
+		return (adapter != null) ? adapter.apply(rawValue) : rawValue;
 	}
 }

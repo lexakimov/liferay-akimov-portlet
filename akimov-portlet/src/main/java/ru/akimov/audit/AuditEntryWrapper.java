@@ -6,8 +6,11 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
-import ru.akimov.audit.enums.EntityType;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import ru.akimov.audit.enums.AuditType;
+import ru.akimov.audit.enums.EntityType;
 import ru.akimov.model.AuditEntry;
 import ru.akimov.model.EntityFieldChange;
 import ru.akimov.service.AuditEntryLocalServiceUtil;
@@ -34,9 +37,27 @@ public class AuditEntryWrapper {
 
 	private List<EntityFieldChange> fieldChanges;
 
-	public AuditEntryWrapper(
-			int entityId, EntityType entityType, AuditType auditType, long companyId, User user, Date dateOfChange, String metadata)
-			throws SystemException {
+	public AuditEntryWrapper(int entityId,
+							 EntityType entityType,
+							 AuditType auditType,
+							 Date dateOfChange,
+							 String metadata) throws SystemException {
+		this(entityId, entityType, auditType, 0, null, dateOfChange, metadata);
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		long companyId = serviceContext.getCompanyId();
+		User user = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
+		auditEntry.setCompanyId(companyId);
+		auditEntry.setUserId(user.getUserId());
+		auditEntry.setUserName(user.getFullName());
+	}
+
+	public AuditEntryWrapper(int entityId,
+							 EntityType entityType,
+							 AuditType auditType,
+							 long companyId,
+							 User user,
+							 Date dateOfChange,
+							 String metadata) throws SystemException {
 
 		int historyEntryId = (int) CounterLocalServiceUtil.increment(AuditEntry.class.getName());
 
@@ -44,8 +65,10 @@ public class AuditEntryWrapper {
 		auditEntry.setEntityId(entityId);
 		auditEntry.setEntityType(entityType.toString());
 		auditEntry.setCompanyId(companyId);
-		auditEntry.setUserId(user.getUserId());
-		auditEntry.setUserName(user.getFullName());
+		if (user != null) {
+			auditEntry.setUserId(user.getUserId());
+			auditEntry.setUserName(user.getFullName());
+		}
 		auditEntry.setDateOfChange(dateOfChange);
 		auditEntry.setAuditType(auditType.toString());
 		auditEntry.setMetadata(metadata);
@@ -83,7 +106,9 @@ public class AuditEntryWrapper {
 	private String attributeToString(Object attrValue) {
 		String oldValueString = StringPool.BLANK;
 		if (attrValue != null) {
-			oldValueString = attrValue instanceof Date ? DateUtil.showDate((Date) attrValue, ISO_8601) : attrValue.toString();
+			oldValueString = (attrValue instanceof Date)
+					? DateUtil.showDate((Date) attrValue, ISO_8601)
+					: attrValue.toString();
 		}
 		return oldValueString;
 	}

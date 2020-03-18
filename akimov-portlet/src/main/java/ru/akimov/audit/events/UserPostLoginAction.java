@@ -5,12 +5,13 @@ import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 import ru.akimov.audit.AuditEntryWrapper;
-import ru.akimov.audit.enums.AuditType;
-import ru.akimov.audit.enums.EntityType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+
+import static ru.akimov.audit.enums.AuditType.USER_LOGIN;
+import static ru.akimov.audit.enums.EntityType.USER;
 
 /**
  * Обработчик события при входе пользователя в систему. Прописан в resources/hook.properties.
@@ -32,10 +33,11 @@ public class UserPostLoginAction extends Action {
 	private void handleEvent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		long companyId = PortalUtil.getCompanyId(request);
 		User user = PortalUtil.getUser(request);
-
+		int userId = (int) user.getUserId();
+		Date dateOfChange = new Date();
 		String metadata = "";
 		AuditEntryWrapper auditEntry =
-				new AuditEntryWrapper((int) user.getUserId(), EntityType.USER, AuditType.USER_LOGIN, companyId, user, new Date(), metadata);
+				new AuditEntryWrapper(userId, USER, USER_LOGIN, companyId, user, dateOfChange, metadata);
 		auditEntry.persist();
 	}
 

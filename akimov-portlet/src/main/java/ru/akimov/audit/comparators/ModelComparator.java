@@ -25,8 +25,6 @@ public abstract class ModelComparator<T extends BaseModel<T>> {
 	 */
 	protected abstract List<String> getWatchOnlyFields();
 
-
-	//String fieldType = ModelHintsUtil.getType(old.getModelClassName(), attributeName);
 	protected ModelComparator(T old, T _new) throws NoSuchModelAttributeException {
 
 		checkFieldsExists(old != null ? old : _new);

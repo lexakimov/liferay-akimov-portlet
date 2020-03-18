@@ -18,10 +18,16 @@
 <aui:form name="fooForm" action="${submitFooFormURL}" method="POST">
 	<aui:fieldset>
 
+		<aui:input name="isCustomAudit"
+				   label="is.custom.audit"
+				   type="checkbox"/>
+
 		<aui:input name="fooId" value="${foo.fooId}" type="hidden"/>
 
 		<aui:select name="status"
-					label="foo.field.status" bean="${foo}">
+					label="foo.field.status"
+					bean="${foo}"
+		>
 			<aui:option label="черновик" value="0" useModelValue="true"/>
 			<aui:option label="подготовлено" value="1" useModelValue="true"/>
 			<aui:option label="на рассмотрении" value="2" useModelValue="true"/>
@@ -36,20 +42,20 @@
 		<aui:input name="shortField"
 				   label="foo.field.shortField"
 				   value="${foo.shortField}"
-				   cssClass="width-auto numeric-decimal"
+				   cssClass="width-auto numeric-integer"
 				   inlineField="true"
 				   required="true"/>
 
 		<aui:input name="intField"
 				   label="foo.field.intField"
 				   value="${foo.intField}"
-				   cssClass="width-auto numeric-decimal"
+				   cssClass="width-auto numeric-integer"
 				   inlineField="true"/>
 
 		<aui:input name="longField"
 				   label="foo.field.longField"
 				   value="${foo.longField}"
-				   cssClass="width-auto numeric-decimal"
+				   cssClass="width-auto numeric-integer"
 				   inlineField="true"/>
 
 		<aui:input name="floatField"

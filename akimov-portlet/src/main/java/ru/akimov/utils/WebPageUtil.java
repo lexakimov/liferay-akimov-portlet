@@ -3,6 +3,7 @@ package ru.akimov.utils;
 import com.liferay.portal.kernel.util.StringPool;
 
 /**
+ * Класс для вывода содержимого на веб страницы.
  * @author akimov
  * created at 25.01.20 16:54
  */

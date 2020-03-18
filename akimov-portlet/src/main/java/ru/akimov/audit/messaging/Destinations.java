@@ -6,6 +6,6 @@ package ru.akimov.audit.messaging;
  */
 public interface Destinations {
 
-	String AUDIT_CREATE = "audit/create";
+	String AUDIT_CREATE = "akimov/audit/create";
 
 }

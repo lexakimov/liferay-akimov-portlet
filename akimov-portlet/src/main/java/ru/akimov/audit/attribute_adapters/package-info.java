@@ -1,8 +1,10 @@
 /**
  * Адаптеры значений атрибутов.
- * Нужны чтобы вывести значения из полей oldValue или newValue в удобном формате.
+ * <p>
+ * Нужны чтобы вывести на страницу значения из полей oldValue или newValue в удобном формате.
  * По умолчанию используется {@link ru.akimov.audit.attribute_adapters.DefaultAttributeValueAdapter}, который
- * выводит значения как они сохранены в базе.
+ * выводит значения, как они сохранены в базе в полях oldValue и newValue таблицы entity_field_change.
+ * <p>
  * Для создания своего адаптера нужно унаследоваться от класса
  * {@link ru.akimov.audit.attribute_adapters.DefaultAttributeValueAdapter} и переопределить метод
  * {@link ru.akimov.audit.attribute_adapters.DefaultAttributeValueAdapter#getAttributeAdapters()}

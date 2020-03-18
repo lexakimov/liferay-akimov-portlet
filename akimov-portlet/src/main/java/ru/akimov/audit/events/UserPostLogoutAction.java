@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
+import static ru.akimov.audit.enums.AuditType.USER_LOGOUT;
+import static ru.akimov.audit.enums.EntityType.USER;
+
 /**
  * Обработчик события при выходе пользователя из ситемы. Прописан в resources/hook.properties.
  *
@@ -32,10 +35,11 @@ public class UserPostLogoutAction extends Action {
 	private void handleEvent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		long companyId = PortalUtil.getCompanyId(request);
 		User user = PortalUtil.getUser(request);
-
+		int userId = (int) user.getUserId();
+		Date dateOfChange = new Date();
 		String metadata = "";
 		AuditEntryWrapper auditEntry =
-				new AuditEntryWrapper((int) user.getUserId(), EntityType.USER, AuditType.USER_LOGOUT, companyId, user, new Date(), metadata);
+				new AuditEntryWrapper(userId, USER, USER_LOGOUT, companyId, user, dateOfChange, metadata);
 		auditEntry.persist();
 	}
 

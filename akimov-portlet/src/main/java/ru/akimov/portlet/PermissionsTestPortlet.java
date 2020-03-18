@@ -45,7 +45,7 @@ public class PermissionsTestPortlet extends MVCExtendedPortlet {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 
 	}

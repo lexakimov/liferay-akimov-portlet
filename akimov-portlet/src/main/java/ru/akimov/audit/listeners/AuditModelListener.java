@@ -12,10 +12,11 @@ import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import ru.akimov.audit.AuditEntryWrapper;
 import ru.akimov.audit.comparators.ModelComparator;
+import ru.akimov.audit.enums.AuditType;
 import ru.akimov.audit.enums.EntityType;
 import ru.akimov.audit.exceptions.EntityAuditException;
-import ru.akimov.audit.enums.AuditType;
 import ru.akimov.audit.exceptions.NoSuchModelAttributeException;
+import ru.akimov.audit.messaging.AuditMessagingUtil;
 import ru.akimov.service.AuditEntryLocalServiceUtil;
 
 import java.io.Serializable;
@@ -24,7 +25,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Базовый класс отслеживающий изменения в сущности для ведения истории изменений.
+ * Базовый класс, отслеживающий изменения в сущности для ведения истории изменений.
  * Классы-наследники прописываются в файл service-ext.properties.
  *
  * @param <T> тип сущности
@@ -35,14 +36,22 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 	private static final Log log = LogFactoryUtil.getLog(AuditModelListener.class);
 
 	@Override
-	public void onBeforeCreate(T model) throws ModelListenerException {
+	public final void onBeforeCreate(T model) throws ModelListenerException {
 		log.trace("onBeforeCreate()");
+		if (AuditMessagingUtil.isPreventDefaultAudit()) {
+			log.debug("return...");
+			return;
+		}
 		process(model, getDefaultCreateType());
 	}
 
 	@Override
-	public void onBeforeUpdate(T model) throws ModelListenerException {
+	public final void onBeforeUpdate(T model) throws ModelListenerException {
 		log.trace("onBeforeUpdate()");
+		if (AuditMessagingUtil.isPreventDefaultAudit()) {
+			log.debug("return...");
+			return;
+		}
 		process(model, getDefaultEditType());
 	}
 
@@ -95,7 +104,7 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 	}
 
 	/**
-	 * Здесь можно переопределить тип действия в зависимости от надоба изменённых полей.
+	 * Здесь можно переопределить тип действия в зависимости от комбинации изменённых полей.
 	 *
 	 * @param changedFields набор изменённых аттрибутов.
 	 * @param defaultType   стандартный тип (создание, изиенение, удаление).
@@ -110,8 +119,13 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 	 * EntityFieldChange, а также созданием записи в журнале об удалении.
 	 */
 	@Override
-	public void onAfterRemove(T model) throws EntityAuditException {
+	public final void onAfterRemove(T model) throws EntityAuditException {
 		log.trace("onAfterRemove()");
+		if (AuditMessagingUtil.isPreventDefaultAudit()){
+			log.debug("return...");
+			return;
+		}
+
 		int entityId = getEntityId(model);
 		String entityType = getEntityType().toString();
 		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();

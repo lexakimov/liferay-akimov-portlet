@@ -115,6 +115,34 @@ public class TemporaryFileUploadUtil {
 		Files.delete(tempFileMetaPath);
 	}
 
+	public static void emptyTempStorageContent(HttpSession session) throws IOException {
+		File tempSessionStorageDir = initTempSessionStorage(session);
+		File[] files = tempSessionStorageDir.listFiles();
+		if (files != null) {
+			for (File f : files) {
+				if (f.isDirectory()) {
+					deleteFolder(f);
+				} else {
+					f.delete();
+				}
+			}
+		}
+	}
+
+	private static void deleteFolder(File folder) {
+		File[] files = folder.listFiles();
+		if (files != null) {
+			for (File f : files) {
+				if (f.isDirectory()) {
+					deleteFolder(f);
+				} else {
+					f.delete();
+				}
+			}
+		}
+		folder.delete();
+	}
+
 	public static class TempFile {
 		private final Path filePath;
 		private final String fileId;

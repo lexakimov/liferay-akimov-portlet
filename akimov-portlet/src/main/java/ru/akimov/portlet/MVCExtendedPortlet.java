@@ -117,19 +117,19 @@ public abstract class MVCExtendedPortlet extends MVCPortlet {
 		JSONObject json = JSONFactoryUtil.createJSONObject();
 
 		if (!SessionMessages.isEmpty(request)) {
-			processRequestErrors(request, json);
+			processRequestMessages(request, json);
 		}
 
 		if (SessionErrors.isEmpty(request)) {
 			json.put("success", true);
 		} else {
-			processRequestMessages(request, json);
+			processRequestErrors(request, json);
 		}
 
 		writeJSON(request, response, json);
 	}
 
-	private void processRequestErrors(ResourceRequest request, JSONObject json) {
+	private void processRequestMessages(ResourceRequest request, JSONObject json) {
 		Set<String> messages = SessionMessages.keySet(request);
 		JSONObject messagesJson = JSONFactoryUtil.createJSONObject();
 		for (String messageKey : messages) {
@@ -143,7 +143,7 @@ public abstract class MVCExtendedPortlet extends MVCPortlet {
 		json.put("messages", messagesJson);
 	}
 
-	private void processRequestMessages(ResourceRequest request, JSONObject json) {
+	private void processRequestErrors(ResourceRequest request, JSONObject json) {
 		Set<String> errors = SessionErrors.keySet(request);
 		JSONObject errorsJson = JSONFactoryUtil.createJSONObject();
 		for (String errorKey : errors) {

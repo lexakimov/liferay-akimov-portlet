@@ -1,55 +1,30 @@
-<%@ page import="ru.akimov.search.helpers.impl.FooHistorySearchHelper" %>
 <%@ page import="ru.akimov.search.helpers.impl.AuditSearchHelper" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
-
-<%
-	AuditSearchHelper searchHelper = new AuditSearchHelper();
-%>
-
-<c:set var="auditEntries" value="<%=searchHelper.getAdaptedResult()%>"/>
-
-<%--request attribute: ${historyEntries}--%>
-
-<h4>Users actions audit</h4>
+<h4>User actions history</h4>
 
 <div class="container">
 	<div class="row">
 		<div class="span12">
-			<table class="table table-bordered table-hover table-striped">
-				<thead class="table-columns">
-				<tr>
-					<th>Дата и время</th>
-					<th>Пользователь</th>
-					<th>Действие</th>
-				</tr>
-				</thead>
-
-				<tbody class="table-data">
-				<c:if test="${empty auditEntries}">
-					<tr>
-						<td colspan="3" class="table-cell" style="color: gray; text-align: center; font-style: italic;">
-							Журнал действий пуст
-						</td>
-					</tr>
-				</c:if>
-
-				<c:if test="${not empty auditEntries}">
-					<c:forEach var="historyEntry" items="${auditEntries}">
-						<tr>
-							<td class="table-cell">
-								<fmt:formatDate value="${historyEntry.dateOfChange}"
-												pattern="dd.MM.yyyy HH:mm:ss"
-												timeZone="${timeZone}"/>
-							</td>
-							<td class="table-cell">${historyEntry.userFullName}</td>
-							<td class="table-cell">${historyEntry.description}</td>
-						</tr>
-					</c:forEach>
-				</c:if>
-				</tbody>
-			</table>
+			<liferay-ui:search-container delta="20" iteratorURL="<%=thisURL%>"
+										 emptyResultsMessage="Журнал действий пуст">
+				<%
+					new AuditSearchHelper(searchContainer);
+				%>
+				<liferay-ui:search-container-row
+						className="ru.akimov.search.entry_adapters.impl.AuditSearchEntryAdapter">
+					<liferay-ui:search-container-column-text name="Дата и время">
+						<fmt:formatDate value="${model.dateOfChange}"
+										pattern="dd.MM.yyyy HH:mm:ss"
+										timeZone="${timeZone}"/>
+					</liferay-ui:search-container-column-text>
+					<liferay-ui:search-container-column-text name="Пользователь" property="userFullName"/>
+					<liferay-ui:search-container-column-text name="Действие" property="description"/>
+				</liferay-ui:search-container-row>
+				<liferay-ui:search-iterator paginate="false"/>
+				<liferay-ui:search-paginator searchContainer="${searchContainer}" type="regular"/>
+			</liferay-ui:search-container>
 		</div>
 	</div>
 </div>
