@@ -1,6 +1,6 @@
 function openSimpleMessageWindow(props) {
 
-	var _ATTRS = {
+	const _ATTRS = {
 		cssClass: 'simple-modal-message',
 		headerLabel: 'Заголовок окна',
 		bodyContent: '',
@@ -14,7 +14,7 @@ function openSimpleMessageWindow(props) {
 	$.extend(_ATTRS, props);
 
 	AUI().use('aui-modal', function (A) {
-		var modal = new A.Modal({
+		const modal = new A.Modal({
 			modal: true,
 			cssClass: _ATTRS.cssClass,
 			headerContent: '<h4>' + _ATTRS.headerLabel + '</h4>',
@@ -26,7 +26,7 @@ function openSimpleMessageWindow(props) {
 			zIndex: _ATTRS.zIndex,
 			on: {
 				destroy: function (event) {
-					if (typeof _ATTRS.closeCallback === "function"){
+					if (typeof _ATTRS.closeCallback === "function") {
 						_ATTRS.closeCallback(event);
 					}
 				}

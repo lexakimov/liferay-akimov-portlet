@@ -18,6 +18,7 @@ import ru.akimov.utils.PortletRequestUtil;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletURL;
+import javax.portlet.ProcessAction;
 import java.io.IOException;
 import java.util.Date;
 
@@ -35,6 +36,7 @@ public class AuditDemoPortlet extends MVCExtendedPortlet {
 	 * @throws SystemException
 	 * @throws IOException
 	 */
+	@ProcessAction(name = "updateFoo")
 	public void updateFoo(ActionRequest request, ActionResponse response) throws SystemException, IOException {
 
 		boolean isCustomAudit = ParamUtil.getBoolean(request, "isCustomAudit");
@@ -42,8 +44,10 @@ public class AuditDemoPortlet extends MVCExtendedPortlet {
 			AuditMessagingUtil.preventDefaultAudit();
 		}
 
-		log.debug("");
-		System.out.println(PortletRequestUtil.paramsList(request));
+		if (log.isDebugEnabled()) {
+			log.debug("");
+			System.out.println(PortletRequestUtil.paramsList(request));
+		}
 
 		int fooId = ParamUtil.getInteger(request, "fooId");
 		Foo foo;

@@ -7,14 +7,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<h4>Async File Upload</h4>
-
-<portlet:resourceURL var="uploadFileURL" id="<%=ASYNC_FILE_UPLOAD%>"/>
-<%--
-<form action="${uploadFileURL}" class="dropzone" id="my-awesome-dropzone">
-
-</form>
---%>
 <style>
 	.drop-zone {
 		border: 2px dashed #ccc;
@@ -39,9 +31,8 @@
 	}
 </style>
 
-<div id="app" style="width: 500px;">
 
-	<pre>{{ $data }}</pre>
+<div id="app">
 
 	<div v-bind:class="['drop-zone', isDragZoneActive ? 'active' : '']"
 		 v-on:dragenter="isDragZoneActive = true"
@@ -49,11 +40,7 @@
 		 v-on:dragover.prevent
 		 v-on:drop.prevent="addFile"
 	>
-
 		Перетащите файлы на эту область
-		<br/><br/>
-		<input id="fileElem" type="hidden">
-		<label class="btn btn-small" for="fileElem">Выбрать файлы</label>
 	</div>
 
 	<table v-show="files.length > 0" class="table table-bordered table-hover table-striped">
@@ -69,25 +56,27 @@
 		</thead>
 		<tbody class="table-data">
 
-
 		<tr v-for="file in files">
+
 			<input name="<portlet:namespace/>temp-file" v-bind:value="file.id" type="hidden"/>
 			<td class="table-cell">{{ file.name }}</td>
 			<td class="table-cell">{{ getSize(file) }}</td>
 			<td class="table-cell">
-				<button class="btn btn-block btn-success" title="скачать" v-on:click="downloadFile(file)">
+				<button type="button" class="btn btn-block btn-success" title="скачать" v-on:click="downloadFile(file)">
 					<i class="icon-download-alt"></i>
 				</button>
 			</td>
 			<td class="table-cell">
-				<button class="btn btn-block btn-danger" title="удалить" v-on:click="deleteFile(file)">
+				<button type="button" class="btn btn-block btn-danger" title="удалить" v-on:click="deleteFile(file)">
 					<i class="icon-remove"></i>
 				</button>
 			</td>
-		</tr>
 
+		</tr>
 		</tbody>
 	</table>
+
+	<pre>{{ $data }}</pre>
 
 </div>
 

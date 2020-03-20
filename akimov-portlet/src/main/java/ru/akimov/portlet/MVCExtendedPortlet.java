@@ -10,7 +10,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import ru.akimov.annotations.AsyncActionMethod;
-import ru.akimov.annotations.ResourceActionMethod;
+import ru.akimov.functional.ResourceActionMethod;
 import ru.akimov.utils.PortletRequestUtil;
 
 import javax.portlet.*;

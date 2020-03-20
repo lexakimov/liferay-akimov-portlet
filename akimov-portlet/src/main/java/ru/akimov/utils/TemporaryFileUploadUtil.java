@@ -37,12 +37,8 @@ public class TemporaryFileUploadUtil {
 		return UUID.randomUUID().toString();
 	}
 
-	public static File initTempSessionStorage(HttpServletRequest req) throws IOException {
-		HttpSession session = req.getSession(true);
-		return initTempSessionStorage(session);
-	}
-
 	public static File initTempSessionStorage(HttpSession session) throws IOException {
+		log.info(session.getId());
 		String sessionTempStorage = SystemProperties.get(TMP_DIR) + separator + session.getId() + separator;
 		File tmpDir = new File(sessionTempStorage);
 		FileUtil.mkdirs(tmpDir);

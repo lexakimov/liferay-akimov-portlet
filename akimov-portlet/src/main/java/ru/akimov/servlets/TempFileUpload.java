@@ -3,13 +3,17 @@ package ru.akimov.servlets;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.servlet.ServletRequestUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.util.PortalUtil;
+import ru.akimov.utils.PortletRequestUtil;
 import ru.akimov.utils.TemporaryFileUploadUtil;
 import ru.akimov.utils.TemporaryFileUploadUtil.TempFile;
 
+import javax.portlet.PortletSessionUtil;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +48,9 @@ public class TempFileUpload extends HttpServlet {
 			return;
 		}
 
-		File sessionStorage = TemporaryFileUploadUtil.initTempSessionStorage(req);
+		HttpSession session = req.getSession(true);
+		File sessionStorage = TemporaryFileUploadUtil.initTempSessionStorage(session);
+
 		JSONArray array = JSONFactoryUtil.createJSONArray();
 
 		for (Part part : parts) {

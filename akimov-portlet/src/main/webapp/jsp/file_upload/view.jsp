@@ -1,5 +1,6 @@
 <%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
 <%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="static ru.akimov.constants.URLParams.*" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -8,12 +9,24 @@
 <%--------------------------------------------------------------------------------------------------------------------%>
 <div class="separator"></div><%---------------------------------------------------------------------------------------%>
 <%--------------------------------------------------------------------------------------------------------------------%>
-<portlet:actionURL var="updateEntityURL" name="updateEntity">
 
-</portlet:actionURL>
+<portlet:actionURL var="updateEntityURL" name="updateEntity"/>
 
-<aui:form name="uploadForm" action="${updateEntityURL}" method="post">
-	<jsp:include page="_file_upload.jsp"/>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<aui:form
+					name="uploadForm"
+					action="${updateEntityURL}"
+					method="post"
+					style="width: 500px; margin: 0 auto;"
+			>
+				<jsp:include page="_file_upload.jsp"/>
+				<div style="text-align: center;">
+					<aui:button type="submit" value="save"/>
+				</div>
 
-	<aui:button type="submit" value="save"/>
-</aui:form>
+			</aui:form>
+		</div>
+	</div>
+</div>

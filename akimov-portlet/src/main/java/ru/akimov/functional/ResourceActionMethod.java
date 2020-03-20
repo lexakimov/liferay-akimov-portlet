@@ -1,4 +1,4 @@
-package ru.akimov.annotations;
+package ru.akimov.functional;
 
 import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
