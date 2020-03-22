@@ -7,6 +7,29 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
+	<mapped-superclass class="ru.akimov.model.impl.AttachmentFileModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="fileName" />
+			<basic name="extension" />
+			<basic name="size">
+				<column name="SIZE_" />
+			</basic>
+			<basic name="mimeType" />
+			<basic name="data">
+				<column name="DATA_" />
+			</basic>
+			<basic name="uploaded">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="userId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="ru.akimov.model.impl.AuditEntryModelImpl">
 		<attributes>
 			<id name="auditEntryId" />
@@ -76,6 +99,10 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<entity class="ru.akimov.model.impl.AttachmentFileImpl" name="AttachmentFile">
+		<table name="akimov_attachment_files" />
+		<attributes />
+	</entity>
 	<entity class="ru.akimov.model.impl.AuditEntryImpl" name="AuditEntry">
 		<table name="akimov_audit_entry" />
 		<attributes />

@@ -43,12 +43,12 @@ public class FooLocalServiceClpInvoker {
     private String[] _methodParameterTypes15;
     private String _methodName16;
     private String[] _methodParameterTypes16;
-    private String _methodName45;
-    private String[] _methodParameterTypes45;
-    private String _methodName46;
-    private String[] _methodParameterTypes46;
-    private String _methodName51;
-    private String[] _methodParameterTypes51;
+    private String _methodName49;
+    private String[] _methodParameterTypes49;
+    private String _methodName50;
+    private String[] _methodParameterTypes50;
+    private String _methodName55;
+    private String[] _methodParameterTypes55;
 
     public FooLocalServiceClpInvoker() {
         _methodName0 = "addFoo";
@@ -131,17 +131,17 @@ public class FooLocalServiceClpInvoker {
 
         _methodParameterTypes16 = new String[] { "java.io.Serializable" };
 
-        _methodName45 = "getBeanIdentifier";
+        _methodName49 = "getBeanIdentifier";
 
-        _methodParameterTypes45 = new String[] {  };
+        _methodParameterTypes49 = new String[] {  };
 
-        _methodName46 = "setBeanIdentifier";
+        _methodName50 = "setBeanIdentifier";
 
-        _methodParameterTypes46 = new String[] { "java.lang.String" };
+        _methodParameterTypes50 = new String[] { "java.lang.String" };
 
-        _methodName51 = "addFoo";
+        _methodName55 = "addFoo";
 
-        _methodParameterTypes51 = new String[] { "ru.akimov.model.Foo" };
+        _methodParameterTypes55 = new String[] { "ru.akimov.model.Foo" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -238,20 +238,20 @@ public class FooLocalServiceClpInvoker {
             return FooLocalServiceUtil.getBlobFieldBlobModel((java.io.Serializable) arguments[0]);
         }
 
-        if (_methodName45.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
+        if (_methodName49.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
             return FooLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName46.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+        if (_methodName50.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
             FooLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
         }
 
-        if (_methodName51.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+        if (_methodName55.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
             return FooLocalServiceUtil.addFoo((ru.akimov.model.Foo) arguments[0]);
         }
 

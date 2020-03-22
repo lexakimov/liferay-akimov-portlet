@@ -28,7 +28,7 @@ public class AuditMessageListenerImpl implements MessageListener {
 		}
 	}
 
-	protected void doReceive(Message message) throws Exception {
+	private void doReceive(Message message) throws Exception {
 		// Receives message...
 		AuditEntryWrapper auditEntry = (AuditEntryWrapper) message.get("audit_entry");
 
@@ -64,7 +64,7 @@ public class AuditMessageListenerImpl implements MessageListener {
 
 			System.out.println("Tour manager received response from roadie for " + name + ": " + roadieResponse);
 		} catch (MessageBusException mbe) {
-			mbe.printStackTrace();
+			_log.error(mbe);
 		}
 
 		// End Message Bus

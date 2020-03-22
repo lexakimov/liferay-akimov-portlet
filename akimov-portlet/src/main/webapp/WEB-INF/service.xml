@@ -2,34 +2,42 @@
 		"http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
 <service-builder package-path="ru.akimov">
+
 	<namespace>akimov</namespace>
 
 	<entity name="Person" uuid="false" local-service="true" remote-service="false">
-		<column name="personId" type="int" primary="true" id-type="class"
-				id-param="com.liferay.counter.service.persistence.IDGenerator"/>
+		<column
+				name="personId"
+				type="int"
+				primary="true"
+				id-type="class"
+				id-param="com.liferay.counter.service.persistence.IDGenerator"
+		/>
 		<column name="lastName" type="String"/>
 		<column name="firstName" type="String"/>
 		<column name="middleName" type="String"/>
 		<column name="gender" type="int"/>
 		<column name="birthDate" type="Date"/>
 		<column name="address" type="String"/>
+	</entity>
 
-		<!--
-		<order by="asc">
+	<!--<order by="asc">
 			<order-column name="field1"/>
 		</order>
 		<finder name="Field2" return-type="Collection">
 			<finder-column name="field2"/>
 		</finder>
 		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
-		<reference package-path="com.liferay.portlet.asset" entity="AssetTag" />
-		-->
-	</entity>
+		<reference package-path="com.liferay.portlet.asset" entity="AssetTag" />	-->
 
 	<entity name="Foo" uuid="false" local-service="true" remote-service="false">
-		<column name="fooId" type="int" primary="true"/>
-		<!--id-type="class" id-param="com.liferay.counter.service.persistence.IDGenerator"-->
-
+		<column
+				name="fooId"
+				type="int"
+				primary="true"
+		/>
+		<!--id-type="class"
+		id-param="com.liferay.counter.service.persistence.IDGenerator"-->
 		<column name="booleanField" type="boolean"/>
 		<column name="shortField" type="short"/>
 		<column name="intField" type="int"/>
@@ -48,9 +56,9 @@
 		<column name="auditType" type="String"/>
 		<column name="entityType" type="String"/>
 		<column name="entityId" type="int"/>
-		<column name="companyId" type="long" />
+		<column name="companyId" type="long"/>
 		<column name="userId" type="long"/>
-		<column name="userName" type="String" />
+		<column name="userName" type="String"/>
 		<column name="dateOfChange" type="Date"/>
 		<column name="metadata" type="String"/>
 	</entity>
@@ -62,6 +70,17 @@
 		<column name="fieldName" type="String"/>
 		<column name="oldValue" type="String"/>
 		<column name="newValue" type="String"/>
+	</entity>
+
+	<entity name="AttachmentFile" table="akimov_attachment_files" local-service="true" remote-service="false">
+		<column name="id" type="int" primary="true"/>
+		<column name="fileName" type="String"/>
+		<column name="extension" type="String"/>
+		<column name="size" type="int"/>
+		<column name="mimeType" type="String"/>
+		<column name="data" type="Blob"/>
+		<column name="uploaded" type="Date"/>
+		<column name="userId" type="int"/>
 	</entity>
 
 </service-builder>

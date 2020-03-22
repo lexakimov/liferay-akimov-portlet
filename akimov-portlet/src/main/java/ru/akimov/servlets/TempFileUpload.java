@@ -3,17 +3,13 @@ package ru.akimov.servlets;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.servlet.ServletRequestUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.util.PortalUtil;
-import ru.akimov.utils.PortletRequestUtil;
 import ru.akimov.utils.TemporaryFileUploadUtil;
 import ru.akimov.utils.TemporaryFileUploadUtil.TempFile;
 
-import javax.portlet.PortletSessionUtil;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -28,6 +24,8 @@ import java.nio.file.Paths;
 import java.util.Collection;
 
 /**
+ * Сервлет для асинхронной загрузки временных файлов.
+ *
  * @author akimov
  * created at 08.02.2020 11:01
  */
@@ -68,23 +66,9 @@ public class TempFileUpload extends HttpServlet {
 			Path tempFileMetaPath = Paths.get(sessionStorage.getPath(), uuid + ".meta");
 			FileUtil.write(tempFileMetaPath.toFile(), fileEntry.toString());
 
-			log("uploaded file: " + part.getName() + " as " + uuid);
+			log("uploaded [" + uuid + "] " + part.getName());
 		}
 		writer.print(array.toString());
-	}
-
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession(true);
-		String fileId = ParamUtil.getString(req, "fileId");
-		try {
-			TemporaryFileUploadUtil.deleteFile(session, fileId);
-			log("file: " + fileId + " removed");
-		} catch (IOException e) {
-			resp.setStatus(500);
-			return;
-		}
-		resp.setStatus(200);
 	}
 
 	@Override
@@ -93,6 +77,20 @@ public class TempFileUpload extends HttpServlet {
 		HttpSession session = req.getSession(true);
 		TempFile tempFile = TemporaryFileUploadUtil.getFile(session, fileId);
 		ServletResponseUtil.sendFile(req, resp, tempFile.getFileName(), tempFile.getInputStream());
+	}
+
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession(true);
+		String fileId = ParamUtil.getString(req, "fileId");
+		try {
+			TemporaryFileUploadUtil.deleteFile(session, fileId);
+			log("file [" + fileId + "] removed");
+		} catch (IOException e) {
+			resp.setStatus(500);
+			return;
+		}
+		resp.setStatus(200);
 	}
 
 }

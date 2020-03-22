@@ -1,5 +1,5 @@
-<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
-<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
+<%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_METHOD_PARAM" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -7,9 +7,11 @@
 
 <akimov:async-actionURL var="urlName2" asyncActionMethod="simpleAsyncActionWithErrors"/>
 
+<aui:button name="execAction2" value="Execute action with errors and messages" primary="true"/>
+
 <script>
 	$(function () {
-		var callback = function (jsonResponse) {
+		let callback = function (jsonResponse) {
 			openSimpleMessageWindow({
 				headerLabel: 'Заголовок окна',
 				bodyContent: buildActionResultHtml(jsonResponse)
@@ -21,5 +23,3 @@
 		});
 	});
 </script>
-
-<aui:button name="execAction2" value="Execute action with errors and messages" primary="true"/>

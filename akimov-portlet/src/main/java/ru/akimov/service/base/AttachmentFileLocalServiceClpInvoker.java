@@ -1,6 +1,6 @@
 package ru.akimov.service.base;
 
-import ru.akimov.service.AuditEntryLocalServiceUtil;
+import ru.akimov.service.AttachmentFileLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class AuditEntryLocalServiceClpInvoker {
+public class AttachmentFileLocalServiceClpInvoker {
     private String _methodName0;
     private String[] _methodParameterTypes0;
     private String _methodName1;
@@ -41,33 +41,29 @@ public class AuditEntryLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName48;
-    private String[] _methodParameterTypes48;
+    private String _methodName16;
+    private String[] _methodParameterTypes16;
     private String _methodName49;
     private String[] _methodParameterTypes49;
-    private String _methodName54;
-    private String[] _methodParameterTypes54;
-    private String _methodName55;
-    private String[] _methodParameterTypes55;
-    private String _methodName56;
-    private String[] _methodParameterTypes56;
+    private String _methodName50;
+    private String[] _methodParameterTypes50;
 
-    public AuditEntryLocalServiceClpInvoker() {
-        _methodName0 = "addAuditEntry";
+    public AttachmentFileLocalServiceClpInvoker() {
+        _methodName0 = "addAttachmentFile";
 
-        _methodParameterTypes0 = new String[] { "ru.akimov.model.AuditEntry" };
+        _methodParameterTypes0 = new String[] { "ru.akimov.model.AttachmentFile" };
 
-        _methodName1 = "createAuditEntry";
+        _methodName1 = "createAttachmentFile";
 
         _methodParameterTypes1 = new String[] { "int" };
 
-        _methodName2 = "deleteAuditEntry";
+        _methodName2 = "deleteAttachmentFile";
 
         _methodParameterTypes2 = new String[] { "int" };
 
-        _methodName3 = "deleteAuditEntry";
+        _methodName3 = "deleteAttachmentFile";
 
-        _methodParameterTypes3 = new String[] { "ru.akimov.model.AuditEntry" };
+        _methodParameterTypes3 = new String[] { "ru.akimov.model.AttachmentFile" };
 
         _methodName4 = "dynamicQuery";
 
@@ -105,11 +101,11 @@ public class AuditEntryLocalServiceClpInvoker {
                 "com.liferay.portal.kernel.dao.orm.Projection"
             };
 
-        _methodName10 = "fetchAuditEntry";
+        _methodName10 = "fetchAttachmentFile";
 
         _methodParameterTypes10 = new String[] { "int" };
 
-        _methodName11 = "getAuditEntry";
+        _methodName11 = "getAttachmentFile";
 
         _methodParameterTypes11 = new String[] { "int" };
 
@@ -117,81 +113,73 @@ public class AuditEntryLocalServiceClpInvoker {
 
         _methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-        _methodName13 = "getAuditEntries";
+        _methodName13 = "getAttachmentFiles";
 
         _methodParameterTypes13 = new String[] { "int", "int" };
 
-        _methodName14 = "getAuditEntriesCount";
+        _methodName14 = "getAttachmentFilesCount";
 
         _methodParameterTypes14 = new String[] {  };
 
-        _methodName15 = "updateAuditEntry";
+        _methodName15 = "updateAttachmentFile";
 
-        _methodParameterTypes15 = new String[] { "ru.akimov.model.AuditEntry" };
+        _methodParameterTypes15 = new String[] { "ru.akimov.model.AttachmentFile" };
 
-        _methodName48 = "getBeanIdentifier";
+        _methodName16 = "getDataBlobModel";
 
-        _methodParameterTypes48 = new String[] {  };
+        _methodParameterTypes16 = new String[] { "java.io.Serializable" };
 
-        _methodName49 = "setBeanIdentifier";
+        _methodName49 = "getBeanIdentifier";
 
-        _methodParameterTypes49 = new String[] { "java.lang.String" };
+        _methodParameterTypes49 = new String[] {  };
 
-        _methodName54 = "deleteFor";
+        _methodName50 = "setBeanIdentifier";
 
-        _methodParameterTypes54 = new String[] { "java.lang.String", "int" };
-
-        _methodName55 = "deleteAuditEntry";
-
-        _methodParameterTypes55 = new String[] { "int" };
-
-        _methodName56 = "deleteAuditEntry";
-
-        _methodParameterTypes56 = new String[] { "ru.akimov.model.AuditEntry" };
+        _methodParameterTypes50 = new String[] { "java.lang.String" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
         Object[] arguments) throws Throwable {
         if (_methodName0.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.addAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
+            return AttachmentFileLocalServiceUtil.addAttachmentFile((ru.akimov.model.AttachmentFile) arguments[0]);
         }
 
         if (_methodName1.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.createAuditEntry(((Integer) arguments[0]).intValue());
+            return AttachmentFileLocalServiceUtil.createAttachmentFile(((Integer) arguments[0]).intValue());
         }
 
         if (_methodName2.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.deleteAuditEntry(((Integer) arguments[0]).intValue());
+            return AttachmentFileLocalServiceUtil.deleteAttachmentFile(((Integer) arguments[0]).intValue());
         }
 
         if (_methodName3.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.deleteAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
+            return AttachmentFileLocalServiceUtil.deleteAttachmentFile((ru.akimov.model.AttachmentFile) arguments[0]);
         }
 
         if (_methodName4.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes4, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.dynamicQuery();
+            return AttachmentFileLocalServiceUtil.dynamicQuery();
         }
 
         if (_methodName5.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes5, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0]);
+            return AttachmentFileLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0]);
         }
 
         if (_methodName6.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes6, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
+            return AttachmentFileLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
                 ((Integer) arguments[1]).intValue(),
                 ((Integer) arguments[2]).intValue());
         }
 
         if (_methodName7.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes7, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
+            return AttachmentFileLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
                 ((Integer) arguments[1]).intValue(),
                 ((Integer) arguments[2]).intValue(),
                 (com.liferay.portal.kernel.util.OrderByComparator) arguments[3]);
@@ -199,74 +187,61 @@ public class AuditEntryLocalServiceClpInvoker {
 
         if (_methodName8.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes8, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0]);
+            return AttachmentFileLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0]);
         }
 
         if (_methodName9.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
+            return AttachmentFileLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery) arguments[0],
                 (com.liferay.portal.kernel.dao.orm.Projection) arguments[1]);
         }
 
         if (_methodName10.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.fetchAuditEntry(((Integer) arguments[0]).intValue());
+            return AttachmentFileLocalServiceUtil.fetchAttachmentFile(((Integer) arguments[0]).intValue());
         }
 
         if (_methodName11.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.getAuditEntry(((Integer) arguments[0]).intValue());
+            return AttachmentFileLocalServiceUtil.getAttachmentFile(((Integer) arguments[0]).intValue());
         }
 
         if (_methodName12.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.getPersistedModel((java.io.Serializable) arguments[0]);
+            return AttachmentFileLocalServiceUtil.getPersistedModel((java.io.Serializable) arguments[0]);
         }
 
         if (_methodName13.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.getAuditEntries(((Integer) arguments[0]).intValue(),
+            return AttachmentFileLocalServiceUtil.getAttachmentFiles(((Integer) arguments[0]).intValue(),
                 ((Integer) arguments[1]).intValue());
         }
 
         if (_methodName14.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.getAuditEntriesCount();
+            return AttachmentFileLocalServiceUtil.getAttachmentFilesCount();
         }
 
         if (_methodName15.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.updateAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
+            return AttachmentFileLocalServiceUtil.updateAttachmentFile((ru.akimov.model.AttachmentFile) arguments[0]);
         }
 
-        if (_methodName48.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.getBeanIdentifier();
+        if (_methodName16.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
+            return AttachmentFileLocalServiceUtil.getDataBlobModel((java.io.Serializable) arguments[0]);
         }
 
         if (_methodName49.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-            AuditEntryLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
+            return AttachmentFileLocalServiceUtil.getBeanIdentifier();
+        }
+
+        if (_methodName50.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+            AttachmentFileLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
-        }
-
-        if (_methodName54.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-            AuditEntryLocalServiceUtil.deleteFor((java.lang.String) arguments[0],
-                ((Integer) arguments[1]).intValue());
-
-            return null;
-        }
-
-        if (_methodName55.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.deleteAuditEntry(((Integer) arguments[0]).intValue());
-        }
-
-        if (_methodName56.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-            return AuditEntryLocalServiceUtil.deleteAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
         }
 
         throw new UnsupportedOperationException();

@@ -18,7 +18,7 @@
 <script>
 	$(function () {
 		$("button#<portlet:namespace/>reload4").click(function () {
-			var reloadableElement = $('div#reloadableElement4');
+			let reloadableElement = $('div#reloadableElement4');
 			reloadElementContentAdvanced(reloadableElement, '${reloading4URL}');
 		});
 	});

@@ -1,7 +1,7 @@
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="ru.akimov.enums.Gender" %>
-<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
-<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_METHOD_PARAM" %>
+<%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_RESOURCE_ID" %>
 <%@ page import="ru.akimov.search.entry_adapters.impl.SqlEntity" %>
 <%@ page import="ru.akimov.search.containers.impl.BasicSqlSearchContainer" %>
 <%@ page import="ru.akimov.search.helpers.impl.AdaptedPersonSearchHelper" %>

@@ -14,7 +14,7 @@
 
 <script>
 	$(function () {
-		var reloadableElement = $('div#reloadableElement2');
+		let reloadableElement = $('div#reloadableElement2');
 
 		setInterval(function () {
 			reloadElementContent(reloadableElement, '${reloading2URL}');

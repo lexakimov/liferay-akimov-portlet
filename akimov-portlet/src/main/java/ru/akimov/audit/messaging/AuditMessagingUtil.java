@@ -1,5 +1,7 @@
 package ru.akimov.audit.messaging;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusException;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
@@ -13,6 +15,8 @@ import ru.akimov.audit.AuditEntryWrapper;
  * created at 23.01.20 16:37
  */
 public class AuditMessagingUtil {
+
+	private static Log log = LogFactoryUtil.getLog(AuditMessagingUtil.class);
 
 	private static final String ATTR_PREVENT_AUDITION = "PREVENT_AUDITION";
 
@@ -36,8 +40,8 @@ public class AuditMessagingUtil {
 		Message message = new Message();
 		message.put("audit_entry", auditEntry);
 
-		message.setResponseId("1111");
-		message.setResponseDestinationName("tour/manager/task");
+		//message.setResponseId("1111");
+		//message.setResponseDestinationName("tour/manager/task");
 
 		MessageBusUtil.sendMessage(Destinations.AUDIT_CREATE, message);
 
@@ -45,10 +49,10 @@ public class AuditMessagingUtil {
 		// sender blocks for while waiting for a response. If no response is received, then a MessageBusException is
 		// thrown.
 		try {
-			String roadieResponse = (String) MessageBusUtil
+			String response = (String) MessageBusUtil
 					.sendSynchronousMessage(Destinations.AUDIT_CREATE, message, 10000);
 		} catch (MessageBusException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 	}
 

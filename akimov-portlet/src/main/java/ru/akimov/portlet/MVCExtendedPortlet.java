@@ -19,11 +19,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static ru.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM;
-import static ru.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID;
+import static ru.akimov.constants.PortletConstants.ASYNC_ACTION_METHOD_PARAM;
+import static ru.akimov.constants.PortletConstants.ASYNC_ACTION_RESOURCE_ID;
 
 /**
- * MVC портлет, расширенный дополнительными возможностями:
+ * MVC портлет, расширенный дополнительными возможностями.
  *
  * @author akimov
  * created at 14.12.19 9:09

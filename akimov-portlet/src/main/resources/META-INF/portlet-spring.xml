@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="ru.akimov.service.AttachmentFileLocalService" class="ru.akimov.service.impl.AttachmentFileLocalServiceImpl" />
+	<bean id="ru.akimov.service.persistence.AttachmentFilePersistence" class="ru.akimov.service.persistence.AttachmentFilePersistenceImpl" parent="basePersistence" />
 	<bean id="ru.akimov.service.AuditEntryLocalService" class="ru.akimov.service.impl.AuditEntryLocalServiceImpl" />
 	<bean id="ru.akimov.service.persistence.AuditEntryPersistence" class="ru.akimov.service.persistence.AuditEntryPersistenceImpl" parent="basePersistence" />
 	<bean id="ru.akimov.service.EntityFieldChangeLocalService" class="ru.akimov.service.impl.EntityFieldChangeLocalServiceImpl" />

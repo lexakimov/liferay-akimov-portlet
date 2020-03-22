@@ -11,6 +11,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import ru.akimov.model.AttachmentFileClp;
 import ru.akimov.model.AuditEntryClp;
 import ru.akimov.model.EntityFieldChangeClp;
 import ru.akimov.model.FooClp;
@@ -91,6 +92,10 @@ public class ClpSerializer {
 
         String oldModelClassName = oldModelClass.getName();
 
+        if (oldModelClassName.equals(AttachmentFileClp.class.getName())) {
+            return translateInputAttachmentFile(oldModel);
+        }
+
         if (oldModelClassName.equals(AuditEntryClp.class.getName())) {
             return translateInputAuditEntry(oldModel);
         }
@@ -120,6 +125,16 @@ public class ClpSerializer {
         }
 
         return newList;
+    }
+
+    public static Object translateInputAttachmentFile(BaseModel<?> oldModel) {
+        AttachmentFileClp oldClpModel = (AttachmentFileClp) oldModel;
+
+        BaseModel<?> newModel = oldClpModel.getAttachmentFileRemoteModel();
+
+        newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+        return newModel;
     }
 
     public static Object translateInputAuditEntry(BaseModel<?> oldModel) {
@@ -176,6 +191,40 @@ public class ClpSerializer {
         Class<?> oldModelClass = oldModel.getClass();
 
         String oldModelClassName = oldModelClass.getName();
+
+        if (oldModelClassName.equals("ru.akimov.model.impl.AttachmentFileImpl")) {
+            return translateOutputAttachmentFile(oldModel);
+        } else if (oldModelClassName.endsWith("Clp")) {
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+                Method getClpSerializerClassMethod = oldModelClass.getMethod(
+                        "getClpSerializerClass");
+
+                Class<?> oldClpSerializerClass = (Class<?>) getClpSerializerClassMethod.invoke(oldModel);
+
+                Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+                Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+                        BaseModel.class);
+
+                Class<?> oldModelModelClass = oldModel.getModelClass();
+
+                Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+                        oldModelModelClass.getSimpleName() + "RemoteModel");
+
+                Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+                BaseModel<?> newModel = (BaseModel<?>) translateOutputMethod.invoke(null,
+                        oldRemoteModel);
+
+                return newModel;
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Unable to translate " + oldModelClassName, t);
+                }
+            }
+        }
 
         if (oldModelClassName.equals("ru.akimov.model.impl.AuditEntryImpl")) {
             return translateOutputAuditEntry(oldModel);
@@ -390,6 +439,10 @@ public class ClpSerializer {
             return new SystemException();
         }
 
+        if (className.equals("ru.akimov.NoSuchAttachmentFileException")) {
+            return new ru.akimov.NoSuchAttachmentFileException();
+        }
+
         if (className.equals("ru.akimov.NoSuchAuditEntryException")) {
             return new ru.akimov.NoSuchAuditEntryException();
         }
@@ -407,6 +460,16 @@ public class ClpSerializer {
         }
 
         return throwable;
+    }
+
+    public static Object translateOutputAttachmentFile(BaseModel<?> oldModel) {
+        AttachmentFileClp newModel = new AttachmentFileClp();
+
+        newModel.setModelAttributes(oldModel.getModelAttributes());
+
+        newModel.setAttachmentFileRemoteModel(oldModel);
+
+        return newModel;
     }
 
     public static Object translateOutputAuditEntry(BaseModel<?> oldModel) {

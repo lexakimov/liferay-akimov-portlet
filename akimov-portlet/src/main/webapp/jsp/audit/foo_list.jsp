@@ -1,6 +1,6 @@
 <%@ page import="ru.akimov.search.helpers.impl.FooSearchHelper" %>
-<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
-<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_METHOD_PARAM" %>
+<%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_RESOURCE_ID" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -56,7 +56,7 @@
 	function openDialog(id) {
 
 		AUI().ready('aui-modal', 'aui-io-plugin-deprecated', function (A) {
-			var modal = new A.Modal({
+			let modal = new A.Modal({
 				modal: true,
 				headerContent: '<h4>Foo</h4>',
 				destroyOnHide: true,

@@ -1,6 +1,18 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="ru.akimov.model.AttachmentFile">
+		<field name="id" type="int" />
+		<field name="fileName" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="extension" type="String" />
+		<field name="size" type="int" />
+		<field name="mimeType" type="String" />
+		<field name="data" type="Blob" />
+		<field name="uploaded" type="Date" />
+		<field name="userId" type="int" />
+	</model>
 	<model name="ru.akimov.model.AuditEntry">
 		<field name="auditEntryId" type="int" />
 		<field name="auditType" type="String" />

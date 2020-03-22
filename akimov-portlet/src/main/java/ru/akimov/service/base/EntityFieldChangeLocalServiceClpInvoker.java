@@ -41,10 +41,10 @@ public class EntityFieldChangeLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName44;
-    private String[] _methodParameterTypes44;
-    private String _methodName45;
-    private String[] _methodParameterTypes45;
+    private String _methodName48;
+    private String[] _methodParameterTypes48;
+    private String _methodName49;
+    private String[] _methodParameterTypes49;
 
     public EntityFieldChangeLocalServiceClpInvoker() {
         _methodName0 = "addEntityFieldChange";
@@ -129,13 +129,13 @@ public class EntityFieldChangeLocalServiceClpInvoker {
                 "ru.akimov.model.EntityFieldChange"
             };
 
-        _methodName44 = "getBeanIdentifier";
+        _methodName48 = "getBeanIdentifier";
 
-        _methodParameterTypes44 = new String[] {  };
+        _methodParameterTypes48 = new String[] {  };
 
-        _methodName45 = "setBeanIdentifier";
+        _methodName49 = "setBeanIdentifier";
 
-        _methodParameterTypes45 = new String[] { "java.lang.String" };
+        _methodParameterTypes49 = new String[] { "java.lang.String" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -227,13 +227,13 @@ public class EntityFieldChangeLocalServiceClpInvoker {
             return EntityFieldChangeLocalServiceUtil.updateEntityFieldChange((ru.akimov.model.EntityFieldChange) arguments[0]);
         }
 
-        if (_methodName44.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
+        if (_methodName48.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
             return EntityFieldChangeLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName45.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
+        if (_methodName49.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
             EntityFieldChangeLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;

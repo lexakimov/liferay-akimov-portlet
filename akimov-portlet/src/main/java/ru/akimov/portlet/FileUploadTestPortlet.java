@@ -1,5 +1,7 @@
 package ru.akimov.portlet;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.dao.jdbc.OutputBlob;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -14,6 +16,8 @@ import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
+import ru.akimov.model.AttachmentFile;
+import ru.akimov.service.AttachmentFileLocalServiceUtil;
 import ru.akimov.utils.TemporaryFileUploadUtil;
 import ru.akimov.utils.TemporaryFileUploadUtil.TempFile;
 
@@ -22,10 +26,11 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * @author akimov
@@ -60,7 +65,6 @@ public class FileUploadTestPortlet extends MVCExtendedPortlet {
 			throws IOException, SystemException, PortalException {
 		HttpServletRequest servletRequest = PortalUtil.getHttpServletRequest(request);
 		HttpSession session = servletRequest.getSession(true);
-		log.info(session);
 		String[] fileIds = request.getParameterValues("temp-file");
 		Collection<TempFile> tempFiles = TemporaryFileUploadUtil.listStorage(session, fileIds);
 		request.setAttribute("files", tempFiles);
@@ -73,7 +77,20 @@ public class FileUploadTestPortlet extends MVCExtendedPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFileEntry.class.getName(), request);
 
 		for (TempFile file : tempFiles) {
-			DLAppServiceUtil.addFileEntry(
+			long id = CounterLocalServiceUtil.increment(AttachmentFile.class.getName());
+			AttachmentFile attachmentFile = AttachmentFileLocalServiceUtil.createAttachmentFile((int) id);
+			attachmentFile.setFileName(file.getFileName());
+			attachmentFile.setExtension(null);
+			attachmentFile.setSize(file.getSize());
+			attachmentFile.setUploaded(new Date());
+			attachmentFile.setUserId((int) serviceContext.getUserId());
+			try (InputStream inputStream = file.getInputStream()) {
+				Blob blob = new OutputBlob(inputStream, inputStream.available());
+				attachmentFile.setData(blob);
+				attachmentFile.persist();
+			}
+
+		/*	DLAppServiceUtil.addFileEntry(
 					repositoryId,
 					folder.getFolderId(),
 					file.getFileName(),
@@ -84,8 +101,9 @@ public class FileUploadTestPortlet extends MVCExtendedPortlet {
 					file.getInputStream(),
 					file.getSize(),
 					serviceContext
-			);
+			);*/
 		}
+
 
 	}
 }

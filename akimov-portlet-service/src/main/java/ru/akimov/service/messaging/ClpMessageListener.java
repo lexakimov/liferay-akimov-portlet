@@ -3,6 +3,7 @@ package ru.akimov.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
+import ru.akimov.service.AttachmentFileLocalServiceUtil;
 import ru.akimov.service.AuditEntryLocalServiceUtil;
 import ru.akimov.service.ClpSerializer;
 import ru.akimov.service.EntityFieldChangeLocalServiceUtil;
@@ -22,6 +23,8 @@ public class ClpMessageListener extends BaseMessageListener {
 
         if (command.equals("undeploy") &&
                 servletContextName.equals(getServletContextName())) {
+            AttachmentFileLocalServiceUtil.clearService();
+
             AuditEntryLocalServiceUtil.clearService();
 
             EntityFieldChangeLocalServiceUtil.clearService();

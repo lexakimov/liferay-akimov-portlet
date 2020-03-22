@@ -1,0 +1,1 @@
+create index IX_33933AA9 on akimov_attachment_files (uuid_);

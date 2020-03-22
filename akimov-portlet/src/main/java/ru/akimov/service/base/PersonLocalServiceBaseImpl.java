@@ -20,6 +20,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 import ru.akimov.model.Person;
 
 import ru.akimov.service.PersonLocalService;
+import ru.akimov.service.persistence.AttachmentFilePersistence;
 import ru.akimov.service.persistence.AuditEntryPersistence;
 import ru.akimov.service.persistence.EntityFieldChangePersistence;
 import ru.akimov.service.persistence.FooPersistence;
@@ -45,6 +46,10 @@ import javax.sql.DataSource;
  */
 public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     implements PersonLocalService, IdentifiableBean {
+    @BeanReference(type = ru.akimov.service.AttachmentFileLocalService.class)
+    protected ru.akimov.service.AttachmentFileLocalService attachmentFileLocalService;
+    @BeanReference(type = AttachmentFilePersistence.class)
+    protected AttachmentFilePersistence attachmentFilePersistence;
     @BeanReference(type = ru.akimov.service.AuditEntryLocalService.class)
     protected ru.akimov.service.AuditEntryLocalService auditEntryLocalService;
     @BeanReference(type = AuditEntryPersistence.class)
@@ -291,6 +296,44 @@ public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     @Override
     public Person updatePerson(Person person) throws SystemException {
         return personPersistence.update(person);
+    }
+
+    /**
+     * Returns the attachment file local service.
+     *
+     * @return the attachment file local service
+     */
+    public ru.akimov.service.AttachmentFileLocalService getAttachmentFileLocalService() {
+        return attachmentFileLocalService;
+    }
+
+    /**
+     * Sets the attachment file local service.
+     *
+     * @param attachmentFileLocalService the attachment file local service
+     */
+    public void setAttachmentFileLocalService(
+        ru.akimov.service.AttachmentFileLocalService attachmentFileLocalService) {
+        this.attachmentFileLocalService = attachmentFileLocalService;
+    }
+
+    /**
+     * Returns the attachment file persistence.
+     *
+     * @return the attachment file persistence
+     */
+    public AttachmentFilePersistence getAttachmentFilePersistence() {
+        return attachmentFilePersistence;
+    }
+
+    /**
+     * Sets the attachment file persistence.
+     *
+     * @param attachmentFilePersistence the attachment file persistence
+     */
+    public void setAttachmentFilePersistence(
+        AttachmentFilePersistence attachmentFilePersistence) {
+        this.attachmentFilePersistence = attachmentFilePersistence;
     }
 
     /**

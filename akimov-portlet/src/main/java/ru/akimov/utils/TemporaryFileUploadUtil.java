@@ -38,8 +38,8 @@ public class TemporaryFileUploadUtil {
 	}
 
 	public static File initTempSessionStorage(HttpSession session) throws IOException {
-		log.info(session.getId());
-		String sessionTempStorage = SystemProperties.get(TMP_DIR) + separator + session.getId() + separator;
+//		String sessionTempStorage = SystemProperties.get(TMP_DIR) + separator + session.getId() + separator;
+		String sessionTempStorage = SystemProperties.get(TMP_DIR) + separator + "tmp_files" + separator;
 		File tmpDir = new File(sessionTempStorage);
 		FileUtil.mkdirs(tmpDir);
 		return tmpDir;

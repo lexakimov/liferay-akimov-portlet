@@ -1,5 +1,5 @@
-<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_METHOD_PARAM" %>
-<%@ page import="static ru.akimov.constants.URLParams.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_METHOD_PARAM" %>
+<%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_RESOURCE_ID" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -9,9 +9,11 @@
 
 <div id="messageBox1"></div>
 
+<aui:button name="execAction1" value="Execute success action" primary="true"/>
+
 <script>
 	$(function () {
-		var callback = function () {
+		let callback = function () {
 			console.log('this is callback');
 		};
 
@@ -20,5 +22,3 @@
 		});
 	});
 </script>
-
-<aui:button name="execAction1" value="Execute success action" primary="true"/>

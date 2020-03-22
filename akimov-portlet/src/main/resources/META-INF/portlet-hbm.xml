@@ -2,10 +2,32 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="ru.akimov.model.AttachmentFile" />
 	<import class="ru.akimov.model.AuditEntry" />
 	<import class="ru.akimov.model.EntityFieldChange" />
 	<import class="ru.akimov.model.Foo" />
 	<import class="ru.akimov.model.Person" />
+	<class name="ru.akimov.model.impl.AttachmentFileImpl" table="akimov_attachment_files">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="fileName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="extension" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="size" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="size_" />
+		<property name="mimeType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<one-to-one name="dataBlobModel" access="com.liferay.portal.dao.orm.hibernate.PrivatePropertyAccessor" class="ru.akimov.model.AttachmentFileDataBlobModel" cascade="save-update" outer-join="false" constrained="true" />
+		<property name="uploaded" type="org.hibernate.type.TimestampType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="ru.akimov.model.AttachmentFileDataBlobModel" table="akimov_attachment_files" lazy="true">
+		<id name="id" column="id_">
+			<generator class="foreign">
+				<param name="property">ru.akimov.model.impl.AttachmentFileImpl</param>
+			</generator>
+		</id>
+		<property column="data_" name="dataBlob" type="blob" />
+	</class>
 	<class name="ru.akimov.model.impl.AuditEntryImpl" table="akimov_audit_entry">
 		<cache usage="read-write" />
 		<id name="auditEntryId" type="int">

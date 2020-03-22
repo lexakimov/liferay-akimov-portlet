@@ -22,6 +22,17 @@ create table akimov_Person (
 	address VARCHAR(75) null
 );
 
+create table akimov_attachment_files (
+	id_ INTEGER not null primary key,
+	fileName VARCHAR(75) null,
+	extension VARCHAR(75) null,
+	size_ INTEGER,
+	mimeType VARCHAR(75) null,
+	data_ BLOB,
+	uploaded DATE null,
+	userId INTEGER
+);
+
 create table akimov_audit_entry (
 	auditEntryId INTEGER not null primary key,
 	auditType VARCHAR(75) null,

@@ -1,7 +1,7 @@
 package ru.akimov.taglib;
 
 import com.liferay.taglib.portlet.ResourceURLTag;
-import ru.akimov.constants.URLParams;
+import ru.akimov.constants.PortletConstants;
 
 import javax.servlet.jsp.JspException;
 
@@ -24,8 +24,8 @@ public class AsyncActionURLTag extends ResourceURLTag {
 	@Override
 	public int doEndTag() throws JspException {
 		setCopyCurrentRenderParameters(false);
-		setId(URLParams.ASYNC_ACTION_RESOURCE_ID);
-		addParam(URLParams.ASYNC_ACTION_METHOD_PARAM, _asyncActionMethod);
+		setId(PortletConstants.ASYNC_ACTION_RESOURCE_ID);
+		addParam(PortletConstants.ASYNC_ACTION_METHOD_PARAM, _asyncActionMethod);
 
 		return super.doEndTag();
 	}
