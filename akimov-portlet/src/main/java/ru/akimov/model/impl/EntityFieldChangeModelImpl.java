@@ -59,7 +59,11 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
                 "value.object.finder.cache.enabled.ru.akimov.model.EntityFieldChange"),
             true);
-    public static final boolean COLUMN_BITMASK_ENABLED = false;
+    public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+                "value.object.column.bitmask.enabled.ru.akimov.model.EntityFieldChange"),
+            true);
+    public static long AUDITENTRYID_COLUMN_BITMASK = 1L;
+    public static long ID_COLUMN_BITMASK = 2L;
     public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
                 "lock.expiration.time.ru.akimov.model.EntityFieldChange"));
     private static ClassLoader _classLoader = EntityFieldChange.class.getClassLoader();
@@ -68,9 +72,12 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
         };
     private int _id;
     private int _auditEntryId;
+    private int _originalAuditEntryId;
+    private boolean _setOriginalAuditEntryId;
     private String _fieldName;
     private String _oldValue;
     private String _newValue;
+    private long _columnBitmask;
     private EntityFieldChange _escapedModel;
 
     public EntityFieldChangeModelImpl() {
@@ -169,7 +176,19 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
 
     @Override
     public void setAuditEntryId(int auditEntryId) {
+        _columnBitmask |= AUDITENTRYID_COLUMN_BITMASK;
+
+        if (!_setOriginalAuditEntryId) {
+            _setOriginalAuditEntryId = true;
+
+            _originalAuditEntryId = _auditEntryId;
+        }
+
         _auditEntryId = auditEntryId;
+    }
+
+    public int getOriginalAuditEntryId() {
+        return _originalAuditEntryId;
     }
 
     @Override
@@ -212,6 +231,10 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     @Override
     public void setNewValue(String newValue) {
         _newValue = newValue;
+    }
+
+    public long getColumnBitmask() {
+        return _columnBitmask;
     }
 
     @Override
@@ -280,6 +303,13 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
 
     @Override
     public void resetOriginalValues() {
+        EntityFieldChangeModelImpl entityFieldChangeModelImpl = this;
+
+        entityFieldChangeModelImpl._originalAuditEntryId = entityFieldChangeModelImpl._auditEntryId;
+
+        entityFieldChangeModelImpl._setOriginalAuditEntryId = false;
+
+        entityFieldChangeModelImpl._columnBitmask = 0;
     }
 
     @Override

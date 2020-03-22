@@ -46,7 +46,7 @@ public class AttachmentFileModelImpl extends BaseModelImpl<AttachmentFile>
     public static final String TABLE_NAME = "akimov_attachment_files";
     public static final Object[][] TABLE_COLUMNS = {
             { "id_", Types.INTEGER },
-            { "fileName", Types.VARCHAR },
+            { "fileName", Types.CLOB },
             { "extension", Types.VARCHAR },
             { "size_", Types.INTEGER },
             { "mimeType", Types.VARCHAR },
@@ -54,7 +54,7 @@ public class AttachmentFileModelImpl extends BaseModelImpl<AttachmentFile>
             { "uploaded", Types.TIMESTAMP },
             { "userId", Types.INTEGER }
         };
-    public static final String TABLE_SQL_CREATE = "create table akimov_attachment_files (id_ INTEGER not null primary key,fileName VARCHAR(75) null,extension VARCHAR(75) null,size_ INTEGER,mimeType VARCHAR(75) null,data_ BLOB,uploaded DATE null,userId INTEGER)";
+    public static final String TABLE_SQL_CREATE = "create table akimov_attachment_files (id_ INTEGER not null primary key,fileName TEXT null,extension VARCHAR(75) null,size_ INTEGER,mimeType VARCHAR(75) null,data_ BLOB,uploaded DATE null,userId INTEGER)";
     public static final String TABLE_SQL_DROP = "drop table akimov_attachment_files";
     public static final String ORDER_BY_JPQL = " ORDER BY attachmentFile.id ASC";
     public static final String ORDER_BY_SQL = " ORDER BY akimov_attachment_files.id_ ASC";

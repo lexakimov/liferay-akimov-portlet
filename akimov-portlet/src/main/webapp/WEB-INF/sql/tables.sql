@@ -24,7 +24,7 @@ create table akimov_Person (
 
 create table akimov_attachment_files (
 	id_ INTEGER not null primary key,
-	fileName VARCHAR(75) null,
+	fileName TEXT null,
 	extension VARCHAR(75) null,
 	size_ INTEGER,
 	mimeType VARCHAR(75) null,

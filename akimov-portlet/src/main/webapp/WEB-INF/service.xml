@@ -70,6 +70,10 @@
 		<column name="fieldName" type="String"/>
 		<column name="oldValue" type="String"/>
 		<column name="newValue" type="String"/>
+
+		<finder name="AuditEntryId" return-type="Collection">
+			<finder-column name="auditEntryId"/>
+		</finder>
 	</entity>
 
 	<entity name="AttachmentFile" table="akimov_attachment_files" local-service="true" remote-service="false">
