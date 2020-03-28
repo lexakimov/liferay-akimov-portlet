@@ -3,7 +3,7 @@ package ru.akimov.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the EntityFieldChange service. Represents a row in the &quot;akimov_entity_field_change&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the EntityFieldChange service. Represents a row in the &quot;akimov_audit_field_changes&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see EntityFieldChangeModel

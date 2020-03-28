@@ -104,11 +104,11 @@
 		<attributes />
 	</entity>
 	<entity class="ru.akimov.model.impl.AuditEntryImpl" name="AuditEntry">
-		<table name="akimov_audit_entry" />
+		<table name="akimov_audit_entries" />
 		<attributes />
 	</entity>
 	<entity class="ru.akimov.model.impl.EntityFieldChangeImpl" name="EntityFieldChange">
-		<table name="akimov_entity_field_change" />
+		<table name="akimov_audit_field_changes" />
 		<attributes />
 	</entity>
 	<entity class="ru.akimov.model.impl.FooImpl" name="Foo">

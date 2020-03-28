@@ -51,7 +51,7 @@
 	</entity>
 
 	<!-- TODO add indexes if necessary -->
-	<entity name="AuditEntry" table="akimov_audit_entry" local-service="true" remote-service="false">
+	<entity name="AuditEntry" table="akimov_audit_entries" local-service="true" remote-service="false">
 		<column name="auditEntryId" type="int" primary="true"/>
 		<column name="auditType" type="String"/>
 		<column name="entityType" type="String"/>
@@ -64,7 +64,7 @@
 	</entity>
 
 	<!-- TODO add indexes if necessary -->
-	<entity name="EntityFieldChange" table="akimov_entity_field_change" local-service="true" remote-service="false">
+	<entity name="EntityFieldChange" table="akimov_audit_field_changes" local-service="true" remote-service="false">
 		<column name="id" type="int" primary="true"/>
 		<column name="auditEntryId" type="int"/>
 		<column name="fieldName" type="String"/>

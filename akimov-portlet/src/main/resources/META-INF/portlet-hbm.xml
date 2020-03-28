@@ -28,7 +28,7 @@
 		</id>
 		<property column="data_" name="dataBlob" type="blob" />
 	</class>
-	<class name="ru.akimov.model.impl.AuditEntryImpl" table="akimov_audit_entry">
+	<class name="ru.akimov.model.impl.AuditEntryImpl" table="akimov_audit_entries">
 		<cache usage="read-write" />
 		<id name="auditEntryId" type="int">
 			<generator class="assigned" />
@@ -42,7 +42,7 @@
 		<property name="dateOfChange" type="org.hibernate.type.TimestampType" />
 		<property name="metadata" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="ru.akimov.model.impl.EntityFieldChangeImpl" table="akimov_entity_field_change">
+	<class name="ru.akimov.model.impl.EntityFieldChangeImpl" table="akimov_audit_field_changes">
 		<cache usage="read-write" />
 		<id name="id" column="id_" type="int">
 			<generator class="assigned" />

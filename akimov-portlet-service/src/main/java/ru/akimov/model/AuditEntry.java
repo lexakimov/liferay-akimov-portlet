@@ -3,7 +3,7 @@ package ru.akimov.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the AuditEntry service. Represents a row in the &quot;akimov_audit_entry&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the AuditEntry service. Represents a row in the &quot;akimov_audit_entries&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see AuditEntryModel

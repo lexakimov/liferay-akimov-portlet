@@ -3,7 +3,7 @@ package ru.akimov.model.impl;
 import ru.akimov.model.AuditEntry;
 
 /**
- * The extended model implementation for the AuditEntry service. Represents a row in the &quot;akimov_audit_entry&quot; database table, with each column mapped to a property of this class.
+ * The extended model implementation for the AuditEntry service. Represents a row in the &quot;akimov_audit_entries&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
  * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link AuditEntry} interface.

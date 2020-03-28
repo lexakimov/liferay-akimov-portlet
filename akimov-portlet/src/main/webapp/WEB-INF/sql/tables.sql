@@ -33,7 +33,7 @@ create table akimov_attachment_files (
 	userId INTEGER
 );
 
-create table akimov_audit_entry (
+create table akimov_audit_entries (
 	auditEntryId INTEGER not null primary key,
 	auditType VARCHAR(75) null,
 	entityType VARCHAR(75) null,
@@ -45,7 +45,7 @@ create table akimov_audit_entry (
 	metadata TEXT null
 );
 
-create table akimov_entity_field_change (
+create table akimov_audit_field_changes (
 	id_ INTEGER not null primary key,
 	auditEntryId INTEGER,
 	fieldName VARCHAR(75) null,

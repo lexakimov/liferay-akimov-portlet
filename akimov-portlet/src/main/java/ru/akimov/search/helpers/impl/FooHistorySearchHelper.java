@@ -32,8 +32,8 @@ public class FooHistorySearchHelper extends SqlBasedSearchHelper<EntityAuditEntr
 				"\taudit.auditEntryId\n" +
 				"\t\n" +
 				"FROM\n" +
-				"\takimov_audit_entry audit\n" +
-				"\tLEFT JOIN akimov_entity_field_change changes ON audit.auditEntryId = changes.auditEntryId \n" +
+				"\takimov_audit_entries audit\n" +
+				"\tLEFT JOIN akimov_audit_field_changes changes ON audit.auditEntryId = changes.auditEntryId \n" +
 				"WHERE\n" +
 				"\taudit.entityType = 'foo' \n" +
 				"GROUP BY\n" +
