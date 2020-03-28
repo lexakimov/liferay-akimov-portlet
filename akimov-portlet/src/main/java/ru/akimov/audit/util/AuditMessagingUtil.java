@@ -1,5 +1,7 @@
-package ru.akimov.audit.messaging;
+package ru.akimov.audit.util;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
@@ -8,7 +10,13 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextThreadLocal;
+import ru.akimov.audit.enums.AuditType;
+import ru.akimov.audit.enums.EntityType;
+import ru.akimov.audit.messaging.Destinations;
+import ru.akimov.model.AuditEntry;
 import ru.akimov.model.AuditEntryGroup;
+import ru.akimov.service.AuditEntryGroupLocalServiceUtil;
+import ru.akimov.service.AuditEntryLocalServiceUtil;
 
 /**
  * @author akimov
@@ -31,9 +39,27 @@ public class AuditMessagingUtil {
 	/**
 	 * @return true  если не нужно создавать записи аудита через ModelListener.
 	 */
-	public static boolean isPreventDefaultAudit() {
+	public static boolean isDefaultAuditPrevented() {
 		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 		return GetterUtil.getBoolean(serviceContext.getAttribute(ATTR_PREVENT_AUDITION));
+	}
+
+	/**
+	 * Создание простейшей записи аудита.
+	 *
+	 * @param auditType
+	 * @param description
+	 * @throws SystemException
+	 * @throws PortalException
+	 */
+	public static void simpleAudit(AuditType auditType, String description) throws SystemException, PortalException {
+		final String entityType = String.valueOf(EntityType.VOID);
+		final String audType = String.valueOf(auditType);
+
+		AuditEntryGroup auditEntryGroup = AuditEntryGroupLocalServiceUtil.create();
+		AuditEntry auditEntry = AuditEntryLocalServiceUtil.create(0, entityType, audType, description);
+		auditEntryGroup.addEntry(auditEntry);
+		auditEntryGroup.persist();
 	}
 
 	public static void auditMessage(AuditEntryGroup auditEntryGroup) {

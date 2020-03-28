@@ -1,10 +1,14 @@
 package ru.akimov.portlet;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import ru.akimov.annotations.AsyncActionMethod;
+import ru.akimov.audit.enums.AuditType;
+import ru.akimov.audit.util.AuditMessagingUtil;
 import ru.akimov.utils.PortletRequestUtil;
 
 import javax.portlet.PortletRequest;
@@ -15,9 +19,10 @@ public class AsyncActionsPortlet extends MVCExtendedPortlet {
 	private Log log = LogFactoryUtil.getLog(AsyncActionsPortlet.class);
 
 	@AsyncActionMethod
-	public void simpleAsyncAction(PortletRequest request, PortletResponse response) {
+	public void simpleAsyncAction(PortletRequest request, PortletResponse response) throws PortalException, SystemException {
 		System.out.println(PortletRequestUtil.paramsList(request));
 		System.out.println(PortletRequestUtil.attrsList(request));
+		AuditMessagingUtil.simpleAudit(AuditType.ASYNC_ACTION, "Асинхронное действие");
 	}
 
 	@AsyncActionMethod

@@ -41,6 +41,8 @@ public class UserPostLoginAction extends Action {
 		String auditType = String.valueOf(AuditType.USER_LOGIN);
 
 		AuditEntryGroup auditEntryGroup = AuditEntryGroupLocalServiceUtil.create();
+		auditEntryGroup.setUserId(userId);
+		auditEntryGroup.setUserName(user.getFullName());
 		AuditEntry auditEntry = AuditEntryLocalServiceUtil.create(userId, entityType, auditType, metadata);
 		auditEntryGroup.addEntry(auditEntry);
 		auditEntryGroup.persist();

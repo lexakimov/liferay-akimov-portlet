@@ -11,17 +11,14 @@ import ru.akimov.model.Foo;
  */
 public enum EntityType {
 
-	USER(User.class), FOO(Foo.class);
+	USER(User.class), FOO(Foo.class), VOID(Void.class);
 
-	private final Class<? extends BaseModel<?>> clazz;
+	private final Class<?> clazz;
 
-	EntityType(Class<? extends BaseModel<?>> clazz) {
+	EntityType(Class<?> clazz) {
 		this.clazz = clazz;
 	}
 
-	public Class<? extends BaseModel<?>> getClazz() {
-		return clazz;
-	}
 
 	@Override
 	public String toString() {

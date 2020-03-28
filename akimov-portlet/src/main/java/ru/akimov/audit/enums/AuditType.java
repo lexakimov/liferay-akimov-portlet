@@ -19,5 +19,7 @@ public enum AuditType {
 	FOO_EDIT,
 	FOO_STATUS_CHANGE,
 	FOO_CUSTOM,
-	FOO_DELETE;
+	FOO_DELETE,
+
+	ASYNC_ACTION;
 }

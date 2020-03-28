@@ -9,7 +9,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import ru.akimov.audit.enums.AuditType;
 import ru.akimov.audit.enums.EntityType;
-import ru.akimov.audit.messaging.AuditMessagingUtil;
+import ru.akimov.audit.util.AuditMessagingUtil;
 import ru.akimov.model.AuditEntry;
 import ru.akimov.model.AuditEntryGroup;
 import ru.akimov.model.Foo;
