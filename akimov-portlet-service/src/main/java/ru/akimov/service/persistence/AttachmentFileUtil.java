@@ -12,7 +12,7 @@ import ru.akimov.model.AttachmentFile;
 import java.util.List;
 
 /**
- * The persistence utility for the attachment file service. This utility wraps {@link AttachmentFilePersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ * The persistence utility for the Вложения service. This utility wraps {@link AttachmentFilePersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
@@ -99,9 +99,9 @@ public class AttachmentFileUtil {
     }
 
     /**
-    * Caches the attachment file in the entity cache if it is enabled.
+    * Caches the Вложения in the entity cache if it is enabled.
     *
-    * @param attachmentFile the attachment file
+    * @param attachmentFile the Вложения
     */
     public static void cacheResult(
         ru.akimov.model.AttachmentFile attachmentFile) {
@@ -109,9 +109,9 @@ public class AttachmentFileUtil {
     }
 
     /**
-    * Caches the attachment files in the entity cache if it is enabled.
+    * Caches the Вложенияs in the entity cache if it is enabled.
     *
-    * @param attachmentFiles the attachment files
+    * @param attachmentFiles the Вложенияs
     */
     public static void cacheResult(
         java.util.List<ru.akimov.model.AttachmentFile> attachmentFiles) {
@@ -119,21 +119,21 @@ public class AttachmentFileUtil {
     }
 
     /**
-    * Creates a new attachment file with the primary key. Does not add the attachment file to the database.
+    * Creates a new Вложения with the primary key. Does not add the Вложения to the database.
     *
-    * @param id the primary key for the new attachment file
-    * @return the new attachment file
+    * @param id the primary key for the new Вложения
+    * @return the new Вложения
     */
     public static ru.akimov.model.AttachmentFile create(int id) {
         return getPersistence().create(id);
     }
 
     /**
-    * Removes the attachment file with the primary key from the database. Also notifies the appropriate model listeners.
+    * Removes the Вложения with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param id the primary key of the attachment file
-    * @return the attachment file that was removed
-    * @throws ru.akimov.NoSuchAttachmentFileException if a attachment file with the primary key could not be found
+    * @param id the primary key of the Вложения
+    * @return the Вложения that was removed
+    * @throws ru.akimov.NoSuchAttachmentFileException if a Вложения with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     public static ru.akimov.model.AttachmentFile remove(int id)
@@ -149,11 +149,11 @@ public class AttachmentFileUtil {
     }
 
     /**
-    * Returns the attachment file with the primary key or throws a {@link ru.akimov.NoSuchAttachmentFileException} if it could not be found.
+    * Returns the Вложения with the primary key or throws a {@link ru.akimov.NoSuchAttachmentFileException} if it could not be found.
     *
-    * @param id the primary key of the attachment file
-    * @return the attachment file
-    * @throws ru.akimov.NoSuchAttachmentFileException if a attachment file with the primary key could not be found
+    * @param id the primary key of the Вложения
+    * @return the Вложения
+    * @throws ru.akimov.NoSuchAttachmentFileException if a Вложения with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     public static ru.akimov.model.AttachmentFile findByPrimaryKey(int id)
@@ -163,10 +163,10 @@ public class AttachmentFileUtil {
     }
 
     /**
-    * Returns the attachment file with the primary key or returns <code>null</code> if it could not be found.
+    * Returns the Вложения with the primary key or returns <code>null</code> if it could not be found.
     *
-    * @param id the primary key of the attachment file
-    * @return the attachment file, or <code>null</code> if a attachment file with the primary key could not be found
+    * @param id the primary key of the Вложения
+    * @return the Вложения, or <code>null</code> if a Вложения with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     public static ru.akimov.model.AttachmentFile fetchByPrimaryKey(int id)
@@ -175,9 +175,9 @@ public class AttachmentFileUtil {
     }
 
     /**
-    * Returns all the attachment files.
+    * Returns all the Вложенияs.
     *
-    * @return the attachment files
+    * @return the Вложенияs
     * @throws SystemException if a system exception occurred
     */
     public static java.util.List<ru.akimov.model.AttachmentFile> findAll()
@@ -186,15 +186,15 @@ public class AttachmentFileUtil {
     }
 
     /**
-    * Returns a range of all the attachment files.
+    * Returns a range of all the Вложенияs.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AttachmentFileModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param start the lower bound of the range of attachment files
-    * @param end the upper bound of the range of attachment files (not inclusive)
-    * @return the range of attachment files
+    * @param start the lower bound of the range of Вложенияs
+    * @param end the upper bound of the range of Вложенияs (not inclusive)
+    * @return the range of Вложенияs
     * @throws SystemException if a system exception occurred
     */
     public static java.util.List<ru.akimov.model.AttachmentFile> findAll(
@@ -204,16 +204,16 @@ public class AttachmentFileUtil {
     }
 
     /**
-    * Returns an ordered range of all the attachment files.
+    * Returns an ordered range of all the Вложенияs.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AttachmentFileModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param start the lower bound of the range of attachment files
-    * @param end the upper bound of the range of attachment files (not inclusive)
+    * @param start the lower bound of the range of Вложенияs
+    * @param end the upper bound of the range of Вложенияs (not inclusive)
     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-    * @return the ordered range of attachment files
+    * @return the ordered range of Вложенияs
     * @throws SystemException if a system exception occurred
     */
     public static java.util.List<ru.akimov.model.AttachmentFile> findAll(
@@ -224,7 +224,7 @@ public class AttachmentFileUtil {
     }
 
     /**
-    * Removes all the attachment files from the database.
+    * Removes all the Вложенияs from the database.
     *
     * @throws SystemException if a system exception occurred
     */
@@ -234,9 +234,9 @@ public class AttachmentFileUtil {
     }
 
     /**
-    * Returns the number of attachment files.
+    * Returns the number of Вложенияs.
     *
-    * @return the number of attachment files
+    * @return the number of Вложенияs
     * @throws SystemException if a system exception occurred
     */
     public static int countAll()

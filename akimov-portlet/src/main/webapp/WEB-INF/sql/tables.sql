@@ -33,21 +33,26 @@ create table akimov_attachment_files (
 	userId INTEGER
 );
 
-create table akimov_audit_entries (
-	auditEntryId INTEGER not null primary key,
+create table akimov_audit_action_entries (
+	entryId INTEGER not null primary key,
+	entryGroupId INTEGER,
 	auditType VARCHAR(75) null,
 	entityType VARCHAR(75) null,
 	entityId INTEGER,
-	companyId LONG,
-	userId LONG,
-	userName VARCHAR(75) null,
-	dateOfChange DATE null,
 	metadata TEXT null
 );
 
+create table akimov_audit_action_groups (
+	entryGroupId INTEGER not null primary key,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
+	eventDate DATE null
+);
+
 create table akimov_audit_field_changes (
-	id_ INTEGER not null primary key,
-	auditEntryId INTEGER,
+	fieldChangeId INTEGER not null primary key,
+	entryId INTEGER,
 	fieldName VARCHAR(75) null,
 	oldValue VARCHAR(75) null,
 	newValue VARCHAR(75) null

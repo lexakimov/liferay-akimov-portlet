@@ -19,10 +19,10 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     }
 
     /**
-    * Adds the audit entry to the database. Also notifies the appropriate model listeners.
+    * Adds the Запись аудита to the database. Also notifies the appropriate model listeners.
     *
-    * @param auditEntry the audit entry
-    * @return the audit entry that was added
+    * @param auditEntry the Запись аудита
+    * @return the Запись аудита that was added
     * @throws SystemException if a system exception occurred
     */
     @Override
@@ -33,36 +33,36 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     }
 
     /**
-    * Creates a new audit entry with the primary key. Does not add the audit entry to the database.
+    * Creates a new Запись аудита with the primary key. Does not add the Запись аудита to the database.
     *
-    * @param auditEntryId the primary key for the new audit entry
-    * @return the new audit entry
+    * @param entryId the primary key for the new Запись аудита
+    * @return the new Запись аудита
     */
     @Override
-    public ru.akimov.model.AuditEntry createAuditEntry(int auditEntryId) {
-        return _auditEntryLocalService.createAuditEntry(auditEntryId);
+    public ru.akimov.model.AuditEntry createAuditEntry(int entryId) {
+        return _auditEntryLocalService.createAuditEntry(entryId);
     }
 
     /**
-    * Deletes the audit entry with the primary key from the database. Also notifies the appropriate model listeners.
+    * Deletes the Запись аудита with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param auditEntryId the primary key of the audit entry
-    * @return the audit entry that was removed
-    * @throws PortalException if a audit entry with the primary key could not be found
+    * @param entryId the primary key of the Запись аудита
+    * @return the Запись аудита that was removed
+    * @throws PortalException if a Запись аудита with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @Override
-    public ru.akimov.model.AuditEntry deleteAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry deleteAuditEntry(int entryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        return _auditEntryLocalService.deleteAuditEntry(auditEntryId);
+        return _auditEntryLocalService.deleteAuditEntry(entryId);
     }
 
     /**
-    * Deletes the audit entry from the database. Also notifies the appropriate model listeners.
+    * Deletes the Запись аудита from the database. Also notifies the appropriate model listeners.
     *
-    * @param auditEntry the audit entry
-    * @return the audit entry that was removed
+    * @param auditEntry the Запись аудита
+    * @return the Запись аудита that was removed
     * @throws SystemException if a system exception occurred
     */
     @Override
@@ -170,24 +170,24 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     }
 
     @Override
-    public ru.akimov.model.AuditEntry fetchAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry fetchAuditEntry(int entryId)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return _auditEntryLocalService.fetchAuditEntry(auditEntryId);
+        return _auditEntryLocalService.fetchAuditEntry(entryId);
     }
 
     /**
-    * Returns the audit entry with the primary key.
+    * Returns the Запись аудита with the primary key.
     *
-    * @param auditEntryId the primary key of the audit entry
-    * @return the audit entry
-    * @throws PortalException if a audit entry with the primary key could not be found
+    * @param entryId the primary key of the Запись аудита
+    * @return the Запись аудита
+    * @throws PortalException if a Запись аудита with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @Override
-    public ru.akimov.model.AuditEntry getAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry getAuditEntry(int entryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
-        return _auditEntryLocalService.getAuditEntry(auditEntryId);
+        return _auditEntryLocalService.getAuditEntry(entryId);
     }
 
     @Override
@@ -199,15 +199,15 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     }
 
     /**
-    * Returns a range of all the audit entries.
+    * Returns a range of all the Запись аудитаs.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param start the lower bound of the range of audit entries
-    * @param end the upper bound of the range of audit entries (not inclusive)
-    * @return the range of audit entries
+    * @param start the lower bound of the range of Запись аудитаs
+    * @param end the upper bound of the range of Запись аудитаs (not inclusive)
+    * @return the range of Запись аудитаs
     * @throws SystemException if a system exception occurred
     */
     @Override
@@ -218,9 +218,9 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     }
 
     /**
-    * Returns the number of audit entries.
+    * Returns the number of Запись аудитаs.
     *
-    * @return the number of audit entries
+    * @return the number of Запись аудитаs
     * @throws SystemException if a system exception occurred
     */
     @Override
@@ -230,10 +230,10 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     }
 
     /**
-    * Updates the audit entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+    * Updates the Запись аудита in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
     *
-    * @param auditEntry the audit entry
-    * @return the audit entry that was updated
+    * @param auditEntry the Запись аудита
+    * @return the Запись аудита that was updated
     * @throws SystemException if a system exception occurred
     */
     @Override
@@ -272,6 +272,18 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     }
 
     /**
+    * Создать новую запись аудита.
+    */
+    @Override
+    public ru.akimov.model.AuditEntry create(int entityId,
+        java.lang.String entityType, java.lang.String auditType,
+        java.lang.String metadata)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _auditEntryLocalService.create(entityId, entityType, auditType,
+            metadata);
+    }
+
+    /**
     * Удалить записи истории для сущности.
     *
     * @param entityType тип сущности (any case)
@@ -282,6 +294,13 @@ public class AuditEntryLocalServiceWrapper implements AuditEntryLocalService,
     public void deleteFor(java.lang.String entityType, int entityId)
         throws com.liferay.portal.kernel.exception.SystemException {
         _auditEntryLocalService.deleteFor(entityType, entityId);
+    }
+
+    @Override
+    public java.util.List<ru.akimov.model.AuditEntry> getByEntryGroupId(
+        int entryGroupId)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _auditEntryLocalService.getByEntryGroupId(entryGroupId);
     }
 
     /**

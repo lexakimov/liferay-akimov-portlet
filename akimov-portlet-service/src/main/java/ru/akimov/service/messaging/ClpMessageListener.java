@@ -4,6 +4,7 @@ import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
 import ru.akimov.service.AttachmentFileLocalServiceUtil;
+import ru.akimov.service.AuditEntryGroupLocalServiceUtil;
 import ru.akimov.service.AuditEntryLocalServiceUtil;
 import ru.akimov.service.ClpSerializer;
 import ru.akimov.service.EntityFieldChangeLocalServiceUtil;
@@ -26,6 +27,8 @@ public class ClpMessageListener extends BaseMessageListener {
             AttachmentFileLocalServiceUtil.clearService();
 
             AuditEntryLocalServiceUtil.clearService();
+
+            AuditEntryGroupLocalServiceUtil.clearService();
 
             EntityFieldChangeLocalServiceUtil.clearService();
 

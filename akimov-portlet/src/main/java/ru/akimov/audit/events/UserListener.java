@@ -1,20 +1,20 @@
 package ru.akimov.audit.events;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.ServiceContextThreadLocal;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import ru.akimov.audit.AuditEntryWrapper;
 import ru.akimov.audit.enums.AuditType;
 import ru.akimov.audit.enums.EntityType;
 import ru.akimov.audit.exceptions.AuditEntryCreateException;
-
-import java.util.Date;
+import ru.akimov.model.AuditEntry;
+import ru.akimov.model.AuditEntryGroup;
+import ru.akimov.service.AuditEntryGroupLocalServiceUtil;
+import ru.akimov.service.AuditEntryLocalServiceUtil;
 
 /**
  * Перехват события о регистрации или удалении пользователя. Прописан в resources/service-ext.properties.
@@ -38,19 +38,18 @@ public class UserListener extends BaseModelListener<User> {
 		process(model, AuditType.USER_REMOVE);
 	}
 
-	private void process(User model, AuditType description) throws AuditEntryCreateException {
-		try {
-			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
-			long companyId = model.getCompanyId();
-			int entityId = (int) model.getUserId();
-			User userAuthor = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
-			if (userAuthor == null) {
-				userAuthor = model;
-			}
-			String metadata = "";
-			new AuditEntryWrapper(entityId, EntityType.USER, description, companyId, userAuthor, new Date(), metadata).persist();
+	private void process(User model, AuditType auditType) throws AuditEntryCreateException {
+		String entityType = String.valueOf(EntityType.USER);
+		String auditTypeStr = String.valueOf(auditType);
+		String metadata = StringPool.BLANK;
 
-		} catch (SystemException e) {
+		try {
+			int entityId = (int) model.getUserId();
+			AuditEntryGroup auditEntryGroup = AuditEntryGroupLocalServiceUtil.create();
+			AuditEntry auditEntry = AuditEntryLocalServiceUtil.create(entityId, entityType, auditTypeStr, metadata);
+			auditEntryGroup.addEntry(auditEntry);
+			auditEntryGroup.persist();
+		} catch (SystemException | PortalException e) {
 			throw new AuditEntryCreateException(e);
 		}
 	}

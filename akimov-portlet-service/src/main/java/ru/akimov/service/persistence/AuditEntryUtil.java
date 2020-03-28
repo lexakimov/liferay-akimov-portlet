@@ -12,7 +12,7 @@ import ru.akimov.model.AuditEntry;
 import java.util.List;
 
 /**
- * The persistence utility for the audit entry service. This utility wraps {@link AuditEntryPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ * The persistence utility for the Запись аудита service. This utility wraps {@link AuditEntryPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
@@ -99,18 +99,184 @@ public class AuditEntryUtil {
     }
 
     /**
-    * Caches the audit entry in the entity cache if it is enabled.
+    * Returns all the Запись аудитаs where entryGroupId = &#63;.
     *
-    * @param auditEntry the audit entry
+    * @param entryGroupId the entry group ID
+    * @return the matching Запись аудитаs
+    * @throws SystemException if a system exception occurred
+    */
+    public static java.util.List<ru.akimov.model.AuditEntry> findByEntryGroupId(
+        int entryGroupId)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().findByEntryGroupId(entryGroupId);
+    }
+
+    /**
+    * Returns a range of all the Запись аудитаs where entryGroupId = &#63;.
+    *
+    * <p>
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * </p>
+    *
+    * @param entryGroupId the entry group ID
+    * @param start the lower bound of the range of Запись аудитаs
+    * @param end the upper bound of the range of Запись аудитаs (not inclusive)
+    * @return the range of matching Запись аудитаs
+    * @throws SystemException if a system exception occurred
+    */
+    public static java.util.List<ru.akimov.model.AuditEntry> findByEntryGroupId(
+        int entryGroupId, int start, int end)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().findByEntryGroupId(entryGroupId, start, end);
+    }
+
+    /**
+    * Returns an ordered range of all the Запись аудитаs where entryGroupId = &#63;.
+    *
+    * <p>
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * </p>
+    *
+    * @param entryGroupId the entry group ID
+    * @param start the lower bound of the range of Запись аудитаs
+    * @param end the upper bound of the range of Запись аудитаs (not inclusive)
+    * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+    * @return the ordered range of matching Запись аудитаs
+    * @throws SystemException if a system exception occurred
+    */
+    public static java.util.List<ru.akimov.model.AuditEntry> findByEntryGroupId(
+        int entryGroupId, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence()
+                   .findByEntryGroupId(entryGroupId, start, end,
+            orderByComparator);
+    }
+
+    /**
+    * Returns the first Запись аудита in the ordered set where entryGroupId = &#63;.
+    *
+    * @param entryGroupId the entry group ID
+    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+    * @return the first matching Запись аудита
+    * @throws ru.akimov.NoSuchAuditEntryException if a matching Запись аудита could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static ru.akimov.model.AuditEntry findByEntryGroupId_First(
+        int entryGroupId,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException,
+            ru.akimov.NoSuchAuditEntryException {
+        return getPersistence()
+                   .findByEntryGroupId_First(entryGroupId, orderByComparator);
+    }
+
+    /**
+    * Returns the first Запись аудита in the ordered set where entryGroupId = &#63;.
+    *
+    * @param entryGroupId the entry group ID
+    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+    * @return the first matching Запись аудита, or <code>null</code> if a matching Запись аудита could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static ru.akimov.model.AuditEntry fetchByEntryGroupId_First(
+        int entryGroupId,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence()
+                   .fetchByEntryGroupId_First(entryGroupId, orderByComparator);
+    }
+
+    /**
+    * Returns the last Запись аудита in the ordered set where entryGroupId = &#63;.
+    *
+    * @param entryGroupId the entry group ID
+    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+    * @return the last matching Запись аудита
+    * @throws ru.akimov.NoSuchAuditEntryException if a matching Запись аудита could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static ru.akimov.model.AuditEntry findByEntryGroupId_Last(
+        int entryGroupId,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException,
+            ru.akimov.NoSuchAuditEntryException {
+        return getPersistence()
+                   .findByEntryGroupId_Last(entryGroupId, orderByComparator);
+    }
+
+    /**
+    * Returns the last Запись аудита in the ordered set where entryGroupId = &#63;.
+    *
+    * @param entryGroupId the entry group ID
+    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+    * @return the last matching Запись аудита, or <code>null</code> if a matching Запись аудита could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static ru.akimov.model.AuditEntry fetchByEntryGroupId_Last(
+        int entryGroupId,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence()
+                   .fetchByEntryGroupId_Last(entryGroupId, orderByComparator);
+    }
+
+    /**
+    * Returns the Запись аудитаs before and after the current Запись аудита in the ordered set where entryGroupId = &#63;.
+    *
+    * @param entryId the primary key of the current Запись аудита
+    * @param entryGroupId the entry group ID
+    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+    * @return the previous, current, and next Запись аудита
+    * @throws ru.akimov.NoSuchAuditEntryException if a Запись аудита with the primary key could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static ru.akimov.model.AuditEntry[] findByEntryGroupId_PrevAndNext(
+        int entryId, int entryGroupId,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException,
+            ru.akimov.NoSuchAuditEntryException {
+        return getPersistence()
+                   .findByEntryGroupId_PrevAndNext(entryId, entryGroupId,
+            orderByComparator);
+    }
+
+    /**
+    * Removes all the Запись аудитаs where entryGroupId = &#63; from the database.
+    *
+    * @param entryGroupId the entry group ID
+    * @throws SystemException if a system exception occurred
+    */
+    public static void removeByEntryGroupId(int entryGroupId)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().removeByEntryGroupId(entryGroupId);
+    }
+
+    /**
+    * Returns the number of Запись аудитаs where entryGroupId = &#63;.
+    *
+    * @param entryGroupId the entry group ID
+    * @return the number of matching Запись аудитаs
+    * @throws SystemException if a system exception occurred
+    */
+    public static int countByEntryGroupId(int entryGroupId)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().countByEntryGroupId(entryGroupId);
+    }
+
+    /**
+    * Caches the Запись аудита in the entity cache if it is enabled.
+    *
+    * @param auditEntry the Запись аудита
     */
     public static void cacheResult(ru.akimov.model.AuditEntry auditEntry) {
         getPersistence().cacheResult(auditEntry);
     }
 
     /**
-    * Caches the audit entries in the entity cache if it is enabled.
+    * Caches the Запись аудитаs in the entity cache if it is enabled.
     *
-    * @param auditEntries the audit entries
+    * @param auditEntries the Запись аудитаs
     */
     public static void cacheResult(
         java.util.List<ru.akimov.model.AuditEntry> auditEntries) {
@@ -118,27 +284,27 @@ public class AuditEntryUtil {
     }
 
     /**
-    * Creates a new audit entry with the primary key. Does not add the audit entry to the database.
+    * Creates a new Запись аудита with the primary key. Does not add the Запись аудита to the database.
     *
-    * @param auditEntryId the primary key for the new audit entry
-    * @return the new audit entry
+    * @param entryId the primary key for the new Запись аудита
+    * @return the new Запись аудита
     */
-    public static ru.akimov.model.AuditEntry create(int auditEntryId) {
-        return getPersistence().create(auditEntryId);
+    public static ru.akimov.model.AuditEntry create(int entryId) {
+        return getPersistence().create(entryId);
     }
 
     /**
-    * Removes the audit entry with the primary key from the database. Also notifies the appropriate model listeners.
+    * Removes the Запись аудита with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param auditEntryId the primary key of the audit entry
-    * @return the audit entry that was removed
-    * @throws ru.akimov.NoSuchAuditEntryException if a audit entry with the primary key could not be found
+    * @param entryId the primary key of the Запись аудита
+    * @return the Запись аудита that was removed
+    * @throws ru.akimov.NoSuchAuditEntryException if a Запись аудита with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.akimov.model.AuditEntry remove(int auditEntryId)
+    public static ru.akimov.model.AuditEntry remove(int entryId)
         throws com.liferay.portal.kernel.exception.SystemException,
             ru.akimov.NoSuchAuditEntryException {
-        return getPersistence().remove(auditEntryId);
+        return getPersistence().remove(entryId);
     }
 
     public static ru.akimov.model.AuditEntry updateImpl(
@@ -148,35 +314,35 @@ public class AuditEntryUtil {
     }
 
     /**
-    * Returns the audit entry with the primary key or throws a {@link ru.akimov.NoSuchAuditEntryException} if it could not be found.
+    * Returns the Запись аудита with the primary key or throws a {@link ru.akimov.NoSuchAuditEntryException} if it could not be found.
     *
-    * @param auditEntryId the primary key of the audit entry
-    * @return the audit entry
-    * @throws ru.akimov.NoSuchAuditEntryException if a audit entry with the primary key could not be found
+    * @param entryId the primary key of the Запись аудита
+    * @return the Запись аудита
+    * @throws ru.akimov.NoSuchAuditEntryException if a Запись аудита with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.akimov.model.AuditEntry findByPrimaryKey(int auditEntryId)
+    public static ru.akimov.model.AuditEntry findByPrimaryKey(int entryId)
         throws com.liferay.portal.kernel.exception.SystemException,
             ru.akimov.NoSuchAuditEntryException {
-        return getPersistence().findByPrimaryKey(auditEntryId);
+        return getPersistence().findByPrimaryKey(entryId);
     }
 
     /**
-    * Returns the audit entry with the primary key or returns <code>null</code> if it could not be found.
+    * Returns the Запись аудита with the primary key or returns <code>null</code> if it could not be found.
     *
-    * @param auditEntryId the primary key of the audit entry
-    * @return the audit entry, or <code>null</code> if a audit entry with the primary key could not be found
+    * @param entryId the primary key of the Запись аудита
+    * @return the Запись аудита, or <code>null</code> if a Запись аудита with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.akimov.model.AuditEntry fetchByPrimaryKey(int auditEntryId)
+    public static ru.akimov.model.AuditEntry fetchByPrimaryKey(int entryId)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getPersistence().fetchByPrimaryKey(auditEntryId);
+        return getPersistence().fetchByPrimaryKey(entryId);
     }
 
     /**
-    * Returns all the audit entries.
+    * Returns all the Запись аудитаs.
     *
-    * @return the audit entries
+    * @return the Запись аудитаs
     * @throws SystemException if a system exception occurred
     */
     public static java.util.List<ru.akimov.model.AuditEntry> findAll()
@@ -185,15 +351,15 @@ public class AuditEntryUtil {
     }
 
     /**
-    * Returns a range of all the audit entries.
+    * Returns a range of all the Запись аудитаs.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param start the lower bound of the range of audit entries
-    * @param end the upper bound of the range of audit entries (not inclusive)
-    * @return the range of audit entries
+    * @param start the lower bound of the range of Запись аудитаs
+    * @param end the upper bound of the range of Запись аудитаs (not inclusive)
+    * @return the range of Запись аудитаs
     * @throws SystemException if a system exception occurred
     */
     public static java.util.List<ru.akimov.model.AuditEntry> findAll(
@@ -203,16 +369,16 @@ public class AuditEntryUtil {
     }
 
     /**
-    * Returns an ordered range of all the audit entries.
+    * Returns an ordered range of all the Запись аудитаs.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param start the lower bound of the range of audit entries
-    * @param end the upper bound of the range of audit entries (not inclusive)
+    * @param start the lower bound of the range of Запись аудитаs
+    * @param end the upper bound of the range of Запись аудитаs (not inclusive)
     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-    * @return the ordered range of audit entries
+    * @return the ordered range of Запись аудитаs
     * @throws SystemException if a system exception occurred
     */
     public static java.util.List<ru.akimov.model.AuditEntry> findAll(
@@ -223,7 +389,7 @@ public class AuditEntryUtil {
     }
 
     /**
-    * Removes all the audit entries from the database.
+    * Removes all the Запись аудитаs from the database.
     *
     * @throws SystemException if a system exception occurred
     */
@@ -233,9 +399,9 @@ public class AuditEntryUtil {
     }
 
     /**
-    * Returns the number of audit entries.
+    * Returns the number of Запись аудитаs.
     *
-    * @return the number of audit entries
+    * @return the number of Запись аудитаs
     * @throws SystemException if a system exception occurred
     */
     public static int countAll()

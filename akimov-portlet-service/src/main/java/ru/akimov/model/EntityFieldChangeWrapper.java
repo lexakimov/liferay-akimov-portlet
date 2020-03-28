@@ -37,8 +37,8 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     public Map<String, Object> getModelAttributes() {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
-        attributes.put("id", getId());
-        attributes.put("auditEntryId", getAuditEntryId());
+        attributes.put("fieldChangeId", getFieldChangeId());
+        attributes.put("entryId", getEntryId());
         attributes.put("fieldName", getFieldName());
         attributes.put("oldValue", getOldValue());
         attributes.put("newValue", getNewValue());
@@ -48,16 +48,16 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
 
     @Override
     public void setModelAttributes(Map<String, Object> attributes) {
-        Integer id = (Integer) attributes.get("id");
+        Integer fieldChangeId = (Integer) attributes.get("fieldChangeId");
 
-        if (id != null) {
-            setId(id);
+        if (fieldChangeId != null) {
+            setFieldChangeId(fieldChangeId);
         }
 
-        Integer auditEntryId = (Integer) attributes.get("auditEntryId");
+        Integer entryId = (Integer) attributes.get("entryId");
 
-        if (auditEntryId != null) {
-            setAuditEntryId(auditEntryId);
+        if (entryId != null) {
+            setEntryId(entryId);
         }
 
         String fieldName = (String) attributes.get("fieldName");
@@ -80,9 +80,9 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     /**
-    * Returns the primary key of this entity field change.
+    * Returns the primary key of this Изменение атрибута сущности.
     *
-    * @return the primary key of this entity field change
+    * @return the primary key of this Изменение атрибута сущности
     */
     @Override
     public int getPrimaryKey() {
@@ -90,9 +90,9 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     /**
-    * Sets the primary key of this entity field change.
+    * Sets the primary key of this Изменение атрибута сущности.
     *
-    * @param primaryKey the primary key of this entity field change
+    * @param primaryKey the primary key of this Изменение атрибута сущности
     */
     @Override
     public void setPrimaryKey(int primaryKey) {
@@ -100,49 +100,49 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     /**
-    * Returns the ID of this entity field change.
+    * Returns the field change ID of this Изменение атрибута сущности.
     *
-    * @return the ID of this entity field change
+    * @return the field change ID of this Изменение атрибута сущности
     */
     @Override
-    public int getId() {
-        return _entityFieldChange.getId();
+    public int getFieldChangeId() {
+        return _entityFieldChange.getFieldChangeId();
     }
 
     /**
-    * Sets the ID of this entity field change.
+    * Sets the field change ID of this Изменение атрибута сущности.
     *
-    * @param id the ID of this entity field change
+    * @param fieldChangeId the field change ID of this Изменение атрибута сущности
     */
     @Override
-    public void setId(int id) {
-        _entityFieldChange.setId(id);
+    public void setFieldChangeId(int fieldChangeId) {
+        _entityFieldChange.setFieldChangeId(fieldChangeId);
     }
 
     /**
-    * Returns the audit entry ID of this entity field change.
+    * Returns the entry ID of this Изменение атрибута сущности.
     *
-    * @return the audit entry ID of this entity field change
+    * @return the entry ID of this Изменение атрибута сущности
     */
     @Override
-    public int getAuditEntryId() {
-        return _entityFieldChange.getAuditEntryId();
+    public int getEntryId() {
+        return _entityFieldChange.getEntryId();
     }
 
     /**
-    * Sets the audit entry ID of this entity field change.
+    * Sets the entry ID of this Изменение атрибута сущности.
     *
-    * @param auditEntryId the audit entry ID of this entity field change
+    * @param entryId the entry ID of this Изменение атрибута сущности
     */
     @Override
-    public void setAuditEntryId(int auditEntryId) {
-        _entityFieldChange.setAuditEntryId(auditEntryId);
+    public void setEntryId(int entryId) {
+        _entityFieldChange.setEntryId(entryId);
     }
 
     /**
-    * Returns the field name of this entity field change.
+    * Returns the field name of this Изменение атрибута сущности.
     *
-    * @return the field name of this entity field change
+    * @return the field name of this Изменение атрибута сущности
     */
     @Override
     public java.lang.String getFieldName() {
@@ -150,9 +150,9 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     /**
-    * Sets the field name of this entity field change.
+    * Sets the field name of this Изменение атрибута сущности.
     *
-    * @param fieldName the field name of this entity field change
+    * @param fieldName the field name of this Изменение атрибута сущности
     */
     @Override
     public void setFieldName(java.lang.String fieldName) {
@@ -160,9 +160,9 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     /**
-    * Returns the old value of this entity field change.
+    * Returns the old value of this Изменение атрибута сущности.
     *
-    * @return the old value of this entity field change
+    * @return the old value of this Изменение атрибута сущности
     */
     @Override
     public java.lang.String getOldValue() {
@@ -170,9 +170,9 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     /**
-    * Sets the old value of this entity field change.
+    * Sets the old value of this Изменение атрибута сущности.
     *
-    * @param oldValue the old value of this entity field change
+    * @param oldValue the old value of this Изменение атрибута сущности
     */
     @Override
     public void setOldValue(java.lang.String oldValue) {
@@ -180,9 +180,9 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     /**
-    * Returns the new value of this entity field change.
+    * Returns the new value of this Изменение атрибута сущности.
     *
-    * @return the new value of this entity field change
+    * @return the new value of this Изменение атрибута сущности
     */
     @Override
     public java.lang.String getNewValue() {
@@ -190,9 +190,9 @@ public class EntityFieldChangeWrapper implements EntityFieldChange,
     }
 
     /**
-    * Sets the new value of this entity field change.
+    * Sets the new value of this Изменение атрибута сущности.
     *
-    * @param newValue the new value of this entity field change
+    * @param newValue the new value of this Изменение атрибута сущности
     */
     @Override
     public void setNewValue(java.lang.String newValue) {

@@ -30,14 +30,14 @@ public interface AuditEntryLocalService extends BaseLocalService,
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify or reference this interface directly. Always use {@link AuditEntryLocalServiceUtil} to access the audit entry local service. Add custom service methods to {@link ru.akimov.service.impl.AuditEntryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+     * Never modify or reference this interface directly. Always use {@link AuditEntryLocalServiceUtil} to access the Запись аудита local service. Add custom service methods to {@link ru.akimov.service.impl.AuditEntryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
      */
 
     /**
-    * Adds the audit entry to the database. Also notifies the appropriate model listeners.
+    * Adds the Запись аудита to the database. Also notifies the appropriate model listeners.
     *
-    * @param auditEntry the audit entry
-    * @return the audit entry that was added
+    * @param auditEntry the Запись аудита
+    * @return the Запись аудита that was added
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
@@ -46,31 +46,31 @@ public interface AuditEntryLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Creates a new audit entry with the primary key. Does not add the audit entry to the database.
+    * Creates a new Запись аудита with the primary key. Does not add the Запись аудита to the database.
     *
-    * @param auditEntryId the primary key for the new audit entry
-    * @return the new audit entry
+    * @param entryId the primary key for the new Запись аудита
+    * @return the new Запись аудита
     */
-    public ru.akimov.model.AuditEntry createAuditEntry(int auditEntryId);
+    public ru.akimov.model.AuditEntry createAuditEntry(int entryId);
 
     /**
-    * Deletes the audit entry with the primary key from the database. Also notifies the appropriate model listeners.
+    * Deletes the Запись аудита with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param auditEntryId the primary key of the audit entry
-    * @return the audit entry that was removed
-    * @throws PortalException if a audit entry with the primary key could not be found
+    * @param entryId the primary key of the Запись аудита
+    * @return the Запись аудита that was removed
+    * @throws PortalException if a Запись аудита with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-    public ru.akimov.model.AuditEntry deleteAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry deleteAuditEntry(int entryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Deletes the audit entry from the database. Also notifies the appropriate model listeners.
+    * Deletes the Запись аудита from the database. Also notifies the appropriate model listeners.
     *
-    * @param auditEntry the audit entry
-    * @return the audit entry that was removed
+    * @param auditEntry the Запись аудита
+    * @return the Запись аудита that was removed
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
@@ -156,19 +156,19 @@ public interface AuditEntryLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public ru.akimov.model.AuditEntry fetchAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry fetchAuditEntry(int entryId)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Returns the audit entry with the primary key.
+    * Returns the Запись аудита with the primary key.
     *
-    * @param auditEntryId the primary key of the audit entry
-    * @return the audit entry
-    * @throws PortalException if a audit entry with the primary key could not be found
+    * @param entryId the primary key of the Запись аудита
+    * @return the Запись аудита
+    * @throws PortalException if a Запись аудита with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public ru.akimov.model.AuditEntry getAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry getAuditEntry(int entryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException;
 
@@ -180,15 +180,15 @@ public interface AuditEntryLocalService extends BaseLocalService,
             com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Returns a range of all the audit entries.
+    * Returns a range of all the Запись аудитаs.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AuditEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param start the lower bound of the range of audit entries
-    * @param end the upper bound of the range of audit entries (not inclusive)
-    * @return the range of audit entries
+    * @param start the lower bound of the range of Запись аудитаs
+    * @param end the upper bound of the range of Запись аудитаs (not inclusive)
+    * @return the range of Запись аудитаs
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -197,9 +197,9 @@ public interface AuditEntryLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Returns the number of audit entries.
+    * Returns the number of Запись аудитаs.
     *
-    * @return the number of audit entries
+    * @return the number of Запись аудитаs
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -207,10 +207,10 @@ public interface AuditEntryLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Updates the audit entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+    * Updates the Запись аудита in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
     *
-    * @param auditEntry the audit entry
-    * @return the audit entry that was updated
+    * @param auditEntry the Запись аудита
+    * @return the Запись аудита that was updated
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
@@ -238,6 +238,14 @@ public interface AuditEntryLocalService extends BaseLocalService,
         throws java.lang.Throwable;
 
     /**
+    * Создать новую запись аудита.
+    */
+    public ru.akimov.model.AuditEntry create(int entityId,
+        java.lang.String entityType, java.lang.String auditType,
+        java.lang.String metadata)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
     * Удалить записи истории для сущности.
     *
     * @param entityType тип сущности (any case)
@@ -245,5 +253,10 @@ public interface AuditEntryLocalService extends BaseLocalService,
     * @throws SystemException
     */
     public void deleteFor(java.lang.String entityType, int entityId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<ru.akimov.model.AuditEntry> getByEntryGroupId(
+        int entryGroupId)
         throws com.liferay.portal.kernel.exception.SystemException;
 }

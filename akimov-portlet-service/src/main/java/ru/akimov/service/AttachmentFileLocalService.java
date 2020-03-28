@@ -30,14 +30,14 @@ public interface AttachmentFileLocalService extends BaseLocalService,
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify or reference this interface directly. Always use {@link AttachmentFileLocalServiceUtil} to access the attachment file local service. Add custom service methods to {@link ru.akimov.service.impl.AttachmentFileLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+     * Never modify or reference this interface directly. Always use {@link AttachmentFileLocalServiceUtil} to access the Вложения local service. Add custom service methods to {@link ru.akimov.service.impl.AttachmentFileLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
      */
 
     /**
-    * Adds the attachment file to the database. Also notifies the appropriate model listeners.
+    * Adds the Вложения to the database. Also notifies the appropriate model listeners.
     *
-    * @param attachmentFile the attachment file
-    * @return the attachment file that was added
+    * @param attachmentFile the Вложения
+    * @return the Вложения that was added
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
@@ -46,19 +46,19 @@ public interface AttachmentFileLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Creates a new attachment file with the primary key. Does not add the attachment file to the database.
+    * Creates a new Вложения with the primary key. Does not add the Вложения to the database.
     *
-    * @param id the primary key for the new attachment file
-    * @return the new attachment file
+    * @param id the primary key for the new Вложения
+    * @return the new Вложения
     */
     public ru.akimov.model.AttachmentFile createAttachmentFile(int id);
 
     /**
-    * Deletes the attachment file with the primary key from the database. Also notifies the appropriate model listeners.
+    * Deletes the Вложения with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param id the primary key of the attachment file
-    * @return the attachment file that was removed
-    * @throws PortalException if a attachment file with the primary key could not be found
+    * @param id the primary key of the Вложения
+    * @return the Вложения that was removed
+    * @throws PortalException if a Вложения with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
@@ -67,10 +67,10 @@ public interface AttachmentFileLocalService extends BaseLocalService,
             com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Deletes the attachment file from the database. Also notifies the appropriate model listeners.
+    * Deletes the Вложения from the database. Also notifies the appropriate model listeners.
     *
-    * @param attachmentFile the attachment file
-    * @return the attachment file that was removed
+    * @param attachmentFile the Вложения
+    * @return the Вложения that was removed
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
@@ -160,11 +160,11 @@ public interface AttachmentFileLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Returns the attachment file with the primary key.
+    * Returns the Вложения with the primary key.
     *
-    * @param id the primary key of the attachment file
-    * @return the attachment file
-    * @throws PortalException if a attachment file with the primary key could not be found
+    * @param id the primary key of the Вложения
+    * @return the Вложения
+    * @throws PortalException if a Вложения with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -180,15 +180,15 @@ public interface AttachmentFileLocalService extends BaseLocalService,
             com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Returns a range of all the attachment files.
+    * Returns a range of all the Вложенияs.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.AttachmentFileModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param start the lower bound of the range of attachment files
-    * @param end the upper bound of the range of attachment files (not inclusive)
-    * @return the range of attachment files
+    * @param start the lower bound of the range of Вложенияs
+    * @param end the upper bound of the range of Вложенияs (not inclusive)
+    * @return the range of Вложенияs
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -197,9 +197,9 @@ public interface AttachmentFileLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Returns the number of attachment files.
+    * Returns the number of Вложенияs.
     *
-    * @return the number of attachment files
+    * @return the number of Вложенияs
     * @throws SystemException if a system exception occurred
     */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -207,10 +207,10 @@ public interface AttachmentFileLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
-    * Updates the attachment file in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+    * Updates the Вложения in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
     *
-    * @param attachmentFile the attachment file
-    * @return the attachment file that was updated
+    * @param attachmentFile the Вложения
+    * @return the Вложения that was updated
     * @throws SystemException if a system exception occurred
     */
     @com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)

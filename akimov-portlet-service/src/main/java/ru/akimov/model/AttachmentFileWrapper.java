@@ -104,9 +104,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Returns the primary key of this attachment file.
+    * Returns the primary key of this Вложения.
     *
-    * @return the primary key of this attachment file
+    * @return the primary key of this Вложения
     */
     @Override
     public int getPrimaryKey() {
@@ -114,9 +114,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Sets the primary key of this attachment file.
+    * Sets the primary key of this Вложения.
     *
-    * @param primaryKey the primary key of this attachment file
+    * @param primaryKey the primary key of this Вложения
     */
     @Override
     public void setPrimaryKey(int primaryKey) {
@@ -124,9 +124,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Returns the ID of this attachment file.
+    * Returns the ID of this Вложения.
     *
-    * @return the ID of this attachment file
+    * @return the ID of this Вложения
     */
     @Override
     public int getId() {
@@ -134,9 +134,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Sets the ID of this attachment file.
+    * Sets the ID of this Вложения.
     *
-    * @param id the ID of this attachment file
+    * @param id the ID of this Вложения
     */
     @Override
     public void setId(int id) {
@@ -144,9 +144,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Returns the file name of this attachment file.
+    * Returns the file name of this Вложения.
     *
-    * @return the file name of this attachment file
+    * @return the file name of this Вложения
     */
     @Override
     public java.lang.String getFileName() {
@@ -154,9 +154,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Sets the file name of this attachment file.
+    * Sets the file name of this Вложения.
     *
-    * @param fileName the file name of this attachment file
+    * @param fileName the file name of this Вложения
     */
     @Override
     public void setFileName(java.lang.String fileName) {
@@ -164,9 +164,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Returns the extension of this attachment file.
+    * Returns the extension of this Вложения.
     *
-    * @return the extension of this attachment file
+    * @return the extension of this Вложения
     */
     @Override
     public java.lang.String getExtension() {
@@ -174,9 +174,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Sets the extension of this attachment file.
+    * Sets the extension of this Вложения.
     *
-    * @param extension the extension of this attachment file
+    * @param extension the extension of this Вложения
     */
     @Override
     public void setExtension(java.lang.String extension) {
@@ -184,9 +184,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Returns the size of this attachment file.
+    * Returns the size of this Вложения.
     *
-    * @return the size of this attachment file
+    * @return the size of this Вложения
     */
     @Override
     public int getSize() {
@@ -194,9 +194,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Sets the size of this attachment file.
+    * Sets the size of this Вложения.
     *
-    * @param size the size of this attachment file
+    * @param size the size of this Вложения
     */
     @Override
     public void setSize(int size) {
@@ -204,9 +204,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Returns the mime type of this attachment file.
+    * Returns the mime type of this Вложения.
     *
-    * @return the mime type of this attachment file
+    * @return the mime type of this Вложения
     */
     @Override
     public java.lang.String getMimeType() {
@@ -214,9 +214,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Sets the mime type of this attachment file.
+    * Sets the mime type of this Вложения.
     *
-    * @param mimeType the mime type of this attachment file
+    * @param mimeType the mime type of this Вложения
     */
     @Override
     public void setMimeType(java.lang.String mimeType) {
@@ -224,9 +224,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Returns the data of this attachment file.
+    * Returns the data of this Вложения.
     *
-    * @return the data of this attachment file
+    * @return the data of this Вложения
     */
     @Override
     public java.sql.Blob getData() {
@@ -234,9 +234,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Sets the data of this attachment file.
+    * Sets the data of this Вложения.
     *
-    * @param data the data of this attachment file
+    * @param data the data of this Вложения
     */
     @Override
     public void setData(java.sql.Blob data) {
@@ -244,9 +244,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Returns the uploaded of this attachment file.
+    * Returns the uploaded of this Вложения.
     *
-    * @return the uploaded of this attachment file
+    * @return the uploaded of this Вложения
     */
     @Override
     public java.util.Date getUploaded() {
@@ -254,9 +254,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Sets the uploaded of this attachment file.
+    * Sets the uploaded of this Вложения.
     *
-    * @param uploaded the uploaded of this attachment file
+    * @param uploaded the uploaded of this Вложения
     */
     @Override
     public void setUploaded(java.util.Date uploaded) {
@@ -264,9 +264,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Returns the user ID of this attachment file.
+    * Returns the user ID of this Вложения.
     *
-    * @return the user ID of this attachment file
+    * @return the user ID of this Вложения
     */
     @Override
     public int getUserId() {
@@ -274,9 +274,9 @@ public class AttachmentFileWrapper implements AttachmentFile,
     }
 
     /**
-    * Sets the user ID of this attachment file.
+    * Sets the user ID of this Вложения.
     *
-    * @param userId the user ID of this attachment file
+    * @param userId the user ID of this Вложения
     */
     @Override
     public void setUserId(int userId) {

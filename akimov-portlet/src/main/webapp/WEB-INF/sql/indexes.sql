@@ -1,3 +1,3 @@
-create index IX_33933AA9 on akimov_attachment_files (uuid_);
+create index IX_4FE07797 on akimov_audit_action_entries (entryGroupId);
 
-create index IX_D8BF589C on akimov_audit_field_changes (auditEntryId);
+create index IX_F2B81907 on akimov_audit_field_changes (entryId);

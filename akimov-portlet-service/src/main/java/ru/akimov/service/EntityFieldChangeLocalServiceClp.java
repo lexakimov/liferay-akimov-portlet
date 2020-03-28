@@ -45,6 +45,8 @@ public class EntityFieldChangeLocalServiceClp
     private String[] _methodParameterTypes16;
     private String _methodName17;
     private String[] _methodParameterTypes17;
+    private String _methodName19;
+    private String[] _methodParameterTypes19;
 
     public EntityFieldChangeLocalServiceClp(
         InvokableLocalService invokableLocalService) {
@@ -139,6 +141,10 @@ public class EntityFieldChangeLocalServiceClp
         _methodName17 = "setBeanIdentifier";
 
         _methodParameterTypes17 = new String[] { "java.lang.String" };
+
+        _methodName19 = "getByEntryId";
+
+        _methodParameterTypes19 = new String[] { "int" };
     }
 
     @Override
@@ -171,12 +177,13 @@ public class EntityFieldChangeLocalServiceClp
     }
 
     @Override
-    public ru.akimov.model.EntityFieldChange createEntityFieldChange(int id) {
+    public ru.akimov.model.EntityFieldChange createEntityFieldChange(
+        int fieldChangeId) {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName1,
-                    _methodParameterTypes1, new Object[] { id });
+                    _methodParameterTypes1, new Object[] { fieldChangeId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -192,14 +199,15 @@ public class EntityFieldChangeLocalServiceClp
     }
 
     @Override
-    public ru.akimov.model.EntityFieldChange deleteEntityFieldChange(int id)
+    public ru.akimov.model.EntityFieldChange deleteEntityFieldChange(
+        int fieldChangeId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName2,
-                    _methodParameterTypes2, new Object[] { id });
+                    _methodParameterTypes2, new Object[] { fieldChangeId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -437,13 +445,14 @@ public class EntityFieldChangeLocalServiceClp
     }
 
     @Override
-    public ru.akimov.model.EntityFieldChange fetchEntityFieldChange(int id)
+    public ru.akimov.model.EntityFieldChange fetchEntityFieldChange(
+        int fieldChangeId)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName10,
-                    _methodParameterTypes10, new Object[] { id });
+                    _methodParameterTypes10, new Object[] { fieldChangeId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -463,14 +472,15 @@ public class EntityFieldChangeLocalServiceClp
     }
 
     @Override
-    public ru.akimov.model.EntityFieldChange getEntityFieldChange(int id)
+    public ru.akimov.model.EntityFieldChange getEntityFieldChange(
+        int fieldChangeId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName11,
-                    _methodParameterTypes11, new Object[] { id });
+                    _methodParameterTypes11, new Object[] { fieldChangeId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -652,5 +662,31 @@ public class EntityFieldChangeLocalServiceClp
         java.lang.String[] parameterTypes, java.lang.Object[] arguments)
         throws java.lang.Throwable {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public java.util.List<ru.akimov.model.EntityFieldChange> getByEntryId(
+        int entryId) throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName19,
+                    _methodParameterTypes19, new Object[] { entryId });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.util.List<ru.akimov.model.EntityFieldChange>) ClpSerializer.translateOutput(returnObj);
     }
 }

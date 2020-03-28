@@ -23,7 +23,7 @@ public abstract class AttachmentFileBaseImpl extends AttachmentFileModelImpl
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify or reference this class directly. All methods that expect a attachment file model instance should use the {@link AttachmentFile} interface instead.
+     * Never modify or reference this class directly. All methods that expect a Вложения model instance should use the {@link AttachmentFile} interface instead.
      */
     @Override
     public void persist() throws SystemException {

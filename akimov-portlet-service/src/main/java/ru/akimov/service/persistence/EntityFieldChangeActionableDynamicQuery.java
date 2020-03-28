@@ -19,6 +19,6 @@ public abstract class EntityFieldChangeActionableDynamicQuery
 
         setClassLoader(ru.akimov.service.ClpSerializer.class.getClassLoader());
 
-        setPrimaryKeyPropertyName("id");
+        setPrimaryKeyPropertyName("fieldChangeId");
     }
 }

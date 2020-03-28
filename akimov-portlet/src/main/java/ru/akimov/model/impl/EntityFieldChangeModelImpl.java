@@ -36,20 +36,20 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify or reference this class directly. All methods that expect a entity field change model instance should use the {@link ru.akimov.model.EntityFieldChange} interface instead.
+     * Never modify or reference this class directly. All methods that expect a Изменение атрибута сущности model instance should use the {@link ru.akimov.model.EntityFieldChange} interface instead.
      */
     public static final String TABLE_NAME = "akimov_audit_field_changes";
     public static final Object[][] TABLE_COLUMNS = {
-            { "id_", Types.INTEGER },
-            { "auditEntryId", Types.INTEGER },
+            { "fieldChangeId", Types.INTEGER },
+            { "entryId", Types.INTEGER },
             { "fieldName", Types.VARCHAR },
             { "oldValue", Types.VARCHAR },
             { "newValue", Types.VARCHAR }
         };
-    public static final String TABLE_SQL_CREATE = "create table akimov_audit_field_changes (id_ INTEGER not null primary key,auditEntryId INTEGER,fieldName VARCHAR(75) null,oldValue VARCHAR(75) null,newValue VARCHAR(75) null)";
+    public static final String TABLE_SQL_CREATE = "create table akimov_audit_field_changes (fieldChangeId INTEGER not null primary key,entryId INTEGER,fieldName VARCHAR(75) null,oldValue VARCHAR(75) null,newValue VARCHAR(75) null)";
     public static final String TABLE_SQL_DROP = "drop table akimov_audit_field_changes";
-    public static final String ORDER_BY_JPQL = " ORDER BY entityFieldChange.id ASC";
-    public static final String ORDER_BY_SQL = " ORDER BY akimov_audit_field_changes.id_ ASC";
+    public static final String ORDER_BY_JPQL = " ORDER BY entityFieldChange.fieldChangeId ASC";
+    public static final String ORDER_BY_SQL = " ORDER BY akimov_audit_field_changes.fieldChangeId ASC";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
     public static final String TX_MANAGER = "liferayTransactionManager";
@@ -62,18 +62,18 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
                 "value.object.column.bitmask.enabled.ru.akimov.model.EntityFieldChange"),
             true);
-    public static long AUDITENTRYID_COLUMN_BITMASK = 1L;
-    public static long ID_COLUMN_BITMASK = 2L;
+    public static long ENTRYID_COLUMN_BITMASK = 1L;
+    public static long FIELDCHANGEID_COLUMN_BITMASK = 2L;
     public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
                 "lock.expiration.time.ru.akimov.model.EntityFieldChange"));
     private static ClassLoader _classLoader = EntityFieldChange.class.getClassLoader();
     private static Class<?>[] _escapedModelInterfaces = new Class[] {
             EntityFieldChange.class
         };
-    private int _id;
-    private int _auditEntryId;
-    private int _originalAuditEntryId;
-    private boolean _setOriginalAuditEntryId;
+    private int _fieldChangeId;
+    private int _entryId;
+    private int _originalEntryId;
+    private boolean _setOriginalEntryId;
     private String _fieldName;
     private String _oldValue;
     private String _newValue;
@@ -85,17 +85,17 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
 
     @Override
     public int getPrimaryKey() {
-        return _id;
+        return _fieldChangeId;
     }
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        setId(primaryKey);
+        setFieldChangeId(primaryKey);
     }
 
     @Override
     public Serializable getPrimaryKeyObj() {
-        return _id;
+        return _fieldChangeId;
     }
 
     @Override
@@ -117,8 +117,8 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     public Map<String, Object> getModelAttributes() {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
-        attributes.put("id", getId());
-        attributes.put("auditEntryId", getAuditEntryId());
+        attributes.put("fieldChangeId", getFieldChangeId());
+        attributes.put("entryId", getEntryId());
         attributes.put("fieldName", getFieldName());
         attributes.put("oldValue", getOldValue());
         attributes.put("newValue", getNewValue());
@@ -128,16 +128,16 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
 
     @Override
     public void setModelAttributes(Map<String, Object> attributes) {
-        Integer id = (Integer) attributes.get("id");
+        Integer fieldChangeId = (Integer) attributes.get("fieldChangeId");
 
-        if (id != null) {
-            setId(id);
+        if (fieldChangeId != null) {
+            setFieldChangeId(fieldChangeId);
         }
 
-        Integer auditEntryId = (Integer) attributes.get("auditEntryId");
+        Integer entryId = (Integer) attributes.get("entryId");
 
-        if (auditEntryId != null) {
-            setAuditEntryId(auditEntryId);
+        if (entryId != null) {
+            setEntryId(entryId);
         }
 
         String fieldName = (String) attributes.get("fieldName");
@@ -160,35 +160,35 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     }
 
     @Override
-    public int getId() {
-        return _id;
+    public int getFieldChangeId() {
+        return _fieldChangeId;
     }
 
     @Override
-    public void setId(int id) {
-        _id = id;
+    public void setFieldChangeId(int fieldChangeId) {
+        _fieldChangeId = fieldChangeId;
     }
 
     @Override
-    public int getAuditEntryId() {
-        return _auditEntryId;
+    public int getEntryId() {
+        return _entryId;
     }
 
     @Override
-    public void setAuditEntryId(int auditEntryId) {
-        _columnBitmask |= AUDITENTRYID_COLUMN_BITMASK;
+    public void setEntryId(int entryId) {
+        _columnBitmask |= ENTRYID_COLUMN_BITMASK;
 
-        if (!_setOriginalAuditEntryId) {
-            _setOriginalAuditEntryId = true;
+        if (!_setOriginalEntryId) {
+            _setOriginalEntryId = true;
 
-            _originalAuditEntryId = _auditEntryId;
+            _originalEntryId = _entryId;
         }
 
-        _auditEntryId = auditEntryId;
+        _entryId = entryId;
     }
 
-    public int getOriginalAuditEntryId() {
-        return _originalAuditEntryId;
+    public int getOriginalEntryId() {
+        return _originalEntryId;
     }
 
     @Override
@@ -251,8 +251,8 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     public Object clone() {
         EntityFieldChangeImpl entityFieldChangeImpl = new EntityFieldChangeImpl();
 
-        entityFieldChangeImpl.setId(getId());
-        entityFieldChangeImpl.setAuditEntryId(getAuditEntryId());
+        entityFieldChangeImpl.setFieldChangeId(getFieldChangeId());
+        entityFieldChangeImpl.setEntryId(getEntryId());
         entityFieldChangeImpl.setFieldName(getFieldName());
         entityFieldChangeImpl.setOldValue(getOldValue());
         entityFieldChangeImpl.setNewValue(getNewValue());
@@ -305,9 +305,9 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     public void resetOriginalValues() {
         EntityFieldChangeModelImpl entityFieldChangeModelImpl = this;
 
-        entityFieldChangeModelImpl._originalAuditEntryId = entityFieldChangeModelImpl._auditEntryId;
+        entityFieldChangeModelImpl._originalEntryId = entityFieldChangeModelImpl._entryId;
 
-        entityFieldChangeModelImpl._setOriginalAuditEntryId = false;
+        entityFieldChangeModelImpl._setOriginalEntryId = false;
 
         entityFieldChangeModelImpl._columnBitmask = 0;
     }
@@ -316,9 +316,9 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     public CacheModel<EntityFieldChange> toCacheModel() {
         EntityFieldChangeCacheModel entityFieldChangeCacheModel = new EntityFieldChangeCacheModel();
 
-        entityFieldChangeCacheModel.id = getId();
+        entityFieldChangeCacheModel.fieldChangeId = getFieldChangeId();
 
-        entityFieldChangeCacheModel.auditEntryId = getAuditEntryId();
+        entityFieldChangeCacheModel.entryId = getEntryId();
 
         entityFieldChangeCacheModel.fieldName = getFieldName();
 
@@ -351,10 +351,10 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
     public String toString() {
         StringBundler sb = new StringBundler(11);
 
-        sb.append("{id=");
-        sb.append(getId());
-        sb.append(", auditEntryId=");
-        sb.append(getAuditEntryId());
+        sb.append("{fieldChangeId=");
+        sb.append(getFieldChangeId());
+        sb.append(", entryId=");
+        sb.append(getEntryId());
         sb.append(", fieldName=");
         sb.append(getFieldName());
         sb.append(", oldValue=");
@@ -375,12 +375,12 @@ public class EntityFieldChangeModelImpl extends BaseModelImpl<EntityFieldChange>
         sb.append("</model-name>");
 
         sb.append(
-            "<column><column-name>id</column-name><column-value><![CDATA[");
-        sb.append(getId());
+            "<column><column-name>fieldChangeId</column-name><column-value><![CDATA[");
+        sb.append(getFieldChangeId());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>auditEntryId</column-name><column-value><![CDATA[");
-        sb.append(getAuditEntryId());
+            "<column><column-name>entryId</column-name><column-value><![CDATA[");
+        sb.append(getEntryId());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>fieldName</column-name><column-value><![CDATA[");

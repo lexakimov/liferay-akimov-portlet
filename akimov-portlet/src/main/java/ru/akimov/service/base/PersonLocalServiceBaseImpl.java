@@ -21,6 +21,7 @@ import ru.akimov.model.Person;
 
 import ru.akimov.service.PersonLocalService;
 import ru.akimov.service.persistence.AttachmentFilePersistence;
+import ru.akimov.service.persistence.AuditEntryGroupPersistence;
 import ru.akimov.service.persistence.AuditEntryPersistence;
 import ru.akimov.service.persistence.EntityFieldChangePersistence;
 import ru.akimov.service.persistence.FooPersistence;
@@ -54,6 +55,10 @@ public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     protected ru.akimov.service.AuditEntryLocalService auditEntryLocalService;
     @BeanReference(type = AuditEntryPersistence.class)
     protected AuditEntryPersistence auditEntryPersistence;
+    @BeanReference(type = ru.akimov.service.AuditEntryGroupLocalService.class)
+    protected ru.akimov.service.AuditEntryGroupLocalService auditEntryGroupLocalService;
+    @BeanReference(type = AuditEntryGroupPersistence.class)
+    protected AuditEntryGroupPersistence auditEntryGroupPersistence;
     @BeanReference(type = ru.akimov.service.EntityFieldChangeLocalService.class)
     protected ru.akimov.service.EntityFieldChangeLocalService entityFieldChangeLocalService;
     @BeanReference(type = EntityFieldChangePersistence.class)
@@ -299,18 +304,18 @@ public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     }
 
     /**
-     * Returns the attachment file local service.
+     * Returns the Вложения local service.
      *
-     * @return the attachment file local service
+     * @return the Вложения local service
      */
     public ru.akimov.service.AttachmentFileLocalService getAttachmentFileLocalService() {
         return attachmentFileLocalService;
     }
 
     /**
-     * Sets the attachment file local service.
+     * Sets the Вложения local service.
      *
-     * @param attachmentFileLocalService the attachment file local service
+     * @param attachmentFileLocalService the Вложения local service
      */
     public void setAttachmentFileLocalService(
         ru.akimov.service.AttachmentFileLocalService attachmentFileLocalService) {
@@ -318,18 +323,18 @@ public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     }
 
     /**
-     * Returns the attachment file persistence.
+     * Returns the Вложения persistence.
      *
-     * @return the attachment file persistence
+     * @return the Вложения persistence
      */
     public AttachmentFilePersistence getAttachmentFilePersistence() {
         return attachmentFilePersistence;
     }
 
     /**
-     * Sets the attachment file persistence.
+     * Sets the Вложения persistence.
      *
-     * @param attachmentFilePersistence the attachment file persistence
+     * @param attachmentFilePersistence the Вложения persistence
      */
     public void setAttachmentFilePersistence(
         AttachmentFilePersistence attachmentFilePersistence) {
@@ -337,18 +342,18 @@ public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     }
 
     /**
-     * Returns the audit entry local service.
+     * Returns the Запись аудита local service.
      *
-     * @return the audit entry local service
+     * @return the Запись аудита local service
      */
     public ru.akimov.service.AuditEntryLocalService getAuditEntryLocalService() {
         return auditEntryLocalService;
     }
 
     /**
-     * Sets the audit entry local service.
+     * Sets the Запись аудита local service.
      *
-     * @param auditEntryLocalService the audit entry local service
+     * @param auditEntryLocalService the Запись аудита local service
      */
     public void setAuditEntryLocalService(
         ru.akimov.service.AuditEntryLocalService auditEntryLocalService) {
@@ -356,18 +361,18 @@ public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     }
 
     /**
-     * Returns the audit entry persistence.
+     * Returns the Запись аудита persistence.
      *
-     * @return the audit entry persistence
+     * @return the Запись аудита persistence
      */
     public AuditEntryPersistence getAuditEntryPersistence() {
         return auditEntryPersistence;
     }
 
     /**
-     * Sets the audit entry persistence.
+     * Sets the Запись аудита persistence.
      *
-     * @param auditEntryPersistence the audit entry persistence
+     * @param auditEntryPersistence the Запись аудита persistence
      */
     public void setAuditEntryPersistence(
         AuditEntryPersistence auditEntryPersistence) {
@@ -375,18 +380,56 @@ public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     }
 
     /**
-     * Returns the entity field change local service.
+     * Returns the Группа записей аудита local service.
      *
-     * @return the entity field change local service
+     * @return the Группа записей аудита local service
+     */
+    public ru.akimov.service.AuditEntryGroupLocalService getAuditEntryGroupLocalService() {
+        return auditEntryGroupLocalService;
+    }
+
+    /**
+     * Sets the Группа записей аудита local service.
+     *
+     * @param auditEntryGroupLocalService the Группа записей аудита local service
+     */
+    public void setAuditEntryGroupLocalService(
+        ru.akimov.service.AuditEntryGroupLocalService auditEntryGroupLocalService) {
+        this.auditEntryGroupLocalService = auditEntryGroupLocalService;
+    }
+
+    /**
+     * Returns the Группа записей аудита persistence.
+     *
+     * @return the Группа записей аудита persistence
+     */
+    public AuditEntryGroupPersistence getAuditEntryGroupPersistence() {
+        return auditEntryGroupPersistence;
+    }
+
+    /**
+     * Sets the Группа записей аудита persistence.
+     *
+     * @param auditEntryGroupPersistence the Группа записей аудита persistence
+     */
+    public void setAuditEntryGroupPersistence(
+        AuditEntryGroupPersistence auditEntryGroupPersistence) {
+        this.auditEntryGroupPersistence = auditEntryGroupPersistence;
+    }
+
+    /**
+     * Returns the Изменение атрибута сущности local service.
+     *
+     * @return the Изменение атрибута сущности local service
      */
     public ru.akimov.service.EntityFieldChangeLocalService getEntityFieldChangeLocalService() {
         return entityFieldChangeLocalService;
     }
 
     /**
-     * Sets the entity field change local service.
+     * Sets the Изменение атрибута сущности local service.
      *
-     * @param entityFieldChangeLocalService the entity field change local service
+     * @param entityFieldChangeLocalService the Изменение атрибута сущности local service
      */
     public void setEntityFieldChangeLocalService(
         ru.akimov.service.EntityFieldChangeLocalService entityFieldChangeLocalService) {
@@ -394,18 +437,18 @@ public abstract class PersonLocalServiceBaseImpl extends BaseLocalServiceImpl
     }
 
     /**
-     * Returns the entity field change persistence.
+     * Returns the Изменение атрибута сущности persistence.
      *
-     * @return the entity field change persistence
+     * @return the Изменение атрибута сущности persistence
      */
     public EntityFieldChangePersistence getEntityFieldChangePersistence() {
         return entityFieldChangePersistence;
     }
 
     /**
-     * Sets the entity field change persistence.
+     * Sets the Изменение атрибута сущности persistence.
      *
-     * @param entityFieldChangePersistence the entity field change persistence
+     * @param entityFieldChangePersistence the Изменение атрибута сущности persistence
      */
     public void setEntityFieldChangePersistence(
         EntityFieldChangePersistence entityFieldChangePersistence) {

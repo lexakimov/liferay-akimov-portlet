@@ -3,7 +3,6 @@ package ru.akimov.model;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,14 +36,11 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     public Map<String, Object> getModelAttributes() {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
-        attributes.put("auditEntryId", getAuditEntryId());
+        attributes.put("entryId", getEntryId());
+        attributes.put("entryGroupId", getEntryGroupId());
         attributes.put("auditType", getAuditType());
         attributes.put("entityType", getEntityType());
         attributes.put("entityId", getEntityId());
-        attributes.put("companyId", getCompanyId());
-        attributes.put("userId", getUserId());
-        attributes.put("userName", getUserName());
-        attributes.put("dateOfChange", getDateOfChange());
         attributes.put("metadata", getMetadata());
 
         return attributes;
@@ -52,10 +48,16 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
 
     @Override
     public void setModelAttributes(Map<String, Object> attributes) {
-        Integer auditEntryId = (Integer) attributes.get("auditEntryId");
+        Integer entryId = (Integer) attributes.get("entryId");
 
-        if (auditEntryId != null) {
-            setAuditEntryId(auditEntryId);
+        if (entryId != null) {
+            setEntryId(entryId);
+        }
+
+        Integer entryGroupId = (Integer) attributes.get("entryGroupId");
+
+        if (entryGroupId != null) {
+            setEntryGroupId(entryGroupId);
         }
 
         String auditType = (String) attributes.get("auditType");
@@ -76,30 +78,6 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
             setEntityId(entityId);
         }
 
-        Long companyId = (Long) attributes.get("companyId");
-
-        if (companyId != null) {
-            setCompanyId(companyId);
-        }
-
-        Long userId = (Long) attributes.get("userId");
-
-        if (userId != null) {
-            setUserId(userId);
-        }
-
-        String userName = (String) attributes.get("userName");
-
-        if (userName != null) {
-            setUserName(userName);
-        }
-
-        Date dateOfChange = (Date) attributes.get("dateOfChange");
-
-        if (dateOfChange != null) {
-            setDateOfChange(dateOfChange);
-        }
-
         String metadata = (String) attributes.get("metadata");
 
         if (metadata != null) {
@@ -108,9 +86,9 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Returns the primary key of this audit entry.
+    * Returns the primary key of this Запись аудита.
     *
-    * @return the primary key of this audit entry
+    * @return the primary key of this Запись аудита
     */
     @Override
     public int getPrimaryKey() {
@@ -118,9 +96,9 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Sets the primary key of this audit entry.
+    * Sets the primary key of this Запись аудита.
     *
-    * @param primaryKey the primary key of this audit entry
+    * @param primaryKey the primary key of this Запись аудита
     */
     @Override
     public void setPrimaryKey(int primaryKey) {
@@ -128,29 +106,49 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Returns the audit entry ID of this audit entry.
+    * Returns the entry ID of this Запись аудита.
     *
-    * @return the audit entry ID of this audit entry
+    * @return the entry ID of this Запись аудита
     */
     @Override
-    public int getAuditEntryId() {
-        return _auditEntry.getAuditEntryId();
+    public int getEntryId() {
+        return _auditEntry.getEntryId();
     }
 
     /**
-    * Sets the audit entry ID of this audit entry.
+    * Sets the entry ID of this Запись аудита.
     *
-    * @param auditEntryId the audit entry ID of this audit entry
+    * @param entryId the entry ID of this Запись аудита
     */
     @Override
-    public void setAuditEntryId(int auditEntryId) {
-        _auditEntry.setAuditEntryId(auditEntryId);
+    public void setEntryId(int entryId) {
+        _auditEntry.setEntryId(entryId);
     }
 
     /**
-    * Returns the audit type of this audit entry.
+    * Returns the entry group ID of this Запись аудита.
     *
-    * @return the audit type of this audit entry
+    * @return the entry group ID of this Запись аудита
+    */
+    @Override
+    public int getEntryGroupId() {
+        return _auditEntry.getEntryGroupId();
+    }
+
+    /**
+    * Sets the entry group ID of this Запись аудита.
+    *
+    * @param entryGroupId the entry group ID of this Запись аудита
+    */
+    @Override
+    public void setEntryGroupId(int entryGroupId) {
+        _auditEntry.setEntryGroupId(entryGroupId);
+    }
+
+    /**
+    * Returns the audit type of this Запись аудита.
+    *
+    * @return the audit type of this Запись аудита
     */
     @Override
     public java.lang.String getAuditType() {
@@ -158,9 +156,9 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Sets the audit type of this audit entry.
+    * Sets the audit type of this Запись аудита.
     *
-    * @param auditType the audit type of this audit entry
+    * @param auditType the audit type of this Запись аудита
     */
     @Override
     public void setAuditType(java.lang.String auditType) {
@@ -168,9 +166,9 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Returns the entity type of this audit entry.
+    * Returns the entity type of this Запись аудита.
     *
-    * @return the entity type of this audit entry
+    * @return the entity type of this Запись аудита
     */
     @Override
     public java.lang.String getEntityType() {
@@ -178,9 +176,9 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Sets the entity type of this audit entry.
+    * Sets the entity type of this Запись аудита.
     *
-    * @param entityType the entity type of this audit entry
+    * @param entityType the entity type of this Запись аудита
     */
     @Override
     public void setEntityType(java.lang.String entityType) {
@@ -188,9 +186,9 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Returns the entity ID of this audit entry.
+    * Returns the entity ID of this Запись аудита.
     *
-    * @return the entity ID of this audit entry
+    * @return the entity ID of this Запись аудита
     */
     @Override
     public int getEntityId() {
@@ -198,9 +196,9 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Sets the entity ID of this audit entry.
+    * Sets the entity ID of this Запись аудита.
     *
-    * @param entityId the entity ID of this audit entry
+    * @param entityId the entity ID of this Запись аудита
     */
     @Override
     public void setEntityId(int entityId) {
@@ -208,111 +206,9 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Returns the company ID of this audit entry.
+    * Returns the metadata of this Запись аудита.
     *
-    * @return the company ID of this audit entry
-    */
-    @Override
-    public long getCompanyId() {
-        return _auditEntry.getCompanyId();
-    }
-
-    /**
-    * Sets the company ID of this audit entry.
-    *
-    * @param companyId the company ID of this audit entry
-    */
-    @Override
-    public void setCompanyId(long companyId) {
-        _auditEntry.setCompanyId(companyId);
-    }
-
-    /**
-    * Returns the user ID of this audit entry.
-    *
-    * @return the user ID of this audit entry
-    */
-    @Override
-    public long getUserId() {
-        return _auditEntry.getUserId();
-    }
-
-    /**
-    * Sets the user ID of this audit entry.
-    *
-    * @param userId the user ID of this audit entry
-    */
-    @Override
-    public void setUserId(long userId) {
-        _auditEntry.setUserId(userId);
-    }
-
-    /**
-    * Returns the user uuid of this audit entry.
-    *
-    * @return the user uuid of this audit entry
-    * @throws SystemException if a system exception occurred
-    */
-    @Override
-    public java.lang.String getUserUuid()
-        throws com.liferay.portal.kernel.exception.SystemException {
-        return _auditEntry.getUserUuid();
-    }
-
-    /**
-    * Sets the user uuid of this audit entry.
-    *
-    * @param userUuid the user uuid of this audit entry
-    */
-    @Override
-    public void setUserUuid(java.lang.String userUuid) {
-        _auditEntry.setUserUuid(userUuid);
-    }
-
-    /**
-    * Returns the user name of this audit entry.
-    *
-    * @return the user name of this audit entry
-    */
-    @Override
-    public java.lang.String getUserName() {
-        return _auditEntry.getUserName();
-    }
-
-    /**
-    * Sets the user name of this audit entry.
-    *
-    * @param userName the user name of this audit entry
-    */
-    @Override
-    public void setUserName(java.lang.String userName) {
-        _auditEntry.setUserName(userName);
-    }
-
-    /**
-    * Returns the date of change of this audit entry.
-    *
-    * @return the date of change of this audit entry
-    */
-    @Override
-    public java.util.Date getDateOfChange() {
-        return _auditEntry.getDateOfChange();
-    }
-
-    /**
-    * Sets the date of change of this audit entry.
-    *
-    * @param dateOfChange the date of change of this audit entry
-    */
-    @Override
-    public void setDateOfChange(java.util.Date dateOfChange) {
-        _auditEntry.setDateOfChange(dateOfChange);
-    }
-
-    /**
-    * Returns the metadata of this audit entry.
-    *
-    * @return the metadata of this audit entry
+    * @return the metadata of this Запись аудита
     */
     @Override
     public java.lang.String getMetadata() {
@@ -320,9 +216,9 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     /**
-    * Sets the metadata of this audit entry.
+    * Sets the metadata of this Запись аудита.
     *
-    * @param metadata the metadata of this audit entry
+    * @param metadata the metadata of this Запись аудита
     */
     @Override
     public void setMetadata(java.lang.String metadata) {
@@ -431,6 +327,29 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     public void persist()
         throws com.liferay.portal.kernel.exception.SystemException {
         _auditEntry.persist();
+    }
+
+    /**
+    * Добавить к текущей записи аудита запись об изменении атрибута сущности.
+    *
+    * @param fieldName имя атрибута.
+    * @param oldValue  старое значение.
+    * @param newValue  новое значение.
+    * @throws SystemException
+    */
+    @Override
+    public void addFieldChange(java.lang.String fieldName,
+        java.lang.Object oldValue, java.lang.Object newValue)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        _auditEntry.addFieldChange(fieldName, oldValue, newValue);
+    }
+
+    /**
+    * @return true если запись истории изменения имеет закрепленные за собой записи об изменениях атрибутов сущности.
+    */
+    @Override
+    public boolean hasFieldChanges() {
+        return _auditEntry.hasFieldChanges();
     }
 
     @Override

@@ -6,7 +6,6 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.util.PortalUtil;
 
 import ru.akimov.service.AuditEntryLocalServiceUtil;
 import ru.akimov.service.ClpSerializer;
@@ -15,22 +14,17 @@ import java.io.Serializable;
 
 import java.lang.reflect.Method;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     implements AuditEntry {
-    private int _auditEntryId;
+    private int _entryId;
+    private int _entryGroupId;
     private String _auditType;
     private String _entityType;
     private int _entityId;
-    private long _companyId;
-    private long _userId;
-    private String _userUuid;
-    private String _userName;
-    private Date _dateOfChange;
     private String _metadata;
     private BaseModel<?> _auditEntryRemoteModel;
     private Class<?> _clpSerializerClass = ru.akimov.service.ClpSerializer.class;
@@ -50,17 +44,17 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
 
     @Override
     public int getPrimaryKey() {
-        return _auditEntryId;
+        return _entryId;
     }
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        setAuditEntryId(primaryKey);
+        setEntryId(primaryKey);
     }
 
     @Override
     public Serializable getPrimaryKeyObj() {
-        return _auditEntryId;
+        return _entryId;
     }
 
     @Override
@@ -72,14 +66,11 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     public Map<String, Object> getModelAttributes() {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
-        attributes.put("auditEntryId", getAuditEntryId());
+        attributes.put("entryId", getEntryId());
+        attributes.put("entryGroupId", getEntryGroupId());
         attributes.put("auditType", getAuditType());
         attributes.put("entityType", getEntityType());
         attributes.put("entityId", getEntityId());
-        attributes.put("companyId", getCompanyId());
-        attributes.put("userId", getUserId());
-        attributes.put("userName", getUserName());
-        attributes.put("dateOfChange", getDateOfChange());
         attributes.put("metadata", getMetadata());
 
         return attributes;
@@ -87,10 +78,16 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
 
     @Override
     public void setModelAttributes(Map<String, Object> attributes) {
-        Integer auditEntryId = (Integer) attributes.get("auditEntryId");
+        Integer entryId = (Integer) attributes.get("entryId");
 
-        if (auditEntryId != null) {
-            setAuditEntryId(auditEntryId);
+        if (entryId != null) {
+            setEntryId(entryId);
+        }
+
+        Integer entryGroupId = (Integer) attributes.get("entryGroupId");
+
+        if (entryGroupId != null) {
+            setEntryGroupId(entryGroupId);
         }
 
         String auditType = (String) attributes.get("auditType");
@@ -111,30 +108,6 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
             setEntityId(entityId);
         }
 
-        Long companyId = (Long) attributes.get("companyId");
-
-        if (companyId != null) {
-            setCompanyId(companyId);
-        }
-
-        Long userId = (Long) attributes.get("userId");
-
-        if (userId != null) {
-            setUserId(userId);
-        }
-
-        String userName = (String) attributes.get("userName");
-
-        if (userName != null) {
-            setUserName(userName);
-        }
-
-        Date dateOfChange = (Date) attributes.get("dateOfChange");
-
-        if (dateOfChange != null) {
-            setDateOfChange(dateOfChange);
-        }
-
         String metadata = (String) attributes.get("metadata");
 
         if (metadata != null) {
@@ -143,21 +116,43 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     }
 
     @Override
-    public int getAuditEntryId() {
-        return _auditEntryId;
+    public int getEntryId() {
+        return _entryId;
     }
 
     @Override
-    public void setAuditEntryId(int auditEntryId) {
-        _auditEntryId = auditEntryId;
+    public void setEntryId(int entryId) {
+        _entryId = entryId;
 
         if (_auditEntryRemoteModel != null) {
             try {
                 Class<?> clazz = _auditEntryRemoteModel.getClass();
 
-                Method method = clazz.getMethod("setAuditEntryId", int.class);
+                Method method = clazz.getMethod("setEntryId", int.class);
 
-                method.invoke(_auditEntryRemoteModel, auditEntryId);
+                method.invoke(_auditEntryRemoteModel, entryId);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public int getEntryGroupId() {
+        return _entryGroupId;
+    }
+
+    @Override
+    public void setEntryGroupId(int entryGroupId) {
+        _entryGroupId = entryGroupId;
+
+        if (_auditEntryRemoteModel != null) {
+            try {
+                Class<?> clazz = _auditEntryRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setEntryGroupId", int.class);
+
+                method.invoke(_auditEntryRemoteModel, entryGroupId);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -231,104 +226,6 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     }
 
     @Override
-    public long getCompanyId() {
-        return _companyId;
-    }
-
-    @Override
-    public void setCompanyId(long companyId) {
-        _companyId = companyId;
-
-        if (_auditEntryRemoteModel != null) {
-            try {
-                Class<?> clazz = _auditEntryRemoteModel.getClass();
-
-                Method method = clazz.getMethod("setCompanyId", long.class);
-
-                method.invoke(_auditEntryRemoteModel, companyId);
-            } catch (Exception e) {
-                throw new UnsupportedOperationException(e);
-            }
-        }
-    }
-
-    @Override
-    public long getUserId() {
-        return _userId;
-    }
-
-    @Override
-    public void setUserId(long userId) {
-        _userId = userId;
-
-        if (_auditEntryRemoteModel != null) {
-            try {
-                Class<?> clazz = _auditEntryRemoteModel.getClass();
-
-                Method method = clazz.getMethod("setUserId", long.class);
-
-                method.invoke(_auditEntryRemoteModel, userId);
-            } catch (Exception e) {
-                throw new UnsupportedOperationException(e);
-            }
-        }
-    }
-
-    @Override
-    public String getUserUuid() throws SystemException {
-        return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
-    }
-
-    @Override
-    public void setUserUuid(String userUuid) {
-        _userUuid = userUuid;
-    }
-
-    @Override
-    public String getUserName() {
-        return _userName;
-    }
-
-    @Override
-    public void setUserName(String userName) {
-        _userName = userName;
-
-        if (_auditEntryRemoteModel != null) {
-            try {
-                Class<?> clazz = _auditEntryRemoteModel.getClass();
-
-                Method method = clazz.getMethod("setUserName", String.class);
-
-                method.invoke(_auditEntryRemoteModel, userName);
-            } catch (Exception e) {
-                throw new UnsupportedOperationException(e);
-            }
-        }
-    }
-
-    @Override
-    public Date getDateOfChange() {
-        return _dateOfChange;
-    }
-
-    @Override
-    public void setDateOfChange(Date dateOfChange) {
-        _dateOfChange = dateOfChange;
-
-        if (_auditEntryRemoteModel != null) {
-            try {
-                Class<?> clazz = _auditEntryRemoteModel.getClass();
-
-                Method method = clazz.getMethod("setDateOfChange", Date.class);
-
-                method.invoke(_auditEntryRemoteModel, dateOfChange);
-            } catch (Exception e) {
-                throw new UnsupportedOperationException(e);
-            }
-        }
-    }
-
-    @Override
     public String getMetadata() {
         return _metadata;
     }
@@ -347,6 +244,45 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
+        }
+    }
+
+    @Override
+    public void addFieldChange(java.lang.String fieldName,
+        java.lang.Object oldValue, java.lang.Object newValue) {
+        try {
+            String methodName = "addFieldChange";
+
+            Class<?>[] parameterTypes = new Class<?>[] {
+                    java.lang.String.class, java.lang.Object.class,
+                    java.lang.Object.class
+                };
+
+            Object[] parameterValues = new Object[] {
+                    fieldName, oldValue, newValue
+                };
+
+            invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
+        } catch (Exception e) {
+            throw new UnsupportedOperationException(e);
+        }
+    }
+
+    @Override
+    public boolean hasFieldChanges() {
+        try {
+            String methodName = "hasFieldChanges";
+
+            Class<?>[] parameterTypes = new Class<?>[] {  };
+
+            Object[] parameterValues = new Object[] {  };
+
+            Boolean returnObj = (Boolean) invokeOnRemoteModel(methodName,
+                    parameterTypes, parameterValues);
+
+            return returnObj;
+        } catch (Exception e) {
+            throw new UnsupportedOperationException(e);
         }
     }
 
@@ -417,14 +353,11 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     public Object clone() {
         AuditEntryClp clone = new AuditEntryClp();
 
-        clone.setAuditEntryId(getAuditEntryId());
+        clone.setEntryId(getEntryId());
+        clone.setEntryGroupId(getEntryGroupId());
         clone.setAuditType(getAuditType());
         clone.setEntityType(getEntityType());
         clone.setEntityId(getEntityId());
-        clone.setCompanyId(getCompanyId());
-        clone.setUserId(getUserId());
-        clone.setUserName(getUserName());
-        clone.setDateOfChange(getDateOfChange());
         clone.setMetadata(getMetadata());
 
         return clone;
@@ -475,24 +408,18 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(19);
+        StringBundler sb = new StringBundler(13);
 
-        sb.append("{auditEntryId=");
-        sb.append(getAuditEntryId());
+        sb.append("{entryId=");
+        sb.append(getEntryId());
+        sb.append(", entryGroupId=");
+        sb.append(getEntryGroupId());
         sb.append(", auditType=");
         sb.append(getAuditType());
         sb.append(", entityType=");
         sb.append(getEntityType());
         sb.append(", entityId=");
         sb.append(getEntityId());
-        sb.append(", companyId=");
-        sb.append(getCompanyId());
-        sb.append(", userId=");
-        sb.append(getUserId());
-        sb.append(", userName=");
-        sb.append(getUserName());
-        sb.append(", dateOfChange=");
-        sb.append(getDateOfChange());
         sb.append(", metadata=");
         sb.append(getMetadata());
         sb.append("}");
@@ -502,15 +429,19 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(31);
+        StringBundler sb = new StringBundler(22);
 
         sb.append("<model><model-name>");
         sb.append("ru.akimov.model.AuditEntry");
         sb.append("</model-name>");
 
         sb.append(
-            "<column><column-name>auditEntryId</column-name><column-value><![CDATA[");
-        sb.append(getAuditEntryId());
+            "<column><column-name>entryId</column-name><column-value><![CDATA[");
+        sb.append(getEntryId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>entryGroupId</column-name><column-value><![CDATA[");
+        sb.append(getEntryGroupId());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>auditType</column-name><column-value><![CDATA[");
@@ -523,22 +454,6 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
         sb.append(
             "<column><column-name>entityId</column-name><column-value><![CDATA[");
         sb.append(getEntityId());
-        sb.append("]]></column-value></column>");
-        sb.append(
-            "<column><column-name>companyId</column-name><column-value><![CDATA[");
-        sb.append(getCompanyId());
-        sb.append("]]></column-value></column>");
-        sb.append(
-            "<column><column-name>userId</column-name><column-value><![CDATA[");
-        sb.append(getUserId());
-        sb.append("]]></column-value></column>");
-        sb.append(
-            "<column><column-name>userName</column-name><column-value><![CDATA[");
-        sb.append(getUserName());
-        sb.append("]]></column-value></column>");
-        sb.append(
-            "<column><column-name>dateOfChange</column-name><column-value><![CDATA[");
-        sb.append(getDateOfChange());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>metadata</column-name><column-value><![CDATA[");

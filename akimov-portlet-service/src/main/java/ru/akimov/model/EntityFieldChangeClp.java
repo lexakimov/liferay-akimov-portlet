@@ -20,8 +20,8 @@ import java.util.Map;
 
 public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
     implements EntityFieldChange {
-    private int _id;
-    private int _auditEntryId;
+    private int _fieldChangeId;
+    private int _entryId;
     private String _fieldName;
     private String _oldValue;
     private String _newValue;
@@ -43,17 +43,17 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
 
     @Override
     public int getPrimaryKey() {
-        return _id;
+        return _fieldChangeId;
     }
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        setId(primaryKey);
+        setFieldChangeId(primaryKey);
     }
 
     @Override
     public Serializable getPrimaryKeyObj() {
-        return _id;
+        return _fieldChangeId;
     }
 
     @Override
@@ -65,8 +65,8 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
     public Map<String, Object> getModelAttributes() {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
-        attributes.put("id", getId());
-        attributes.put("auditEntryId", getAuditEntryId());
+        attributes.put("fieldChangeId", getFieldChangeId());
+        attributes.put("entryId", getEntryId());
         attributes.put("fieldName", getFieldName());
         attributes.put("oldValue", getOldValue());
         attributes.put("newValue", getNewValue());
@@ -76,16 +76,16 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
 
     @Override
     public void setModelAttributes(Map<String, Object> attributes) {
-        Integer id = (Integer) attributes.get("id");
+        Integer fieldChangeId = (Integer) attributes.get("fieldChangeId");
 
-        if (id != null) {
-            setId(id);
+        if (fieldChangeId != null) {
+            setFieldChangeId(fieldChangeId);
         }
 
-        Integer auditEntryId = (Integer) attributes.get("auditEntryId");
+        Integer entryId = (Integer) attributes.get("entryId");
 
-        if (auditEntryId != null) {
-            setAuditEntryId(auditEntryId);
+        if (entryId != null) {
+            setEntryId(entryId);
         }
 
         String fieldName = (String) attributes.get("fieldName");
@@ -108,21 +108,21 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
     }
 
     @Override
-    public int getId() {
-        return _id;
+    public int getFieldChangeId() {
+        return _fieldChangeId;
     }
 
     @Override
-    public void setId(int id) {
-        _id = id;
+    public void setFieldChangeId(int fieldChangeId) {
+        _fieldChangeId = fieldChangeId;
 
         if (_entityFieldChangeRemoteModel != null) {
             try {
                 Class<?> clazz = _entityFieldChangeRemoteModel.getClass();
 
-                Method method = clazz.getMethod("setId", int.class);
+                Method method = clazz.getMethod("setFieldChangeId", int.class);
 
-                method.invoke(_entityFieldChangeRemoteModel, id);
+                method.invoke(_entityFieldChangeRemoteModel, fieldChangeId);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -130,21 +130,21 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
     }
 
     @Override
-    public int getAuditEntryId() {
-        return _auditEntryId;
+    public int getEntryId() {
+        return _entryId;
     }
 
     @Override
-    public void setAuditEntryId(int auditEntryId) {
-        _auditEntryId = auditEntryId;
+    public void setEntryId(int entryId) {
+        _entryId = entryId;
 
         if (_entityFieldChangeRemoteModel != null) {
             try {
                 Class<?> clazz = _entityFieldChangeRemoteModel.getClass();
 
-                Method method = clazz.getMethod("setAuditEntryId", int.class);
+                Method method = clazz.getMethod("setEntryId", int.class);
 
-                method.invoke(_entityFieldChangeRemoteModel, auditEntryId);
+                method.invoke(_entityFieldChangeRemoteModel, entryId);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -286,8 +286,8 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
     public Object clone() {
         EntityFieldChangeClp clone = new EntityFieldChangeClp();
 
-        clone.setId(getId());
-        clone.setAuditEntryId(getAuditEntryId());
+        clone.setFieldChangeId(getFieldChangeId());
+        clone.setEntryId(getEntryId());
         clone.setFieldName(getFieldName());
         clone.setOldValue(getOldValue());
         clone.setNewValue(getNewValue());
@@ -342,10 +342,10 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
     public String toString() {
         StringBundler sb = new StringBundler(11);
 
-        sb.append("{id=");
-        sb.append(getId());
-        sb.append(", auditEntryId=");
-        sb.append(getAuditEntryId());
+        sb.append("{fieldChangeId=");
+        sb.append(getFieldChangeId());
+        sb.append(", entryId=");
+        sb.append(getEntryId());
         sb.append(", fieldName=");
         sb.append(getFieldName());
         sb.append(", oldValue=");
@@ -366,12 +366,12 @@ public class EntityFieldChangeClp extends BaseModelImpl<EntityFieldChange>
         sb.append("</model-name>");
 
         sb.append(
-            "<column><column-name>id</column-name><column-value><![CDATA[");
-        sb.append(getId());
+            "<column><column-name>fieldChangeId</column-name><column-value><![CDATA[");
+        sb.append(getFieldChangeId());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>auditEntryId</column-name><column-value><![CDATA[");
-        sb.append(getAuditEntryId());
+            "<column><column-name>entryId</column-name><column-value><![CDATA[");
+        sb.append(getEntryId());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>fieldName</column-name><column-value><![CDATA[");

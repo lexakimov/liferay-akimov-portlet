@@ -2,7 +2,6 @@
 		"http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
 <service-builder package-path="ru.akimov">
-
 	<namespace>akimov</namespace>
 
 	<entity name="Person" uuid="false" local-service="true" remote-service="false">
@@ -31,13 +30,8 @@
 		<reference package-path="com.liferay.portlet.asset" entity="AssetTag" />	-->
 
 	<entity name="Foo" uuid="false" local-service="true" remote-service="false">
-		<column
-				name="fooId"
-				type="int"
-				primary="true"
-		/>
-		<!--id-type="class"
-		id-param="com.liferay.counter.service.persistence.IDGenerator"-->
+		<column name="fooId" type="int" primary="true"/>
+		<!--id-type="class" id-param="com.liferay.counter.service.persistence.IDGenerator"-->
 		<column name="booleanField" type="boolean"/>
 		<column name="shortField" type="short"/>
 		<column name="intField" type="int"/>
@@ -51,32 +45,58 @@
 	</entity>
 
 	<!-- TODO add indexes if necessary -->
-	<entity name="AuditEntry" table="akimov_audit_entries" local-service="true" remote-service="false">
-		<column name="auditEntryId" type="int" primary="true"/>
-		<column name="auditType" type="String"/>
-		<column name="entityType" type="String"/>
-		<column name="entityId" type="int"/>
+	<entity name="AuditEntryGroup"
+			human-name="Группа записей аудита"
+			table="akimov_audit_action_groups"
+			local-service="true" remote-service="false"
+	>
+		<column name="entryGroupId" type="int" primary="true"/>
 		<column name="companyId" type="long"/>
 		<column name="userId" type="long"/>
 		<column name="userName" type="String"/>
-		<column name="dateOfChange" type="Date"/>
-		<column name="metadata" type="String"/>
+		<column name="eventDate" type="Date"/>
 	</entity>
 
 	<!-- TODO add indexes if necessary -->
-	<entity name="EntityFieldChange" table="akimov_audit_field_changes" local-service="true" remote-service="false">
-		<column name="id" type="int" primary="true"/>
-		<column name="auditEntryId" type="int"/>
+	<entity name="AuditEntry"
+			human-name="Запись аудита"
+			table="akimov_audit_action_entries"
+			local-service="true" remote-service="false"
+	>
+		<column name="entryId" type="int" primary="true"/>
+		<column name="entryGroupId" type="int"/>
+		<column name="auditType" type="String"/>
+		<column name="entityType" type="String"/>
+		<column name="entityId" type="int"/>
+		<column name="metadata" type="String"/>
+
+		<finder name="EntryGroupId" return-type="Collection">
+			<finder-column name="entryGroupId"/>
+		</finder>
+	</entity>
+
+	<!-- TODO add indexes if necessary -->
+	<entity name="EntityFieldChange"
+			human-name="Изменение атрибута сущности"
+			table="akimov_audit_field_changes"
+			local-service="true" remote-service="false"
+	>
+		<column name="fieldChangeId" type="int" primary="true"/>
+		<column name="entryId" type="int"/>
 		<column name="fieldName" type="String"/>
 		<column name="oldValue" type="String"/>
 		<column name="newValue" type="String"/>
 
-		<finder name="AuditEntryId" return-type="Collection">
-			<finder-column name="auditEntryId"/>
+		<finder name="EntryId" return-type="Collection">
+			<finder-column name="entryId"/>
 		</finder>
 	</entity>
 
-	<entity name="AttachmentFile" table="akimov_attachment_files" local-service="true" remote-service="false">
+	<entity name="AttachmentFile"
+			human-name="Вложения"
+			table="akimov_attachment_files"
+			local-service="true" remote-service="false"
+	>
 		<column name="id" type="int" primary="true"/>
 		<column name="fileName" type="String"/>
 		<column name="extension" type="String"/>

@@ -8,7 +8,7 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextThreadLocal;
-import ru.akimov.audit.AuditEntryWrapper;
+import ru.akimov.model.AuditEntryGroup;
 
 /**
  * @author akimov
@@ -36,9 +36,9 @@ public class AuditMessagingUtil {
 		return GetterUtil.getBoolean(serviceContext.getAttribute(ATTR_PREVENT_AUDITION));
 	}
 
-	public static void auditMessage(AuditEntryWrapper auditEntry) {
+	public static void auditMessage(AuditEntryGroup auditEntryGroup) {
 		Message message = new Message();
-		message.put("audit_entry", auditEntry);
+		message.put("audit_entry_group", auditEntryGroup);
 
 		//message.setResponseId("1111");
 		//message.setResponseDestinationName("tour/manager/task");

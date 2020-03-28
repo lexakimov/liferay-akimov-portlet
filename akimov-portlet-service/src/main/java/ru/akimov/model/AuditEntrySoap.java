@@ -3,7 +3,6 @@ package ru.akimov.model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,14 +12,11 @@ import java.util.List;
  * @generated
  */
 public class AuditEntrySoap implements Serializable {
-    private int _auditEntryId;
+    private int _entryId;
+    private int _entryGroupId;
     private String _auditType;
     private String _entityType;
     private int _entityId;
-    private long _companyId;
-    private long _userId;
-    private String _userName;
-    private Date _dateOfChange;
     private String _metadata;
 
     public AuditEntrySoap() {
@@ -29,14 +25,11 @@ public class AuditEntrySoap implements Serializable {
     public static AuditEntrySoap toSoapModel(AuditEntry model) {
         AuditEntrySoap soapModel = new AuditEntrySoap();
 
-        soapModel.setAuditEntryId(model.getAuditEntryId());
+        soapModel.setEntryId(model.getEntryId());
+        soapModel.setEntryGroupId(model.getEntryGroupId());
         soapModel.setAuditType(model.getAuditType());
         soapModel.setEntityType(model.getEntityType());
         soapModel.setEntityId(model.getEntityId());
-        soapModel.setCompanyId(model.getCompanyId());
-        soapModel.setUserId(model.getUserId());
-        soapModel.setUserName(model.getUserName());
-        soapModel.setDateOfChange(model.getDateOfChange());
         soapModel.setMetadata(model.getMetadata());
 
         return soapModel;
@@ -79,19 +72,27 @@ public class AuditEntrySoap implements Serializable {
     }
 
     public int getPrimaryKey() {
-        return _auditEntryId;
+        return _entryId;
     }
 
     public void setPrimaryKey(int pk) {
-        setAuditEntryId(pk);
+        setEntryId(pk);
     }
 
-    public int getAuditEntryId() {
-        return _auditEntryId;
+    public int getEntryId() {
+        return _entryId;
     }
 
-    public void setAuditEntryId(int auditEntryId) {
-        _auditEntryId = auditEntryId;
+    public void setEntryId(int entryId) {
+        _entryId = entryId;
+    }
+
+    public int getEntryGroupId() {
+        return _entryGroupId;
+    }
+
+    public void setEntryGroupId(int entryGroupId) {
+        _entryGroupId = entryGroupId;
     }
 
     public String getAuditType() {
@@ -116,38 +117,6 @@ public class AuditEntrySoap implements Serializable {
 
     public void setEntityId(int entityId) {
         _entityId = entityId;
-    }
-
-    public long getCompanyId() {
-        return _companyId;
-    }
-
-    public void setCompanyId(long companyId) {
-        _companyId = companyId;
-    }
-
-    public long getUserId() {
-        return _userId;
-    }
-
-    public void setUserId(long userId) {
-        _userId = userId;
-    }
-
-    public String getUserName() {
-        return _userName;
-    }
-
-    public void setUserName(String userName) {
-        _userName = userName;
-    }
-
-    public Date getDateOfChange() {
-        return _dateOfChange;
-    }
-
-    public void setDateOfChange(Date dateOfChange) {
-        _dateOfChange = dateOfChange;
     }
 
     public String getMetadata() {

@@ -30,135 +30,135 @@ public interface AttachmentFileModel extends BaseModel<AttachmentFile> {
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify or reference this interface directly. All methods that expect a attachment file model instance should use the {@link AttachmentFile} interface instead.
+     * Never modify or reference this interface directly. All methods that expect a Вложения model instance should use the {@link AttachmentFile} interface instead.
      */
 
     /**
-     * Returns the primary key of this attachment file.
+     * Returns the primary key of this Вложения.
      *
-     * @return the primary key of this attachment file
+     * @return the primary key of this Вложения
      */
     public int getPrimaryKey();
 
     /**
-     * Sets the primary key of this attachment file.
+     * Sets the primary key of this Вложения.
      *
-     * @param primaryKey the primary key of this attachment file
+     * @param primaryKey the primary key of this Вложения
      */
     public void setPrimaryKey(int primaryKey);
 
     /**
-     * Returns the ID of this attachment file.
+     * Returns the ID of this Вложения.
      *
-     * @return the ID of this attachment file
+     * @return the ID of this Вложения
      */
     public int getId();
 
     /**
-     * Sets the ID of this attachment file.
+     * Sets the ID of this Вложения.
      *
-     * @param id the ID of this attachment file
+     * @param id the ID of this Вложения
      */
     public void setId(int id);
 
     /**
-     * Returns the file name of this attachment file.
+     * Returns the file name of this Вложения.
      *
-     * @return the file name of this attachment file
+     * @return the file name of this Вложения
      */
     @AutoEscape
     public String getFileName();
 
     /**
-     * Sets the file name of this attachment file.
+     * Sets the file name of this Вложения.
      *
-     * @param fileName the file name of this attachment file
+     * @param fileName the file name of this Вложения
      */
     public void setFileName(String fileName);
 
     /**
-     * Returns the extension of this attachment file.
+     * Returns the extension of this Вложения.
      *
-     * @return the extension of this attachment file
+     * @return the extension of this Вложения
      */
     @AutoEscape
     public String getExtension();
 
     /**
-     * Sets the extension of this attachment file.
+     * Sets the extension of this Вложения.
      *
-     * @param extension the extension of this attachment file
+     * @param extension the extension of this Вложения
      */
     public void setExtension(String extension);
 
     /**
-     * Returns the size of this attachment file.
+     * Returns the size of this Вложения.
      *
-     * @return the size of this attachment file
+     * @return the size of this Вложения
      */
     public int getSize();
 
     /**
-     * Sets the size of this attachment file.
+     * Sets the size of this Вложения.
      *
-     * @param size the size of this attachment file
+     * @param size the size of this Вложения
      */
     public void setSize(int size);
 
     /**
-     * Returns the mime type of this attachment file.
+     * Returns the mime type of this Вложения.
      *
-     * @return the mime type of this attachment file
+     * @return the mime type of this Вложения
      */
     @AutoEscape
     public String getMimeType();
 
     /**
-     * Sets the mime type of this attachment file.
+     * Sets the mime type of this Вложения.
      *
-     * @param mimeType the mime type of this attachment file
+     * @param mimeType the mime type of this Вложения
      */
     public void setMimeType(String mimeType);
 
     /**
-     * Returns the data of this attachment file.
+     * Returns the data of this Вложения.
      *
-     * @return the data of this attachment file
+     * @return the data of this Вложения
      */
     public Blob getData();
 
     /**
-     * Sets the data of this attachment file.
+     * Sets the data of this Вложения.
      *
-     * @param data the data of this attachment file
+     * @param data the data of this Вложения
      */
     public void setData(Blob data);
 
     /**
-     * Returns the uploaded of this attachment file.
+     * Returns the uploaded of this Вложения.
      *
-     * @return the uploaded of this attachment file
+     * @return the uploaded of this Вложения
      */
     public Date getUploaded();
 
     /**
-     * Sets the uploaded of this attachment file.
+     * Sets the uploaded of this Вложения.
      *
-     * @param uploaded the uploaded of this attachment file
+     * @param uploaded the uploaded of this Вложения
      */
     public void setUploaded(Date uploaded);
 
     /**
-     * Returns the user ID of this attachment file.
+     * Returns the user ID of this Вложения.
      *
-     * @return the user ID of this attachment file
+     * @return the user ID of this Вложения
      */
     public int getUserId();
 
     /**
-     * Sets the user ID of this attachment file.
+     * Sets the user ID of this Вложения.
      *
-     * @param userId the user ID of this attachment file
+     * @param userId the user ID of this Вложения
      */
     public void setUserId(int userId);
 

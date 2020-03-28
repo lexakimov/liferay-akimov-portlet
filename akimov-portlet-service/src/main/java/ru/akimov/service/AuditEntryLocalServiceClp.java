@@ -46,6 +46,10 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     private String[] _methodParameterTypes17;
     private String _methodName19;
     private String[] _methodParameterTypes19;
+    private String _methodName20;
+    private String[] _methodParameterTypes20;
+    private String _methodName21;
+    private String[] _methodParameterTypes21;
 
     public AuditEntryLocalServiceClp(
         InvokableLocalService invokableLocalService) {
@@ -135,9 +139,20 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
 
         _methodParameterTypes17 = new String[] { "java.lang.String" };
 
-        _methodName19 = "deleteFor";
+        _methodName19 = "create";
 
-        _methodParameterTypes19 = new String[] { "java.lang.String", "int" };
+        _methodParameterTypes19 = new String[] {
+                "int", "java.lang.String", "java.lang.String",
+                "java.lang.String"
+            };
+
+        _methodName20 = "deleteFor";
+
+        _methodParameterTypes20 = new String[] { "java.lang.String", "int" };
+
+        _methodName21 = "getByEntryGroupId";
+
+        _methodParameterTypes21 = new String[] { "int" };
     }
 
     @Override
@@ -169,12 +184,12 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public ru.akimov.model.AuditEntry createAuditEntry(int auditEntryId) {
+    public ru.akimov.model.AuditEntry createAuditEntry(int entryId) {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName1,
-                    _methodParameterTypes1, new Object[] { auditEntryId });
+                    _methodParameterTypes1, new Object[] { entryId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -190,14 +205,14 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public ru.akimov.model.AuditEntry deleteAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry deleteAuditEntry(int entryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName2,
-                    _methodParameterTypes2, new Object[] { auditEntryId });
+                    _methodParameterTypes2, new Object[] { entryId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -434,13 +449,13 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public ru.akimov.model.AuditEntry fetchAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry fetchAuditEntry(int entryId)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName10,
-                    _methodParameterTypes10, new Object[] { auditEntryId });
+                    _methodParameterTypes10, new Object[] { entryId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -460,14 +475,14 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
-    public ru.akimov.model.AuditEntry getAuditEntry(int auditEntryId)
+    public ru.akimov.model.AuditEntry getAuditEntry(int entryId)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName11,
-                    _methodParameterTypes11, new Object[] { auditEntryId });
+                    _methodParameterTypes11, new Object[] { entryId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -651,11 +666,48 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
     }
 
     @Override
+    public ru.akimov.model.AuditEntry create(int entityId,
+        java.lang.String entityType, java.lang.String auditType,
+        java.lang.String metadata)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName19,
+                    _methodParameterTypes19,
+                    new Object[] {
+                        entityId,
+                        
+                    ClpSerializer.translateInput(entityType),
+                        
+                    ClpSerializer.translateInput(auditType),
+                        
+                    ClpSerializer.translateInput(metadata)
+                    });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (ru.akimov.model.AuditEntry) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
     public void deleteFor(java.lang.String entityType, int entityId)
         throws com.liferay.portal.kernel.exception.SystemException {
         try {
-            _invokableLocalService.invokeMethod(_methodName19,
-                _methodParameterTypes19,
+            _invokableLocalService.invokeMethod(_methodName20,
+                _methodParameterTypes20,
                 new Object[] { ClpSerializer.translateInput(entityType), entityId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
@@ -671,5 +723,32 @@ public class AuditEntryLocalServiceClp implements AuditEntryLocalService {
                     " is not a valid exception");
             }
         }
+    }
+
+    @Override
+    public java.util.List<ru.akimov.model.AuditEntry> getByEntryGroupId(
+        int entryGroupId)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName21,
+                    _methodParameterTypes21, new Object[] { entryGroupId });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.util.List<ru.akimov.model.AuditEntry>) ClpSerializer.translateOutput(returnObj);
     }
 }

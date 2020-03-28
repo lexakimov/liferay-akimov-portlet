@@ -26,93 +26,93 @@ public interface EntityFieldChangeModel extends BaseModel<EntityFieldChange> {
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify or reference this interface directly. All methods that expect a entity field change model instance should use the {@link EntityFieldChange} interface instead.
+     * Never modify or reference this interface directly. All methods that expect a Изменение атрибута сущности model instance should use the {@link EntityFieldChange} interface instead.
      */
 
     /**
-     * Returns the primary key of this entity field change.
+     * Returns the primary key of this Изменение атрибута сущности.
      *
-     * @return the primary key of this entity field change
+     * @return the primary key of this Изменение атрибута сущности
      */
     public int getPrimaryKey();
 
     /**
-     * Sets the primary key of this entity field change.
+     * Sets the primary key of this Изменение атрибута сущности.
      *
-     * @param primaryKey the primary key of this entity field change
+     * @param primaryKey the primary key of this Изменение атрибута сущности
      */
     public void setPrimaryKey(int primaryKey);
 
     /**
-     * Returns the ID of this entity field change.
+     * Returns the field change ID of this Изменение атрибута сущности.
      *
-     * @return the ID of this entity field change
+     * @return the field change ID of this Изменение атрибута сущности
      */
-    public int getId();
+    public int getFieldChangeId();
 
     /**
-     * Sets the ID of this entity field change.
+     * Sets the field change ID of this Изменение атрибута сущности.
      *
-     * @param id the ID of this entity field change
+     * @param fieldChangeId the field change ID of this Изменение атрибута сущности
      */
-    public void setId(int id);
+    public void setFieldChangeId(int fieldChangeId);
 
     /**
-     * Returns the audit entry ID of this entity field change.
+     * Returns the entry ID of this Изменение атрибута сущности.
      *
-     * @return the audit entry ID of this entity field change
+     * @return the entry ID of this Изменение атрибута сущности
      */
-    public int getAuditEntryId();
+    public int getEntryId();
 
     /**
-     * Sets the audit entry ID of this entity field change.
+     * Sets the entry ID of this Изменение атрибута сущности.
      *
-     * @param auditEntryId the audit entry ID of this entity field change
+     * @param entryId the entry ID of this Изменение атрибута сущности
      */
-    public void setAuditEntryId(int auditEntryId);
+    public void setEntryId(int entryId);
 
     /**
-     * Returns the field name of this entity field change.
+     * Returns the field name of this Изменение атрибута сущности.
      *
-     * @return the field name of this entity field change
+     * @return the field name of this Изменение атрибута сущности
      */
     @AutoEscape
     public String getFieldName();
 
     /**
-     * Sets the field name of this entity field change.
+     * Sets the field name of this Изменение атрибута сущности.
      *
-     * @param fieldName the field name of this entity field change
+     * @param fieldName the field name of this Изменение атрибута сущности
      */
     public void setFieldName(String fieldName);
 
     /**
-     * Returns the old value of this entity field change.
+     * Returns the old value of this Изменение атрибута сущности.
      *
-     * @return the old value of this entity field change
+     * @return the old value of this Изменение атрибута сущности
      */
     @AutoEscape
     public String getOldValue();
 
     /**
-     * Sets the old value of this entity field change.
+     * Sets the old value of this Изменение атрибута сущности.
      *
-     * @param oldValue the old value of this entity field change
+     * @param oldValue the old value of this Изменение атрибута сущности
      */
     public void setOldValue(String oldValue);
 
     /**
-     * Returns the new value of this entity field change.
+     * Returns the new value of this Изменение атрибута сущности.
      *
-     * @return the new value of this entity field change
+     * @return the new value of this Изменение атрибута сущности
      */
     @AutoEscape
     public String getNewValue();
 
     /**
-     * Sets the new value of this entity field change.
+     * Sets the new value of this Изменение атрибута сущности.
      *
-     * @param newValue the new value of this entity field change
+     * @param newValue the new value of this Изменение атрибута сущности
      */
     public void setNewValue(String newValue);
 

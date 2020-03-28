@@ -41,7 +41,7 @@ public class AttachmentFileModelImpl extends BaseModelImpl<AttachmentFile>
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify or reference this class directly. All methods that expect a attachment file model instance should use the {@link ru.akimov.model.AttachmentFile} interface instead.
+     * Never modify or reference this class directly. All methods that expect a Вложения model instance should use the {@link ru.akimov.model.AttachmentFile} interface instead.
      */
     public static final String TABLE_NAME = "akimov_attachment_files";
     public static final Object[][] TABLE_COLUMNS = {

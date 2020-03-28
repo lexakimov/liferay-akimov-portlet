@@ -14,21 +14,25 @@
 		<field name="userId" type="int" />
 	</model>
 	<model name="ru.akimov.model.AuditEntry">
-		<field name="auditEntryId" type="int" />
+		<field name="entryId" type="int" />
+		<field name="entryGroupId" type="int" />
 		<field name="auditType" type="String" />
 		<field name="entityType" type="String" />
 		<field name="entityId" type="int" />
-		<field name="companyId" type="long" />
-		<field name="userId" type="long" />
-		<field name="userName" type="String" />
-		<field name="dateOfChange" type="Date" />
 		<field name="metadata" type="String">
 			<hint-collection name="CLOB" />
 		</field>
 	</model>
+	<model name="ru.akimov.model.AuditEntryGroup">
+		<field name="entryGroupId" type="int" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="eventDate" type="Date" />
+	</model>
 	<model name="ru.akimov.model.EntityFieldChange">
-		<field name="id" type="int" />
-		<field name="auditEntryId" type="int" />
+		<field name="fieldChangeId" type="int" />
+		<field name="entryId" type="int" />
 		<field name="fieldName" type="String" />
 		<field name="oldValue" type="String" />
 		<field name="newValue" type="String" />

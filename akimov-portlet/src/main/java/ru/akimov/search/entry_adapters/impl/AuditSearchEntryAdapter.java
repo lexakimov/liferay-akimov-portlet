@@ -20,7 +20,7 @@ public class AuditSearchEntryAdapter extends SearchEntryAdapter<AuditEntry> {
 
 	public AuditSearchEntryAdapter(AuditEntry model) throws PortletException {
 		super(model);
-		long userId = model.getUserId();
+		long userId = 0L;// TODO model.getUserId();
 		try {
 			this.user = UserLocalServiceUtil.fetchUser(userId);
 		} catch (SystemException e) {
@@ -29,7 +29,7 @@ public class AuditSearchEntryAdapter extends SearchEntryAdapter<AuditEntry> {
 	}
 
 	public Date getDateOfChange() {
-		return model.getDateOfChange();
+		return null ; // TODO model.getDateOfChange();
 	}
 
 	public String getUserFullName() {

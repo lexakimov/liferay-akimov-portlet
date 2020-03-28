@@ -41,20 +41,24 @@ public class AuditEntryLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName48;
-    private String[] _methodParameterTypes48;
-    private String _methodName49;
-    private String[] _methodParameterTypes49;
-    private String _methodName54;
-    private String[] _methodParameterTypes54;
-    private String _methodName55;
-    private String[] _methodParameterTypes55;
-    private String _methodName56;
-    private String[] _methodParameterTypes56;
-    private String _methodName57;
-    private String[] _methodParameterTypes57;
+    private String _methodName52;
+    private String[] _methodParameterTypes52;
+    private String _methodName53;
+    private String[] _methodParameterTypes53;
     private String _methodName58;
     private String[] _methodParameterTypes58;
+    private String _methodName59;
+    private String[] _methodParameterTypes59;
+    private String _methodName60;
+    private String[] _methodParameterTypes60;
+    private String _methodName64;
+    private String[] _methodParameterTypes64;
+    private String _methodName65;
+    private String[] _methodParameterTypes65;
+    private String _methodName66;
+    private String[] _methodParameterTypes66;
+    private String _methodName67;
+    private String[] _methodParameterTypes67;
 
     public AuditEntryLocalServiceClpInvoker() {
         _methodName0 = "addAuditEntry";
@@ -133,33 +137,44 @@ public class AuditEntryLocalServiceClpInvoker {
 
         _methodParameterTypes15 = new String[] { "ru.akimov.model.AuditEntry" };
 
-        _methodName48 = "getBeanIdentifier";
+        _methodName52 = "getBeanIdentifier";
 
-        _methodParameterTypes48 = new String[] {  };
+        _methodParameterTypes52 = new String[] {  };
 
-        _methodName49 = "setBeanIdentifier";
+        _methodName53 = "setBeanIdentifier";
 
-        _methodParameterTypes49 = new String[] { "java.lang.String" };
+        _methodParameterTypes53 = new String[] { "java.lang.String" };
 
-        _methodName54 = "addAuditEntry";
+        _methodName58 = "create";
 
-        _methodParameterTypes54 = new String[] { "ru.akimov.model.AuditEntry" };
+        _methodParameterTypes58 = new String[] {
+                "int", "java.lang.String", "java.lang.String",
+                "java.lang.String"
+            };
 
-        _methodName55 = "updateAuditEntry";
+        _methodName59 = "addAuditEntry";
 
-        _methodParameterTypes55 = new String[] { "ru.akimov.model.AuditEntry" };
+        _methodParameterTypes59 = new String[] { "ru.akimov.model.AuditEntry" };
 
-        _methodName56 = "deleteAuditEntry";
+        _methodName60 = "updateAuditEntry";
 
-        _methodParameterTypes56 = new String[] { "int" };
+        _methodParameterTypes60 = new String[] { "ru.akimov.model.AuditEntry" };
 
-        _methodName57 = "deleteAuditEntry";
+        _methodName64 = "deleteAuditEntry";
 
-        _methodParameterTypes57 = new String[] { "ru.akimov.model.AuditEntry" };
+        _methodParameterTypes64 = new String[] { "int" };
 
-        _methodName58 = "deleteFor";
+        _methodName65 = "deleteAuditEntry";
 
-        _methodParameterTypes58 = new String[] { "java.lang.String", "int" };
+        _methodParameterTypes65 = new String[] { "ru.akimov.model.AuditEntry" };
+
+        _methodName66 = "deleteFor";
+
+        _methodParameterTypes66 = new String[] { "java.lang.String", "int" };
+
+        _methodName67 = "getByEntryGroupId";
+
+        _methodParameterTypes67 = new String[] { "int" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -251,44 +266,56 @@ public class AuditEntryLocalServiceClpInvoker {
             return AuditEntryLocalServiceUtil.updateAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
         }
 
-        if (_methodName48.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+        if (_methodName52.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
             return AuditEntryLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName49.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+        if (_methodName53.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
             AuditEntryLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
         }
 
-        if (_methodName54.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+        if (_methodName58.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+            return AuditEntryLocalServiceUtil.create(((Integer) arguments[0]).intValue(),
+                (java.lang.String) arguments[1],
+                (java.lang.String) arguments[2], (java.lang.String) arguments[3]);
+        }
+
+        if (_methodName59.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
             return AuditEntryLocalServiceUtil.addAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
         }
 
-        if (_methodName55.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+        if (_methodName60.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
             return AuditEntryLocalServiceUtil.updateAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
         }
 
-        if (_methodName56.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+        if (_methodName64.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
             return AuditEntryLocalServiceUtil.deleteAuditEntry(((Integer) arguments[0]).intValue());
         }
 
-        if (_methodName57.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+        if (_methodName65.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
             return AuditEntryLocalServiceUtil.deleteAuditEntry((ru.akimov.model.AuditEntry) arguments[0]);
         }
 
-        if (_methodName58.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+        if (_methodName66.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
             AuditEntryLocalServiceUtil.deleteFor((java.lang.String) arguments[0],
                 ((Integer) arguments[1]).intValue());
 
             return null;
+        }
+
+        if (_methodName67.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+            return AuditEntryLocalServiceUtil.getByEntryGroupId(((Integer) arguments[0]).intValue());
         }
 
         throw new UnsupportedOperationException();

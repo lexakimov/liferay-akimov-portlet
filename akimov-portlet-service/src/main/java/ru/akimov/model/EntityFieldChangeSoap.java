@@ -12,8 +12,8 @@ import java.util.List;
  * @generated
  */
 public class EntityFieldChangeSoap implements Serializable {
-    private int _id;
-    private int _auditEntryId;
+    private int _fieldChangeId;
+    private int _entryId;
     private String _fieldName;
     private String _oldValue;
     private String _newValue;
@@ -24,8 +24,8 @@ public class EntityFieldChangeSoap implements Serializable {
     public static EntityFieldChangeSoap toSoapModel(EntityFieldChange model) {
         EntityFieldChangeSoap soapModel = new EntityFieldChangeSoap();
 
-        soapModel.setId(model.getId());
-        soapModel.setAuditEntryId(model.getAuditEntryId());
+        soapModel.setFieldChangeId(model.getFieldChangeId());
+        soapModel.setEntryId(model.getEntryId());
         soapModel.setFieldName(model.getFieldName());
         soapModel.setOldValue(model.getOldValue());
         soapModel.setNewValue(model.getNewValue());
@@ -73,27 +73,27 @@ public class EntityFieldChangeSoap implements Serializable {
     }
 
     public int getPrimaryKey() {
-        return _id;
+        return _fieldChangeId;
     }
 
     public void setPrimaryKey(int pk) {
-        setId(pk);
+        setFieldChangeId(pk);
     }
 
-    public int getId() {
-        return _id;
+    public int getFieldChangeId() {
+        return _fieldChangeId;
     }
 
-    public void setId(int id) {
-        _id = id;
+    public void setFieldChangeId(int fieldChangeId) {
+        _fieldChangeId = fieldChangeId;
     }
 
-    public int getAuditEntryId() {
-        return _auditEntryId;
+    public int getEntryId() {
+        return _entryId;
     }
 
-    public void setAuditEntryId(int auditEntryId) {
-        _auditEntryId = auditEntryId;
+    public void setEntryId(int entryId) {
+        _entryId = entryId;
     }
 
     public String getFieldName() {

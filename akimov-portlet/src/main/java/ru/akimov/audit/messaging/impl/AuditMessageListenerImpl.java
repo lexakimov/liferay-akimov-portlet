@@ -7,7 +7,7 @@ import com.liferay.portal.kernel.messaging.MessageBusException;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import ru.akimov.audit.AuditEntryWrapper;
+import ru.akimov.model.AuditEntryGroup;
 
 import javax.portlet.PortletRequest;
 
@@ -30,10 +30,10 @@ public class AuditMessageListenerImpl implements MessageListener {
 
 	private void doReceive(Message message) throws Exception {
 		// Receives message...
-		AuditEntryWrapper auditEntry = (AuditEntryWrapper) message.get("audit_entry");
+		AuditEntryGroup auditEntryGroup = (AuditEntryGroup) message.get("audit_entry_group");
 
 		// Create a new audit entry item...
-		auditEntry.persist();
+		auditEntryGroup.persist();
 
 		// Response...
 		Message responseMessage = MessageBusUtil.createResponseMessage(message);

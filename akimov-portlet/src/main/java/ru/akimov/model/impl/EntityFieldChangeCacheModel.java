@@ -20,8 +20,8 @@ import java.io.ObjectOutput;
  */
 public class EntityFieldChangeCacheModel implements CacheModel<EntityFieldChange>,
     Externalizable {
-    public int id;
-    public int auditEntryId;
+    public int fieldChangeId;
+    public int entryId;
     public String fieldName;
     public String oldValue;
     public String newValue;
@@ -30,10 +30,10 @@ public class EntityFieldChangeCacheModel implements CacheModel<EntityFieldChange
     public String toString() {
         StringBundler sb = new StringBundler(11);
 
-        sb.append("{id=");
-        sb.append(id);
-        sb.append(", auditEntryId=");
-        sb.append(auditEntryId);
+        sb.append("{fieldChangeId=");
+        sb.append(fieldChangeId);
+        sb.append(", entryId=");
+        sb.append(entryId);
         sb.append(", fieldName=");
         sb.append(fieldName);
         sb.append(", oldValue=");
@@ -49,8 +49,8 @@ public class EntityFieldChangeCacheModel implements CacheModel<EntityFieldChange
     public EntityFieldChange toEntityModel() {
         EntityFieldChangeImpl entityFieldChangeImpl = new EntityFieldChangeImpl();
 
-        entityFieldChangeImpl.setId(id);
-        entityFieldChangeImpl.setAuditEntryId(auditEntryId);
+        entityFieldChangeImpl.setFieldChangeId(fieldChangeId);
+        entityFieldChangeImpl.setEntryId(entryId);
 
         if (fieldName == null) {
             entityFieldChangeImpl.setFieldName(StringPool.BLANK);
@@ -77,8 +77,8 @@ public class EntityFieldChangeCacheModel implements CacheModel<EntityFieldChange
 
     @Override
     public void readExternal(ObjectInput objectInput) throws IOException {
-        id = objectInput.readInt();
-        auditEntryId = objectInput.readInt();
+        fieldChangeId = objectInput.readInt();
+        entryId = objectInput.readInt();
         fieldName = objectInput.readUTF();
         oldValue = objectInput.readUTF();
         newValue = objectInput.readUTF();
@@ -87,8 +87,8 @@ public class EntityFieldChangeCacheModel implements CacheModel<EntityFieldChange
     @Override
     public void writeExternal(ObjectOutput objectOutput)
         throws IOException {
-        objectOutput.writeInt(id);
-        objectOutput.writeInt(auditEntryId);
+        objectOutput.writeInt(fieldChangeId);
+        objectOutput.writeInt(entryId);
 
         if (fieldName == null) {
             objectOutput.writeUTF(StringPool.BLANK);

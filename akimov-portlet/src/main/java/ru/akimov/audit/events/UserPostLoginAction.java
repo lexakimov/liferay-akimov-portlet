@@ -2,16 +2,18 @@ package ru.akimov.audit.events;
 
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
-import ru.akimov.audit.AuditEntryWrapper;
+import ru.akimov.audit.enums.AuditType;
+import ru.akimov.audit.enums.EntityType;
+import ru.akimov.model.AuditEntry;
+import ru.akimov.model.AuditEntryGroup;
+import ru.akimov.service.AuditEntryGroupLocalServiceUtil;
+import ru.akimov.service.AuditEntryLocalServiceUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-
-import static ru.akimov.audit.enums.AuditType.USER_LOGIN;
-import static ru.akimov.audit.enums.EntityType.USER;
 
 /**
  * Обработчик события при входе пользователя в систему. Прописан в resources/hook.properties.
@@ -31,14 +33,17 @@ public class UserPostLoginAction extends Action {
 	}
 
 	private void handleEvent(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		long companyId = PortalUtil.getCompanyId(request);
 		User user = PortalUtil.getUser(request);
 		int userId = (int) user.getUserId();
-		Date dateOfChange = new Date();
-		String metadata = "";
-		AuditEntryWrapper auditEntry =
-				new AuditEntryWrapper(userId, USER, USER_LOGIN, companyId, user, dateOfChange, metadata);
-		auditEntry.persist();
+		String metadata = StringPool.BLANK;
+
+		String entityType = String.valueOf(EntityType.USER);
+		String auditType = String.valueOf(AuditType.USER_LOGIN);
+
+		AuditEntryGroup auditEntryGroup = AuditEntryGroupLocalServiceUtil.create();
+		AuditEntry auditEntry = AuditEntryLocalServiceUtil.create(userId, entityType, auditType, metadata);
+		auditEntryGroup.addEntry(auditEntry);
+		auditEntryGroup.persist();
 	}
 
 }

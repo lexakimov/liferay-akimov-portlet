@@ -20,11 +20,11 @@ public class UserOrgLeftActionDescriptionAdapter implements DescriptionAdapter {
 
 	@Override
 	public String adapt(AuditEntry entry) {
-		long userId = entry.getUserId();
+		long userId = 0L;// TODO entry.getUserId();
 		String userName = null;
 		try {
 			User user = UserLocalServiceUtil.fetchUser(userId);
-			userName = user != null ? user.getFullName() : entry.getUserName();
+/*			userName = user != null ? user.getFullName() : entry.getUserName();*/
 		} catch (SystemException e) {
 			log.error(e);
 		}

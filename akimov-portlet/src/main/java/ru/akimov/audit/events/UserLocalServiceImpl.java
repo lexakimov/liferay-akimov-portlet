@@ -4,18 +4,23 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
-import com.liferay.portal.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalService;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceWrapper;
-import ru.akimov.audit.AuditEntryWrapper;
 import ru.akimov.audit.enums.AuditType;
 import ru.akimov.audit.enums.EntityType;
+import ru.akimov.model.AuditEntry;
+import ru.akimov.model.AuditEntryGroup;
+import ru.akimov.service.AuditEntryGroupLocalServiceUtil;
+import ru.akimov.service.AuditEntryLocalServiceUtil;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Перехват событий добавления/удаления ролей пользователя. Прописан в liferay-hook.xml.
@@ -123,8 +128,8 @@ public class UserLocalServiceImpl extends UserLocalServiceWrapper {
 
 		log.trace("invoke");
 
-		long[] roleIdsBefore = fetchUser(userId).getRoleIds();
-		long[] orgIdsBefore = fetchUser(userId).getOrganizationIds();
+		long[] rolesBefore = fetchUser(userId).getRoleIds();
+		long[] orgsBefore = fetchUser(userId).getOrganizationIds();
 
 		User userAfter = super.updateUser(userId, oldPassword, newPassword1, newPassword2, passwordReset,
 				reminderQueryQuestion, reminderQueryAnswer, screenName, emailAddress, facebookId, openId, languageId,
@@ -133,79 +138,59 @@ public class UserLocalServiceImpl extends UserLocalServiceWrapper {
 				skypeSn, twitterSn, ymSn, jobTitle, groupIds, organizationIds, roleIds, userGroupRoles, userGroupIds,
 				serviceContext);
 
-		long[] roleIdsAfter = userAfter.getRoleIds();
-		long[] orgIdsAfter = userAfter.getOrganizationIds();
+		long[] rolesAfter = userAfter.getRoleIds();
+		long[] orgsAfter = userAfter.getOrganizationIds();
 
-		log.debug("roles: " + Arrays.toString(roleIdsBefore));
-		log.debug("roles: " + Arrays.toString(roleIdsAfter));
+		log.debug("roles: " + Arrays.toString(rolesBefore));
+		log.debug("roles: " + Arrays.toString(rolesAfter));
 
-		log.debug("orgs: " + Arrays.toString(orgIdsBefore));
-		log.debug("orgs: " + Arrays.toString(orgIdsAfter));
+		log.debug("orgs: " + Arrays.toString(orgsBefore));
+		log.debug("orgs: " + Arrays.toString(orgsAfter));
 
-		long initiatorUserId = PrincipalThreadLocal.getUserId();
-		User initiator = UserLocalServiceUtil.fetchUser(initiatorUserId);
-		long companyId = serviceContext.getCompanyId();
-		Date dateOfChange = new Date();
+		AuditEntryGroup auditEntryGroup = AuditEntryGroupLocalServiceUtil.create();
 
-		processRoles((int) userId, roleIdsBefore, roleIdsAfter, initiator, companyId, dateOfChange);
-		processOrgs((int) userId, orgIdsBefore, orgIdsAfter, initiator, companyId, dateOfChange);
+		String auditTypeRoleGrant = String.valueOf(AuditType.USER_ROLE_GRANT);
+		String auditTypeRoleRemove = String.valueOf(AuditType.USER_ROLE_REMOVE);
+		processDifferences((int) userId, rolesBefore, rolesAfter, auditTypeRoleGrant, auditTypeRoleRemove, auditEntryGroup);
+
+		String auditTypeOrgJoin = String.valueOf(AuditType.USER_ORG_JOINED);
+		String auditTypeOrgLeft = String.valueOf(AuditType.USER_ORG_LEFT);
+		processDifferences((int) userId, orgsBefore, orgsAfter, auditTypeOrgJoin, auditTypeOrgLeft, auditEntryGroup);
+
+		if (auditEntryGroup.hasEntries()) {
+			auditEntryGroup.persist();
+		}
 
 		return userAfter;
 	}
 
-	private void processRoles(int userId, long[] roleIdsBefore, long[] roleIdsAfter, User initiator, long companyId,
-							  Date dateOfChange) throws SystemException {
+	private void processDifferences(
+			int userId,
+			long[] idsBefore,
+			long[] idsAfter,
+			String additionType,
+			String substractionType,
+			AuditEntryGroup auditEntryGroup
+	) throws SystemException {
 
-		Set<Long> rolesBefore = new HashSet<>(toLongList(roleIdsBefore));
-		Set<Long> rolesAfter = new HashSet<>(toLongList(roleIdsAfter));
+		Set<Long> before = SetUtil.fromArray(idsBefore);
+		Set<Long> after = SetUtil.fromArray(idsAfter);
+		Set<Long> all = SetUtil.intersect(idsBefore, idsAfter);
 
-		Set<Long> allRoles = new HashSet<>();
-		allRoles.addAll(rolesBefore);
-		allRoles.addAll(rolesAfter);
-		String metadata = "";
-		for (Long roleId : allRoles) {
-			if (!rolesBefore.contains(roleId) && rolesAfter.contains(roleId)) {
-				new AuditEntryWrapper(
-						userId, EntityType.USER, AuditType.USER_ROLE_GRANT, companyId, initiator,
-						dateOfChange, metadata).persist();
+		String metadata = StringPool.BLANK;
+		String entityType = String.valueOf(EntityType.USER);
 
-			} else if (rolesBefore.contains(roleId) && !rolesAfter.contains(roleId)) {
-				new AuditEntryWrapper(
-						userId, EntityType.USER, AuditType.USER_ROLE_REMOVE, companyId, initiator,
-						dateOfChange, metadata).persist();
+		for (Long id : all) {
+			AuditEntry entry = null;
+			if (!before.contains(id) && after.contains(id)) {
+				entry = AuditEntryLocalServiceUtil.create(userId, entityType, additionType, metadata);
+			} else if (before.contains(id) && !after.contains(id)) {
+				entry = AuditEntryLocalServiceUtil.create(userId, entityType, substractionType, metadata);
+			}
+			if (entry != null) {
+				auditEntryGroup.addEntry(entry);
 			}
 		}
 	}
 
-	private void processOrgs(int userId, long[] roleIdsBefore, long[] roleIdsAfter, User initiator, long companyId,
-							 Date dateOfChange) throws SystemException {
-
-		Set<Long> rolesBefore = new HashSet<>(toLongList(roleIdsBefore));
-		Set<Long> rolesAfter = new HashSet<>(toLongList(roleIdsAfter));
-
-		Set<Long> allRoles = new HashSet<>();
-		allRoles.addAll(rolesBefore);
-		allRoles.addAll(rolesAfter);
-		String metadata = "";
-		for (Long roleId : allRoles) {
-			if (!rolesBefore.contains(roleId) && rolesAfter.contains(roleId)) {
-				new AuditEntryWrapper(
-						userId, EntityType.USER, AuditType.USER_ORG_JOINED, companyId, initiator,
-						dateOfChange, metadata).persist();
-
-			} else if (rolesBefore.contains(roleId) && !rolesAfter.contains(roleId)) {
-				new AuditEntryWrapper(
-						userId, EntityType.USER, AuditType.USER_ORG_LEFT, companyId, initiator,
-						dateOfChange, metadata).persist();
-			}
-		}
-	}
-
-	private List<Long> toLongList(long[] argument) {
-		List<Long> result = new ArrayList<>(argument.length);
-		for (long temp : argument) {
-			result.add(temp);
-		}
-		return result;
-	}
 }

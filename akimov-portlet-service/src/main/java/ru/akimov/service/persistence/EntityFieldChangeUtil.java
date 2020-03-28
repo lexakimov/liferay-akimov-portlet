@@ -12,7 +12,7 @@ import ru.akimov.model.EntityFieldChange;
 import java.util.List;
 
 /**
- * The persistence utility for the entity field change service. This utility wraps {@link EntityFieldChangePersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ * The persistence utility for the Изменение атрибута сущности service. This utility wraps {@link EntityFieldChangePersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
@@ -100,175 +100,169 @@ public class EntityFieldChangeUtil {
     }
 
     /**
-    * Returns all the entity field changes where auditEntryId = &#63;.
+    * Returns all the Изменение атрибута сущностиs where entryId = &#63;.
     *
-    * @param auditEntryId the audit entry ID
-    * @return the matching entity field changes
+    * @param entryId the entry ID
+    * @return the matching Изменение атрибута сущностиs
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<ru.akimov.model.EntityFieldChange> findByAuditEntryId(
-        int auditEntryId)
-        throws com.liferay.portal.kernel.exception.SystemException {
-        return getPersistence().findByAuditEntryId(auditEntryId);
+    public static java.util.List<ru.akimov.model.EntityFieldChange> findByEntryId(
+        int entryId) throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().findByEntryId(entryId);
     }
 
     /**
-    * Returns a range of all the entity field changes where auditEntryId = &#63;.
+    * Returns a range of all the Изменение атрибута сущностиs where entryId = &#63;.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param auditEntryId the audit entry ID
-    * @param start the lower bound of the range of entity field changes
-    * @param end the upper bound of the range of entity field changes (not inclusive)
-    * @return the range of matching entity field changes
+    * @param entryId the entry ID
+    * @param start the lower bound of the range of Изменение атрибута сущностиs
+    * @param end the upper bound of the range of Изменение атрибута сущностиs (not inclusive)
+    * @return the range of matching Изменение атрибута сущностиs
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<ru.akimov.model.EntityFieldChange> findByAuditEntryId(
-        int auditEntryId, int start, int end)
+    public static java.util.List<ru.akimov.model.EntityFieldChange> findByEntryId(
+        int entryId, int start, int end)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getPersistence().findByAuditEntryId(auditEntryId, start, end);
+        return getPersistence().findByEntryId(entryId, start, end);
     }
 
     /**
-    * Returns an ordered range of all the entity field changes where auditEntryId = &#63;.
+    * Returns an ordered range of all the Изменение атрибута сущностиs where entryId = &#63;.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param auditEntryId the audit entry ID
-    * @param start the lower bound of the range of entity field changes
-    * @param end the upper bound of the range of entity field changes (not inclusive)
+    * @param entryId the entry ID
+    * @param start the lower bound of the range of Изменение атрибута сущностиs
+    * @param end the upper bound of the range of Изменение атрибута сущностиs (not inclusive)
     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-    * @return the ordered range of matching entity field changes
+    * @return the ordered range of matching Изменение атрибута сущностиs
     * @throws SystemException if a system exception occurred
     */
-    public static java.util.List<ru.akimov.model.EntityFieldChange> findByAuditEntryId(
-        int auditEntryId, int start, int end,
+    public static java.util.List<ru.akimov.model.EntityFieldChange> findByEntryId(
+        int entryId, int start, int end,
         com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getPersistence()
-                   .findByAuditEntryId(auditEntryId, start, end,
+                   .findByEntryId(entryId, start, end, orderByComparator);
+    }
+
+    /**
+    * Returns the first Изменение атрибута сущности in the ordered set where entryId = &#63;.
+    *
+    * @param entryId the entry ID
+    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+    * @return the first matching Изменение атрибута сущности
+    * @throws ru.akimov.NoSuchEntityFieldChangeException if a matching Изменение атрибута сущности could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static ru.akimov.model.EntityFieldChange findByEntryId_First(
+        int entryId,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException,
+            ru.akimov.NoSuchEntityFieldChangeException {
+        return getPersistence().findByEntryId_First(entryId, orderByComparator);
+    }
+
+    /**
+    * Returns the first Изменение атрибута сущности in the ordered set where entryId = &#63;.
+    *
+    * @param entryId the entry ID
+    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+    * @return the first matching Изменение атрибута сущности, or <code>null</code> if a matching Изменение атрибута сущности could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static ru.akimov.model.EntityFieldChange fetchByEntryId_First(
+        int entryId,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().fetchByEntryId_First(entryId, orderByComparator);
+    }
+
+    /**
+    * Returns the last Изменение атрибута сущности in the ordered set where entryId = &#63;.
+    *
+    * @param entryId the entry ID
+    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+    * @return the last matching Изменение атрибута сущности
+    * @throws ru.akimov.NoSuchEntityFieldChangeException if a matching Изменение атрибута сущности could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static ru.akimov.model.EntityFieldChange findByEntryId_Last(
+        int entryId,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException,
+            ru.akimov.NoSuchEntityFieldChangeException {
+        return getPersistence().findByEntryId_Last(entryId, orderByComparator);
+    }
+
+    /**
+    * Returns the last Изменение атрибута сущности in the ordered set where entryId = &#63;.
+    *
+    * @param entryId the entry ID
+    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+    * @return the last matching Изменение атрибута сущности, or <code>null</code> if a matching Изменение атрибута сущности could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static ru.akimov.model.EntityFieldChange fetchByEntryId_Last(
+        int entryId,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().fetchByEntryId_Last(entryId, orderByComparator);
+    }
+
+    /**
+    * Returns the Изменение атрибута сущностиs before and after the current Изменение атрибута сущности in the ordered set where entryId = &#63;.
+    *
+    * @param fieldChangeId the primary key of the current Изменение атрибута сущности
+    * @param entryId the entry ID
+    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+    * @return the previous, current, and next Изменение атрибута сущности
+    * @throws ru.akimov.NoSuchEntityFieldChangeException if a Изменение атрибута сущности with the primary key could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static ru.akimov.model.EntityFieldChange[] findByEntryId_PrevAndNext(
+        int fieldChangeId, int entryId,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException,
+            ru.akimov.NoSuchEntityFieldChangeException {
+        return getPersistence()
+                   .findByEntryId_PrevAndNext(fieldChangeId, entryId,
             orderByComparator);
     }
 
     /**
-    * Returns the first entity field change in the ordered set where auditEntryId = &#63;.
+    * Removes all the Изменение атрибута сущностиs where entryId = &#63; from the database.
     *
-    * @param auditEntryId the audit entry ID
-    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-    * @return the first matching entity field change
-    * @throws ru.akimov.NoSuchEntityFieldChangeException if a matching entity field change could not be found
+    * @param entryId the entry ID
     * @throws SystemException if a system exception occurred
     */
-    public static ru.akimov.model.EntityFieldChange findByAuditEntryId_First(
-        int auditEntryId,
-        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-        throws com.liferay.portal.kernel.exception.SystemException,
-            ru.akimov.NoSuchEntityFieldChangeException {
-        return getPersistence()
-                   .findByAuditEntryId_First(auditEntryId, orderByComparator);
-    }
-
-    /**
-    * Returns the first entity field change in the ordered set where auditEntryId = &#63;.
-    *
-    * @param auditEntryId the audit entry ID
-    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-    * @return the first matching entity field change, or <code>null</code> if a matching entity field change could not be found
-    * @throws SystemException if a system exception occurred
-    */
-    public static ru.akimov.model.EntityFieldChange fetchByAuditEntryId_First(
-        int auditEntryId,
-        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+    public static void removeByEntryId(int entryId)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getPersistence()
-                   .fetchByAuditEntryId_First(auditEntryId, orderByComparator);
+        getPersistence().removeByEntryId(entryId);
     }
 
     /**
-    * Returns the last entity field change in the ordered set where auditEntryId = &#63;.
+    * Returns the number of Изменение атрибута сущностиs where entryId = &#63;.
     *
-    * @param auditEntryId the audit entry ID
-    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-    * @return the last matching entity field change
-    * @throws ru.akimov.NoSuchEntityFieldChangeException if a matching entity field change could not be found
+    * @param entryId the entry ID
+    * @return the number of matching Изменение атрибута сущностиs
     * @throws SystemException if a system exception occurred
     */
-    public static ru.akimov.model.EntityFieldChange findByAuditEntryId_Last(
-        int auditEntryId,
-        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-        throws com.liferay.portal.kernel.exception.SystemException,
-            ru.akimov.NoSuchEntityFieldChangeException {
-        return getPersistence()
-                   .findByAuditEntryId_Last(auditEntryId, orderByComparator);
-    }
-
-    /**
-    * Returns the last entity field change in the ordered set where auditEntryId = &#63;.
-    *
-    * @param auditEntryId the audit entry ID
-    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-    * @return the last matching entity field change, or <code>null</code> if a matching entity field change could not be found
-    * @throws SystemException if a system exception occurred
-    */
-    public static ru.akimov.model.EntityFieldChange fetchByAuditEntryId_Last(
-        int auditEntryId,
-        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+    public static int countByEntryId(int entryId)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getPersistence()
-                   .fetchByAuditEntryId_Last(auditEntryId, orderByComparator);
+        return getPersistence().countByEntryId(entryId);
     }
 
     /**
-    * Returns the entity field changes before and after the current entity field change in the ordered set where auditEntryId = &#63;.
+    * Caches the Изменение атрибута сущности in the entity cache if it is enabled.
     *
-    * @param id the primary key of the current entity field change
-    * @param auditEntryId the audit entry ID
-    * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-    * @return the previous, current, and next entity field change
-    * @throws ru.akimov.NoSuchEntityFieldChangeException if a entity field change with the primary key could not be found
-    * @throws SystemException if a system exception occurred
-    */
-    public static ru.akimov.model.EntityFieldChange[] findByAuditEntryId_PrevAndNext(
-        int id, int auditEntryId,
-        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-        throws com.liferay.portal.kernel.exception.SystemException,
-            ru.akimov.NoSuchEntityFieldChangeException {
-        return getPersistence()
-                   .findByAuditEntryId_PrevAndNext(id, auditEntryId,
-            orderByComparator);
-    }
-
-    /**
-    * Removes all the entity field changes where auditEntryId = &#63; from the database.
-    *
-    * @param auditEntryId the audit entry ID
-    * @throws SystemException if a system exception occurred
-    */
-    public static void removeByAuditEntryId(int auditEntryId)
-        throws com.liferay.portal.kernel.exception.SystemException {
-        getPersistence().removeByAuditEntryId(auditEntryId);
-    }
-
-    /**
-    * Returns the number of entity field changes where auditEntryId = &#63;.
-    *
-    * @param auditEntryId the audit entry ID
-    * @return the number of matching entity field changes
-    * @throws SystemException if a system exception occurred
-    */
-    public static int countByAuditEntryId(int auditEntryId)
-        throws com.liferay.portal.kernel.exception.SystemException {
-        return getPersistence().countByAuditEntryId(auditEntryId);
-    }
-
-    /**
-    * Caches the entity field change in the entity cache if it is enabled.
-    *
-    * @param entityFieldChange the entity field change
+    * @param entityFieldChange the Изменение атрибута сущности
     */
     public static void cacheResult(
         ru.akimov.model.EntityFieldChange entityFieldChange) {
@@ -276,9 +270,9 @@ public class EntityFieldChangeUtil {
     }
 
     /**
-    * Caches the entity field changes in the entity cache if it is enabled.
+    * Caches the Изменение атрибута сущностиs in the entity cache if it is enabled.
     *
-    * @param entityFieldChanges the entity field changes
+    * @param entityFieldChanges the Изменение атрибута сущностиs
     */
     public static void cacheResult(
         java.util.List<ru.akimov.model.EntityFieldChange> entityFieldChanges) {
@@ -286,27 +280,27 @@ public class EntityFieldChangeUtil {
     }
 
     /**
-    * Creates a new entity field change with the primary key. Does not add the entity field change to the database.
+    * Creates a new Изменение атрибута сущности with the primary key. Does not add the Изменение атрибута сущности to the database.
     *
-    * @param id the primary key for the new entity field change
-    * @return the new entity field change
+    * @param fieldChangeId the primary key for the new Изменение атрибута сущности
+    * @return the new Изменение атрибута сущности
     */
-    public static ru.akimov.model.EntityFieldChange create(int id) {
-        return getPersistence().create(id);
+    public static ru.akimov.model.EntityFieldChange create(int fieldChangeId) {
+        return getPersistence().create(fieldChangeId);
     }
 
     /**
-    * Removes the entity field change with the primary key from the database. Also notifies the appropriate model listeners.
+    * Removes the Изменение атрибута сущности with the primary key from the database. Also notifies the appropriate model listeners.
     *
-    * @param id the primary key of the entity field change
-    * @return the entity field change that was removed
-    * @throws ru.akimov.NoSuchEntityFieldChangeException if a entity field change with the primary key could not be found
+    * @param fieldChangeId the primary key of the Изменение атрибута сущности
+    * @return the Изменение атрибута сущности that was removed
+    * @throws ru.akimov.NoSuchEntityFieldChangeException if a Изменение атрибута сущности with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.akimov.model.EntityFieldChange remove(int id)
+    public static ru.akimov.model.EntityFieldChange remove(int fieldChangeId)
         throws com.liferay.portal.kernel.exception.SystemException,
             ru.akimov.NoSuchEntityFieldChangeException {
-        return getPersistence().remove(id);
+        return getPersistence().remove(fieldChangeId);
     }
 
     public static ru.akimov.model.EntityFieldChange updateImpl(
@@ -316,35 +310,37 @@ public class EntityFieldChangeUtil {
     }
 
     /**
-    * Returns the entity field change with the primary key or throws a {@link ru.akimov.NoSuchEntityFieldChangeException} if it could not be found.
+    * Returns the Изменение атрибута сущности with the primary key or throws a {@link ru.akimov.NoSuchEntityFieldChangeException} if it could not be found.
     *
-    * @param id the primary key of the entity field change
-    * @return the entity field change
-    * @throws ru.akimov.NoSuchEntityFieldChangeException if a entity field change with the primary key could not be found
+    * @param fieldChangeId the primary key of the Изменение атрибута сущности
+    * @return the Изменение атрибута сущности
+    * @throws ru.akimov.NoSuchEntityFieldChangeException if a Изменение атрибута сущности with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.akimov.model.EntityFieldChange findByPrimaryKey(int id)
+    public static ru.akimov.model.EntityFieldChange findByPrimaryKey(
+        int fieldChangeId)
         throws com.liferay.portal.kernel.exception.SystemException,
             ru.akimov.NoSuchEntityFieldChangeException {
-        return getPersistence().findByPrimaryKey(id);
+        return getPersistence().findByPrimaryKey(fieldChangeId);
     }
 
     /**
-    * Returns the entity field change with the primary key or returns <code>null</code> if it could not be found.
+    * Returns the Изменение атрибута сущности with the primary key or returns <code>null</code> if it could not be found.
     *
-    * @param id the primary key of the entity field change
-    * @return the entity field change, or <code>null</code> if a entity field change with the primary key could not be found
+    * @param fieldChangeId the primary key of the Изменение атрибута сущности
+    * @return the Изменение атрибута сущности, or <code>null</code> if a Изменение атрибута сущности with the primary key could not be found
     * @throws SystemException if a system exception occurred
     */
-    public static ru.akimov.model.EntityFieldChange fetchByPrimaryKey(int id)
+    public static ru.akimov.model.EntityFieldChange fetchByPrimaryKey(
+        int fieldChangeId)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getPersistence().fetchByPrimaryKey(id);
+        return getPersistence().fetchByPrimaryKey(fieldChangeId);
     }
 
     /**
-    * Returns all the entity field changes.
+    * Returns all the Изменение атрибута сущностиs.
     *
-    * @return the entity field changes
+    * @return the Изменение атрибута сущностиs
     * @throws SystemException if a system exception occurred
     */
     public static java.util.List<ru.akimov.model.EntityFieldChange> findAll()
@@ -353,15 +349,15 @@ public class EntityFieldChangeUtil {
     }
 
     /**
-    * Returns a range of all the entity field changes.
+    * Returns a range of all the Изменение атрибута сущностиs.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param start the lower bound of the range of entity field changes
-    * @param end the upper bound of the range of entity field changes (not inclusive)
-    * @return the range of entity field changes
+    * @param start the lower bound of the range of Изменение атрибута сущностиs
+    * @param end the upper bound of the range of Изменение атрибута сущностиs (not inclusive)
+    * @return the range of Изменение атрибута сущностиs
     * @throws SystemException if a system exception occurred
     */
     public static java.util.List<ru.akimov.model.EntityFieldChange> findAll(
@@ -371,16 +367,16 @@ public class EntityFieldChangeUtil {
     }
 
     /**
-    * Returns an ordered range of all the entity field changes.
+    * Returns an ordered range of all the Изменение атрибута сущностиs.
     *
     * <p>
     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.akimov.model.impl.EntityFieldChangeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
     * </p>
     *
-    * @param start the lower bound of the range of entity field changes
-    * @param end the upper bound of the range of entity field changes (not inclusive)
+    * @param start the lower bound of the range of Изменение атрибута сущностиs
+    * @param end the upper bound of the range of Изменение атрибута сущностиs (not inclusive)
     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-    * @return the ordered range of entity field changes
+    * @return the ordered range of Изменение атрибута сущностиs
     * @throws SystemException if a system exception occurred
     */
     public static java.util.List<ru.akimov.model.EntityFieldChange> findAll(
@@ -391,7 +387,7 @@ public class EntityFieldChangeUtil {
     }
 
     /**
-    * Removes all the entity field changes from the database.
+    * Removes all the Изменение атрибута сущностиs from the database.
     *
     * @throws SystemException if a system exception occurred
     */
@@ -401,9 +397,9 @@ public class EntityFieldChangeUtil {
     }
 
     /**
-    * Returns the number of entity field changes.
+    * Returns the number of Изменение атрибута сущностиs.
     *
-    * @return the number of entity field changes
+    * @return the number of Изменение атрибута сущностиs
     * @throws SystemException if a system exception occurred
     */
     public static int countAll()

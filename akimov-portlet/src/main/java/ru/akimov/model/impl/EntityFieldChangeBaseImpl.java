@@ -23,7 +23,7 @@ public abstract class EntityFieldChangeBaseImpl
     /*
      * NOTE FOR DEVELOPERS:
      *
-     * Never modify or reference this class directly. All methods that expect a entity field change model instance should use the {@link EntityFieldChange} interface instead.
+     * Never modify or reference this class directly. All methods that expect a Изменение атрибута сущности model instance should use the {@link EntityFieldChange} interface instead.
      */
     @Override
     public void persist() throws SystemException {

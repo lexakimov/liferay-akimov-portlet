@@ -19,6 +19,6 @@ public abstract class AuditEntryActionableDynamicQuery
 
         setClassLoader(ru.akimov.service.ClpSerializer.class.getClassLoader());
 
-        setPrimaryKeyPropertyName("auditEntryId");
+        setPrimaryKeyPropertyName("entryId");
     }
 }

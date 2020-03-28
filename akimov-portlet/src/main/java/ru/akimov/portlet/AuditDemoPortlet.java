@@ -7,11 +7,14 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import ru.akimov.audit.AuditEntryWrapper;
 import ru.akimov.audit.enums.AuditType;
 import ru.akimov.audit.enums.EntityType;
 import ru.akimov.audit.messaging.AuditMessagingUtil;
+import ru.akimov.model.AuditEntry;
+import ru.akimov.model.AuditEntryGroup;
 import ru.akimov.model.Foo;
+import ru.akimov.service.AuditEntryGroupLocalServiceUtil;
+import ru.akimov.service.AuditEntryLocalServiceUtil;
 import ru.akimov.service.FooLocalServiceUtil;
 import ru.akimov.utils.PortletRequestUtil;
 
@@ -20,7 +23,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletURL;
 import javax.portlet.ProcessAction;
 import java.io.IOException;
-import java.util.Date;
 
 import static ru.akimov.utils.DateUtil.DD_MM_YYYY__HH_MM;
 
@@ -37,7 +39,7 @@ public class AuditDemoPortlet extends MVCExtendedPortlet {
 	 * @throws IOException
 	 */
 	@ProcessAction(name = "updateFoo")
-	public void updateFoo(ActionRequest request, ActionResponse response) throws SystemException, IOException {
+	public void updateFoo(ActionRequest request, ActionResponse response) throws SystemException, IOException, PortalException {
 
 		boolean isCustomAudit = ParamUtil.getBoolean(request, "isCustomAudit");
 		if (isCustomAudit) {
@@ -70,10 +72,14 @@ public class AuditDemoPortlet extends MVCExtendedPortlet {
 		foo.persist();
 
 		if (isCustomAudit) {
-			AuditEntryWrapper auditEntry =
-					new AuditEntryWrapper(fooId, EntityType.FOO, AuditType.FOO_CUSTOM, new Date(), StringPool.BLANK);
+			String entityType = String.valueOf(EntityType.FOO);
+			String auditType = String.valueOf(AuditType.FOO_CUSTOM);
+
+			AuditEntryGroup auditEntryGroup = AuditEntryGroupLocalServiceUtil.create();
+			AuditEntry auditEntry = AuditEntryLocalServiceUtil.create(fooId, entityType, auditType, StringPool.BLANK);
+			auditEntryGroup.addEntry(auditEntry);
 			auditEntry.addFieldChange("customized_param_1", "val1", "val2");
-			auditEntry.persist();
+			auditEntryGroup.persist();
 		}
 
 		PortletURL redirect = PortletRequestUtil.createPortletURL(request);

@@ -41,10 +41,16 @@ public class EntityFieldChangeLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName48;
-    private String[] _methodParameterTypes48;
-    private String _methodName49;
-    private String[] _methodParameterTypes49;
+    private String _methodName52;
+    private String[] _methodParameterTypes52;
+    private String _methodName53;
+    private String[] _methodParameterTypes53;
+    private String _methodName58;
+    private String[] _methodParameterTypes58;
+    private String _methodName59;
+    private String[] _methodParameterTypes59;
+    private String _methodName61;
+    private String[] _methodParameterTypes61;
 
     public EntityFieldChangeLocalServiceClpInvoker() {
         _methodName0 = "addEntityFieldChange";
@@ -129,13 +135,29 @@ public class EntityFieldChangeLocalServiceClpInvoker {
                 "ru.akimov.model.EntityFieldChange"
             };
 
-        _methodName48 = "getBeanIdentifier";
+        _methodName52 = "getBeanIdentifier";
 
-        _methodParameterTypes48 = new String[] {  };
+        _methodParameterTypes52 = new String[] {  };
 
-        _methodName49 = "setBeanIdentifier";
+        _methodName53 = "setBeanIdentifier";
 
-        _methodParameterTypes49 = new String[] { "java.lang.String" };
+        _methodParameterTypes53 = new String[] { "java.lang.String" };
+
+        _methodName58 = "addEntityFieldChange";
+
+        _methodParameterTypes58 = new String[] {
+                "ru.akimov.model.EntityFieldChange"
+            };
+
+        _methodName59 = "updateEntityFieldChange";
+
+        _methodParameterTypes59 = new String[] {
+                "ru.akimov.model.EntityFieldChange"
+            };
+
+        _methodName61 = "getByEntryId";
+
+        _methodParameterTypes61 = new String[] { "int" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -227,16 +249,31 @@ public class EntityFieldChangeLocalServiceClpInvoker {
             return EntityFieldChangeLocalServiceUtil.updateEntityFieldChange((ru.akimov.model.EntityFieldChange) arguments[0]);
         }
 
-        if (_methodName48.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+        if (_methodName52.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
             return EntityFieldChangeLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName49.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+        if (_methodName53.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
             EntityFieldChangeLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
+        }
+
+        if (_methodName58.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+            return EntityFieldChangeLocalServiceUtil.addEntityFieldChange((ru.akimov.model.EntityFieldChange) arguments[0]);
+        }
+
+        if (_methodName59.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+            return EntityFieldChangeLocalServiceUtil.updateEntityFieldChange((ru.akimov.model.EntityFieldChange) arguments[0]);
+        }
+
+        if (_methodName61.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+            return EntityFieldChangeLocalServiceUtil.getByEntryId(((Integer) arguments[0]).intValue());
         }
 
         throw new UnsupportedOperationException();

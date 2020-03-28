@@ -13,6 +13,7 @@ import com.liferay.portal.model.BaseModel;
 
 import ru.akimov.model.AttachmentFileClp;
 import ru.akimov.model.AuditEntryClp;
+import ru.akimov.model.AuditEntryGroupClp;
 import ru.akimov.model.EntityFieldChangeClp;
 import ru.akimov.model.FooClp;
 import ru.akimov.model.PersonClp;
@@ -100,6 +101,10 @@ public class ClpSerializer {
             return translateInputAuditEntry(oldModel);
         }
 
+        if (oldModelClassName.equals(AuditEntryGroupClp.class.getName())) {
+            return translateInputAuditEntryGroup(oldModel);
+        }
+
         if (oldModelClassName.equals(EntityFieldChangeClp.class.getName())) {
             return translateInputEntityFieldChange(oldModel);
         }
@@ -141,6 +146,16 @@ public class ClpSerializer {
         AuditEntryClp oldClpModel = (AuditEntryClp) oldModel;
 
         BaseModel<?> newModel = oldClpModel.getAuditEntryRemoteModel();
+
+        newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+        return newModel;
+    }
+
+    public static Object translateInputAuditEntryGroup(BaseModel<?> oldModel) {
+        AuditEntryGroupClp oldClpModel = (AuditEntryGroupClp) oldModel;
+
+        BaseModel<?> newModel = oldClpModel.getAuditEntryGroupRemoteModel();
 
         newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -228,6 +243,40 @@ public class ClpSerializer {
 
         if (oldModelClassName.equals("ru.akimov.model.impl.AuditEntryImpl")) {
             return translateOutputAuditEntry(oldModel);
+        } else if (oldModelClassName.endsWith("Clp")) {
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+                Method getClpSerializerClassMethod = oldModelClass.getMethod(
+                        "getClpSerializerClass");
+
+                Class<?> oldClpSerializerClass = (Class<?>) getClpSerializerClassMethod.invoke(oldModel);
+
+                Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+                Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+                        BaseModel.class);
+
+                Class<?> oldModelModelClass = oldModel.getModelClass();
+
+                Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+                        oldModelModelClass.getSimpleName() + "RemoteModel");
+
+                Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+                BaseModel<?> newModel = (BaseModel<?>) translateOutputMethod.invoke(null,
+                        oldRemoteModel);
+
+                return newModel;
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Unable to translate " + oldModelClassName, t);
+                }
+            }
+        }
+
+        if (oldModelClassName.equals("ru.akimov.model.impl.AuditEntryGroupImpl")) {
+            return translateOutputAuditEntryGroup(oldModel);
         } else if (oldModelClassName.endsWith("Clp")) {
             try {
                 ClassLoader classLoader = ClpSerializer.class.getClassLoader();
@@ -447,6 +496,10 @@ public class ClpSerializer {
             return new ru.akimov.NoSuchAuditEntryException();
         }
 
+        if (className.equals("ru.akimov.NoSuchAuditEntryGroupException")) {
+            return new ru.akimov.NoSuchAuditEntryGroupException();
+        }
+
         if (className.equals("ru.akimov.NoSuchEntityFieldChangeException")) {
             return new ru.akimov.NoSuchEntityFieldChangeException();
         }
@@ -478,6 +531,16 @@ public class ClpSerializer {
         newModel.setModelAttributes(oldModel.getModelAttributes());
 
         newModel.setAuditEntryRemoteModel(oldModel);
+
+        return newModel;
+    }
+
+    public static Object translateOutputAuditEntryGroup(BaseModel<?> oldModel) {
+        AuditEntryGroupClp newModel = new AuditEntryGroupClp();
+
+        newModel.setModelAttributes(oldModel.getModelAttributes());
+
+        newModel.setAuditEntryGroupRemoteModel(oldModel);
 
         return newModel;
     }

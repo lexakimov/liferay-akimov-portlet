@@ -21,7 +21,7 @@ public class FooCreateActionDescriptionAdapter implements DescriptionAdapter {
 
 	@Override
 	public String adapt(AuditEntry entry) {
-		long userId = entry.getUserId();
+		long userId = 0L;// TODO entry.getUserId();
 		int fooId = entry.getEntityId();
 		try {
 			User user = UserLocalServiceUtil.fetchUser(userId);

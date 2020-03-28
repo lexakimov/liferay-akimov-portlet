@@ -5,6 +5,8 @@
 	<bean id="ru.akimov.service.persistence.AttachmentFilePersistence" class="ru.akimov.service.persistence.AttachmentFilePersistenceImpl" parent="basePersistence" />
 	<bean id="ru.akimov.service.AuditEntryLocalService" class="ru.akimov.service.impl.AuditEntryLocalServiceImpl" />
 	<bean id="ru.akimov.service.persistence.AuditEntryPersistence" class="ru.akimov.service.persistence.AuditEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="ru.akimov.service.AuditEntryGroupLocalService" class="ru.akimov.service.impl.AuditEntryGroupLocalServiceImpl" />
+	<bean id="ru.akimov.service.persistence.AuditEntryGroupPersistence" class="ru.akimov.service.persistence.AuditEntryGroupPersistenceImpl" parent="basePersistence" />
 	<bean id="ru.akimov.service.EntityFieldChangeLocalService" class="ru.akimov.service.impl.EntityFieldChangeLocalServiceImpl" />
 	<bean id="ru.akimov.service.persistence.EntityFieldChangePersistence" class="ru.akimov.service.persistence.EntityFieldChangePersistenceImpl" parent="basePersistence" />
 	<bean id="ru.akimov.service.FooLocalService" class="ru.akimov.service.impl.FooLocalServiceImpl" />

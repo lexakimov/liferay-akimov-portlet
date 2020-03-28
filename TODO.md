@@ -1,4 +1,5 @@
 
+
 **Общее** 
     unit testing
     logging
@@ -20,6 +21,7 @@
 
 **Аудит**
    !!!!! аудит через шину
+   транзакция аудита
     аудит - при определенных изменёных полях выводить кастомное сообщение
     метаданные для аудита
     гость?
@@ -42,3 +44,40 @@
 
     вывод с адаптацией
         если есть адаптер
+        
+* простое журналирование 
+  * (1) создать группу записей
+  * (1) создать запись
+  * (*) создать изменение аттрибута
+
+
+* транзакзионное
+  * (1) создать группу записей
+  * (*) создать запись
+  * (**)создать изменение аттрибута
+  * коммит
+
+
+* Группа записей аудита
+  * entryGroupId	[pk]
+  * companyId		[not zero]
+  * userId			[not zero or -1 if guest]
+  * userName		[not null or Гость]
+  * eventDate		[not null, service watched]
+
+
+* Запись аудита
+  * entryId			[pk]
+  * entryGroupId	[reference, not zero]
+  * auditType		[not null]
+  * entityType		[nullable]
+  * entityId		[can be zero]
+  * metadata        [json, nullable]
+
+
+* Изменение атрибута сущности
+  * fieldChangeId	[pk]
+  * entryId			[reference, not zero]
+  * fieldName		[not null]
+  * oldValue		[nullable]
+  * newValue		[nullable]

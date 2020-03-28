@@ -43,10 +43,10 @@ public class AttachmentFileLocalServiceClpInvoker {
     private String[] _methodParameterTypes15;
     private String _methodName16;
     private String[] _methodParameterTypes16;
-    private String _methodName49;
-    private String[] _methodParameterTypes49;
-    private String _methodName50;
-    private String[] _methodParameterTypes50;
+    private String _methodName53;
+    private String[] _methodParameterTypes53;
+    private String _methodName54;
+    private String[] _methodParameterTypes54;
 
     public AttachmentFileLocalServiceClpInvoker() {
         _methodName0 = "addAttachmentFile";
@@ -129,13 +129,13 @@ public class AttachmentFileLocalServiceClpInvoker {
 
         _methodParameterTypes16 = new String[] { "java.io.Serializable" };
 
-        _methodName49 = "getBeanIdentifier";
+        _methodName53 = "getBeanIdentifier";
 
-        _methodParameterTypes49 = new String[] {  };
+        _methodParameterTypes53 = new String[] {  };
 
-        _methodName50 = "setBeanIdentifier";
+        _methodName54 = "setBeanIdentifier";
 
-        _methodParameterTypes50 = new String[] { "java.lang.String" };
+        _methodParameterTypes54 = new String[] { "java.lang.String" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -232,13 +232,13 @@ public class AttachmentFileLocalServiceClpInvoker {
             return AttachmentFileLocalServiceUtil.getDataBlobModel((java.io.Serializable) arguments[0]);
         }
 
-        if (_methodName49.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+        if (_methodName53.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
             return AttachmentFileLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName50.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+        if (_methodName54.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
             AttachmentFileLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;

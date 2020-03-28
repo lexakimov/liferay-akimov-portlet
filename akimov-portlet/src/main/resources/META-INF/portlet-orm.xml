@@ -32,17 +32,26 @@
 	</mapped-superclass>
 	<mapped-superclass class="ru.akimov.model.impl.AuditEntryModelImpl">
 		<attributes>
-			<id name="auditEntryId" />
+			<id name="entryId" />
+			<basic name="entryGroupId" />
 			<basic name="auditType" />
 			<basic name="entityType" />
 			<basic name="entityId" />
+			<basic name="metadata" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="ru.akimov.model.impl.AuditEntryGroupModelImpl">
+		<attributes>
+			<id name="entryGroupId" />
 			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
-			<basic name="dateOfChange">
+			<basic name="eventDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="metadata" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -51,10 +60,8 @@
 	</mapped-superclass>
 	<mapped-superclass class="ru.akimov.model.impl.EntityFieldChangeModelImpl">
 		<attributes>
-			<id name="id">
-				<column name="ID_" />
-			</id>
-			<basic name="auditEntryId" />
+			<id name="fieldChangeId" />
+			<basic name="entryId" />
 			<basic name="fieldName" />
 			<basic name="oldValue" />
 			<basic name="newValue" />
@@ -104,7 +111,11 @@
 		<attributes />
 	</entity>
 	<entity class="ru.akimov.model.impl.AuditEntryImpl" name="AuditEntry">
-		<table name="akimov_audit_entries" />
+		<table name="akimov_audit_action_entries" />
+		<attributes />
+	</entity>
+	<entity class="ru.akimov.model.impl.AuditEntryGroupImpl" name="AuditEntryGroup">
+		<table name="akimov_audit_action_groups" />
 		<attributes />
 	</entity>
 	<entity class="ru.akimov.model.impl.EntityFieldChangeImpl" name="EntityFieldChange">

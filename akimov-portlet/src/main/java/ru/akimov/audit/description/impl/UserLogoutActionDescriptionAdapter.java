@@ -25,7 +25,7 @@ public class UserLogoutActionDescriptionAdapter implements DescriptionAdapter {
 		try {
 			User user = UserLocalServiceUtil.fetchUser(userId);
 			if (user == null) {
-				return String.format(DESCRIPTION_PATTERN, entry.getUserName());
+				return String.format(DESCRIPTION_PATTERN/*, entry.getUserName()*/);
 			}
 			return String.format(DESCRIPTION_PATTERN, user.getFullName());
 		} catch (SystemException e) {

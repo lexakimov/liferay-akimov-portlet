@@ -4,6 +4,7 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="ru.akimov.model.AttachmentFile" />
 	<import class="ru.akimov.model.AuditEntry" />
+	<import class="ru.akimov.model.AuditEntryGroup" />
 	<import class="ru.akimov.model.EntityFieldChange" />
 	<import class="ru.akimov.model.Foo" />
 	<import class="ru.akimov.model.Person" />
@@ -28,26 +29,33 @@
 		</id>
 		<property column="data_" name="dataBlob" type="blob" />
 	</class>
-	<class name="ru.akimov.model.impl.AuditEntryImpl" table="akimov_audit_entries">
+	<class name="ru.akimov.model.impl.AuditEntryImpl" table="akimov_audit_action_entries">
 		<cache usage="read-write" />
-		<id name="auditEntryId" type="int">
+		<id name="entryId" type="int">
 			<generator class="assigned" />
 		</id>
+		<property name="entryGroupId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="auditType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="entityType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="entityId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="metadata" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="ru.akimov.model.impl.AuditEntryGroupImpl" table="akimov_audit_action_groups">
+		<cache usage="read-write" />
+		<id name="entryGroupId" type="int">
+			<generator class="assigned" />
+		</id>
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="dateOfChange" type="org.hibernate.type.TimestampType" />
-		<property name="metadata" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="eventDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="ru.akimov.model.impl.EntityFieldChangeImpl" table="akimov_audit_field_changes">
 		<cache usage="read-write" />
-		<id name="id" column="id_" type="int">
+		<id name="fieldChangeId" type="int">
 			<generator class="assigned" />
 		</id>
-		<property name="auditEntryId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="entryId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="fieldName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="oldValue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="newValue" type="com.liferay.portal.dao.orm.hibernate.StringType" />

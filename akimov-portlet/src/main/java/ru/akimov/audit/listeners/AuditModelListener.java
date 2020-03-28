@@ -1,26 +1,25 @@
 package ru.akimov.audit.listeners;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.BaseModelListener;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.ServiceContextThreadLocal;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import ru.akimov.audit.AuditEntryWrapper;
 import ru.akimov.audit.comparators.ModelComparator;
 import ru.akimov.audit.enums.AuditType;
 import ru.akimov.audit.enums.EntityType;
 import ru.akimov.audit.exceptions.EntityAuditException;
 import ru.akimov.audit.exceptions.NoSuchModelAttributeException;
 import ru.akimov.audit.messaging.AuditMessagingUtil;
+import ru.akimov.model.AuditEntry;
+import ru.akimov.model.AuditEntryGroup;
+import ru.akimov.service.AuditEntryGroupLocalServiceUtil;
 import ru.akimov.service.AuditEntryLocalServiceUtil;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -56,9 +55,7 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 	}
 
 	private void process(T updatedModel, AuditType auditType) throws EntityAuditException {
-
 		int entityId = getEntityId(updatedModel);
-
 		// выявить изменения полей
 		ModelComparator<T> modelComparator;
 		try {
@@ -74,17 +71,11 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 
 		auditType = getSpecialAuditType(changedFields, auditType);
 
-		Date dateOfChange = new Date();
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
-		long companyId = serviceContext.getCompanyId();
-
+		String entityType = String.valueOf(getEntityType());
+		String auditTypeStr = String.valueOf(auditType);
+		String metadata = StringPool.BLANK;
 		try {
-			// кто инициатор события
-			User initiator = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
-
-			String metadata = "";
-			AuditEntryWrapper auditEntry =
-					new AuditEntryWrapper(entityId, getEntityType(), auditType, companyId, initiator, dateOfChange, metadata);
+			AuditEntry auditEntry = AuditEntryLocalServiceUtil.create(entityId, entityType, auditTypeStr, metadata);
 
 			for (String fieldName : oldValues.keySet()) {
 				Object oldValue = oldValues.get(fieldName);
@@ -93,12 +84,14 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 			}
 
 			if (auditEntry.hasFieldChanges()) {
-				auditEntry.persist();
+				AuditEntryGroup auditEntryGroup = AuditEntryGroupLocalServiceUtil.create();
+				auditEntryGroup.addEntry(auditEntry);
+				auditEntryGroup.persist();
 			} else {
 				log.debug("Audit entry was not created because model had no changes");
 			}
 
-		} catch (SystemException e) {
+		} catch (SystemException | PortalException e) {
 			throw new EntityAuditException(e);
 		}
 	}
@@ -121,32 +114,26 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 	@Override
 	public final void onAfterRemove(T model) throws EntityAuditException {
 		log.trace("onAfterRemove()");
-		if (AuditMessagingUtil.isPreventDefaultAudit()){
+		if (AuditMessagingUtil.isPreventDefaultAudit()) {
 			log.debug("return...");
 			return;
 		}
 
 		int entityId = getEntityId(model);
-		String entityType = getEntityType().toString();
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
-		long companyId = serviceContext.getCompanyId();
-		Date dateOfChange = new Date();
+		String metadata = StringPool.BLANK;
+		String entityType = String.valueOf(getEntityType());
+		String deleteActionType = String.valueOf(getDefaultDeleteType());
 
 		try {
 			// сперва удаляем все записи сущности из журнала
 			AuditEntryLocalServiceUtil.deleteFor(entityType, entityId);
-
-			User initiator = UserLocalServiceUtil.fetchUser(serviceContext.getUserId());
-
-			String metadata = "";
-			AuditEntryWrapper auditEntry =
-					new AuditEntryWrapper(entityId, getEntityType(), getDefaultDeleteType(), companyId, initiator, dateOfChange, metadata);
-
 			// FIXME что делать с id?
+			AuditEntryGroup auditEntryGroup = AuditEntryGroupLocalServiceUtil.create();
+			AuditEntry auditEntry = AuditEntryLocalServiceUtil.create(entityId, entityType, deleteActionType, metadata);
+			auditEntryGroup.addEntry(auditEntry);
 			auditEntry.addFieldChange("fooId", entityId, null);
-			auditEntry.persist();
-
-		} catch (SystemException e) {
+			auditEntryGroup.persist();
+		} catch (SystemException | PortalException e) {
 			throw new EntityAuditException(e);
 		}
 	}

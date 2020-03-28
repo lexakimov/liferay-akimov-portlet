@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import java.util.Date;
-
 /**
  * The cache model class for representing AuditEntry in entity cache.
  *
@@ -22,36 +20,27 @@ import java.util.Date;
  */
 public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
     Externalizable {
-    public int auditEntryId;
+    public int entryId;
+    public int entryGroupId;
     public String auditType;
     public String entityType;
     public int entityId;
-    public long companyId;
-    public long userId;
-    public String userName;
-    public long dateOfChange;
     public String metadata;
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(19);
+        StringBundler sb = new StringBundler(13);
 
-        sb.append("{auditEntryId=");
-        sb.append(auditEntryId);
+        sb.append("{entryId=");
+        sb.append(entryId);
+        sb.append(", entryGroupId=");
+        sb.append(entryGroupId);
         sb.append(", auditType=");
         sb.append(auditType);
         sb.append(", entityType=");
         sb.append(entityType);
         sb.append(", entityId=");
         sb.append(entityId);
-        sb.append(", companyId=");
-        sb.append(companyId);
-        sb.append(", userId=");
-        sb.append(userId);
-        sb.append(", userName=");
-        sb.append(userName);
-        sb.append(", dateOfChange=");
-        sb.append(dateOfChange);
         sb.append(", metadata=");
         sb.append(metadata);
         sb.append("}");
@@ -63,7 +52,8 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
     public AuditEntry toEntityModel() {
         AuditEntryImpl auditEntryImpl = new AuditEntryImpl();
 
-        auditEntryImpl.setAuditEntryId(auditEntryId);
+        auditEntryImpl.setEntryId(entryId);
+        auditEntryImpl.setEntryGroupId(entryGroupId);
 
         if (auditType == null) {
             auditEntryImpl.setAuditType(StringPool.BLANK);
@@ -78,20 +68,6 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
         }
 
         auditEntryImpl.setEntityId(entityId);
-        auditEntryImpl.setCompanyId(companyId);
-        auditEntryImpl.setUserId(userId);
-
-        if (userName == null) {
-            auditEntryImpl.setUserName(StringPool.BLANK);
-        } else {
-            auditEntryImpl.setUserName(userName);
-        }
-
-        if (dateOfChange == Long.MIN_VALUE) {
-            auditEntryImpl.setDateOfChange(null);
-        } else {
-            auditEntryImpl.setDateOfChange(new Date(dateOfChange));
-        }
 
         if (metadata == null) {
             auditEntryImpl.setMetadata(StringPool.BLANK);
@@ -106,21 +82,19 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
 
     @Override
     public void readExternal(ObjectInput objectInput) throws IOException {
-        auditEntryId = objectInput.readInt();
+        entryId = objectInput.readInt();
+        entryGroupId = objectInput.readInt();
         auditType = objectInput.readUTF();
         entityType = objectInput.readUTF();
         entityId = objectInput.readInt();
-        companyId = objectInput.readLong();
-        userId = objectInput.readLong();
-        userName = objectInput.readUTF();
-        dateOfChange = objectInput.readLong();
         metadata = objectInput.readUTF();
     }
 
     @Override
     public void writeExternal(ObjectOutput objectOutput)
         throws IOException {
-        objectOutput.writeInt(auditEntryId);
+        objectOutput.writeInt(entryId);
+        objectOutput.writeInt(entryGroupId);
 
         if (auditType == null) {
             objectOutput.writeUTF(StringPool.BLANK);
@@ -135,16 +109,6 @@ public class AuditEntryCacheModel implements CacheModel<AuditEntry>,
         }
 
         objectOutput.writeInt(entityId);
-        objectOutput.writeLong(companyId);
-        objectOutput.writeLong(userId);
-
-        if (userName == null) {
-            objectOutput.writeUTF(StringPool.BLANK);
-        } else {
-            objectOutput.writeUTF(userName);
-        }
-
-        objectOutput.writeLong(dateOfChange);
 
         if (metadata == null) {
             objectOutput.writeUTF(StringPool.BLANK);
