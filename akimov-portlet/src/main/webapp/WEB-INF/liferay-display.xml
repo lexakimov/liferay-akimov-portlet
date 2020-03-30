@@ -8,5 +8,6 @@
 		<portlet id="auditDemo"/>
 		<portlet id="permissionsTest"/>
 		<portlet id="fileUpload"/>
+		<portlet id="messagingTest"/>
 	</category>
 </display>

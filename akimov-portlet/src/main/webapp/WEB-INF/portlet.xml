@@ -155,4 +155,35 @@
 		</security-role-ref>
 	</portlet>
 
+	<portlet>
+		<portlet-name>messagingTest</portlet-name>
+		<display-name>messagingTest</display-name>
+		<portlet-class>ru.akimov.portlet.MessagingTestPortlet</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/messaging/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<resource-bundle>messages</resource-bundle>
+		<portlet-info>
+			<title>messagingTest</title>
+		</portlet-info>
+
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+
 </portlet-app>

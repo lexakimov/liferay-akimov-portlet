@@ -43,8 +43,15 @@ public abstract class MVCExtendedPortlet extends MVCPortlet {
 	@Override
 	public void init(PortletConfig config) throws PortletException {
 		super.init(config);
+		log.debug("initialization of portlet: '" + getPortletName() + "'");
 		cacheResourceActionMethods();
 		cacheAsyncActionAnnotatedMethods();
+	}
+
+	@Override
+	public void destroy() {
+		super.destroy();
+		log.debug("destroying portlet '" + getPortletName() + "'");
 	}
 
 	/* ---------------------------------------- resource actions ---------------------------------------------------- */

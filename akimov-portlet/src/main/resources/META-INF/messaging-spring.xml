@@ -8,36 +8,107 @@
 		xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 >
-	<!-- Destinations -->
-	<bean id="messagingAuditDestinationsCreate" class="com.liferay.portal.kernel.messaging.SerialDestination">
-		<property name="name" value="#{T(ru.akimov.audit.messaging.Destinations).AUDIT_CREATE}"/>
-	</bean>
-
-	<!--<bean id="akimov.audit.dest.create.2" class="com.liferay.portal.kernel.messaging.ParallelDestination">
-		<property name="name" value="insults/users" />
-	</bean>-->
-
-	<!-- Listeners -->
-	<bean id="auditMessagingListener" class="ru.akimov.audit.messaging.impl.AuditMessageListenerImpl"/>
-
 	<!-- Configurator -->
 	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
-
+		<!-- Destinations -->
 		<property name="destinations">
 			<list>
-				<ref bean="messagingAuditDestinationsCreate"/>
+				<bean class="com.liferay.portal.kernel.messaging.SerialDestination">
+					<property name="name" value="#{T(ru.akimov.audit.messaging.Destinations).AUDIT_CREATE}"/>
+				</bean>
+
+				<!-- message bus test -->
+				<bean class="com.liferay.portal.kernel.messaging.SerialDestination">
+					<property name="name" value="#{T(ru.akimov.messaging.Destinations).SYNC_REQUEST_DEST}"/>
+				</bean>
+				<bean class="com.liferay.portal.kernel.messaging.SerialDestination">
+					<property name="name" value="#{T(ru.akimov.messaging.Destinations).SYNC_RESPONSE_DEST}"/>
+				</bean>
+
+				<bean class="com.liferay.portal.kernel.messaging.SerialDestination">
+					<property name="name"
+							  value="#{T(ru.akimov.messaging.Destinations).ASYNC_SEND_AND_FORGET_SERIAL_DEST}"/>
+				</bean>
+				<bean class="com.liferay.portal.kernel.messaging.ParallelDestination">
+					<property name="name"
+							  value="#{T(ru.akimov.messaging.Destinations).ASYNC_SEND_AND_FORGET_PARALLEL_DEST}"/>
+				</bean>
+
+				<bean class="com.liferay.portal.kernel.messaging.SerialDestination">
+					<property name="name"
+							  value="#{T(ru.akimov.messaging.Destinations).ASYNC_WITH_CALLBACK_SERIAL_DEST}"/>
+				</bean>
+				<bean class="com.liferay.portal.kernel.messaging.ParallelDestination">
+					<property name="name"
+							  value="#{T(ru.akimov.messaging.Destinations).ASYNC_WITH_CALLBACK_PARALLEL_DEST}"/>
+				</bean>
+				<bean class="com.liferay.portal.kernel.messaging.SerialDestination">
+					<property name="name"
+							  value="#{T(ru.akimov.messaging.Destinations).ASYNC_WITH_CALLBACK_CALLBACK_DEST}"/>
+				</bean>
 			</list>
 		</property>
 
+		<!-- Listeners -->
 		<property name="messageListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
 				<entry key="#{T(ru.akimov.audit.messaging.Destinations).AUDIT_CREATE}">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
-						<ref bean="auditMessagingListener"/>
+						<bean class="ru.akimov.audit.messaging.impl.AuditMessageListenerImpl"/>
+					</list>
+				</entry>
+
+				<!-- message bus test -->
+				<entry key="#{T(ru.akimov.messaging.Destinations).SYNC_REQUEST_DEST}">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<bean class="ru.akimov.messaging.SyncRequestListener"/>
+					</list>
+				</entry>
+				<entry key="#{T(ru.akimov.messaging.Destinations).SYNC_RESPONSE_DEST}">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<bean class="ru.akimov.messaging.SyncResponseListener"/>
+					</list>
+				</entry>
+
+				<entry key="#{T(ru.akimov.messaging.Destinations).ASYNC_SEND_AND_FORGET_SERIAL_DEST}">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="testListener1"/>
+						<ref bean="testListener2"/>
+						<ref bean="testListener3"/>
+					</list>
+				</entry>
+				<entry key="#{T(ru.akimov.messaging.Destinations).ASYNC_SEND_AND_FORGET_PARALLEL_DEST}">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="testListener1"/>
+						<ref bean="testListener2"/>
+						<ref bean="testListener3"/>
+					</list>
+				</entry>
+
+				<entry key="#{T(ru.akimov.messaging.Destinations).ASYNC_WITH_CALLBACK_SERIAL_DEST}">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="asyncListener"/>
+					</list>
+				</entry>
+				<entry key="#{T(ru.akimov.messaging.Destinations).ASYNC_WITH_CALLBACK_PARALLEL_DEST}">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="asyncListener"/>
+					</list>
+				</entry>
+				<entry key="#{T(ru.akimov.messaging.Destinations).ASYNC_WITH_CALLBACK_CALLBACK_DEST}">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<bean class="ru.akimov.messaging.CallbackListener"/>
 					</list>
 				</entry>
 			</map>
 		</property>
 	</bean>
+
+	<!-- Listeners -->
+	<bean id="testListener1" class="ru.akimov.messaging.SendAndForgetListener1"/>
+	<bean id="testListener2" class="ru.akimov.messaging.SendAndForgetListener2"/>
+	<bean id="testListener3" class="ru.akimov.messaging.SendAndForgetListener3"/>
+
+	<bean id="asyncListener" class="ru.akimov.messaging.AsyncListener"/>
 
 </beans>
