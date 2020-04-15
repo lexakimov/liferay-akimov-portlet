@@ -84,6 +84,11 @@
 		<footer-portlet-javascript>/js/utils.js</footer-portlet-javascript>
 	</portlet>
 
+	<portlet>
+		<portlet-name>bootstrapTest</portlet-name>
+		<icon>/icon.png</icon>
+	</portlet>
+
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

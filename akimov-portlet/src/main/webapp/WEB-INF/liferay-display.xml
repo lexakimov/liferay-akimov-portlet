@@ -9,5 +9,6 @@
 		<portlet id="permissionsTest"/>
 		<portlet id="fileUpload"/>
 		<portlet id="messagingTest"/>
+		<portlet id="bootstrapTest"/>
 	</category>
 </display>
