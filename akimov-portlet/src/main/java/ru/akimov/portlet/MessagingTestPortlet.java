@@ -12,6 +12,8 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
+import java.util.Collection;
+import java.util.Set;
 
 import static ru.akimov.messaging.Destinations.*;
 
@@ -43,7 +45,7 @@ public class MessagingTestPortlet extends MVCExtendedPortlet {
 	}
 
 	/**
-	 * При регистрации/анрегистрации не нужны проверки на уже зарегистрированные слушатели.
+	 * При регистрации/разрегистрации не нужны проверки на уже зарегистрированные слушатели.
 	 */
 	public void registerListener(ActionRequest request, ActionResponse response) {
 		log.info("registerListener");
@@ -102,16 +104,35 @@ public class MessagingTestPortlet extends MVCExtendedPortlet {
 		MessageBusUtil.sendMessage(dest, message);
 	}
 
-	/*public void tempMethod(ActionRequest request, ActionResponse response) {
-		Destination dest = new SerialDestination(Destinations.DYNAMIC_DESTINATION);
-		MessageBusUtil.addDestination(dest);
-		boolean hasListeners = MessageBusUtil.hasMessageListener(Destinations.DYNAMIC_DESTINATION);
-		MessageBusUtil.removeDestination(Destinations.DYNAMIC_DESTINATION);
+	public void tempMethod(ActionRequest request, ActionResponse response) {
+		BaseDestination dest = new SerialDestination();
+		dest.setName(Destinations.DESTINATION_TEMP);
 
 		MessageBus messageBus = MessageBusUtil.getMessageBus();
-		final Destination destination = messageBus.getDestination(ASYNC_SEND_AND_FORGET_SERIAL_DEST);
+
+		int destinationCount = messageBus.getDestinationCount();
+		Collection<String> destinationNames = messageBus.getDestinationNames();
+		Collection<Destination> destinations = messageBus.getDestinations();
+		Destination destination = messageBus.getDestination(DESTINATION_TEMP);
+
+		Set<MessageListener> messageListeners = destination.getMessageListeners();
+
+		MessageBusUtil.addDestination(dest);
+		boolean hasDestination = messageBus.hasDestination(DESTINATION_TEMP);
+		MessageBusUtil.removeDestination(Destinations.DYNAMIC_DESTINATION);
+
+		MessageListener listener = new DynamicListener();
+		MessageBusUtil.registerMessageListener(DESTINATION_TEMP, listener);
+		boolean hasListener = MessageBusUtil.hasMessageListener(Destinations.DYNAMIC_DESTINATION);
+		MessageBusUtil.unregisterMessageListener(DESTINATION_TEMP, listener);
+
+		DestinationEventListener destEventListener = new BaseDestinationEventListener();
+		messageBus.addDestinationEventListener(destEventListener);
+		messageBus.removeDestinationEventListener(destEventListener);
+
 
 		MessageSender messageSender = MessageBusUtil.getMessageSender();
-	}*/
+
+	}
 
 }

@@ -6,17 +6,19 @@ package ru.akimov.messaging;
  */
 public interface Destinations {
 
-	String SYNC_REQUEST_DEST = "ru/akimov/messaging/sync_request_destination";
+	String SYNC_REQUEST_DEST = "akimov/sync_request_destination";
 
-	String SYNC_RESPONSE_DEST = "ru/akimov/messaging/sync_response_destination";
+	String SYNC_RESPONSE_DEST = "akimov/sync_response_destination";
 
-	String ASYNC_SEND_AND_FORGET_SERIAL_DEST = "ru/akimov/messaging/async_send_and_forget_serial_dest";
+	String ASYNC_SEND_AND_FORGET_SERIAL_DEST = "akimov/async_send_and_forget_serial_dest";
 
-	String ASYNC_SEND_AND_FORGET_PARALLEL_DEST = "ru/akimov/messaging/async_send_and_forget_parallel_dest";
+	String ASYNC_SEND_AND_FORGET_PARALLEL_DEST = "akimov/async_send_and_forget_parallel_dest";
 
-	String ASYNC_WITH_CALLBACK_SERIAL_DEST = "ru/akimov/messaging/async_with_callback_serial_dest";
-	String ASYNC_WITH_CALLBACK_PARALLEL_DEST = "ru/akimov/messaging/async_with_callback_parallel_dest";
-	String ASYNC_WITH_CALLBACK_CALLBACK_DEST = "ru/akimov/messaging/async_with_callback_callback_dest";
+	String ASYNC_WITH_CALLBACK_SERIAL_DEST = "akimov/async_with_callback_serial_dest";
+	String ASYNC_WITH_CALLBACK_PARALLEL_DEST = "akimov/async_with_callback_parallel_dest";
+	String ASYNC_WITH_CALLBACK_CALLBACK_DEST = "akimov/async_with_callback_callback_dest";
 
-	String DYNAMIC_DESTINATION = "ru/akimov/messaging/dynamic_dest";
+	String DYNAMIC_DESTINATION = "akimov/dynamic_dest";
+
+	String DESTINATION_TEMP = "akimov/tempdest";
 }
