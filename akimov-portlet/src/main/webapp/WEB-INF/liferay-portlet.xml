@@ -89,6 +89,22 @@
 		<icon>/icon.png</icon>
 	</portlet>
 
+	<portlet>
+		<portlet-name>notificationsTest</portlet-name>
+		<icon>/icon.png</icon>
+		<user-notification-definitions>notification/custon-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>ru.akimov.notifications.CustomUserNotificationsHandler</user-notification-handler-class>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+
+		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
+		<footer-portlet-javascript>/js/jquery.inputmask.bundle.min.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/utils.js</footer-portlet-javascript>
+	</portlet>
+
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

@@ -10,5 +10,6 @@
 		<portlet id="fileUpload"/>
 		<portlet id="messagingTest"/>
 		<portlet id="bootstrapTest"/>
+		<portlet id="notificationsTest"/>
 	</category>
 </display>
