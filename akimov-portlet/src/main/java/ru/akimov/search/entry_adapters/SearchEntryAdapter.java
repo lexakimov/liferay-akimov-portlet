@@ -20,4 +20,8 @@ public abstract class SearchEntryAdapter<T> {
 		this.model = model;
 	}
 
+	public T getWrappedModel() {
+		return model;
+	}
+
 }

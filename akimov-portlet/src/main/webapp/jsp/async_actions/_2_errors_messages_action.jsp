@@ -7,7 +7,7 @@
 
 <akimov:async-actionURL var="urlName2" asyncActionMethod="simpleAsyncActionWithErrors"/>
 
-<aui:button name="execAction2" value="Execute action with errors and messages" primary="true"/>
+<aui:button name="execAction2" value="execute" primary="true"/> Action with errors and messages
 
 <script>
 	$(function () {

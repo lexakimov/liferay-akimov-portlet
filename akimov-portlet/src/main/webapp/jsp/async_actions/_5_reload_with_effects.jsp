@@ -3,6 +3,7 @@
 <%@ include file="/jsp/init.jsp" %>
 
 <h4>reload with effects by button</h4>
+<aui:button name="reload3" value="Reload Content" primary="true"/><br><br>
 
 <div id="reloadableElement3" class="bordered-block-1" style="width: 400px; display: inline-block;">
 	<jsp:include page="reloadable_element.jsp"/>
@@ -11,8 +12,6 @@
 <portlet:renderURL var="reloading3URL" windowState="<%=LiferayWindowState.EXCLUSIVE.toString()%>">
 	<portlet:param name="mvcPath" value="/jsp/async_actions/reloadable_element.jsp"/>
 </portlet:renderURL>
-
-<aui:button name="reload3" value="ReloadContent" primary="true"/>
 
 <script>
 	$(function () {

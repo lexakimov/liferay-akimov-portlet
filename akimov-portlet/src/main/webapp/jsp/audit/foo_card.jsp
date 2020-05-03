@@ -15,6 +15,7 @@
 
 <portlet:actionURL var="submitFooFormURL" name="updateFoo"/>
 
+<%--cssClass="form-horizontal"|--%>
 <aui:form name="fooForm" action="${submitFooFormURL}" method="POST">
 	<aui:fieldset>
 

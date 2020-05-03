@@ -85,7 +85,7 @@ public class TempFileUpload extends HttpServlet {
 		String fileId = ParamUtil.getString(req, "fileId");
 		try {
 			TemporaryFileUploadUtil.deleteFile(session, fileId);
-			log("file [" + fileId + "] removed");
+			log("removed [" + fileId + "]");
 		} catch (IOException e) {
 			resp.setStatus(500);
 			return;

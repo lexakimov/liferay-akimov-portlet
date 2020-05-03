@@ -7,26 +7,19 @@
 <h3>Async file uploading</h3>
 
 <%--------------------------------------------------------------------------------------------------------------------%>
-<div class="separator"></div><%---------------------------------------------------------------------------------------%>
-<%--------------------------------------------------------------------------------------------------------------------%>
-
+<div class="separator"></div>
 <portlet:actionURL var="updateEntityURL" name="updateEntity"/>
 
 <div class="container">
-	<div class="row">
-		<div class="span12">
-			<aui:form
-					name="uploadForm"
-					action="${updateEntityURL}"
-					method="post"
-					style="width: 500px; margin: 0 auto;"
-			>
-				<jsp:include page="_file_upload.jsp"/>
-				<div style="text-align: center;">
-					<aui:button type="submit" value="save"/>
-				</div>
-
-			</aui:form>
+	<aui:form
+			name="uploadForm"
+			action="${updateEntityURL}"
+			method="post"
+			style="width: 500px; margin: 0 auto;"
+	>
+		<jsp:include page="_file_upload.jsp"/>
+		<div class="text-center">
+			<aui:button type="submit" value="save"/>
 		</div>
-	</div>
+	</aui:form>
 </div>

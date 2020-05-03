@@ -1,46 +1,11 @@
 
-/***********************************
- Liferay and BOOTSTRAP 2.3.2 fixes
- ***********************************/
-
-@media (min-width: 1200px) {
-	.aui .row {
-		margin-left: unset;
-	}
-}
-
-.aui .container-fluid {
-	padding-right: unset;
-	padding-left: unset;
-}
-
-.aui select,
-.aui input[type="text"],
-.aui input[type="email"],
-.aui input[type="date"]{
-	margin-bottom: 0 !important;
-}
-
-/** заголовки таблиц по центру */
+/* заголовки таблиц по центру */
 .aui .table thead th {
 	text-align: center;
 	vertical-align: middle;
 }
 
-/***********************************
- util classes
- ***********************************/
-.center {
-	text-align: center !important;
-}
-
-.width-auto {
-	width: auto !important;
-}
-
-/*********************************
- custom classes
- *********************************/
+/* custom classes */
 div.bordered-block-1 {
 	border-width: 1px;
 	border-style: solid;

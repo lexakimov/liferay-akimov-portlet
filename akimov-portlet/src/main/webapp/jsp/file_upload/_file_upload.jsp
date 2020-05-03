@@ -1,11 +1,9 @@
 <%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_METHOD_PARAM" %>
 <%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_RESOURCE_ID" %>
 <%@ page import="static ru.akimov.constants.PortletConstants.*" %>
+<%@ page import="ru.akimov.constants.PortletConstants" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <style>
 	.drop-zone {
@@ -80,6 +78,8 @@
 
 </div>
 
+<portlet:resourceURL var="tempFileUploadURL" id="<%=ASYNC_FILE_UPLOAD%>"/>
+
 <script>
 	let vm = new Vue({
 		el: '#app',
@@ -104,7 +104,7 @@
 				([...droppedFiles]).forEach(f => formData.append(f.name, f));
 
 				axios
-					.post(TEMP_FILE_UPLOAD_ENDPOINT, formData,
+					.post("${tempFileUploadURL}", formData,
 						{
 							headers: {
 								'Content-Type': 'multipart/form-data'
@@ -126,13 +126,14 @@
 						console.log("error: " + error);
 					});
 			},
+
 			deleteFile: function (file) {
 				console.log("deleteFile " + file.name);
-				let confirmed = confirm("Удалить файл \"" + file.name + "\"");
+				let confirmed = confirm("Удалить файл \"" + file.name + "\"?");
 				if (confirmed) {
 					let uploadedFiles = this.files;
 					axios
-						.delete(TEMP_FILE_UPLOAD_ENDPOINT + "?fileId=" + file.id)
+						.delete("${tempFileUploadURL}" + "?<portlet:namespace/>fileId=" + file.id)
 						.then(function (response) {
 							console.log(response);
 							uploadedFiles.splice(uploadedFiles.indexOf(file), 1);
@@ -144,7 +145,7 @@
 			},
 			downloadFile: function (file) {
 				console.log("downloadFile " + file.name);
-				window.location = TEMP_FILE_UPLOAD_ENDPOINT + "?fileId=" + file.id;
+				window.location = "${tempFileUploadURL}" + "?<portlet:namespace/>fileId=" + file.id;
 			}
 		}
 	});

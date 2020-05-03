@@ -7,7 +7,6 @@
 
 <h5><%= UUID.randomUUID().toString()%></h5>
 
-
 <c:if test="${param.long_time_render}">
 	<%
 		for (int i = 0; i < 10; i++) {

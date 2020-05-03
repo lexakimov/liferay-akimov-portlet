@@ -8,8 +8,7 @@
 </akimov:async-actionURL>
 
 <div id="messageBox1"></div>
-
-<aui:button name="execAction1" value="Execute success action" primary="true"/>
+<aui:button name="execAction1" value="execute" primary="true"/> Success action
 
 <script>
 	$(function () {

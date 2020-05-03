@@ -14,7 +14,6 @@ import java.util.function.Function;
 public class DefaultAttributeValueAdapter {
 
 	/**
-	 *
 	 * @return карту, где ключ - название поля из бд, значение - функция преобразования значения атрибута.
 	 */
 	public Map<String, Function<String, String>> getAttributeAdapters() {

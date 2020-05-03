@@ -3,7 +3,6 @@ package ru.akimov.notifications;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.ServiceContext;
@@ -23,19 +22,15 @@ public class CustomUserNotificationsHandler extends BaseUserNotificationHandler 
 	@Override
 	protected String getBody(UserNotificationEvent userNotificationEvent, ServiceContext serviceContext) throws Exception {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(userNotificationEvent.getPayload());
-		//long userId = jsonObject.getLong("userId");
 		String notificationText = jsonObject.getString("notificationText");
-		String title = "<strong>Dockbar Custom User Notification for You</strong>";
+		String title = "<strong>" + jsonObject.getString("userId") + "</strong>";
+
 		return StringUtil.replace(getBodyTemplate(),
 				new String[]{"[$TITLE$]", "[$BODY_TEXT$]"},
 				new String[]{title, notificationText});
 	}
 
 	protected String getBodyTemplate() throws Exception {
-		StringBundler sb = new StringBundler(5);
-		sb.append("<div class=\"title\">[$TITLE$]</div><div ");
-		sb.append("class=\"body\">[$BODY_TEXT$]</div>");
-
-		return sb.toString();
+		return "<div class=\"title\">[$TITLE$]</div><div class=\"body\">[$BODY_TEXT$]</div>";
 	}
 }

@@ -32,7 +32,7 @@
 			<portlet:param name="fooId" value="${model.fooId}"/>
 		</portlet:actionURL>
 
-		<liferay-ui:search-container-column-text cssClass="center">
+		<liferay-ui:search-container-column-text cssClass="text-center">
 			<aui:button value="Edit" name="edit" primary="true" onClick="openDialog(${model.fooId});"/>
 			<aui:button value="Delete" name="delete" primary="true" href="${deleteURL}"/>
 		</liferay-ui:search-container-column-text>

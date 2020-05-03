@@ -3,6 +3,7 @@
 <%@ include file="/jsp/init.jsp" %>
 
 <h4>reload (longtime) with effects by button</h4>
+<aui:button name="reload4" value="Reload Content" primary="true"/><br><br>
 
 <div id="reloadableElement4" class="bordered-block-1" style="width: 400px; display: inline-block;">
 	<jsp:include page="reloadable_element.jsp"/>
@@ -12,8 +13,6 @@
 	<portlet:param name="mvcPath" value="/jsp/async_actions/reloadable_element.jsp"/>
 	<portlet:param name="long_time_render" value="true"/>
 </portlet:renderURL>
-
-<aui:button name="reload4" value="ReloadContent" primary="true"/>
 
 <script>
 	$(function () {

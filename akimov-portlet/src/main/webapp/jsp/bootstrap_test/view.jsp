@@ -1,8 +1,255 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
-<style>
+<h1>Заголовок первого уровня</h1>
+<h2>Заголовок второго уровня</h2>
+<h3>Заголовок третьего уровня</h3>
+<h4>Заголовок четвертого уровня</h4>
 
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend
+	lectus sed nisi posuere venenatis. Aenean a dapibus tortor. Aliquam erat volutpat. Cras ut dui elementum quam
+	ultrices malesuada ac eu orci. Mauris malesuada risus sit amet lorem tempus, elementum porttitor mauris
+</p>
+
+<div class="separator"></div>
+
+
+<liferay-ui:toggle-area id="toggle_id_message_boards_view_message_thread">
+	<div class="toggle_id_message_boards_view_message_thread">
+		table
+	</div>
+</liferay-ui:toggle-area>
+<div
+		class="toggle_id_message_boards_view_message_thread"
+		id="toggle_id_message_boards_view_message_thread"
+		style="display: <liferay-ui:toggle-value id="toggle_id_message_boards_view_message_thread"/>;">
+	hhhjhjjjh
+</div>
+
+<div class="separator"></div>
+
+<div>
+	<liferay-ui:toggle
+			id="toggleId-123"
+			hideMessage='hide-syntax-help&raquo;'
+			showMessage='&laquo;show-message'
+			defaultShowContent="false"
+	/>
+</div>
+
+<div id="toggleId-123">
+	<aui:row>
+		<aui:col span="3">32323</aui:col>
+		<aui:col span="3">32323</aui:col>
+		<aui:col span="3">32323</aui:col>
+	</aui:row>
+</div>
+
+<%--<script>
+	AUI().use("aui-base", function () {
+		var CSS_EDITOR_WIDTH = 'span8';
+
+		var CSS_EDITOR_WIDTH_EXPANDED = 'span12';
+
+		Liferay.on(
+			'toggle:stateChange',
+			function (event) {
+				var id = event.id;
+
+				if (id === 'toggleId-123') {
+					var state = event.state;
+
+					var classSrc = CSS_EDITOR_WIDTH;
+					var classDest = CSS_EDITOR_WIDTH_EXPANDED;
+
+					var visible = (state === 1);
+
+					if (visible) {
+						classSrc = CSS_EDITOR_WIDTH_EXPANDED;
+						classDest = CSS_EDITOR_WIDTH;
+					}
+
+					var editorContainer = A.one('#<portlet:namespace/>wikiEditorContainer');
+
+					editorContainer.replaceClass(classSrc, classDest);
+
+					if (visible && A.UA.webkit) {
+						var editorFrame = editorContainer.one('iframe');
+
+						if (editorFrame) {
+							editorFrame.hide();
+
+							A.later(0, editorFrame, 'show');
+						}
+					}
+
+					var editorInstance = window['<portlet:namespace/>editor'];
+
+					if (editorInstance) {
+						editorInstance.focus();
+					}
+				}
+			}
+		);
+	});
+</script>--%>
+
+<%--<aui:component module="aui-button-item" name="ButtonItem" tagPageContext="<%= pageContext %>"/>--%>
+
+<div class="separator"></div>
+
+<aui:nav-bar>
+	<aui:nav cssClass="nav-tabs<%-- nav-stacked--%>">
+		<aui:nav-item id="testtest1" dropdown="true" label="actions">
+			<aui:nav-item iconCssClass="icon-remove" label="delete"/>
+			<aui:nav-item iconCssClass="icon-random" label="merge"/>
+
+			<aui:nav-item id="testtest2" dropdown="true" label="actions">
+				<aui:nav-item iconCssClass="icon-remove" label="delete"/>
+
+				<aui:nav-item id="testtest3" dropdown="true" label="actions">
+					<aui:nav-item iconCssClass="icon-remove" label="delete"/>
+					<aui:nav-item iconCssClass="icon-random" label="merge"/>
+
+					<aui:nav-item id="testtest4" dropdown="true" label="actions">
+						<aui:nav-item iconCssClass="icon-remove" label="delete"/>
+						<aui:nav-item iconCssClass="icon-random" label="merge"/>
+						<aui:nav-item iconCssClass="icon-random" label="merge"/>
+						<aui:nav-item iconCssClass="icon-random" label="merge"/>
+					</aui:nav-item>
+
+					<aui:nav-item iconCssClass="icon-random" label="merge"/>
+					<aui:nav-item iconCssClass="icon-random" label="merge"/>
+
+				</aui:nav-item>
+
+				<aui:nav-item iconCssClass="icon-random" label="merge"/>
+			</aui:nav-item>
+
+		</aui:nav-item>
+
+		<aui:nav-item id="testtest5" dropdown="true" label="actions">
+			<aui:nav-item iconCssClass="icon-remove" label="delete"/>
+			<aui:nav-item iconCssClass="icon-random" label="merge"/>
+		</aui:nav-item>
+
+		<aui:nav-item anchorId='controlPanelSubNav12Link' href="#" label="1231231" selected="false"/>
+
+		<aui:nav-item label="1231231" href="#"/>
+		<aui:nav-item label="1231231" href="#"/>
+		<aui:nav-item label="1231231" href="#"/>
+	</aui:nav>
+</aui:nav-bar>
+
+<div class="separator"></div>
+
+<div id="toggler-1">
+
+	<div class="toggler-header-1 has-child">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	</div>
+	<div class="toggler-content-1">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend
+		lectus sed nisi posuere venenatis. Aenean a dapibus tortor. Aliquam erat volutpat. Cras ut dui elementum quam
+		ultrices malesuada ac eu orci. Mauris malesuada risus sit amet lorem tempus, elementum porttitor mauris
+		pulvinar. Vestibulum laoreet ante orci, sit amet viverra dolor pretium non. Cras lacus dolor, dignissim
+		convallis lacinia ac, mattis sit amet augue. In tincidunt elit ac augue porttitor tempor a eget lectus. Ut
+		eleifend odio est, nec ullamcorper purus venenatis vitae. Vestibulum et odio mauris. Interdum et malesuada fames
+		ac ante ipsum primis in faucibus. Sed laoreet consequat pharetra. Cras sit amet elit non eros faucibus
+		euismod.
+	</div>
+
+	<div class="toggler-header-1 toggler-header">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	</div>
+
+	<div class="toggler-header-1 has-child">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	</div>
+	<div class="toggler-content-1" id="toggler-2">
+		<div class="toggler-header-2 has-child">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		</div>
+		<div class="toggler-content-2">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend
+			lectus sed nisi posuere venenatis. Aenean a dapibus tortor. Aliquam erat volutpat. Cras ut dui elementum
+			quam
+			ultrices malesuada ac eu orci. Mauris malesuada risus sit amet lorem tempus, elementum porttitor mauris
+			pulvinar. Vestibulum laoreet ante orci, sit amet viverra dolor pretium non. Cras lacus dolor, dignissim
+			convallis lacinia ac, mattis sit amet augue. In tincidunt elit ac augue porttitor tempor a eget lectus. Ut
+			eleifend odio est, nec ullamcorper purus venenatis vitae. Vestibulum et odio mauris. Interdum et malesuada
+			fames
+			ac ante ipsum primis in faucibus. Sed laoreet consequat pharetra. Cras sit amet elit non eros faucibus
+			euismod.
+		</div>
+
+		<div class="toggler-header-2 has-child">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		</div>
+		<div class="toggler-content-2">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend
+			lectus sed nisi posuere venenatis. Aenean a dapibus tortor. Aliquam erat volutpat. Cras ut dui elementum
+			quam
+			ultrices malesuada ac eu orci. Mauris malesuada risus sit amet lorem tempus, elementum porttitor mauris
+			pulvinar. Vestibulum laoreet ante orci, sit amet viverra dolor pretium non. Cras lacus dolor, dignissim
+			convallis lacinia ac, mattis sit amet augue. In tincidunt elit ac augue porttitor tempor a eget lectus. Ut
+			eleifend odio est, nec ullamcorper purus venenatis vitae. Vestibulum et odio mauris. Interdum et malesuada
+			fames
+			ac ante ipsum primis in faucibus. Sed laoreet consequat pharetra. Cras sit amet elit non eros faucibus
+			euismod.
+		</div>
+
+	</div>
+
+	<div class="toggler-header-1 has-child">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	</div>
+	<div class="toggler-content-1">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend
+		lectus sed nisi posuere venenatis. Aenean a dapibus tortor. Aliquam erat volutpat. Cras ut dui elementum quam
+		ultrices malesuada ac eu orci. Mauris malesuada risus sit amet lorem tempus, elementum porttitor mauris
+		pulvinar. Vestibulum laoreet ante orci, sit amet viverra dolor pretium non. Cras lacus dolor, dignissim
+		convallis lacinia ac, mattis sit amet augue. In tincidunt elit ac augue porttitor tempor a eget lectus. Ut
+		eleifend odio est, nec ullamcorper purus venenatis vitae. Vestibulum et odio mauris. Interdum et malesuada fames
+		ac ante ipsum primis in faucibus. Sed laoreet consequat pharetra. Cras sit amet elit non eros faucibus
+		euismod.
+	</div>
+
+</div>
+
+<script>
+	YUI().use(
+		'aui-toggler',
+		function (Y) {
+			new Y.TogglerDelegate(
+				{
+					container: '#toggler-1',
+					header: '.toggler-header-1.has-child',
+					content: '.toggler-content-1',
+					animated: true,
+					expanded: false,
+					closeAllOnExpand: true
+				}
+			);
+
+			new Y.TogglerDelegate(
+				{
+					container: '#toggler-2',
+					header: '.toggler-header-2.has-child',
+					content: '.toggler-content-2',
+					animated: true,
+					expanded: false,
+					closeAllOnExpand: true
+				}
+			);
+		}
+	);
+</script>
+
+<h3>Bootstrap test</h3>
+
+<style>
 	.show-grid {
 		margin-top: 10px;
 		margin-bottom: 20px;
@@ -40,191 +287,63 @@
 	}
 </style>
 
+<div class="separator"></div>
 
+<aui:container>
+	<aui:row cssClass="show-grid">
+		<aui:col span="3">123123123</aui:col>
+		<aui:col span="3">123123123</aui:col>
+		<aui:col span="3">123123123</aui:col>
+		<aui:col span="3">123123123</aui:col>
+	</aui:row>
+	<aui:row cssClass="show-grid">
+		<aui:col span="3">123123123</aui:col>
+		<aui:col span="2" offset="3">123123123</aui:col>
+		<aui:col span="3">123123123</aui:col>
+	</aui:row>
+	<aui:row cssClass="show-grid">
+		<aui:col span="3">123123123</aui:col>
+		<aui:col span="3">123123123</aui:col>
+		<aui:col span="3" offset="1">123123123</aui:col>
+	</aui:row>
+</aui:container>
+
+<h3>row fluid</h3>
+
+<div class="row-fluid show-grid">
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+	<div class="span1">span1</div>
+</div>
+<div class="row-fluid show-grid">
+	<div class="span4">span4</div>
+	<div class="span4">span4</div>
+	<div class="span4">span4</div>
+</div>
+<div class="row-fluid show-grid">
+	<div class="span4">span4</div>
+	<div class="span8">span8</div>
+</div>
+<div class="row-fluid show-grid">
+	<div class="span6">span6</div>
+	<div class="span6">span6</div>
+</div>
+<div class="row-fluid show-grid">
+	<div class="span12">span12</div>
+</div>
+
+<h3>container</h3>
 <div class="container">
-	<h3>Bootstrap test</h3>
-
-	<form>
-		<fieldset>
-			<legend>Legend</legend>
-			<label>Label name</label>
-			<input type="text" placeholder="Type something…">
-			<span class="help-block">Example block-level help text here.</span>
-			<label class="checkbox">
-				<input type="checkbox"> Check me out
-			</label>
-			<button type="submit" class="btn">Submit</button>
-		</fieldset>
-	</form>
-
-	<form class="form-horizontal">
-		<div class="control-group">
-			<label class="control-label" for="inputEmail">Email</label>
-			<div class="controls">
-				<input type="text" id="inputEmail" placeholder="Email">
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputPassword">Password</label>
-			<div class="controls">
-				<input type="password" id="inputPassword" placeholder="Password">
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				<label class="checkbox">
-					<input type="checkbox"> Remember me
-				</label>
-				<button type="submit" class="btn">Sign in</button>
-			</div>
-		</div>
-	</form>
-
-	<div class="input-prepend">
-		<span class="add-on">@</span>
-		<input class="span2" id="prependedInput" type="text" placeholder="Username">
-	</div>
-	<div class="input-append">
-		<input class="span2" id="appendedInput" type="text">
-		<span class="add-on">.00</span>
-	</div>
-
-
-	<div class="input-prepend input-append">
-		<span class="add-on">$</span>
-		<input class="span2" id="appendedPrependedInput" type="text">
-		<span class="add-on">.00</span>
-	</div>
-
-	<div class="input-append">
-		<input class="span2" id="appendedInputButton" type="text">
-		<button class="btn" type="button">Go!</button>
-	</div>
-
-	<div class="input-append">
-		<input class="span2" id="appendedInputButtons" type="text">
-		<button class="btn" type="button">Search</button>
-		<button class="btn" type="button">Options</button>
-	</div>
-
-
-	<div class="input-append">
-		<input class="span2" id="appendedDropdownButton" type="text">
-		<div class="btn-group">
-			<button class="btn dropdown-toggle" data-toggle="dropdown">
-				Action
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				...
-			</ul>
-		</div>
-	</div>
-
-
-	<input class="input-mini" type="text" placeholder=".input-mini">
-	<input class="input-small" type="text" placeholder=".input-small">
-	<input class="input-medium" type="text" placeholder=".input-medium">
-	<input class="input-large" type="text" placeholder=".input-large">
-	<input class="input-xlarge" type="text" placeholder=".input-xlarge">
-	<input class="input-xxlarge" type="text" placeholder=".input-xxlarge">
-
-	<input class="span1" type="text" placeholder=".span1">
-	<input class="span2" type="text" placeholder=".span2">
-	<input class="span3" type="text" placeholder=".span3">
-	<select class="span1">
-		...
-	</select>
-	<select class="span2">
-		...
-	</select>
-	<select class="span3">
-		...
-	</select>
-
-	<div class="control-group warning">
-		<label class="control-label" for="inputWarning">Input with warning</label>
-		<div class="controls">
-			<input type="text" id="inputWarning">
-			<span class="help-inline">Something may have gone wrong</span>
-		</div>
-	</div>
-
-	<div class="control-group error">
-		<label class="control-label" for="inputError">Input with error</label>
-		<div class="controls">
-			<input type="text" id="inputError">
-			<span class="help-inline">Please correct the error</span>
-		</div>
-	</div>
-
-	<div class="control-group info">
-		<label class="control-label" for="inputInfo">Input with info</label>
-		<div class="controls">
-			<input type="text" id="inputInfo">
-			<span class="help-inline">Username is already taken</span>
-		</div>
-	</div>
-
-	<div class="control-group success">
-		<label class="control-label" for="inputSuccess">Input with success</label>
-		<div class="controls">
-			<input type="text" id="inputSuccess">
-			<span class="help-inline">Woohoo!</span>
-		</div>
-	</div>
-
-	<div class="row show-grid">
-		<div class="span2">span2</div>
-		<div class="span2">span2</div>
-		<div class="span2">span2</div>
-		<div class="span2">span2</div>
-		<div class="span2">span2</div>
-		<div class="span2">span2</div>
-	</div>
-
-	<div class="row show-grid">
-		<div class="span4">span4</div>
-		<div class="span4">span4</div>
-		<div class="span4">span4</div>
-	</div>
-	<div class="row show-grid">
-		<div class="span6">span6</div>
-		<div class="span6">span6</div>
-	</div>
-	<div class="row show-grid">
-		<div class="span12">span12</div>
-	</div>
-
-
-	<h4>row</h4>
-	<div class="row show-grid">
-		<div class="span1">span1</div>
-		<div class="span1">span1</div>
-		<div class="span1">span1</div>
-		<div class="span1">span1</div>
-		<div class="span1">span1</div>
-		<div class="span1">span1</div>
-		<div class="span1">span1</div>
-		<div class="span1">span1</div>
-		<div class="span1">span1</div>
-	</div>
-	<div class="row show-grid">
-		<div class="span2">span2</div>
-		<div class="span3">span3</div>
-		<div class="span4">span4</div>
-	</div>
-	<div class="row show-grid">
-		<div class="span4">span4</div>
-		<div class="span5">span5</div>
-	</div>
-	<div class="row show-grid">
-		<div class="span9">span9</div>
-	</div>
-
-
 	<h4>row fluid</h4>
-
 	<div class="row-fluid show-grid">
 		<div class="span1">span1</div>
 		<div class="span1">span1</div>
@@ -255,5 +374,39 @@
 	<div class="row-fluid show-grid">
 		<div class="span12">span12</div>
 	</div>
+</div>
 
+<h3>container-fluid</h3>
+<div class="container-fluid">
+	<h4>row fluid</h4>
+	<div class="row-fluid show-grid">
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+		<div class="span1">span1</div>
+	</div>
+	<div class="row-fluid show-grid">
+		<div class="span4">span4</div>
+		<div class="span4">span4</div>
+		<div class="span4">span4</div>
+	</div>
+	<div class="row-fluid show-grid">
+		<div class="span4">span4</div>
+		<div class="span8">span8</div>
+	</div>
+	<div class="row-fluid show-grid">
+		<div class="span6">span6</div>
+		<div class="span6">span6</div>
+	</div>
+	<div class="row-fluid show-grid">
+		<div class="span12">span12</div>
+	</div>
 </div>

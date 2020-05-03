@@ -19,8 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static ru.akimov.constants.PortletConstants.ASYNC_ACTION_METHOD_PARAM;
-import static ru.akimov.constants.PortletConstants.ASYNC_ACTION_RESOURCE_ID;
+import static ru.akimov.constants.PortletConstants.*;
 
 /**
  * MVC портлет, расширенный дополнительными возможностями.
@@ -70,13 +69,20 @@ public abstract class MVCExtendedPortlet extends MVCPortlet {
 
 	private void cacheResourceActionMethods() {
 		resourceActionMethods.put(ASYNC_ACTION_RESOURCE_ID, this::processAsyncAction);
-		//resourceActionMethods.put(ASYNC_FILE_UPLOAD, this::uploadTempFile);
+		resourceActionMethods.put(ASYNC_FILE_UPLOAD, this::uploadTemporaryFile);
 		initResourceActions(resourceActionMethods);
+	}
+
+	private void uploadTemporaryFile(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+		String method = resourceRequest.getMethod();
+		PortletSession portletSession = resourceRequest.getPortletSession();
+		portletSession.getId();
+
 	}
 
 	/**
 	 * В этом методе можно добавить ссылки на resourceAction методы. например так
-	 * resourceActionMethods.put(ASYNC_FILE_UPLOAD, this::uploadTempFile);
+	 * resourceActionMethods.put(ASYNC_FILE_UPLOAD, this::uploadTemporaryFile);
 	 * где ASYNC_FILE_UPLOAD - resourceId, this::uploadTempFile ссылка на метод
 	 *
 	 * @param resourceActionMethods

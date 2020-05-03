@@ -3,101 +3,89 @@
 		"http://www.liferay.com/dtd/liferay-portlet-app_6_2_0.dtd">
 
 <liferay-portlet-app>
-
 	<portlet>
 		<portlet-name>asyncActions</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
-
-		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
-		<footer-portlet-javascript>/js/jquery.inputmask.bundle.min.js</footer-portlet-javascript>
+		<header-portlet-javascript>/js/jquery/jquery-3.4.1.min.js?js_fast_load=0</header-portlet-javascript>
+		<footer-portlet-javascript>/js/jquery/jquery.inputmask.bundle.min.js?js_fast_load=0</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
-
 	<portlet>
 		<portlet-name>asyncSearchContainers</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
-
-		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
-		<footer-portlet-javascript>/js/jquery.inputmask.bundle.js</footer-portlet-javascript>
+		<header-portlet-javascript>/js/jquery/jquery-3.4.1.min.js?js_fast_load=0</header-portlet-javascript>
+		<footer-portlet-javascript>/js/jquery/jquery.inputmask.bundle.js?js_fast_load=0</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
-
 	<portlet>
 		<portlet-name>auditDemo</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
-
-		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
-		<footer-portlet-javascript>/js/jquery.inputmask.bundle.min.js</footer-portlet-javascript>
+		<header-portlet-javascript>/js/jquery/jquery-3.4.1.min.js?js_fast_load=0</header-portlet-javascript>
+		<footer-portlet-javascript>/js/jquery/jquery.inputmask.bundle.min.js?js_fast_load=0</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
-
 	<portlet>
 		<portlet-name>permissionsTest</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
-
-		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
-		<footer-portlet-javascript>/js/jquery.inputmask.bundle.min.js</footer-portlet-javascript>
+		<header-portlet-javascript>/js/jquery/jquery-3.4.1.min.js?js_fast_load=0</header-portlet-javascript>
+		<footer-portlet-javascript>/js/jquery/jquery.inputmask.bundle.min.js?js_fast_load=0</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
-
 	<portlet>
 		<portlet-name>fileUpload</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
+		<header-portlet-javascript>/js/vue/vue.min.js?js_fast_load=0</header-portlet-javascript>
+		<header-portlet-javascript>/js/vue/axios.min.js?js_fast_load=0</header-portlet-javascript>
 
-		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
-		<footer-portlet-javascript>/js/jquery.inputmask.bundle.min.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/utils.js</footer-portlet-javascript>
 	</portlet>
-
 	<portlet>
 		<portlet-name>messagingTest</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
-
-		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
-		<footer-portlet-javascript>/js/jquery.inputmask.bundle.min.js</footer-portlet-javascript>
+		<header-portlet-javascript>/js/jquery/jquery-3.4.1.min.js?js_fast_load=0</header-portlet-javascript>
+		<footer-portlet-javascript>/js/jquery/jquery.inputmask.bundle.min.js?js_fast_load=0</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/utils.js</footer-portlet-javascript>
 	</portlet>
-
 	<portlet>
 		<portlet-name>bootstrapTest</portlet-name>
 		<icon>/icon.png</icon>
 	</portlet>
-
 	<portlet>
 		<portlet-name>notificationsTest</portlet-name>
 		<icon>/icon.png</icon>
-		<user-notification-definitions>notification/custon-user-notification-definitions.xml</user-notification-definitions>
-		<user-notification-handler-class>ru.akimov.notifications.CustomUserNotificationsHandler</user-notification-handler-class>
+		<user-notification-definitions>notification/custon-user-notification-definitions.xml
+		</user-notification-definitions>
+		<user-notification-handler-class>ru.akimov.notifications.CustomUserNotificationsHandler
+		</user-notification-handler-class>
 		<header-portlet-css>/css/main.css</header-portlet-css>
-
-		<header-portlet-javascript>/js/jquery-3.4.1.min.js</header-portlet-javascript>
-		<footer-portlet-javascript>/js/jquery.inputmask.bundle.min.js</footer-portlet-javascript>
+		<header-portlet-javascript>/js/jquery/jquery-3.4.1.min.js?js_fast_load=0</header-portlet-javascript>
+		<footer-portlet-javascript>/js/jquery/jquery.inputmask.bundle.min.js?js_fast_load=0</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
