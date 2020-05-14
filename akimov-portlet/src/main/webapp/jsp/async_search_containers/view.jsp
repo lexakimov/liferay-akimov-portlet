@@ -8,15 +8,11 @@
 <%@ include file="/jsp/init.jsp" %>
 
 <div class="container">
-	<h3>Async Search Container</h3>
-	<%--------------------------------------------------------------------------------------------------------------------%>
-	<div class="separator"></div>
+	<legend>Async Search Container</legend>
 	<jsp:include page="async_search_container.jsp"/>
 	<%--------------------------------------------------------------------------------------------------------------------%>
-	<div class="separator"></div>
-	<h3>Search Helpers</h3>
-	<%--------------------------------------------------------------------------------------------------------------------%>
-	<div class="separator"></div>
+
+	<legend>Search Helpers</legend>
 	<liferay-ui:search-container delta="5" iteratorURL="<%=thisURL%>" curParam="general">
 		<%
 			new PersonSearchHelper(searchContainer);
@@ -39,10 +35,8 @@
 		<liferay-ui:search-paginator searchContainer="${searchContainer}" type="regular"/>
 	</liferay-ui:search-container>
 	<%--------------------------------------------------------------------------------------------------------------------%>
-	<div class="separator"></div>
-	<h3>Adapted Search Helpers</h3>
-	<%--------------------------------------------------------------------------------------------------------------------%>
-	<div class="separator"></div>
+
+	<legend>Adapted Search Helpers</legend>
 	<liferay-ui:search-container delta="5" iteratorURL="<%=thisURL%>" curParam="adapted">
 		<%
 			new AdaptedPersonSearchHelper(searchContainer);
@@ -57,10 +51,8 @@
 		<liferay-ui:search-paginator searchContainer="${searchContainer}" type="article"/>
 	</liferay-ui:search-container>
 	<%--------------------------------------------------------------------------------------------------------------------%>
-	<div class="separator"></div>
-	<h3>SQL-Based Search Helpers</h3>
-	<%--------------------------------------------------------------------------------------------------------------------%>
-	<div class="separator"></div>
+
+	<legend>SQL-Based Search Helpers</legend>
 	<liferay-ui:search-container delta="5" iteratorURL="<%=thisURL%>" curParam="sql-based">
 		<%
 			new BasicSqlSearchHelper(searchContainer);

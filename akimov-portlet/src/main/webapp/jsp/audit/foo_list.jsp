@@ -33,8 +33,10 @@
 		</portlet:actionURL>
 
 		<liferay-ui:search-container-column-text cssClass="text-center">
-			<aui:button value="Edit" name="edit" primary="true" onClick="openDialog(${model.fooId});"/>
-			<aui:button value="Delete" name="delete" primary="true" href="${deleteURL}"/>
+			<div class="btn-group">
+				<aui:button value="Edit" name="edit" primary="true" onClick="openDialog(${model.fooId});"/>
+				<aui:button value="Delete" name="delete" primary="true" href="${deleteURL}"/>
+			</div>
 		</liferay-ui:search-container-column-text>
 
 	</liferay-ui:search-container-row>

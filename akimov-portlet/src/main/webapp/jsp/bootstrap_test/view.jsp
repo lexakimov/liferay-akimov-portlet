@@ -6,11 +6,137 @@
 <h3>Заголовок третьего уровня</h3>
 <h4>Заголовок четвертого уровня</h4>
 
+<aui:input name="eew" label="Тест 123321" type="text"/>
+<aui:input name="eew" label="Тест 123321" type="textarea"/>
+<aui:input name="eew" label="Тест 123321" type="range"/>
+<aui:input name="eew" label="Тест 123321" type="checkbox"/>
+<aui:input name="eew" label="Тест 123321" type="color"/>
+<aui:input name="eew" label="Тест 123321" type="editor"/>
+<aui:input name="eew" label="Тест 123321" type="image"/>
+<aui:input name="eew" label="Тест 123321" type="radio"/>
+<aui:input name="eew" label="Тест 123321" type="resource "/>
+<aui:input name="eew" label="Тест 123321" type="url"/>
+<aui:input name="eew" label="Тест 123321" type="toggle-card"/>
+<aui:input name="eew" label="Тест 123321" type="toggle-switch"/>
+<aui:input name="eew" label="Тест 123321" type="file"/>
+
 <p>
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend
 	lectus sed nisi posuere venenatis. Aenean a dapibus tortor. Aliquam erat volutpat. Cras ut dui elementum quam
 	ultrices malesuada ac eu orci. Mauris malesuada risus sit amet lorem tempus, elementum porttitor mauris
 </p>
+
+<p>
+	<button class="btn btn-large btn-primary" type="button">Large button</button>
+	<button class="btn btn-large" type="button">Large button</button>
+</p>
+<p>
+	<button class="btn btn-primary" type="button">Default button</button>
+	<button class="btn" type="button">Default button</button>
+</p>
+<p>
+	<button class="btn btn-small btn-primary" type="button">Small button</button>
+	<button class="btn btn-small" type="button">Small button</button>
+</p>
+<p>
+	<button class="btn btn-mini btn-primary" type="button">Mini button</button>
+	<button class="btn btn-mini" type="button">Mini button</button>
+</p>
+
+<button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
+<button class="btn btn-large btn-block" type="button">Block level button</button>
+
+<a href="#" class="btn btn-large btn-primary disabled">Primary link</a>
+<a href="#" class="btn btn-large disabled">Link</a>
+
+<div class="btn-toolbar">
+	<div class="btn-group">
+		<a class="btn" href="#"><i class="icon-align-left"></i></a>
+		<a class="btn" href="#"><i class="icon-align-center"></i></a>
+		<a class="btn" href="#"><i class="icon-align-right"></i></a>
+		<a class="btn" href="#"><i class="icon-align-justify"></i></a>
+	</div>
+</div>
+
+
+<div class="btn-group">
+	<a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> User</a>
+	<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+	<ul class="dropdown-menu">
+		<li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
+		<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+		<li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
+		<li class="divider"></li>
+		<li><a href="#"><i class="i"></i> Make admin</a></li>
+	</ul>
+</div>
+
+
+<a class="btn btn-large" href="#"><i class="icon-star"></i> Star</a>
+<a class="btn btn-small" href="#"><i class="icon-star"></i> Star</a>
+<a class="btn btn-mini" href="#"><i class="icon-star"></i> Star</a>
+
+
+<ul class="nav nav-list">
+	<li class="active"><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
+	<li><a href="#"><i class="icon-book"></i> Library</a></li>
+	<li><a href="#"><i class="icon-pencil"></i> Applications</a></li>
+	<li><a href="#"><i class="i"></i> Misc</a></li>
+</ul>
+
+
+
+<div class="separator"></div>
+
+<!-- Button to trigger modal -->
+<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Modal header</h3>
+	</div>
+	<div class="modal-body">
+		<p>One fine body…</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		<button class="btn btn-primary">Save changes</button>
+	</div>
+</div>
+
+<div class="separator"></div>
+
+<div class="accordion" id="accordion2">
+
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+				Collapsible Group Item #1
+			</a>
+		</div>
+		<div id="collapseOne" class="accordion-body collapse in">
+			<div class="accordion-inner">
+				Anim pariatur cliche...
+			</div>
+		</div>
+	</div>
+
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+				Collapsible Group Item #2
+			</a>
+		</div>
+		<div id="collapseTwo" class="accordion-body collapse">
+			<div class="accordion-inner">
+				Anim pariatur cliche...
+			</div>
+		</div>
+	</div>
+
+</div>
 
 <div class="separator"></div>
 
@@ -99,7 +225,7 @@
 
 <div class="separator"></div>
 
-<aui:nav-bar>
+<aui:nav-bar cssClass="navbar-inverse">
 	<aui:nav cssClass="nav-tabs<%-- nav-stacked--%>">
 		<aui:nav-item id="testtest1" dropdown="true" label="actions">
 			<aui:nav-item iconCssClass="icon-remove" label="delete"/>

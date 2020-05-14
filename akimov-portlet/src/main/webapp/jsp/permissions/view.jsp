@@ -7,9 +7,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
-<h3>Permissions Test</h3>
-<%--------------------------------------------------------------------------------------------------------------------%>
-<div class="separator"></div>
+<legend>Permissions Test</legend>
+
 <%
 	List<Foo> foos = FooLocalServiceUtil.getFoos(0, 1);
 	Foo foo = foos.get(0);

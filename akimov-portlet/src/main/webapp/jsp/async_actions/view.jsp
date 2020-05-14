@@ -4,9 +4,8 @@
 <%@ include file="/jsp/init.jsp" %>
 
 <div class="container">
-	<h3>Async Actions Portlet</h3>
-	<%----------------------------------------------------------------------------------------------------------------%>
-	<div class="separator"></div>
+	<legend>Async Actions Portlet</legend>
+
 	<jsp:include page="_1_success_action.jsp"/>
 
 	<%----------------------------------------------------------------------------------------------------------------%>

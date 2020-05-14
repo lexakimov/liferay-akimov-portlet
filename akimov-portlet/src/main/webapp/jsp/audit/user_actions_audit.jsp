@@ -7,44 +7,39 @@
 
 <h4>User actions history</h4>
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div class="row-fluid">
+	<div class="span12">
+		<liferay-ui:search-container delta="20" iteratorURL="<%=thisURL%>"
+									 emptyResultsMessage="Журнал действий пуст">
+			<%
+				new AuditGroupSearchHelper(searchContainer);
+			%>
+			<liferay-ui:search-container-row
+					className="ru.akimov.search.entry_adapters.impl.AuditGroupSearchEntryAdapter">
+				<liferay-ui:search-container-column-text name="Дата и время">
+					<fmt:formatDate value="${model.dateTime}"
+									pattern="dd.MM.yyyy HH:mm:ss"
+									timeZone="${timeZone}"/>
+				</liferay-ui:search-container-column-text>
+				<liferay-ui:search-container-column-text name="Пользователь" property="userFullName"/>
+				<liferay-ui:search-container-column-text name="Действия">
+					<%
+						final AuditEntryGroup wrappedModel = model.getWrappedModel();
+						final List<AuditEntry> auditEntries =
+								AuditEntryLocalServiceUtil.getByEntryGroupId(wrappedModel.getEntryGroupId());
+						if (auditEntries.size() == 2) {
+							out.println(auditEntries.get(0).getMetadata());
+							out.println("<br>");
+							out.println(auditEntries.get(1).getMetadata());
+						} else {
+							out.println(auditEntries.get(0).getAuditType());
+						}
+					%>
 
-<div class="container">
-	<div class="row">
-		<div class="span12">
-			<liferay-ui:search-container delta="20" iteratorURL="<%=thisURL%>"
-										 emptyResultsMessage="Журнал действий пуст">
-				<%
-					new AuditGroupSearchHelper(searchContainer);
-				%>
-				<liferay-ui:search-container-row
-						className="ru.akimov.search.entry_adapters.impl.AuditGroupSearchEntryAdapter">
-					<liferay-ui:search-container-column-text name="Дата и время">
-						<fmt:formatDate value="${model.dateTime}"
-										pattern="dd.MM.yyyy HH:mm:ss"
-										timeZone="${timeZone}"/>
-					</liferay-ui:search-container-column-text>
-					<liferay-ui:search-container-column-text name="Пользователь" property="userFullName"/>
-					<liferay-ui:search-container-column-text name="Действия">
-						<%
-							final AuditEntryGroup wrappedModel = model.getWrappedModel();
-							final List<AuditEntry> auditEntries =
-									AuditEntryLocalServiceUtil.getByEntryGroupId(wrappedModel.getEntryGroupId());
-							if (auditEntries.size() == 2) {
-								out.println(auditEntries.get(0).getMetadata());
-								out.println("<br>");
-								out.println(auditEntries.get(1).getMetadata());
-							} else {
-								out.println(auditEntries.get(0).getAuditType());
-							}
-						%>
-
-					</liferay-ui:search-container-column-text>
-				</liferay-ui:search-container-row>
-				<liferay-ui:search-iterator paginate="false"/>
-				<liferay-ui:search-paginator searchContainer="${searchContainer}" type="regular"/>
-			</liferay-ui:search-container>
-		</div>
+				</liferay-ui:search-container-column-text>
+			</liferay-ui:search-container-row>
+			<liferay-ui:search-iterator paginate="false"/>
+			<liferay-ui:search-paginator searchContainer="${searchContainer}" type="regular"/>
+		</liferay-ui:search-container>
 	</div>
 </div>

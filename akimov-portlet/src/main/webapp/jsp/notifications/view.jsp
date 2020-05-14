@@ -4,9 +4,7 @@
 <%@ include file="/jsp/init.jsp" %>
 
 <div class="container">
-	<h3>Notifications Test</h3>
-	<%----------------------------------------------------------------------------------------------------------------%>
-	<div class="separator"></div>
+	<legend>Notifications Test</legend>
 	<portlet:actionURL var="sendNotificationURL" name="sendNotifications"/>
 	<div class="text-center">
 		<aui:form action="${sendNotificationURL}" method="post">

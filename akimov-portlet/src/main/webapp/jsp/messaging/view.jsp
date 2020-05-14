@@ -5,9 +5,7 @@
 <%@ include file="/jsp/init.jsp" %>
 
 <div class="container">
-	<h3>Messaging Test</h3>
-	<%--------------------------------------------------------------------------------------------------------------------%>
-	<div class="separator"></div>
+	<legend>Messaging Test</legend>
 
 	<h4>Dynamic listener registration (for send and forget destinations)</h4>
 	<portlet:actionURL var="registerURL" name="registerListener"/>

@@ -4,10 +4,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
-<h3>Async file uploading</h3>
-
-<%--------------------------------------------------------------------------------------------------------------------%>
-<div class="separator"></div>
+<legend>Async file uploading</legend>
 <portlet:actionURL var="updateEntityURL" name="updateEntity"/>
 
 <div class="container">
