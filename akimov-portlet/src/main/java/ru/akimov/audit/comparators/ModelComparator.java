@@ -15,10 +15,9 @@ import java.util.*;
  */
 public abstract class ModelComparator<T extends BaseModel<T>> {
 
-	private Map<String, Object> oldValues = new HashMap<>();
-	private Map<String, Object> newValues = new HashMap<>();
-
-	private Set<String> changedFields = new HashSet<>();
+	private final Map<String, Object> oldValues = new HashMap<>();
+	private final Map<String, Object> newValues = new HashMap<>();
+	private final Set<String> changedFields = new HashSet<>();
 
 	/**
 	 * @return список атрибутов, изменения которых надо "отслеживать";
@@ -32,7 +31,7 @@ public abstract class ModelComparator<T extends BaseModel<T>> {
 		Map<String, Object> oldAttributes = (old != null) ? old.getModelAttributes() : null;
 		Map<String, Object> newAttributes = (_new != null) ? _new.getModelAttributes() : null;
 
-		Set<String> fieldNames = oldAttributes != null ? oldAttributes.keySet() : newAttributes.keySet();
+		Set<String> fieldNames = (oldAttributes != null) ? oldAttributes.keySet() : newAttributes.keySet();
 
 		for (String attributeName : fieldNames) {
 
@@ -40,8 +39,8 @@ public abstract class ModelComparator<T extends BaseModel<T>> {
 				continue;
 			}
 
-			Object oldValue = oldAttributes != null ? oldAttributes.get(attributeName) : null;
-			Object newValue = newAttributes != null ? newAttributes.get(attributeName) : null;
+			Object oldValue = (oldAttributes != null) ? oldAttributes.get(attributeName) : null;
+			Object newValue = (newAttributes != null) ? newAttributes.get(attributeName) : null;
 
 			if (oldValue == null && newValue == null) {
 				continue;

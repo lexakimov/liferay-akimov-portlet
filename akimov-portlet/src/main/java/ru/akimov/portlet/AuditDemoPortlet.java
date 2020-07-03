@@ -9,7 +9,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import ru.akimov.audit.enums.AuditType;
 import ru.akimov.audit.enums.EntityType;
-import ru.akimov.audit.util.AuditMessagingUtil;
+import ru.akimov.audit.util.AuditUtil;
 import ru.akimov.model.AuditEntry;
 import ru.akimov.model.AuditEntryGroup;
 import ru.akimov.model.Foo;
@@ -43,7 +43,7 @@ public class AuditDemoPortlet extends MVCExtendedPortlet {
 
 		boolean isCustomAudit = ParamUtil.getBoolean(request, "isCustomAudit");
 		if (isCustomAudit) {
-			AuditMessagingUtil.preventDefaultAudit();
+			AuditUtil.preventDefaultAudit();
 		}
 
 		if (log.isDebugEnabled()) {

@@ -8,7 +8,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import ru.akimov.annotations.AsyncActionMethod;
 import ru.akimov.audit.enums.AuditType;
-import ru.akimov.audit.util.AuditMessagingUtil;
+import ru.akimov.audit.util.AuditUtil;
 import ru.akimov.utils.PortletRequestUtil;
 
 import javax.portlet.PortletRequest;
@@ -22,7 +22,7 @@ public class AsyncActionsPortlet extends MVCExtendedPortlet {
 	public void simpleAsyncAction(PortletRequest request, PortletResponse response) throws PortalException, SystemException {
 		System.out.println(PortletRequestUtil.paramsList(request));
 		System.out.println(PortletRequestUtil.attrsList(request));
-		AuditMessagingUtil.simpleAudit(AuditType.ASYNC_ACTION, "Асинхронное действие");
+		AuditUtil.simpleAudit(AuditType.ASYNC_ACTION, "Асинхронное действие");
 	}
 
 	@AsyncActionMethod

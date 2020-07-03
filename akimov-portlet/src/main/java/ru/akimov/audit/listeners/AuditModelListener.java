@@ -13,7 +13,7 @@ import ru.akimov.audit.enums.AuditType;
 import ru.akimov.audit.enums.EntityType;
 import ru.akimov.audit.exceptions.EntityAuditException;
 import ru.akimov.audit.exceptions.NoSuchModelAttributeException;
-import ru.akimov.audit.util.AuditMessagingUtil;
+import ru.akimov.audit.util.AuditUtil;
 import ru.akimov.model.AuditEntry;
 import ru.akimov.model.AuditEntryGroup;
 import ru.akimov.service.AuditEntryGroupLocalServiceUtil;
@@ -37,7 +37,7 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 	@Override
 	public final void onBeforeCreate(T model) throws ModelListenerException {
 		log.trace("onBeforeCreate()");
-		if (AuditMessagingUtil.isDefaultAuditPrevented()) {
+		if (AuditUtil.isDefaultAuditPrevented()) {
 			log.debug("return...");
 			return;
 		}
@@ -47,7 +47,7 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 	@Override
 	public final void onBeforeUpdate(T model) throws ModelListenerException {
 		log.trace("onBeforeUpdate()");
-		if (AuditMessagingUtil.isDefaultAuditPrevented()) {
+		if (AuditUtil.isDefaultAuditPrevented()) {
 			log.debug("return...");
 			return;
 		}
@@ -65,9 +65,9 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 			throw new EntityAuditException(e);
 		}
 
-		Map<String, Object> newValues = modelComparator.getNewValues();
-		Map<String, Object> oldValues = modelComparator.getOldValues();
-		Set<String> changedFields = modelComparator.getChangedFields();
+		final Map<String, Object> newValues = modelComparator.getNewValues();
+		final Map<String, Object> oldValues = modelComparator.getOldValues();
+		final Set<String> changedFields = modelComparator.getChangedFields();
 
 		auditType = getSpecialAuditType(changedFields, auditType);
 
@@ -114,7 +114,7 @@ public abstract class AuditModelListener<T extends BaseModel<T>> extends BaseMod
 	@Override
 	public final void onAfterRemove(T model) throws EntityAuditException {
 		log.trace("onAfterRemove()");
-		if (AuditMessagingUtil.isDefaultAuditPrevented()) {
+		if (AuditUtil.isDefaultAuditPrevented()) {
 			log.debug("return...");
 			return;
 		}

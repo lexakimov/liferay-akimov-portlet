@@ -22,9 +22,9 @@ import ru.akimov.service.AuditEntryLocalServiceUtil;
  * @author akimov
  * created at 23.01.20 16:37
  */
-public class AuditMessagingUtil {
+public class AuditUtil {
 
-	private static Log log = LogFactoryUtil.getLog(AuditMessagingUtil.class);
+	private static final Log log = LogFactoryUtil.getLog(AuditUtil.class);
 
 	private static final String ATTR_PREVENT_AUDITION = "PREVENT_AUDITION";
 

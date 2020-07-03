@@ -53,11 +53,6 @@
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<header-portlet-javascript>/js/vue/vue.min.js?js_fast_load=0</header-portlet-javascript>
 		<header-portlet-javascript>/js/vue/axios.min.js?js_fast_load=0</header-portlet-javascript>
-
-		<footer-portlet-javascript>/js/async.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/js/dialogs.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/js/masks.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/utils.js</footer-portlet-javascript>
 	</portlet>
 	<portlet>
