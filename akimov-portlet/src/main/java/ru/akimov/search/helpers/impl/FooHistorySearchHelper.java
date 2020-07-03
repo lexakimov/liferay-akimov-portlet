@@ -8,7 +8,7 @@ import org.apache.commons.dbutils.ResultSetHandler;
 import ru.akimov.audit.enums.EntityType;
 import ru.akimov.search.helpers.SqlBasedSearchHelper;
 import ru.akimov.model.AuditEntry;
-import ru.akimov.search.entry_dto.EntityAuditEntryWithChanges;
+import ru.akimov.search.entry_dto.impl.EntityAuditEntryWithChanges;
 import ru.akimov.service.AuditEntryLocalServiceUtil;
 
 import java.sql.*;

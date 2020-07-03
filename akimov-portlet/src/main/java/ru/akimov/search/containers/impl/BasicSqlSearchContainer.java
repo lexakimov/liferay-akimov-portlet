@@ -1,7 +1,7 @@
 package ru.akimov.search.containers.impl;
 
 import ru.akimov.search.containers.SearchContainer;
-import ru.akimov.search.entry_adapters.impl.SqlEntity;
+import ru.akimov.search.entry_dto.impl.SqlEntity;
 import ru.akimov.search.helpers.impl.BasicSqlSearchHelper;
 
 import javax.portlet.PortletException;

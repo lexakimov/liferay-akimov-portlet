@@ -1,9 +1,10 @@
-package ru.akimov.search.entry_dto;
+package ru.akimov.search.entry_dto.impl;
 
 import com.liferay.portal.model.User;
 import ru.akimov.audit.description.DescriptionManager;
 import ru.akimov.audit.enums.EntityType;
 import ru.akimov.model.AuditEntry;
+import ru.akimov.search.entry_dto.SearchEntryDTO;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Map;
  *
  * @author akimov
  */
-public class EntityAuditEntryWithChanges {
+public class EntityAuditEntryWithChanges implements SearchEntryDTO {
 
 	private final AuditEntry auditEntry;
 	private final EntityType entityType;

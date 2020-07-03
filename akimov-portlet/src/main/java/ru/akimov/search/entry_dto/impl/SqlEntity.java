@@ -1,8 +1,10 @@
-package ru.akimov.search.entry_adapters.impl;
+package ru.akimov.search.entry_dto.impl;
+
+import ru.akimov.search.entry_dto.SearchEntryDTO;
 
 import java.util.Date;
 
-public class SqlEntity {
+public class SqlEntity implements SearchEntryDTO {
 	private long id;
 	private String firstName;
 	private String lastName;

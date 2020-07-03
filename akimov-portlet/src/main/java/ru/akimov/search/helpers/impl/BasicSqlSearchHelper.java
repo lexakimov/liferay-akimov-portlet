@@ -4,7 +4,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import ru.akimov.search.entry_adapters.impl.SqlEntity;
+import ru.akimov.search.entry_dto.impl.SqlEntity;
 import ru.akimov.search.helpers.SqlBasedSearchHelper;
 
 import javax.portlet.PortletException;
@@ -41,7 +41,7 @@ public class BasicSqlSearchHelper extends SqlBasedSearchHelper<SqlEntity> {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("SELECT personid as id, firstName, lastName, birthDate \n");
-		builder.append("FROM akimov_person\n");
+		builder.append("FROM akimov_person \n");
 
 		StringJoiner orderBy = new StringJoiner(", ", "ORDER BY ", "\n");
 		orderBy.add(!orderByCol.isEmpty() ? (orderByCol + " " + orderByType) : "personid");
