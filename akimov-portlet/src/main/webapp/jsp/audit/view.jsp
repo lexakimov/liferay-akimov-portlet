@@ -7,10 +7,8 @@
 	<legend>Audit Framework Demo</legend>
 	<jsp:include page="foo_list.jsp"/>
 	<%----------------------------------------------------------------------------------------------------------------%>
-<%--
 	<div class="separator"></div>
 	<jsp:include page="foo_change_history.jsp"/>
---%>
 	<%----------------------------------------------------------------------------------------------------------------%>
 	<div class="separator"></div>
 	<jsp:include page="user_actions_audit.jsp"/>

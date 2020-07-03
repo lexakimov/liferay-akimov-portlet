@@ -1,5 +1,6 @@
 package ru.akimov.audit.description.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -21,12 +22,12 @@ public class FooCreateActionDescriptionAdapter implements DescriptionAdapter {
 
 	@Override
 	public String adapt(AuditEntry entry) {
-		long userId = 0L;// TODO entry.getUserId();
-		int fooId = entry.getEntityId();
 		try {
+			int fooId = entry.getEntityId();
+			long userId = entry.getUserId();
 			User user = UserLocalServiceUtil.fetchUser(userId);
 			return String.format(DESCRIPTION_PATTERN, user.getFullName(), fooId);
-		} catch (SystemException e) {
+		} catch (SystemException | PortalException e) {
 			log.error(e);
 			return WebPageUtil.setColor(entry.getAuditType(), "red");
 		}

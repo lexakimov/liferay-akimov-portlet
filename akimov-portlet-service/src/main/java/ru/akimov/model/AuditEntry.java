@@ -34,4 +34,8 @@ public interface AuditEntry extends AuditEntryModel, PersistedModel {
     * @return true если запись истории изменения имеет закрепленные за собой записи об изменениях атрибутов сущности.
     */
     public boolean hasFieldChanges();
+
+    public long getUserId()
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
 }

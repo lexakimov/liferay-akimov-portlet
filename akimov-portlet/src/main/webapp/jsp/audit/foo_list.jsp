@@ -10,7 +10,7 @@
 	<aui:button name="openFooCardBtn" icon="icon-plus" value="Create new" primary="true"/>
 </aui:button-row>
 
-<liferay-ui:search-container delta="5" iteratorURL="<%=thisURL%>" emptyResultsMessage="empty">
+<liferay-ui:search-container iteratorURL="<%=thisURL%>" emptyResultsMessage="empty">
 	<%
 		new FooSearchHelper(searchContainer);
 	%>
@@ -32,10 +32,18 @@
 			<portlet:param name="fooId" value="${model.fooId}"/>
 		</portlet:actionURL>
 
-		<liferay-ui:search-container-column-text cssClass="text-center">
-			<div class="btn-group">
-				<aui:button value="Edit" name="edit" primary="true" onClick="openDialog(${model.fooId});"/>
-				<aui:button value="Delete" name="delete" primary="true" href="${deleteURL}"/>
+		<liferay-ui:search-container-column-text>
+			<div class="btn-group text-center" style="width: 100%">
+				<aui:button value="Edit"
+							name="edit"
+							primary="true"
+							cssClass="btn-small"
+							onClick="openDialog(${model.fooId});"/>
+				<aui:button value="Delete"
+							name="delete"
+							primary="true"
+							cssClass="btn-small"
+							href="${deleteURL}"/>
 			</div>
 		</liferay-ui:search-container-column-text>
 

@@ -1,9 +1,12 @@
 package ru.akimov.model.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import ru.akimov.model.EntityFieldChange;
+import ru.akimov.service.AuditEntryGroupLocalServiceUtil;
+import ru.akimov.service.AuditEntryLocalService;
 import ru.akimov.service.EntityFieldChangeLocalServiceUtil;
 import ru.akimov.utils.DateUtil;
 
@@ -61,5 +64,9 @@ public class AuditEntryImpl extends AuditEntryBaseImpl {
 	 */
 	public boolean hasFieldChanges() {
 		return !fieldChanges.isEmpty();
+	}
+
+	public long getUserId() throws SystemException, PortalException {
+		return AuditEntryGroupLocalServiceUtil.getAuditEntryGroup(getEntryGroupId()).getUserId();
 	}
 }

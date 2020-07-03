@@ -353,6 +353,13 @@ public class AuditEntryWrapper implements AuditEntry, ModelWrapper<AuditEntry> {
     }
 
     @Override
+    public long getUserId()
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _auditEntry.getUserId();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

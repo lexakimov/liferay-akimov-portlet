@@ -18,16 +18,19 @@
 			new PersonSearchHelper(searchContainer);
 		%>
 		<liferay-ui:search-container-row className="ru.akimov.model.Person">
-			<liferay-ui:search-container-column-text name="Фамилия" property="lastName"/>
-			<liferay-ui:search-container-column-text name="Имя" property="firstName"/>
-			<liferay-ui:search-container-column-text name="Отчество" property="middleName"/>
+			<liferay-ui:search-container-column-text name="Фамилия" property="lastName" cssClass="no-hover no-stripes"/>
+			<liferay-ui:search-container-column-text name="Имя" property="firstName" cssClass="no-hover no-stripes"/>
+			<liferay-ui:search-container-column-text name="Отчество" property="middleName" cssClass="no-hover no-stripes"/>
 			<liferay-ui:search-container-column-text name="gender"
-													 value="<%= Gender.getByOrdinal(model.getGender()).getLabel()%>"/>
-			<liferay-ui:search-container-column-text name="Дата рождения">
+													 value="<%= Gender.getByOrdinal(model.getGender()).getLabel()%>"
+													 cssClass="no-hover no-stripes"/>
+			<liferay-ui:search-container-column-text name="Дата рождения" cssClass="no-hover no-stripes">
 				<fmt:formatDate value="${model.birthDate}" pattern="dd.MM.yyyy"/>
 			</liferay-ui:search-container-column-text>
-			<liferay-ui:search-container-column-text name="Адрес проживания" property="address"/>
+			<liferay-ui:search-container-column-text name="Адрес проживания" property="address"
+													 cssClass="no-hover no-stripes"/>
 		</liferay-ui:search-container-row>
+
 		<liferay-ui:search-iterator paginate="false"/>
 		<liferay-ui:search-paginator searchContainer="${searchContainer}" type="approximate"/>
 		<liferay-ui:search-paginator searchContainer="${searchContainer}" type="article"/>
@@ -57,7 +60,7 @@
 		<%
 			new BasicSqlSearchHelper(searchContainer);
 		%>
-		<liferay-ui:search-container-row className="ru.akimov.search.entry_adapters.impl.SqlEntity">
+		<liferay-ui:search-container-row className="ru.akimov.search.entry_dto.impl.SqlEntity">
 			<liferay-ui:search-container-column-text name="Имя" property="firstName"
 													 orderable="true" orderableProperty="firstName"/>
 			<liferay-ui:search-container-column-text name="Фамилия" property="lastName"
@@ -67,8 +70,7 @@
 				<fmt:formatDate value="${model.birthDate}" pattern="dd.MM.yyyy"/>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
-		<liferay-ui:search-iterator paginate="false"/>
-		<liferay-ui:search-paginator searchContainer="${searchContainer}" type="article"/>
+		<liferay-ui:search-iterator/>
 	</liferay-ui:search-container>
 </div>
 

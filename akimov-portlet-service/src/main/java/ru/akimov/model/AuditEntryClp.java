@@ -269,6 +269,24 @@ public class AuditEntryClp extends BaseModelImpl<AuditEntry>
     }
 
     @Override
+    public long getUserId() {
+        try {
+            String methodName = "getUserId";
+
+            Class<?>[] parameterTypes = new Class<?>[] {  };
+
+            Object[] parameterValues = new Object[] {  };
+
+            Long returnObj = (Long) invokeOnRemoteModel(methodName,
+                    parameterTypes, parameterValues);
+
+            return returnObj;
+        } catch (Exception e) {
+            throw new UnsupportedOperationException(e);
+        }
+    }
+
+    @Override
     public boolean hasFieldChanges() {
         try {
             String methodName = "hasFieldChanges";

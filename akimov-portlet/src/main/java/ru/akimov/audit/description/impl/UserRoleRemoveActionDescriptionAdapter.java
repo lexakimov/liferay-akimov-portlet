@@ -1,5 +1,6 @@
 package ru.akimov.audit.description.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -16,20 +17,20 @@ public class UserRoleRemoveActionDescriptionAdapter implements DescriptionAdapte
 
 	private static final String DESCRIPTION_PATTERN = "%s забрал у %s роль %s";
 
-	private Log log = LogFactoryUtil.getLog(UserLogoutActionDescriptionAdapter.class);
+	private final Log log = LogFactoryUtil.getLog(UserLogoutActionDescriptionAdapter.class);
 
 	@Override
 	public String adapt(AuditEntry entry) {
-		long userId = 0L;// TODO entry.getUserId();
 		String userName = null;
 		try {
+			long userId = entry.getUserId();
 			User user = UserLocalServiceUtil.fetchUser(userId);
-			/*userName = user != null ? user.getFullName() : entry.getUserName();*/
-		} catch (SystemException e) {
+			if (user != null) {
+				userName = String.valueOf(userId);
+			}
+			userName = (user != null) ? user.getFullName() : String.valueOf(userId);
+		} catch (SystemException | PortalException e) {
 			log.error(e);
-		}
-		if (userName == null) {
-			userName = String.valueOf(userId);
 		}
 
 		int entityId = entry.getEntityId();
