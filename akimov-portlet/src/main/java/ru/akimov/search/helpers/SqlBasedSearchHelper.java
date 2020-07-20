@@ -73,7 +73,7 @@ public abstract class SqlBasedSearchHelper<T extends SearchEntryDTO> implements 
 		if (start > end) {
 			throw new IllegalArgumentException("start index must be lower or equal than end index");
 		}
-		String ret = "";
+		String ret = StringPool.BLANK;
 		if (start == QueryUtil.ALL_POS) {
 			start = 0;
 		}

@@ -9,14 +9,8 @@ import ru.akimov.search.helpers.DynamicQuerySearchHelper;
 import javax.portlet.PortletException;
 
 public class FooSearchHelper extends DynamicQuerySearchHelper<Foo> {
-	private FooSearchHelper() {
+	public FooSearchHelper() {
 		super(Foo.class);
-	}
-
-	public FooSearchHelper(SearchContainer<Foo> container) throws PortletException {
-		this();
-		container.setResults(this.getResult(container.getStart(), container.getEnd()));
-		container.setTotal(this.getTotal());
 	}
 
 	@Override

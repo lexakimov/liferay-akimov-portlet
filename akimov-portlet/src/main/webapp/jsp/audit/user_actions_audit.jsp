@@ -2,6 +2,7 @@
 <%@ page import="ru.akimov.model.AuditEntryGroup" %>
 <%@ page import="ru.akimov.search.helpers.impl.AuditGroupSearchHelper" %>
 <%@ page import="ru.akimov.service.AuditEntryLocalServiceUtil" %>
+<%@ page import="ru.akimov.search.SearchResultsBinder" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -12,7 +13,7 @@
 		<liferay-ui:search-container delta="20" iteratorURL="<%=thisURL%>"
 									 emptyResultsMessage="Журнал действий пуст">
 			<%
-				new AuditGroupSearchHelper(searchContainer);
+				SearchResultsBinder.bind(searchContainer, new AuditGroupSearchHelper());
 			%>
 			<liferay-ui:search-container-row
 					className="ru.akimov.search.entry_adapters.impl.AuditGroupSearchEntryAdapter">

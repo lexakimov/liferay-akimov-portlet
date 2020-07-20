@@ -28,6 +28,11 @@ public abstract class DynamicQuerySearchHelper<T extends BaseModel<T>> implement
 		return query;
 	}
 
+	/**
+	 * Добавление фильтров к объекту DynamicQuery query.
+	 * @param query
+	 * @return
+	 */
 	protected DynamicQuery addRestrictions(DynamicQuery query) {
 		return query;
 	}
@@ -46,6 +51,16 @@ public abstract class DynamicQuerySearchHelper<T extends BaseModel<T>> implement
 
 	}
 
+	/**
+	 * Добавление сортировки к объекту query.
+	 * Если класс реализует {@link OrderableSearchHelper}, то настоящий класс должен содержать поля
+	 * orderByCol и orderByType, сеттеры к которым: {@link OrderableSearchHelper#setOrderByCol(String)} и
+	 * {@link OrderableSearchHelper#setOrderByType(String)}. В методе addOrdering(DynamicQuery)
+	 * можно и нужно обращаться к полям orderByCol и orderByType
+	 *
+	 * @param query
+	 * @return
+	 */
 	protected DynamicQuery addOrdering(DynamicQuery query) {
 		return query;
 	}

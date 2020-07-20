@@ -15,12 +15,6 @@ public class AdaptedPersonSearchHelper extends AdaptedDynamicQuerySearchHelper<P
 		super(Person.class);
 	}
 
-	public AdaptedPersonSearchHelper(SearchContainer<PersonSearchEntryAdapter> container) throws PortletException {
-		this();
-		container.setResults(this.getAdaptedResult(container.getStart(), container.getEnd()));
-		container.setTotal(this.getTotal());
-	}
-
 	@Override
 	protected DynamicQuery addOrdering(DynamicQuery query) {
 		query.addOrder(OrderFactoryUtil.asc("lastName"));

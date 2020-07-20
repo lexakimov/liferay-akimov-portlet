@@ -1,6 +1,7 @@
 <%@ page import="ru.akimov.search.helpers.impl.FooSearchHelper" %>
 <%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_METHOD_PARAM" %>
 <%@ page import="static ru.akimov.constants.PortletConstants.ASYNC_ACTION_RESOURCE_ID" %>
+<%@ page import="ru.akimov.search.SearchResultsBinder" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/init.jsp" %>
 
@@ -12,7 +13,7 @@
 
 <liferay-ui:search-container iteratorURL="<%=thisURL%>" emptyResultsMessage="empty">
 	<%
-		new FooSearchHelper(searchContainer);
+		SearchResultsBinder.bind(searchContainer, new FooSearchHelper());
 	%>
 	<liferay-ui:search-container-row className="ru.akimov.model.Foo">
 		<liferay-ui:search-container-column-text property="fooId"/>

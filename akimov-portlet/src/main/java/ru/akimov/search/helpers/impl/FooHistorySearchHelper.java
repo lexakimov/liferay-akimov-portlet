@@ -29,7 +29,8 @@ public class FooHistorySearchHelper extends SqlBasedSearchHelper<EntityAuditEntr
 
 	@Override
 	protected String getSqlQuery(int start, int end) {
-		return ResourcesUtil.getContent("sql_queries/foo_history_search_query.sql");
+		return ResourcesUtil.getContent("sql_queries/foo_history_search_query.sql") +
+				" " + makeLimits(start, end);
 	}
 
 	@Override

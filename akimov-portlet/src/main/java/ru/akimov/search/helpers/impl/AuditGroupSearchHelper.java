@@ -16,12 +16,6 @@ public class AuditGroupSearchHelper extends AdaptedDynamicQuerySearchHelper<Audi
 		super(AuditEntryGroup.class);
 	}
 
-	public AuditGroupSearchHelper(SearchContainer<AuditGroupSearchEntryAdapter> container) throws PortletException {
-		this();
-		container.setResults(this.getAdaptedResult(container.getStart(), container.getEnd()));
-		container.setTotal(this.getTotal());
-	}
-
 	@Override
 	protected DynamicQuery addOrdering(DynamicQuery query) {
 		query.addOrder(OrderFactoryUtil.desc("eventDate"));
