@@ -11,6 +11,12 @@
 
 <h4>"Foo" change history</h4>
 
+<style>
+	.audit-row:hover {
+		outline: 2px solid black;
+	}
+</style>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="span12">
@@ -43,9 +49,11 @@
 							   value="${historyEntry.changes.size() > 1 ? historyEntry.changes.size() : 1}"/>
 						<tr>
 						<td class="table-cell" rowspan="${rowSpan}">
-							<fmt:formatDate value="${historyEntry.dateOfChanges}"
-											pattern="dd.MM.yyyy HH:mm:ss"
-											timeZone="${timeZone}"/>
+							<fmt:formatDate
+									value="${historyEntry.dateOfChanges}"
+									pattern="dd.MM.yyyy HH:mm:ss"
+									timeZone="${timeZone}"
+							/>
 						</td>
 
 						<td class="table-cell" rowspan="${rowSpan}">${historyEntry.user.fullName}</td>
