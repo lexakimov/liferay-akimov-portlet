@@ -150,7 +150,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>3.0.7.RELEASE</version>
+			<version>5.2.22.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
 		<!--<dependency>
